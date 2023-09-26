@@ -96,10 +96,14 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
+    /**
+     * Parses a String remark into a Remark Leading and trailing whitespaces wlil be trimmed.
+     * @throws ParseException if the given remark is invalid.
+     */
     public static Remark parseRemark(String remark) throws ParseException {
         requireNonNull(remark);
         String trimmedRemark = remark.trim();
-        if(!Remark.isValidRemark(trimmedRemark)) {
+        if (!Remark.isValidRemark(trimmedRemark)) {
             throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
         }
         return new Remark(trimmedRemark);
