@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; is always valid
  */
 public class Remark {
-    public static final String MESSAGE_CONSTRAINTS = "Remark can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Remark can take any values";
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
