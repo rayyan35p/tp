@@ -33,7 +33,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredEmployees = new FilteredList<>(this.addressBook.getPersonList());
+        filteredEmployees = new FilteredList<>(this.addressBook.getEmployeeList());
     }
 
     public ModelManager() {
@@ -88,42 +88,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Employee employee) {
+    public boolean hasEmployee(Employee employee) {
         requireNonNull(employee);
-        return addressBook.hasPerson(employee);
+        return addressBook.hasEmployee(employee);
     }
 
     @Override
-    public void deletePerson(Employee target) {
-        addressBook.removePerson(target);
+    public void deleteEmployee(Employee target) {
+        addressBook.removeEmployee(target);
     }
 
     @Override
-    public void addPerson(Employee employee) {
-        addressBook.addPerson(employee);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addEmployee(Employee employee) {
+        addressBook.addEmployee(employee);
+        updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
     }
 
     @Override
-    public void setPerson(Employee target, Employee editedEmployee) {
+    public void setEmployee(Employee target, Employee editedEmployee) {
         requireAllNonNull(target, editedEmployee);
 
-        addressBook.setPerson(target, editedEmployee);
+        addressBook.setEmployee(target, editedEmployee);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Employee List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Employee} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Employee> getFilteredPersonList() {
+    public ObservableList<Employee> getFilteredEmployeeList() {
         return filteredEmployees;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Employee> predicate) {
+    public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
         requireNonNull(predicate);
         filteredEmployees.setPredicate(predicate);
     }

@@ -17,7 +17,7 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Employee[] getSamplePersons() {
+    public static Employee[] getSampleEmployees() {
         return new Employee[] {
             new Employee(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
@@ -42,8 +42,8 @@ public class SampleDataUtil {
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Employee sampleEmployee : getSamplePersons()) {
-            sampleAb.addPerson(sampleEmployee);
+        for (Employee sampleEmployee : getSampleEmployees()) {
+            sampleAb.addEmployee(sampleEmployee);
         }
         return sampleAb;
     }

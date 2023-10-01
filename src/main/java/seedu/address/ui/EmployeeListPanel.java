@@ -11,28 +11,28 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.employee.Employee;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of employees.
  */
 public class EmployeeListPanel extends UiPart<Region> {
     private static final String FXML = "EmployeeListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(EmployeeListPanel.class);
 
     @FXML
-    private ListView<Employee> personListView;
+    private ListView<Employee> employeeListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code EmployeeListPanel} with the given {@code ObservableList}.
      */
     public EmployeeListPanel(ObservableList<Employee> employeeList) {
         super(FXML);
-        personListView.setItems(employeeList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        employeeListView.setItems(employeeList);
+        employeeListView.setCellFactory(listView -> new EmployeeListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Employee} using a {@code EmployeeCard}.
      */
-    class PersonListViewCell extends ListCell<Employee> {
+    class EmployeeListViewCell extends ListCell<Employee> {
         @Override
         protected void updateItem(Employee employee, boolean empty) {
             super.updateItem(employee, empty);
