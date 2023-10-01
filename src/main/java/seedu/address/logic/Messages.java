@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
-import seedu.address.model.person.Person;
+import seedu.address.model.employee.Employee;
 
 /**
  * Container for user visible messages.
@@ -34,17 +34,17 @@ public class Messages {
     /**
      * Formats the {@code person} for display to the user.
      */
-    public static String format(Person person) {
+    public static String format(Employee employee) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(person.getName())
+        builder.append(employee.getName())
                 .append("; Phone: ")
-                .append(person.getPhone())
+                .append(employee.getPhone())
                 .append("; Email: ")
-                .append(person.getEmail())
+                .append(employee.getEmail())
                 .append("; Address: ")
-                .append(person.getAddress())
+                .append(employee.getAddress())
                 .append("; Tags: ");
-        person.getTags().forEach(builder::append);
+        employee.getTags().forEach(builder::append);
         return builder.toString();
     }
 
