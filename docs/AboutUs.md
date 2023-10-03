@@ -29,14 +29,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Chandan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chandan8186.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/Chandan8186)] 
+[[portfolio](team/chandan.md)]
+[[email](mailto:chandan_ab@u.nus.edu)]
 
 * Role: Developer
-* Responsibilities: Data
 
 ### Jean Doe
 
