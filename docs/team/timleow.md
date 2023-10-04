@@ -1,12 +1,12 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Timothy Leow's Project Portfolio Page
 ---
 
 ### Project: TaskHub
 
 ## Overview
-TaskHub is a project management software to be used by project managers in a tech-related field.
+TaskHub is a desktop project management application used by project managers to manage projects and their team members in each project. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
 ## Summary of Contributions
 
 ### Code Contributed:
