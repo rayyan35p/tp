@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/chandan8186.png" width="200px">
 
 [[github](http://github.com/Chandan8186)] 
-[[portfolio](team/chandan.md)]
+[[portfolio](team/chandan8186.md)]
 [[email](mailto:chandan_ab@u.nus.edu)]
 
 * Role: Developer
