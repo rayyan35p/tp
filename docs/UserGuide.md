@@ -76,7 +76,7 @@ Format: `help`
 
 Adds an employee to the employees list.
 
-Format: `adde n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `addE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An employee can have any number of tags (including 0)
@@ -91,8 +91,8 @@ Acceptable values for each parameter:
 
 
 Examples:
-* `adde n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `adde n/Betsy Crowe t/Junior SWE e/betsycrowe@example.com a/Brick street p/+65 9123 4567 t/Employee of the month`
+* `addE n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `addE n/Betsy Crowe t/Junior SWE e/betsycrowe@example.com a/Brick street p/+65 9123 4567 t/Employee of the month`
 
 ### Listing all persons : `list`
 
