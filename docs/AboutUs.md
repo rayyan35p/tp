@@ -9,15 +9,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Anton Tan Hong Zhi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/antontan96.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/antonTan96)]
+[[portfolio](team/anton.md)]
 
-* Role: Project Advisor
+* Role: Developer
 
 ### Jane Doe
 
@@ -29,31 +28,31 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Chandan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chandan8186.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Chandan8186)] 
+[[portfolio](team/chandan8186.md)]
+[[email](mailto:chandan_ab@u.nus.edu)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Rayyan Ismail
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/rayyan35p.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/rayyan35p)]
+[[portfolio](team/rayyan35p.md)]
 
 * Role: Developer
-* Responsibilities: UI
+
+### Timothy Leow
+
+<img src="images/timleow.png" width="200px">
+
+[[github](http://github.com/timleow)]
+[[portfolio](team/timleow.md)]
+
+* Role: Developer
+* Responsibilities: Implement Help Pop-Up and updating User profile, value proposition in Developer Guide
