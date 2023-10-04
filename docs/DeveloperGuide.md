@@ -285,7 +285,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case 1: Delete a person**
 
 **MSS**
 
@@ -308,7 +308,64 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+
+**Use case 2: Delete a project**
+
+**MSS**
+
+1.  User requests to list projects
+2.  TaskHub shows a list of projects
+3.  User requests to delete a specific project in the list
+4.  AddressBook deletes the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. TaskHub shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case 3: Add employee**
+
+**MSS**
+
+1. User attempts to add employee
+2. Taskhub shows a message that indicates a successful operation
+
+    Use case ends.
+
+**Extensions**
+* 1a. The input does not follow the format.
+  * 1a1. Taskhub shows an error message with the correct format.
+
+Use case resumes at step 1.
+
+**Use case 4: Add employee to project**
+
+**MSS**
+
+1. User attempts to add employee to project
+2. TaskHub shows a message that indicates a successful operation
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The Project does not exist.
+    * 1a1. The user requests to create a new project with the Employees.
+      Use case ends.
+* 1b. The Employee does not exist.
+    * 1b1. The user attempts to add the Employee.(Use Case 3)
+
+  Use case resumes at step 1.
+
 
 ### Non-Functional Requirements
 
