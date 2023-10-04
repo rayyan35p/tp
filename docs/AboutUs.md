@@ -21,10 +21,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Aslam
 
-<img src="images/aslam.png" width="200px">
+<img src="images/aslam341.png" width="200px">
 
 [[github](http://github.com/aslam341)]
-[[portfolio](team/aslam.md)]
+[[portfolio](team/aslam341.md)]
 
 * Role: Developer
 * Responsibilities: Features
