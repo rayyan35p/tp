@@ -25,13 +25,13 @@ TaskHub is a **desktop app for managing contacts, optimized for use via a Comman
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `listE` : Lists all employees.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `addE n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds an employee named `John Doe` to the TaskHub.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `deleteE 3` : Deletes the 3rd employee shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all data.
 
    * `exit` : Exits the app.
 
@@ -46,7 +46,7 @@ TaskHub is a **desktop app for managing contacts, optimized for use via a Comman
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addE n/NAME`, `NAME` is a parameter which can be used as `addE n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -84,19 +84,19 @@ Alternatively, quickly enter a `help` command into TaskHub to display the pop-up
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding an employee: `addE`
 
-Adds a person to the address book.
+Adds an employee to the employees list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `addE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+An employee can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addE n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `addE n/Betsy Crowe t/Junior SWE e/betsycrowe@example.com a/Brick street p/+65 9123 4567 t/Employee of the month`
 
 ### Listing all employees : `listE`
 
@@ -123,11 +123,11 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating employees by name: `findE`
 
-Finds persons whose names contain any of the given keywords.
+Finds employees whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `findE KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -137,23 +137,30 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `findE John` returns `john` and `John Doe`
+* `findE alex david` returns `Alex Yeoh`, `David Li`
+* `findE james` returns `James` <br>
+  ![result for 'findE james'](images/findEjamesresult.png)
 
-### Deleting a person : `delete`
+### Listing all projects: `listP`
 
-Deletes the specified person from the address book.
+Shows a list of all projects in TaskHub.
 
-Format: `delete INDEX`
+![list example](images/listp.png)
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+### Deleting an employee : `deleteE`
+
+Deletes the specified employee from the employees list.
+
+Format: `deleteE INDEX`
+
+* Deletes the employee at the specified `INDEX`.
+* The index refers to the index number shown in the displayed employees list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `listE` followed by `deleteE 2` deletes the 2nd employee in the employees list.
+* `findE Betsy` followed by `deleteE 1` deletes the 1st employee in the results of the `findE` command.
 
 ### Clearing all entries : `clear`
 
