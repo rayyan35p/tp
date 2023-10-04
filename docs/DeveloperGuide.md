@@ -272,14 +272,24 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                             | I want to …​                  | So that I can…​                                                          |
+|----------|-------------------------------------|-------------------------------|--------------------------------------------------------------------------|
+| `* * *`  | completely new user                 | see usage instructions        | refer to instructions when I forget how to use the App                   |
+| `* * *`  | user                                | add a new employee            | easily manage and access employees in one place                          |
+| `* * *`  | user                                | delete an employee            | remove entries that I no longer need                                     |
+| `* * *`  | user                                | edit an employee              | change the details of the employee                                       |
+| `* * *`  | user                                | list all employees            | see an overview of all the employees                                     |
+| `* * *`  | user                                | add a new project             | easily manage and access projects in one place                           |
+| `* * *`  | user                                | delete a project              | remove entries that I no longer need                                     |
+| `* * *`  | user                                | edit a project                | change the details of the project                                        |
+| `* * *`  | user                                | list all projects             | see an overview of all my projects                                       |
+| `* * *`  | user                                | find an employee by name      | locate details of employees without having to go through the entire list |
+| `* * *`  | user                                | assign employees to a project | know which employees are on which projects in one place                  |
+| `* *`    | completely new user                 | have sample data              | practice some commands before trying the App                             |
+| `* *`    | user                                | purge all data                | get rid of sample/experimental data and add in my actual data            |
+| `*`      | user with many projects in TaskHub  | sort projects by date         | tell which project deadlines are coming soon                             |
+| `*`      | user with many employees in Taskhub | sort persons by name          | locate a person easily                                                   |
+| `*`      | new user                            | get autocomplete suggestions  | write commands without referring to usage instructions often             |
 
 *{More to be added}*
 
