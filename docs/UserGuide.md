@@ -75,7 +75,7 @@ a message is displayed, with the link to our user guide.
 ![help message](images/helpMessage.png)
 
 #### CLI Help
-Alternatively, quickly enter a `help` command into TaskHub to display to pop-up shown below.
+Alternatively, quickly enter a `help` command into TaskHub to display the pop-up shown below.
 (TODO replace screenshot).
 
 
