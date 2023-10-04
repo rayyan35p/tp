@@ -125,7 +125,7 @@ Format: `findE KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `findE John` returns `john` and `John Doe`
 * `findE alex david` returns `Alex Yeoh`, `David Li`
-* `findE james` returns `James`<br>
+* `findE james` returns `James` <br>
   ![result for 'findE james'](images/findEjamesresult.png)
 
 ### Listing all projects: `listP`
