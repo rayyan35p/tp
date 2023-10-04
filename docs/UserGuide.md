@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-TaskHub is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+TaskHub is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TaskHub can get your project management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,11 +14,11 @@ TaskHub is a **desktop app for managing contacts, optimized for use via a Comman
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `taskhub.jar` from [here](https://github.com/se-edu/addressbook-level3/releases). (TODO: update link with github release. this link is still AB3 for now)
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your TaskHub.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar taskhub.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -65,9 +65,21 @@ TaskHub is a **desktop app for managing contacts, optimized for use via a Comman
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+#### GUI Help: 
+Upon clicking help from the GUI as shown below,
+
+![circled_help_gui](images/circledHelpGUI.png)
+
+a message is displayed, with the link to our user guide. 
 
 ![help message](images/helpMessage.png)
+
+#### CLI Help
+Alternatively, quickly enter a `help` command into TaskHub to display to pop-up shown below.
+(TODO replace screenshot).
+
+
+<img src="https://i.imgur.com/WNVqICQ.png" alt="help_popup" height="300"/>
 
 Format: `help`
 
@@ -155,7 +167,7 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+TaskHub's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
@@ -174,7 +186,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TaskHub home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -188,10 +200,14 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**List all employees** | `listE`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
 **Help** | `help`
+**Add Employee** | `addE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ r/REMARK` <br> e.g., `addE n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague r/a good friend`
+**Delete Employee** | `deleteE INDEX`<br> e.g., `deleteE 3`
+**Find Employee** | `findE KEYWORD [MORE_KEYWORDS]`<br> e.g., `findE James Jake`
+**List Projects** | `listP`
+**Add Project** | `addP p/PROJECT_NAME [e/EMPLOYEE_NAME]…​` <br> e.g, `addP p/CS2103T e/Chandan e/Anton`
+**Assign Employee to Project** | `assignE p/PROJECT_NAME e/EMPLOYEE_NAME [e/MORE_EMPLOYEE_NAMES]…​` <br> e.g, `assignE p/CS2103TP e/Candice e/John e/Boyd e/Pragg`
+**Delete Project** | `deleteP INDEX`<br> e.g., `deleteP 3`
+
