@@ -257,13 +257,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of employees in a project management context
+* has a need to manage projects with multiple timelines
+* has a need to quickly delegate and manage distribution of tasks and projects among employees
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage projects and task delegation faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -370,8 +372,10 @@ Use case resumes at step 1.
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 employees without a noticeable(More than 2s) sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should continue to work in most file directories as long as TaskHub and its data file maintain the same structure.
+5.  Should be easily usable even by a first time user.
 
 *{More to be added}*
 
