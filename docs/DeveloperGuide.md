@@ -292,33 +292,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  TaskHub shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-
-
-**Use case 2: Delete a project**
-
-**MSS**
-
-1.  User requests to list projects
-2.  TaskHub shows a list of projects
-3.  User requests to delete a specific project in the list
-4.  AddressBook deletes the person
+4.  TaskHub deletes the person
 
     Use case ends.
 
@@ -334,12 +310,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case 3: Add employee**
+
+**Use case 2: Delete a project**
+
+**MSS**
+
+1.  User requests to list projects
+2.  TaskHub shows a list of projects
+3.  User requests to delete a specific project in the list
+4.  TaskHub deletes the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. TaskHub shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case 3: Add an employee**
 
 **MSS**
 
 1. User attempts to add employee
-2. Taskhub shows a message that indicates a successful operation
+2. TaskHub shows a message that indicates a successful operation
 
     Use case ends.
 
@@ -349,11 +349,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Use case resumes at step 1.
 
-**Use case 4: Add employee to project**
+**Use case 4: Add an employee to a project**
 
 **MSS**
 
-1. User attempts to add employee to project
+1. User attempts to add an employee to a project
 2. TaskHub shows a message that indicates a successful operation
 
    Use case ends.
@@ -362,7 +362,8 @@ Use case resumes at step 1.
 
 * 1a. The Project does not exist.
     * 1a1. The user requests to create a new project with the Employees.
-      Use case ends.
+      
+        Use case ends.
 * 1b. The Employee does not exist.
     * 1b1. The user attempts to add the Employee.(Use Case 3)
 
