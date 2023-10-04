@@ -147,6 +147,42 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Adding new Project : `addP`
+
+Adds a new project in TaskHub
+
+Format: `addP p/PROJECT_NAME [e/EMPLOYEE_NAME] ...`
+
+* Adds a new project with the employees assigned to the project.
+* The employee must exist in the contacts list. 
+
+Examples: 
+* `addP p/Project1 e/Betsy` will add `Project1` to the projects list with `Betsy` assigned to the project.
+* `addP p/Project2` will add an empty `Project2` to the projects list.
+
+### Assign Employee to Project: `assignE`
+
+Assigns Employees to a Project in Taskhub
+
+Format: `assignE p/PROJECT_NAME e/EMPLOYEE_NAME [e/MORE_EMPLOYEE_NAMES]...`
+* The employees will be assigned to the Project
+* The Project name and Employee names must exist in TaskHub.
+
+Examples:
+* `assignE p/Project1 e/Anton e/Joe` will add `Anton` and `Joe` to `Project1`
+
+### Delete Project: `deleteP`
+
+Deletes the specified Project from TaskHub.
+
+Format: `deletep INDEX`
+* Deletes the project at the specified `INDEX`
+* The index refers to the index number shown in the displayed person list.
+* The index __must be a positive integer__ 1, 2, 3,...
+
+Examples:
+* `listp` followed by `delete 2` deletes the 2nd project in TaskHub.
+
 ### Exiting the program : `exit`
 
 Exits the program.
