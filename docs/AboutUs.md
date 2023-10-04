@@ -47,12 +47,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 
-### James Doe
+### Timothy Leow
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/timleow.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/timleow)]
+[[portfolio](team/timleow.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Implement Help Pop-Up and updating User profile, value proposition in Developer Guide
