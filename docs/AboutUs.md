@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/antontan96.png" width="200px">
 
 [[github](https://github.com/antonTan96)]
-[[portfolio](team/anton.md)]
+[[portfolio](team/antontan96.md)]
 
 * Role: Developer
 
