@@ -86,11 +86,13 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing all employees : `listE`
 
-Shows a list of all persons in the address book.
+Shows a list of all employees in TaskHub.
 
-Format: `list`
+![list example](images/list.png)
+
+Format: `listE`
 
 ### Editing a person : `edit`
 
@@ -143,7 +145,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from TaskHub.
 
 Format: `clear`
 
