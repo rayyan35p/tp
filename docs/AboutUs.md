@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Rayyan Ismail
 
-<img src="images/rayyanismail.jpg" width="200px">
+<img src="images/rayyan35p.png" width="200px">
 
 [[github](http://github.com/rayyan35p)]
 [[portfolio](team/rayyan35p.md)]
