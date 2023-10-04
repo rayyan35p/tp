@@ -82,14 +82,6 @@ Format: `addE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 An employee can have any number of tags (including 0)
 </div>
 
-Acceptable values for each parameter:
-* Name: John Doe / Alex / A. P. Mary
-* Phone number: +65 9123 4567 / 62353535 
-* Email: john.doe@gmail.com 
-* Address: Any string resembling a location
-* Tag (optional): Any string
-
-
 Examples:
 * `addE n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `addE n/Betsy Crowe t/Junior SWE e/betsycrowe@example.com a/Brick street p/+65 9123 4567 t/Employee of the month`
