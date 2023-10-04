@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/rayyanismail.jpg" width="200px">
 
 [[github](http://github.com/rayyan35p)]
-[[portfolio](team/rayyan.md)]
+[[portfolio](team/rayyan35p.md)]
 
 * Role: Developer
 
