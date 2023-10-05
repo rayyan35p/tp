@@ -257,42 +257,54 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of employees in a project management context
+* has a need to manage projects with multiple timelines
+* has a need to quickly delegate and manage distribution of tasks and projects among employees
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage projects and task delegation faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                             | I want to …​                  | So that I can…​                                                          |
+|----------|-------------------------------------|-------------------------------|--------------------------------------------------------------------------|
+| `* * *`  | completely new user                 | see usage instructions        | refer to instructions when I forget how to use the App                   |
+| `* * *`  | user                                | add a new employee            | easily manage and access employees in one place                          |
+| `* * *`  | user                                | delete an employee            | remove entries that I no longer need                                     |
+| `* * *`  | user                                | edit an employee              | change the details of the employee                                       |
+| `* * *`  | user                                | list all employees            | see an overview of all the employees                                     |
+| `* * *`  | user                                | add a new project             | easily manage and access projects in one place                           |
+| `* * *`  | user                                | delete a project              | remove entries that I no longer need                                     |
+| `* * *`  | user                                | edit a project                | change the details of the project                                        |
+| `* * *`  | user                                | list all projects             | see an overview of all my projects                                       |
+| `* * *`  | user                                | find an employee by name      | locate details of employees without having to go through the entire list |
+| `* * *`  | user                                | assign employees to a project | know which employees are on which projects in one place                  |
+| `* *`    | completely new user                 | have sample data              | practice some commands before trying the App                             |
+| `* *`    | user                                | purge all data                | get rid of sample/experimental data and add in my actual data            |
+| `*`      | user with many projects in TaskHub  | sort projects by date         | tell which project deadlines are coming soon                             |
+| `*`      | user with many employees in Taskhub | sort persons by name          | locate a person easily                                                   |
+| `*`      | new user                            | get autocomplete suggestions  | write commands without referring to usage instructions often             |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TaskHub` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case 1: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  TaskHub shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  TaskHub deletes the person
 
     Use case ends.
 
@@ -304,17 +316,77 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TaskHub shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+
+**Use case 2: Delete a project**
+
+**MSS**
+
+1.  User requests to list projects
+2.  TaskHub shows a list of projects
+3.  User requests to delete a specific project in the list
+4.  TaskHub deletes the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. TaskHub shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case 3: Add an employee**
+
+**MSS**
+
+1. User attempts to add employee
+2. TaskHub shows a message that indicates a successful operation
+
+    Use case ends.
+
+**Extensions**
+* 1a. The input does not follow the format.
+  * 1a1. Taskhub shows an error message with the correct format.
+
+Use case resumes at step 1.
+
+**Use case 4: Add an employee to a project**
+
+**MSS**
+
+1. User attempts to add an employee to a project
+2. TaskHub shows a message that indicates a successful operation
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The Project does not exist.
+    * 1a1. The user requests to create a new project with the Employees.
+      
+        Use case ends.
+* 1b. The Employee does not exist.
+    * 1b1. The user attempts to add the Employee.(Use Case 3)
+
+  Use case resumes at step 1.
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 employees without a noticeable(More than 2s) sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should continue to work in most file directories as long as TaskHub and its data file maintain the same structure.
+5.  Should be easily usable even by a first time user.
 
 *{More to be added}*
 
