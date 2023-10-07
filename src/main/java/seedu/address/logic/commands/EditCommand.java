@@ -23,8 +23,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Address;
 import seedu.address.model.employee.Email;
-import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.employee.Remark;
 import seedu.address.model.tag.Tag;
@@ -93,7 +93,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Employee} with the details of {@code employeeToEdit}
      * edited with {@code editEmployeeDescriptor}.
      */
-    private static Employee createEditedEmployee(Employee employeeToEdit, EditEmployeeDescriptor editEmployeeDescriptor) {
+    private static Employee createEditedEmployee(Employee employeeToEdit,
+                                                 EditEmployeeDescriptor editEmployeeDescriptor) {
         assert employeeToEdit != null;
 
         Name updatedName = editEmployeeDescriptor.getName().orElse(employeeToEdit.getName());

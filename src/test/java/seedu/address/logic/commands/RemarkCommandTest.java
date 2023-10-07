@@ -7,9 +7,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showEmployeeAtIndex;
+import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EMPLOYEE;
-import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +37,8 @@ public class RemarkCommandTest {
         Employee firstEmployee = model.getFilteredEmployeeList().get(INDEX_FIRST_EMPLOYEE.getZeroBased());
         Employee editedEmployee = new EmployeeBuilder(firstEmployee).withRemark(REMARK_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_EMPLOYEE, new Remark(editedEmployee.getRemark().value));
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_EMPLOYEE,
+                new Remark(editedEmployee.getRemark().value));
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedEmployee);
 
@@ -67,11 +68,14 @@ public class RemarkCommandTest {
     public void execute_filteredList_success() {
         showEmployeeAtIndex(model, INDEX_FIRST_EMPLOYEE);
 
-        Employee firstEmployee = model.getFilteredEmployeeList().get(INDEX_FIRST_EMPLOYEE.getZeroBased());
-        Employee editedEmployee = new EmployeeBuilder(model.getFilteredEmployeeList().get(INDEX_FIRST_EMPLOYEE.getZeroBased()))
+        Employee firstEmployee = model.getFilteredEmployeeList()
+                .get(INDEX_FIRST_EMPLOYEE.getZeroBased());
+        Employee editedEmployee = new EmployeeBuilder(model.getFilteredEmployeeList()
+                .get(INDEX_FIRST_EMPLOYEE.getZeroBased()))
                 .withRemark(REMARK_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_EMPLOYEE, new Remark(editedEmployee.getRemark().value));
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_EMPLOYEE,
+                new Remark(editedEmployee.getRemark().value));
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedEmployee);
 
