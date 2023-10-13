@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showEmployeeAtIndex;
-import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEmployees.getTypicalTaskHub;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EMPLOYEE;
 
@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.model.AddressBook;
+import seedu.address.model.TaskHub;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -30,7 +30,7 @@ public class RemarkCommandTest {
 
     private static final String REMARK_STUB = "Some remark";
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTaskHub(), new UserPrefs());
 
     @Test
     public void execute_addRemarkUnfilteredList_success() {
@@ -42,7 +42,7 @@ public class RemarkCommandTest {
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedEmployee);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TaskHub(model.getTaskHub()), new UserPrefs());
         expectedModel.setEmployee(firstEmployee, editedEmployee);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
@@ -58,7 +58,7 @@ public class RemarkCommandTest {
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS, editedEmployee);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TaskHub(model.getTaskHub()), new UserPrefs());
         expectedModel.setEmployee(firstEmployee, editedEmployee);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
@@ -79,7 +79,7 @@ public class RemarkCommandTest {
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedEmployee);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TaskHub(model.getTaskHub()), new UserPrefs());
         expectedModel.setEmployee(firstEmployee, editedEmployee);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
@@ -95,14 +95,14 @@ public class RemarkCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of TaskHub
      */
     @Test
     public void execute_invalidEmployeeIndexFilteredList_failure() {
         showEmployeeAtIndex(model, INDEX_FIRST_EMPLOYEE);
         Index outOfBoundIndex = INDEX_SECOND_EMPLOYEE;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getEmployeeList().size());
+        // ensures that outOfBoundIndex is still in bounds of TaskHub list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getTaskHub().getEmployeeList().size());
 
         RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(VALID_REMARK_BOB));
 

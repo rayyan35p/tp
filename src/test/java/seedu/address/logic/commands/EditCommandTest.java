@@ -11,7 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showEmployeeAtIndex;
-import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEmployees.getTypicalTaskHub;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EMPLOYEE;
 
@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditCommand.EditEmployeeDescriptor;
-import seedu.address.model.AddressBook;
+import seedu.address.model.TaskHub;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -33,7 +33,7 @@ import seedu.address.testutil.EmployeeBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTaskHub(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -44,7 +44,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS,
                 Messages.format(editedEmployee));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TaskHub(model.getTaskHub()), new UserPrefs());
         expectedModel.setEmployee(model.getFilteredEmployeeList().get(0), editedEmployee);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -66,7 +66,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS,
                 Messages.format(editedEmployee));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TaskHub(model.getTaskHub()), new UserPrefs());
         expectedModel.setEmployee(lastEmployee, editedEmployee);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -80,7 +80,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS,
                 Messages.format(editedEmployee));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TaskHub(model.getTaskHub()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -97,7 +97,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS,
                 Messages.format(editedEmployee));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TaskHub(model.getTaskHub()), new UserPrefs());
         expectedModel.setEmployee(model.getFilteredEmployeeList().get(0), editedEmployee);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -116,8 +116,8 @@ public class EditCommandTest {
     public void execute_duplicateEmployeeFilteredList_failure() {
         showEmployeeAtIndex(model, INDEX_FIRST_EMPLOYEE);
 
-        // edit employee in filtered list into a duplicate in address book
-        Employee employeeInList = model.getAddressBook().getEmployeeList().get(INDEX_SECOND_EMPLOYEE.getZeroBased());
+        // edit employee in filtered list into a duplicate in TaskHub
+        Employee employeeInList = model.getTaskHub().getEmployeeList().get(INDEX_SECOND_EMPLOYEE.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_EMPLOYEE,
                 new EditEmployeeDescriptorBuilder(employeeInList).build());
 
@@ -135,14 +135,14 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of TaskHub
      */
     @Test
     public void execute_invalidEmployeeIndexFilteredList_failure() {
         showEmployeeAtIndex(model, INDEX_FIRST_EMPLOYEE);
         Index outOfBoundIndex = INDEX_SECOND_EMPLOYEE;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getEmployeeList().size());
+        // ensures that outOfBoundIndex is still in bounds of TaskHub list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getTaskHub().getEmployeeList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditEmployeeDescriptorBuilder().withName(VALID_NAME_BOB).build());

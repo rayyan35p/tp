@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
-import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEmployees.getTypicalTaskHub;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,25 +22,25 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.address.testutil.EmployeeBuilder;
 
-public class AddressBookTest {
+public class TaskHubTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final TaskHub taskHub = new TaskHub();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getEmployeeList());
+        assertEquals(Collections.emptyList(), taskHub.getEmployeeList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> taskHub.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyTaskHub_replacesData() {
+        TaskHub newData = getTypicalTaskHub();
+        taskHub.resetData(newData);
+        assertEquals(newData, taskHub);
     }
 
     @Test
@@ -49,53 +49,53 @@ public class AddressBookTest {
         Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Employee> newEmployees = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newEmployees);
+        TaskHubStub newData = new TaskHubStub(newEmployees);
 
-        assertThrows(DuplicateEmployeeException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateEmployeeException.class, () -> taskHub.resetData(newData));
     }
 
     @Test
     public void hasEmployee_nullEmployee_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasEmployee(null));
+        assertThrows(NullPointerException.class, () -> taskHub.hasEmployee(null));
     }
 
     @Test
-    public void hasEmployee_employeeNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasEmployee(ALICE));
+    public void hasEmployee_employeeNotInTaskHub_returnsFalse() {
+        assertFalse(taskHub.hasEmployee(ALICE));
     }
 
     @Test
-    public void hasEmployee_employeeInAddressBook_returnsTrue() {
-        addressBook.addEmployee(ALICE);
-        assertTrue(addressBook.hasEmployee(ALICE));
+    public void hasEmployee_employeeInTaskHub_returnsTrue() {
+        taskHub.addEmployee(ALICE);
+        assertTrue(taskHub.hasEmployee(ALICE));
     }
 
     @Test
-    public void hasEmployee_employeeWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addEmployee(ALICE);
+    public void hasEmployee_employeeWithSameIdentityFieldsInTaskHub_returnsTrue() {
+        taskHub.addEmployee(ALICE);
         Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasEmployee(editedAlice));
+        assertTrue(taskHub.hasEmployee(editedAlice));
     }
 
     @Test
     public void getEmployeeList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getEmployeeList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> taskHub.getEmployeeList().remove(0));
     }
 
     @Test
     public void toStringMethod() {
-        String expected = AddressBook.class.getCanonicalName() + "{employees=" + addressBook.getEmployeeList() + "}";
-        assertEquals(expected, addressBook.toString());
+        String expected = TaskHub.class.getCanonicalName() + "{employees=" + taskHub.getEmployeeList() + "}";
+        assertEquals(expected, taskHub.toString());
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose employees list can violate interface constraints.
+     * A stub ReadOnlyTaskHub whose employees list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class TaskHubStub implements ReadOnlyTaskHub {
         private final ObservableList<Employee> employees = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Employee> employees) {
+        TaskHubStub(Collection<Employee> employees) {
             this.employees.setAll(employees);
         }
 
