@@ -2,7 +2,7 @@
 
 Copyright by Susumu Yoshida - http://www.mcdodesign.com/
 - task_hub_32.png
-- AddressApp.ico
+- TaskHub.ico
 
 Copyright by Jan Jan Kovařík - http://glyphicons.com/
 - calendar.png
