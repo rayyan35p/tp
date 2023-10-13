@@ -87,6 +87,20 @@ public class LogicManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredEmployeeList().remove(0));
     }
 
+    @Test
+    public void getTaskHub_validModel_returnsTaskHub() {
+        ReadOnlyTaskHub expectedTaskHub = model.getTaskHub();
+        ReadOnlyTaskHub actualTaskHub = logic.getTaskHub();
+        assertEquals(expectedTaskHub, actualTaskHub);
+    }
+
+    @Test
+    public void getTaskHubFilePath_validModel_returnsTaskHubFilePath() {
+        Path expectedFilePath = model.getTaskHubFilePath();
+        Path actualFilePath = logic.getTaskHubFilePath();
+        assertEquals(expectedFilePath, actualFilePath);
+    }
+
     /**
      * Executes the command and confirms that
      * - no exceptions are thrown <br>
