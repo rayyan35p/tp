@@ -13,7 +13,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Project;
 
 /**
- * Changes the remark of an existing employee in the address book.
+ * Changes the remark of an existing employee in the TaskHub.
  */
 public class AssignEmployeeCommand extends Command {
 

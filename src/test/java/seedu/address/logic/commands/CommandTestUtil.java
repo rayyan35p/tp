@@ -15,8 +15,8 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.TaskHub;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditEmployeeDescriptorBuilder;
@@ -101,21 +101,21 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered employee list and selected employee in {@code actualModel} remain unchanged
+     * - the TaskHub, filtered employee list and selected employee in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        TaskHub expectedTaskHub = new TaskHub(actualModel.getTaskHub());
         List<Employee> expectedFilteredList = new ArrayList<>(actualModel.getFilteredEmployeeList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedTaskHub, actualModel.getTaskHub());
         assertEquals(expectedFilteredList, actualModel.getFilteredEmployeeList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the employee at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s TaskHub.
      */
     public static void showEmployeeAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredEmployeeList().size());

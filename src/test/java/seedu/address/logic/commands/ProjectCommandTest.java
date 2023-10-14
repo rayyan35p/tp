@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showEmployeeAtIndex;
-import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEmployees.getTypicalTaskHub;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EMPLOYEE;
 
@@ -15,9 +15,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TaskHub;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Project;
@@ -30,7 +30,7 @@ public class ProjectCommandTest {
 
     private static final String PROJECT_STUB = "Some project";
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTaskHub(), new UserPrefs());
 
     @Test
     public void execute_addProjectUnfilteredList_success() {
@@ -42,7 +42,7 @@ public class ProjectCommandTest {
 
         String expectedMessage = String.format(AssignEmployeeCommand.MESSAGE_ADD_PROJECT_SUCCESS, editedEmployee);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TaskHub(model.getTaskHub()), new UserPrefs());
         expectedModel.setEmployee(firstEmployee, editedEmployee);
 
         assertCommandSuccess(assignProjectCommand, model, expectedMessage, expectedModel);
@@ -58,7 +58,7 @@ public class ProjectCommandTest {
 
         String expectedMessage = String.format(AssignEmployeeCommand.MESSAGE_DELETE_PROJECT_SUCCESS, editedEmployee);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TaskHub(model.getTaskHub()), new UserPrefs());
         expectedModel.setEmployee(firstEmployee, editedEmployee);
 
         assertCommandSuccess(assignProjectCommand, model, expectedMessage, expectedModel);
@@ -79,7 +79,7 @@ public class ProjectCommandTest {
 
         String expectedMessage = String.format(AssignEmployeeCommand.MESSAGE_ADD_PROJECT_SUCCESS, editedEmployee);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TaskHub(model.getTaskHub()), new UserPrefs());
         expectedModel.setEmployee(firstEmployee, editedEmployee);
 
         assertCommandSuccess(assignProjectCommand, model, expectedMessage, expectedModel);
@@ -95,14 +95,14 @@ public class ProjectCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of TaskHub
      */
     @Test
     public void execute_invalidEmployeeIndexFilteredList_failure() {
         showEmployeeAtIndex(model, INDEX_FIRST_EMPLOYEE);
         Index outOfBoundIndex = INDEX_SECOND_EMPLOYEE;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getEmployeeList().size());
+        // ensures that outOfBoundIndex is still in bounds of TaskHub list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getTaskHub().getEmployeeList().size());
 
         AssignEmployeeCommand assignProjectCommand = new AssignEmployeeCommand(outOfBoundIndex, new Project(VALID_PROJECT_BOB));
 
