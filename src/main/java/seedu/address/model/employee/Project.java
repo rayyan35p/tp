@@ -1,6 +1,9 @@
 
 package seedu.address.model.employee;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -18,22 +21,38 @@ public class Project {
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String value;
+    public List<Employee> employeeList;
 
     /**
-     * Constructs an {@code Remark}.
+     * Constructs a {@code Project}.
      *
      * @param project A valid Project.
      */
     public Project(String project) {
         requireNonNull(project);
         value = project;
+        employeeList = new ArrayList<>();
     }
 
     /**
-     * Returns true if a given string is a valid remark.
+     * Returns true if a given string is a valid project name.
      */
     public static boolean isValidProject(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Adds an employee to the Project.
+     */
+    public void addEmployee(Employee employee){
+        employeeList.add(employee);
+    }
+
+    /**
+     * Removes the employee from the Project.
+     */
+    public void removeEmployee(Employee employee){
+        employeeList.remove(employee);
     }
 
     @Override

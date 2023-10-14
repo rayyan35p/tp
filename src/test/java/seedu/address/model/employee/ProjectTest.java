@@ -3,10 +3,14 @@ package seedu.address.model.employee;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEmployees.ALICE;
+import static seedu.address.testutil.TypicalEmployees.BOB;
 
 import org.junit.jupiter.api.Test;
 
 public class ProjectTest {
+
+
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -47,5 +51,23 @@ public class ProjectTest {
         // different project -> returns false
         Project differentProject = new Project("Bye");
         assertFalse(project.equals(differentProject));
+    }
+
+    @Test
+    public void addEmployeeTest(){
+        Project project = new Project("some project");
+        project.addEmployee(ALICE);
+        project.addEmployee(BOB);
+        assertTrue(project.employeeList.contains(ALICE) && project.employeeList.contains(BOB));
+    }
+
+    @Test
+    public void deleteEmployeeTest(){
+        Project project = new Project("some project");
+        project.addEmployee(ALICE);
+        project.addEmployee(BOB);
+        assertTrue(project.employeeList.contains(ALICE) && project.employeeList.contains(BOB));
+        project.removeEmployee(ALICE);
+        assertTrue(!project.employeeList.contains(ALICE) && project.employeeList.contains(BOB));
     }
 }
