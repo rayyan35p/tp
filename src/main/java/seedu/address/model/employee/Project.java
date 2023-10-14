@@ -7,9 +7,9 @@ import static java.util.Objects.requireNonNull;
  * Represents a Person's remark in the address book.
  * Guarantees: immutable; is always valid
  */
-public class Remark {
+public class Project {
 
-    public static final String MESSAGE_CONSTRAINTS = "Remarks can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Projects can take any values, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -22,17 +22,17 @@ public class Remark {
     /**
      * Constructs an {@code Remark}.
      *
-     * @param remark A valid Remark.
+     * @param project A valid Project.
      */
-    public Remark(String remark) {
-        requireNonNull(remark);
-        value = remark;
+    public Project(String project) {
+        requireNonNull(project);
+        value = project;
     }
 
     /**
      * Returns true if a given string is a valid remark.
      */
-    public static boolean isValidRemark(String test) {
+    public static boolean isValidProject(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -44,8 +44,8 @@ public class Remark {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Remark // instanceof handles nulls
-                && value.equals(((Remark) other).value)); // state check
+                || (other instanceof Project // instanceof handles nulls
+                && value.equals(((Project) other).value)); // state check
     }
 
     @Override

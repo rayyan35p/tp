@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showEmployeeAtIndex;
@@ -20,48 +20,48 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.Remark;
+import seedu.address.model.employee.Project;
 import seedu.address.testutil.EmployeeBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for AssignEmployeeCommand.
  */
-public class RemarkCommandTest {
+public class ProjectCommandTest {
 
-    private static final String REMARK_STUB = "Some remark";
+    private static final String PROJECT_STUB = "Some project";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_addRemarkUnfilteredList_success() {
+    public void execute_addProjectUnfilteredList_success() {
         Employee firstEmployee = model.getFilteredEmployeeList().get(INDEX_FIRST_EMPLOYEE.getZeroBased());
-        Employee editedEmployee = new EmployeeBuilder(firstEmployee).withRemark(REMARK_STUB).build();
+        Employee editedEmployee = new EmployeeBuilder(firstEmployee).withProject(PROJECT_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_EMPLOYEE,
-                new Remark(editedEmployee.getRemark().value));
+        AssignEmployeeCommand assignProjectCommand = new AssignEmployeeCommand(INDEX_FIRST_EMPLOYEE,
+                new Project(editedEmployee.getProject().value));
 
-        String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedEmployee);
+        String expectedMessage = String.format(AssignEmployeeCommand.MESSAGE_ADD_PROJECT_SUCCESS, editedEmployee);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setEmployee(firstEmployee, editedEmployee);
 
-        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(assignProjectCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_deleteRemarkUnfilteredList_success() {
+    public void execute_deleteProjectUnfilteredList_success() {
         Employee firstEmployee = model.getFilteredEmployeeList().get(INDEX_FIRST_EMPLOYEE.getZeroBased());
-        Employee editedEmployee = new EmployeeBuilder(firstEmployee).withRemark("").build();
+        Employee editedEmployee = new EmployeeBuilder(firstEmployee).withProject("").build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_EMPLOYEE,
-                new Remark(editedEmployee.getRemark().toString()));
+        AssignEmployeeCommand assignProjectCommand = new AssignEmployeeCommand(INDEX_FIRST_EMPLOYEE,
+                new Project(editedEmployee.getProject().toString()));
 
-        String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS, editedEmployee);
+        String expectedMessage = String.format(AssignEmployeeCommand.MESSAGE_DELETE_PROJECT_SUCCESS, editedEmployee);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setEmployee(firstEmployee, editedEmployee);
 
-        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(assignProjectCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -72,25 +72,25 @@ public class RemarkCommandTest {
                 .get(INDEX_FIRST_EMPLOYEE.getZeroBased());
         Employee editedEmployee = new EmployeeBuilder(model.getFilteredEmployeeList()
                 .get(INDEX_FIRST_EMPLOYEE.getZeroBased()))
-                .withRemark(REMARK_STUB).build();
+                .withProject(PROJECT_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_EMPLOYEE,
-                new Remark(editedEmployee.getRemark().value));
+        AssignEmployeeCommand assignProjectCommand = new AssignEmployeeCommand(INDEX_FIRST_EMPLOYEE,
+                new Project(editedEmployee.getProject().value));
 
-        String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedEmployee);
+        String expectedMessage = String.format(AssignEmployeeCommand.MESSAGE_ADD_PROJECT_SUCCESS, editedEmployee);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setEmployee(firstEmployee, editedEmployee);
 
-        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(assignProjectCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidEmployeeIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEmployeeList().size() + 1);
-        RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(VALID_REMARK_BOB));
+        AssignEmployeeCommand assignProjectCommand = new AssignEmployeeCommand(outOfBoundIndex, new Project(VALID_PROJECT_BOB));
 
-        assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+        assertCommandFailure(assignProjectCommand, model, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
     }
 
     /**
@@ -104,19 +104,19 @@ public class RemarkCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getEmployeeList().size());
 
-        RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(VALID_REMARK_BOB));
+        AssignEmployeeCommand assignProjectCommand = new AssignEmployeeCommand(outOfBoundIndex, new Project(VALID_PROJECT_BOB));
 
-        assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+        assertCommandFailure(assignProjectCommand, model, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final RemarkCommand standardCommand = new RemarkCommand(INDEX_FIRST_EMPLOYEE,
-                new Remark(VALID_REMARK_AMY));
+        final AssignEmployeeCommand standardCommand = new AssignEmployeeCommand(INDEX_FIRST_EMPLOYEE,
+                new Project(VALID_PROJECT_AMY));
 
         // same values -> returns true
-        RemarkCommand commandWithSameValues = new RemarkCommand(INDEX_FIRST_EMPLOYEE,
-                new Remark(VALID_REMARK_AMY));
+        AssignEmployeeCommand commandWithSameValues = new AssignEmployeeCommand(INDEX_FIRST_EMPLOYEE,
+                new Project(VALID_PROJECT_AMY));
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -129,11 +129,11 @@ public class RemarkCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new RemarkCommand(INDEX_SECOND_EMPLOYEE,
-                new Remark(VALID_REMARK_AMY))));
+        assertFalse(standardCommand.equals(new AssignEmployeeCommand(INDEX_SECOND_EMPLOYEE,
+                new Project(VALID_PROJECT_AMY))));
 
-        // different remark -> returns false
-        assertFalse(standardCommand.equals(new RemarkCommand(INDEX_FIRST_EMPLOYEE,
-                new Remark(VALID_REMARK_BOB))));
+        // different project -> returns false
+        assertFalse(standardCommand.equals(new AssignEmployeeCommand(INDEX_FIRST_EMPLOYEE,
+                new Project(VALID_PROJECT_BOB))));
     }
 }

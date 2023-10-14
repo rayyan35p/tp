@@ -26,7 +26,7 @@ import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
-import seedu.address.model.employee.Remark;
+import seedu.address.model.employee.Project;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -101,10 +101,10 @@ public class EditCommand extends Command {
         Phone updatedPhone = editEmployeeDescriptor.getPhone().orElse(employeeToEdit.getPhone());
         Email updatedEmail = editEmployeeDescriptor.getEmail().orElse(employeeToEdit.getEmail());
         Address updatedAddress = editEmployeeDescriptor.getAddress().orElse(employeeToEdit.getAddress());
-        Remark updatedRemark = editEmployeeDescriptor.getRemark().orElse(employeeToEdit.getRemark());
+        Project updatedProject = editEmployeeDescriptor.getProject().orElse(employeeToEdit.getProject());
         Set<Tag> updatedTags = editEmployeeDescriptor.getTags().orElse(employeeToEdit.getTags());
 
-        return new Employee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+        return new Employee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedProject, updatedTags);
     }
 
     @Override
@@ -140,7 +140,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Remark remark;
+        private Project project;
         private Set<Tag> tags;
 
         public EditEmployeeDescriptor() {}
@@ -154,7 +154,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setRemark(toCopy.remark);
+            setProject(toCopy.project);
             setTags(toCopy.tags);
         }
 
@@ -197,12 +197,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setRemark(Remark remark) {
-            this.remark = remark;
+        public void setProject(Project project) {
+            this.project = project;
         }
 
-        public Optional<Remark> getRemark() {
-            return Optional.ofNullable(remark);
+        public Optional<Project> getProject() {
+            return Optional.ofNullable(project);
         }
 
         /**
