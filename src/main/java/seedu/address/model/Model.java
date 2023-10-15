@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.Project;
 
 /**
  * The API of the Model component.
@@ -53,9 +54,14 @@ public interface Model {
     ReadOnlyTaskHub getTaskHub();
 
     /**
-     * Returns true if a employee with the same identity as {@code employee} exists in the TaskHub.
+     * Returns true if an employee with the same identity as {@code employee} exists in the TaskHub.
      */
     boolean hasEmployee(Employee employee);
+
+    /**
+     * Returns true if a project with the same name as {@code project} exists in the TaskHub.
+     */
+    boolean hasProject(Project project);
 
     /**
      * Deletes the given employee.
@@ -64,10 +70,22 @@ public interface Model {
     void deleteEmployee(Employee target);
 
     /**
+     * Deletes the given projects.
+     * The project must exist in the TaskHub.
+     */
+    void deleteProject(Project project);
+
+    /**
      * Adds the given employee.
      * {@code employee} must not already exist in the TaskHub.
      */
     void addEmployee(Employee employee);
+
+    /**
+     * Adds the given project.
+     * {@code project} must not already exist in the TaskHub.
+     */
+    void addProject(Project project);
 
     /**
      * Replaces the given employee {@code target} with {@code editedEmployee}.
@@ -79,6 +97,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered employee list */
     ObservableList<Employee> getFilteredEmployeeList();
+
+    /** Returns an unmodifiable view of the filtered project list */
+    ObservableList<Project> getFilteredProjectList();
 
     /**
      * Updates the filter of the filtered employee list to filter by the given {@code predicate}.

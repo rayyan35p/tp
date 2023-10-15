@@ -38,7 +38,7 @@ public class ProjectCommandTest {
         Employee editedEmployee = new EmployeeBuilder(firstEmployee).withProject(PROJECT_STUB).build();
 
         AssignEmployeeCommand assignProjectCommand = new AssignEmployeeCommand(INDEX_FIRST_EMPLOYEE,
-                new Project(editedEmployee.getProject().value));
+                new Project(editedEmployee.getProject().name));
 
         String expectedMessage = String.format(AssignEmployeeCommand.MESSAGE_ADD_PROJECT_SUCCESS, editedEmployee);
 
@@ -75,7 +75,7 @@ public class ProjectCommandTest {
                 .withProject(PROJECT_STUB).build();
 
         AssignEmployeeCommand assignProjectCommand = new AssignEmployeeCommand(INDEX_FIRST_EMPLOYEE,
-                new Project(editedEmployee.getProject().value));
+                new Project(editedEmployee.getProject().name));
 
         String expectedMessage = String.format(AssignEmployeeCommand.MESSAGE_ADD_PROJECT_SUCCESS, editedEmployee);
 

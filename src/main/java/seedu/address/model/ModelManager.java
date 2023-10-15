@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.Project;
 
 /**
  * Represents the in-memory model of the TaskHub data.
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final TaskHub taskHub;
     private final UserPrefs userPrefs;
     private final FilteredList<Employee> filteredEmployees;
+    private final FilteredList<Project> filteredProjects;
 
     /**
      * Initializes a ModelManager with the given taskHub and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.taskHub = new TaskHub(taskHub);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredEmployees = new FilteredList<>(this.taskHub.getEmployeeList());
+        filteredProjects = new FilteredList<>(this.taskHub.getProjectList());
     }
 
     public ModelManager() {
@@ -94,14 +97,30 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasProject(Project project) {
+        requireNonNull(project);
+        return taskHub.hasProject(project);
+    }
+
+    @Override
     public void deleteEmployee(Employee target) {
         taskHub.removeEmployee(target);
+    }
+
+    @Override
+    public void deleteProject(Project project) {
+        taskHub.removeProject(project);
     }
 
     @Override
     public void addEmployee(Employee employee) {
         taskHub.addEmployee(employee);
         updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
+    }
+
+    @Override
+    public void addProject(Project project) {
+        taskHub.addProject(project);
     }
 
     @Override
@@ -120,6 +139,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Employee> getFilteredEmployeeList() {
         return filteredEmployees;
+    }
+
+    @Override
+    public ObservableList<Project> getFilteredProjectList() {
+        return filteredProjects;
     }
 
     @Override

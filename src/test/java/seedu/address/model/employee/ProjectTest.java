@@ -39,7 +39,7 @@ public class ProjectTest {
         assertTrue(project.equals(project));
 
         // same values -> returns true
-        Project projectCopy = new Project(project.value);
+        Project projectCopy = new Project(project.name);
         assertTrue(project.equals(projectCopy));
 
         // different types -> returns false

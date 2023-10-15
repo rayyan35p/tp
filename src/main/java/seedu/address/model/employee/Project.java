@@ -20,7 +20,7 @@ public class Project {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String value;
+    public final String name;
     public List<Employee> employeeList;
 
     /**
@@ -30,8 +30,14 @@ public class Project {
      */
     public Project(String project) {
         requireNonNull(project);
-        value = project;
+        name = project;
         employeeList = new ArrayList<>();
+    }
+
+    public Project(String project,List<Employee> employees) {
+        requireNonNull(project);
+        name = project;
+        employeeList = employees;
     }
 
     /**
@@ -44,31 +50,45 @@ public class Project {
     /**
      * Adds an employee to the Project.
      */
-    public void addEmployee(Employee employee){
+    public void addEmployee(Employee employee) {
         employeeList.add(employee);
     }
 
     /**
      * Removes the employee from the Project.
      */
-    public void removeEmployee(Employee employee){
+    public void removeEmployee(Employee employee) {
         employeeList.remove(employee);
     }
 
+    /**
+     * Returns true if both projects have the same name.
+     * This defines a weaker notion of equality between two projects.
+     */
+    public boolean isSameProject(Project otherProject) {
+        if (otherProject == this) {
+            return true;
+        }
+
+        return otherProject != null
+                && otherProject.name.equals(this.name);
+    }
+
+    public List<Employee> getEmployees() {return employeeList;}
     @Override
     public String toString() {
-        return value;
+        return name;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Project // instanceof handles nulls
-                && value.equals(((Project) other).value)); // state check
+                && name.equals(((Project) other).name)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return name.hashCode();
     }
 }

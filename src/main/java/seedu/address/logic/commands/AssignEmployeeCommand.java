@@ -15,9 +15,10 @@ import seedu.address.model.employee.Project;
 /**
  * Changes the remark of an existing employee in the TaskHub.
  */
+//Todo: revamp class from remarkCommand to assignEmployee command
 public class AssignEmployeeCommand extends Command {
 
-    public static final String COMMAND_WORD = "assignP";
+    public static final String COMMAND_WORD = "assignE";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the project of the employee identified "
@@ -73,7 +74,7 @@ public class AssignEmployeeCommand extends Command {
      * {@code employeeToEdit}.
      */
     private String generateSuccessMessage(Employee employeeToEdit) {
-        String message = !project.value.isEmpty() ? MESSAGE_ADD_PROJECT_SUCCESS : MESSAGE_DELETE_PROJECT_SUCCESS;
+        String message = !project.name.isEmpty() ? MESSAGE_ADD_PROJECT_SUCCESS : MESSAGE_DELETE_PROJECT_SUCCESS;
         return String.format(message, employeeToEdit);
     }
 

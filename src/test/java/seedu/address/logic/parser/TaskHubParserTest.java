@@ -95,7 +95,7 @@ public class TaskHubParserTest {
     public void parseCommand_project() throws Exception {
         final Project project = new Project("Some project.");
         AssignEmployeeCommand command = (AssignEmployeeCommand) parser.parseCommand(AssignEmployeeCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_EMPLOYEE.getOneBased() + " " + PREFIX_PROJECT + project.value);
+                + INDEX_FIRST_EMPLOYEE.getOneBased() + " " + PREFIX_PROJECT + project.name);
         assertEquals(new AssignEmployeeCommand(INDEX_FIRST_EMPLOYEE, project), command);
     }
 
