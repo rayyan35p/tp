@@ -14,19 +14,19 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/antontan96.png" width="200px">
 
 [[github](https://github.com/antonTan96)]
-[[portfolio](team/anton.md)]
+[[portfolio](team/antontan96.md)]
 
 * Role: Developer
 
-### Jane Doe
+### Aslam
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/aslam341.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/aslam341)]
+[[portfolio](team/aslam341.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Features
 
 ### Chandan
 
