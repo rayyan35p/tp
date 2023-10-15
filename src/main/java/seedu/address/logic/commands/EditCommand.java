@@ -26,10 +26,11 @@ import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
+import seedu.address.model.employee.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing employee in the address book.
+ * Edits the details of an existing employee in the TaskHub.
  */
 public class EditCommand extends Command {
 
@@ -50,7 +51,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_EMPLOYEE_SUCCESS = "Edited Employee: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already exists in the TaskHub.";
 
     private final Index index;
     private final EditEmployeeDescriptor editEmployeeDescriptor;
@@ -100,9 +101,10 @@ public class EditCommand extends Command {
         Phone updatedPhone = editEmployeeDescriptor.getPhone().orElse(employeeToEdit.getPhone());
         Email updatedEmail = editEmployeeDescriptor.getEmail().orElse(employeeToEdit.getEmail());
         Address updatedAddress = editEmployeeDescriptor.getAddress().orElse(employeeToEdit.getAddress());
+        Remark updatedRemark = editEmployeeDescriptor.getRemark().orElse(employeeToEdit.getRemark());
         Set<Tag> updatedTags = editEmployeeDescriptor.getTags().orElse(employeeToEdit.getTags());
 
-        return new Employee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Employee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
     }
 
     @Override
@@ -138,6 +140,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Remark remark;
         private Set<Tag> tags;
 
         public EditEmployeeDescriptor() {}
@@ -151,6 +154,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setRemark(toCopy.remark);
             setTags(toCopy.tags);
         }
 
@@ -191,6 +195,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setRemark(Remark remark) {
+            this.remark = remark;
+        }
+
+        public Optional<Remark> getRemark() {
+            return Optional.ofNullable(remark);
         }
 
         /**

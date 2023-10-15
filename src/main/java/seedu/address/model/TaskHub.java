@@ -10,10 +10,10 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the task-hub level
  * Duplicates are not allowed (by .isSameEmployee comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class TaskHub implements ReadOnlyTaskHub {
 
     private final UniqueEmployeeList employees;
 
@@ -28,12 +28,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         employees = new UniqueEmployeeList();
     }
 
-    public AddressBook() {}
+    public TaskHub() {}
 
     /**
-     * Creates an AddressBook using the Employees in the {@code toBeCopied}
+     * Creates an TaskHub using the Employees in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public TaskHub(ReadOnlyTaskHub toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -49,9 +49,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code TaskHub} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyTaskHub newData) {
         requireNonNull(newData);
 
         setEmployees(newData.getEmployeeList());
@@ -60,7 +60,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// employee-level operations
 
     /**
-     * Returns true if a employee with the same identity as {@code employee} exists in the address book.
+     * Returns true if a employee with the same identity as {@code employee} exists in the TaskHub.
      */
     public boolean hasEmployee(Employee employee) {
         requireNonNull(employee);
@@ -68,8 +68,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a employee to the address book.
-     * The employee must not already exist in the address book.
+     * Adds a employee to the TaskHub.
+     * The employee must not already exist in the TaskHub.
      */
     public void addEmployee(Employee p) {
         employees.add(p);
@@ -77,9 +77,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given employee {@code target} in the list with {@code editedEmployee}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the TaskHub.
      * The employee identity of {@code editedEmployee} must not be the same as another existing employee in the
-     * address book.
+     * TaskHub.
      */
     public void setEmployee(Employee target, Employee editedEmployee) {
         requireNonNull(editedEmployee);
@@ -88,8 +88,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code TaskHub}.
+     * {@code key} must exist in the TaskHub.
      */
     public void removeEmployee(Employee key) {
         employees.remove(key);
@@ -116,12 +116,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddressBook)) {
+        if (!(other instanceof TaskHub)) {
             return false;
         }
 
-        AddressBook otherAddressBook = (AddressBook) other;
-        return employees.equals(otherAddressBook.employees);
+        TaskHub otherTaskHub = (TaskHub) other;
+        return employees.equals(otherTaskHub.employees);
     }
 
     @Override

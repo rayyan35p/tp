@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.TaskHub;
 import seedu.address.model.employee.Employee;
 
 /**
@@ -25,10 +25,10 @@ public class TypicalEmployees {
 
     public static final Employee ALICE = new EmployeeBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253")
+            .withPhone("94351253").withRemark("She likes aardvarks.")
             .withTags("friends").build();
     public static final Employee BENSON = new EmployeeBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25")
+            .withAddress("311, Clementi Ave 2, #02-25").withRemark("He can't take beer!")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").build();
     public static final Employee CARL = new EmployeeBuilder().withName("Carl Kurz").withPhone("95352563")
@@ -60,10 +60,10 @@ public class TypicalEmployees {
     private TypicalEmployees() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical employees.
+     * Returns an {@code TaskHub} with all the typical employees.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static TaskHub getTypicalTaskHub() {
+        TaskHub ab = new TaskHub();
         for (Employee employee : getTypicalEmployees()) {
             ab.addEmployee(employee);
         }
