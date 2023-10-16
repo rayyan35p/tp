@@ -1,6 +1,6 @@
 package seedu.address.ui;
 
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -8,19 +8,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
+import javafx.scene.control.Separator;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import seedu.address.commons.core.LogsCenter;
 
 /**
@@ -44,6 +41,30 @@ public class HelpWindow extends UiPart<Stage> {
 
     @FXML
     private Hyperlink helpMessage;
+
+    /**
+     * Creates a new HelpWindow.
+     */
+    public HelpWindow() {
+        this(new Stage());
+    }
+
+    /**
+     * Creates a new HelpWindow.
+     *
+     * @param root Stage to use as the root of the HelpWindow.
+     */
+    public HelpWindow(Stage root) {
+        super(FXML, root);
+        helpMessage.setText(HELP_MESSAGE);
+
+        // this is done to make sure that we start at the top of the scrollPane.
+        getRoot().setOnShown(event -> {
+            scrollPane.applyCss();
+            scrollPane.layout();
+            scrollPane.setVvalue(0.5);
+        });
+    }
 
     /**
      * Initializes the HelpWindow FXML.
@@ -104,29 +125,6 @@ public class HelpWindow extends UiPart<Stage> {
         }
     }
 
-    /**
-     * Creates a new HelpWindow.
-     *
-     * @param root Stage to use as the root of the HelpWindow.
-     */
-    public HelpWindow(Stage root) {
-        super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
-
-        // this is done to make sure that we start at the top of the scrollPane.
-        getRoot().setOnShown(event -> {
-            scrollPane.applyCss();
-            scrollPane.layout();
-            scrollPane.setVvalue(0.5);
-        });
-    }
-
-    /**
-     * Creates a new HelpWindow.
-     */
-    public HelpWindow() {
-        this(new Stage());
-    }
 
     /**
      * Shows the help window.
