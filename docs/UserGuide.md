@@ -106,22 +106,22 @@ Shows a list of all employees in TaskHub.
 
 Format: `listE`
 
-### Editing a person : `edit`
+### Editing an employee : `edit`
 
-Edits an existing person in the address book.
+Edits an existing employee in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `editE INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed employee list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the employee will be removed i.e adding of tags is not cumulative.
+* You can remove all the employee’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `editE 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st employee to be `91234567` and `johndoe@example.com` respectively.
+*  `editE 2 n/Betsy Crower t/` Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
 
 ### Locating employees by name: `findE`
 
@@ -133,7 +133,7 @@ Format: `findE KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* employees matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -172,25 +172,25 @@ Format: `clear`
 
 Adds a new project in TaskHub
 
-Format: `addP p/PROJECT_NAME [e/EMPLOYEE_NAME] ...`
+Format: `addP pr/PROJECT_NAME [e/EMPLOYEE_NAME] ...`
 
 * Adds a new project with the employees assigned to the project.
 * The employee must exist in the employees list. 
 
 Examples: 
-* `addP p/Project1 e/Betsy` will add `Project1` to the projects list with `Betsy` assigned to the project.
-* `addP p/Project2` will add an empty `Project2` to the projects list.
+* `addP pr/Project1 e/Betsy` will add `Project1` to the projects list with `Betsy` assigned to the project.
+* `addP pr/Project2` will add an empty `Project2` to the projects list.
 
 ### Assign employee(s) to a project: `assignE`
 
 Assigns employee(s) to a project in TaskHub
 
-Format: `assignE p/PROJECT_NAME e/EMPLOYEE_NAME [e/MORE_EMPLOYEE_NAMES]...`
+Format: `assignE pr/PROJECT_NAME e/EMPLOYEE_NAME [e/MORE_EMPLOYEE_NAMES]...`
 * The employee(s) will be assigned to the project
 * The project name and employee names must exist in TaskHub.
 
 Examples:
-* `assignE p/Project1 e/Anton e/Joe` will add `Anton` and `Joe` to `Project1`
+* `assignE pr/Project1 e/Anton e/Joe` will add `Anton` and `Joe` to `Project1`
 
 ### Delete a project: `deleteP`
 
@@ -252,7 +252,7 @@ Action | Format, Examples
 **Delete Employee** | `deleteE INDEX`<br> e.g., `deleteE 3`
 **Find Employee** | `findE KEYWORD [MORE_KEYWORDS]`<br> e.g., `findE James Jake`
 **List Projects** | `listP`
-**Add Project** | `addP p/PROJECT_NAME [e/EMPLOYEE_NAME]…​` <br> e.g, `addP p/CS2103T e/Chandan e/Anton`
-**Assign Employee to Project** | `assignE p/PROJECT_NAME e/EMPLOYEE_NAME [e/MORE_EMPLOYEE_NAMES]…​` <br> e.g, `assignE p/CS2103TP e/Candice e/John e/Boyd e/Pragg`
+**Add Project** | `addP pr/PROJECT_NAME [e/EMPLOYEE_NAME]…​` <br> e.g, `addP pr/CS2103T e/Chandan e/Anton`
+**Assign Employee to Project** | `assignE pr/PROJECT_NAME e/EMPLOYEE_NAME [e/MORE_EMPLOYEE_NAMES]…​` <br> e.g, `assignE pr/CS2103TP e/Candice e/John e/Boyd e/Pragg`
 **Delete Project** | `deleteP INDEX`<br> e.g., `deleteP 3`
 
