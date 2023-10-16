@@ -1,12 +1,16 @@
 package seedu.address.logic.parser;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Project;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 
 /**
@@ -22,7 +26,7 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
      */
     public AddProjectCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_PROJECT);
+                ArgumentTokenizer.tokenize(args, PREFIX_PROJECT,PREFIX_EMPLOYEE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -31,8 +35,14 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PROJECT);
         Project project = ParserUtil.parseProject(argMultimap.getValue(PREFIX_PROJECT).get());
+        List<Index> employeeIndexes = new ArrayList<>();
+        if (argMultimap.getValue(PREFIX_EMPLOYEE).isPresent()) {
+           for(String index : argMultimap.getValue(PREFIX_EMPLOYEE).get().split(" ")){
+               employeeIndexes.add(ParserUtil.parseIndex(index));
+           }
+        }
 
-        return new AddProjectCommand(project);
+        return new AddProjectCommand(project,employeeIndexes);
     }
 
     /**
