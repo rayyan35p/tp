@@ -51,6 +51,9 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats the {@code project} for display to the user.
+     */
     public static String format(Project project) {
         final StringBuilder builder = new StringBuilder();
         builder.append(project.name);
@@ -58,7 +61,7 @@ public class Messages {
         for (Employee employee : project.getEmployees()) {
             builder.append(employee.getName() + ", ");
         }
-        builder.substring(0,builder.lastIndexOf(", ") == -1 ? builder.length() : builder.lastIndexOf(", "));
+        builder.substring(0, builder.lastIndexOf(", ") == -1 ? builder.length() : builder.lastIndexOf(", "));
         return builder.toString();
     }
 

@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Project;
 
 /**
@@ -26,10 +25,11 @@ public class JsonAdaptedProject {
      */
 
     @JsonCreator
-    public JsonAdaptedProject(@JsonProperty("name") String name, @JsonProperty("employees") List<JsonAdaptedEmployee> employees){
+    public JsonAdaptedProject(@JsonProperty("name") String name,
+                              @JsonProperty("employees") List<JsonAdaptedEmployee> employees) {
         this.name = name;
         if (employees != null) {
-           this.employees.addAll(employees);
+            this.employees.addAll(employees);
         }
     }
 
@@ -59,7 +59,7 @@ public class JsonAdaptedProject {
         if (!Project.isValidProject(name)) {
             throw new IllegalValueException(Project.MESSAGE_CONSTRAINTS);
         }
-        return new Project(name,employeeList);
+        return new Project(name, employeeList);
     }
 
 

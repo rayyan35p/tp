@@ -1,5 +1,10 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
+
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -8,12 +13,10 @@ import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Project;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
-
-public class AddProjectCommand extends Command{
+/**
+ * Adds a project to the TaskHub.
+ */
+public class AddProjectCommand extends Command {
     public static final String COMMAND_WORD = "addP";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a project to the TaskHub. "
@@ -55,7 +58,7 @@ public class AddProjectCommand extends Command{
             editEmployeeDescriptor.setEmail(employeeToAdd.getEmail());
             editEmployeeDescriptor.setPhone(employeeToAdd.getPhone());
             editEmployeeDescriptor.setTags(employeeToAdd.getTags());
-            new EditCommand(targetIndex,editEmployeeDescriptor).execute(model);
+            new EditCommand(targetIndex, editEmployeeDescriptor).execute(model);
 
             //removes employee from previous project
             if (employeeToAdd.getProject().name != "") {

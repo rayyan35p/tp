@@ -56,7 +56,9 @@ public class TaskHub implements ReadOnlyTaskHub {
      * Replaces the contents of the Project list with {@code projects}.
      * {@code projects} must not contain duplicate projects.
      */
-    public void setProjects(List<Project> projects) {this.projects.setProjects(projects);}
+    public void setProjects(List<Project> projects) {
+        this.projects.setProjects(projects);
+    }
 
     /**
      * Resets the existing data of this {@code TaskHub} with {@code newData}.
