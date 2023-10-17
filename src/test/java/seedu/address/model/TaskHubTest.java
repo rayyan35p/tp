@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.address.testutil.EmployeeBuilder;
 
@@ -87,6 +88,25 @@ public class TaskHubTest {
     public void toStringMethod() {
         String expected = TaskHub.class.getCanonicalName() + "{employees=" + taskHub.getEmployeeList() + "}";
         assertEquals(expected, taskHub.toString());
+    }
+
+    // to be changed to project list
+    @Test
+    public void hashCodeGenerator_nonEmptyString_isValidHashCode() {
+        UniqueEmployeeList list = new UniqueEmployeeList();
+        TaskHub taskHub = new TaskHub();
+        assertEquals(taskHub.hashCode(), list.hashCode());
+    }
+
+    @Test
+    public void equals() {
+        TaskHub taskHub = new TaskHub();
+
+        // same object -> returns true
+        assertTrue(taskHub.equals(taskHub));
+
+        // null -> returns false
+        assertFalse(taskHub.equals(null));
     }
 
     /**

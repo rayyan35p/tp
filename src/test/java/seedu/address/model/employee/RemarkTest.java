@@ -1,5 +1,6 @@
 package seedu.address.model.employee;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -25,6 +26,13 @@ public class RemarkTest {
         // valid remarks
         assertTrue(Remark.isValidRemark("likes to study"));
         assertTrue(Remark.isValidRemark("-")); // one character
+    }
+
+    @Test
+    public void hashCodeGenerator_nonEmptyString_isValidHashCode() {
+        String testRemarkString = "test remark";
+        Remark remark = new Remark(testRemarkString);
+        assertEquals(remark.hashCode(), testRemarkString.hashCode());
     }
 
     @Test
