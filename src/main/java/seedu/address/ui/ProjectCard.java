@@ -32,6 +32,7 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private Label remark;
 
+    // Constructor input to be changed to Project
     /**
      * Creates a {@code ProjectCode} with the given {@code Project} and index to display.
      */
