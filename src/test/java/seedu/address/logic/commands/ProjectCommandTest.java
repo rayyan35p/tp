@@ -88,7 +88,8 @@ public class ProjectCommandTest {
     @Test
     public void execute_invalidEmployeeIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEmployeeList().size() + 1);
-        AssignEmployeeCommand assignProjectCommand = new AssignEmployeeCommand(outOfBoundIndex, new Project(VALID_PROJECT_BOB));
+        AssignEmployeeCommand assignProjectCommand = new AssignEmployeeCommand(outOfBoundIndex,
+                                                                                new Project(VALID_PROJECT_BOB));
 
         assertCommandFailure(assignProjectCommand, model, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
     }
@@ -104,7 +105,8 @@ public class ProjectCommandTest {
         // ensures that outOfBoundIndex is still in bounds of TaskHub list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getTaskHub().getEmployeeList().size());
 
-        AssignEmployeeCommand assignProjectCommand = new AssignEmployeeCommand(outOfBoundIndex, new Project(VALID_PROJECT_BOB));
+        AssignEmployeeCommand assignProjectCommand = new AssignEmployeeCommand(outOfBoundIndex,
+                                                                                new Project(VALID_PROJECT_BOB));
 
         assertCommandFailure(assignProjectCommand, model, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
     }

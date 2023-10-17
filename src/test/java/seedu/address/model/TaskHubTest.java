@@ -25,7 +25,7 @@ import seedu.address.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.address.testutil.EmployeeBuilder;
 
 public class TaskHubTest {
-//TODO: add projects in taskhub to test
+    //TODO: add projects in taskhub to test
     private final TaskHub taskHub = new TaskHub();
 
     @Test

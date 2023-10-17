@@ -112,7 +112,8 @@ public class JsonAdaptedEmployeeTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedEmployee employee =
-                new JsonAdaptedEmployee(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_PROJECT, invalidTags);
+                new JsonAdaptedEmployee(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                                        VALID_ADDRESS, VALID_PROJECT, invalidTags);
         assertThrows(IllegalValueException.class, employee::toModelType);
     }
 

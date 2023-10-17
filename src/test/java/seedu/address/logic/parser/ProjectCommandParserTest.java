@@ -21,7 +21,8 @@ public class ProjectCommandParserTest {
         // have project
         Index targetIndex = INDEX_FIRST_EMPLOYEE;
         String userInput = targetIndex.getOneBased() + " " + PREFIX_PROJECT + nonEmptyProject;
-        AssignEmployeeCommand expectedCommand = new AssignEmployeeCommand(INDEX_FIRST_EMPLOYEE, new Project(nonEmptyProject));
+        AssignEmployeeCommand expectedCommand = new AssignEmployeeCommand(INDEX_FIRST_EMPLOYEE,
+                                                                            new Project(nonEmptyProject));
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // no project

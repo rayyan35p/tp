@@ -54,7 +54,7 @@ public class ProjectTest {
     }
 
     @Test
-    public void addEmployeeTest(){
+    public void addEmployeeTest() {
         Project project = new Project("some project");
         project.addEmployee(ALICE);
         project.addEmployee(BOB);
@@ -62,7 +62,7 @@ public class ProjectTest {
     }
 
     @Test
-    public void deleteEmployeeTest(){
+    public void deleteEmployeeTest() {
         Project project = new Project("some project");
         project.addEmployee(ALICE);
         project.addEmployee(BOB);
