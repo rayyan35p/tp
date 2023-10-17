@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.getTypicalTaskHub;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -19,16 +20,18 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.Project;
 import seedu.address.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.address.testutil.EmployeeBuilder;
 
 public class TaskHubTest {
-
+//TODO: add projects in taskhub to test
     private final TaskHub taskHub = new TaskHub();
 
     @Test
     public void constructor() {
         assertEquals(Collections.emptyList(), taskHub.getEmployeeList());
+        assertEquals(Collections.emptyList(), taskHub.getProjectList());
     }
 
     @Test
@@ -49,7 +52,7 @@ public class TaskHubTest {
         Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Employee> newEmployees = Arrays.asList(ALICE, editedAlice);
-        TaskHubStub newData = new TaskHubStub(newEmployees);
+        TaskHubStub newData = new TaskHubStub(newEmployees, new ArrayList<>());
 
         assertThrows(DuplicateEmployeeException.class, () -> taskHub.resetData(newData));
     }
@@ -94,14 +97,21 @@ public class TaskHubTest {
      */
     private static class TaskHubStub implements ReadOnlyTaskHub {
         private final ObservableList<Employee> employees = FXCollections.observableArrayList();
+        private final ObservableList<Project> projects = FXCollections.observableArrayList();
 
-        TaskHubStub(Collection<Employee> employees) {
+        TaskHubStub(Collection<Employee> employees, Collection<Project> projects) {
             this.employees.setAll(employees);
+            this.projects.setAll(projects);
         }
 
         @Override
         public ObservableList<Employee> getEmployeeList() {
             return employees;
+        }
+
+        @Override
+        public ObservableList<Project> getProjectList() {
+            return projects;
         }
     }
 

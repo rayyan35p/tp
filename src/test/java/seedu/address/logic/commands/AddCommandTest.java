@@ -23,6 +23,7 @@ import seedu.address.model.ReadOnlyTaskHub;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TaskHub;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.Project;
 import seedu.address.testutil.EmployeeBuilder;
 
 public class AddCommandTest {
@@ -125,6 +126,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addProject(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setTaskHub(ReadOnlyTaskHub newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -140,7 +146,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasProject(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteEmployee(Employee target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteProject(Project project) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -152,6 +168,11 @@ public class AddCommandTest {
         @Override
         public ObservableList<Employee> getFilteredEmployeeList() {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Project> getFilteredProjectList() {
+            return null;
         }
 
         @Override

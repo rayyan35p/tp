@@ -35,7 +35,6 @@ public class EmployeeUtil {
         sb.append(PREFIX_PHONE + employee.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + employee.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + employee.getAddress().value + " ");
-        sb.append(PREFIX_PROJECT + employee.getProject().name + " ");
         employee.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
