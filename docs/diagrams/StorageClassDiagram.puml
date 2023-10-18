@@ -18,7 +18,7 @@ package "TaskHub Storage" #F4F6F6{
 Class "<<interface>>\nTaskHubStorage" as TaskHubStorage
 Class JsonTaskHubStorage
 Class JsonSerializableTaskHub
-Class JsonAdaptedPerson
+Class JsonAdaptedEmployee
 Class JsonAdaptedTag
 }
 
@@ -37,7 +37,7 @@ Storage -right-|> TaskHubStorage
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonTaskHubStorage .up.|> TaskHubStorage
 JsonTaskHubStorage ..> JsonSerializableTaskHub
-JsonSerializableTaskHub --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonSerializableTaskHub --> "*" JsonAdaptedEmployee
+JsonAdaptedEmployee --> "*" JsonAdaptedTag
 
 @enduml
