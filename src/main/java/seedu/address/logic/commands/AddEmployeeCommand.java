@@ -14,11 +14,11 @@ import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
 
 /**
- * Adds a employee to the TaskHub.
+ * Adds an employee to the TaskHub.
  */
-public class AddCommand extends Command {
+public class AddEmployeeCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "addE";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a employee to the TaskHub. "
             + "Parameters: "
@@ -41,9 +41,9 @@ public class AddCommand extends Command {
     private final Employee toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Employee}
+     * Creates an AddEmployeeCommand to add the specified {@code Employee}
      */
-    public AddCommand(Employee employee) {
+    public AddEmployeeCommand(Employee employee) {
         requireNonNull(employee);
         toAdd = employee;
     }
@@ -67,12 +67,12 @@ public class AddCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof AddEmployeeCommand)) {
             return false;
         }
 
-        AddCommand otherAddCommand = (AddCommand) other;
-        return toAdd.equals(otherAddCommand.toAdd);
+        AddEmployeeCommand otherAddEmployeeCommand = (AddEmployeeCommand) other;
+        return toAdd.equals(otherAddEmployeeCommand.toAdd);
     }
 
     @Override
