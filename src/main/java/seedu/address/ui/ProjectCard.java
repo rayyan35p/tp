@@ -1,20 +1,17 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.employee.Employee;
 
 /**
- * An UI component that displays information of a {@code Employee}.
+ * An UI component that displays information of a {@code Project}.
  */
-public class EmployeeCard extends UiPart<Region> {
+public class ProjectCard extends UiPart<Region> {
 
-    private static final String FXML = "EmployeeListCard.fxml";
+    private static final String FXML = "ProjectListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -33,30 +30,18 @@ public class EmployeeCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
-    @FXML
     private Label remark;
-    @FXML
-    private FlowPane tags;
 
+    // Constructor input to be changed to Project
     /**
-     * Creates a {@code EmployeeCode} with the given {@code Employee} and index to display.
+     * Creates a {@code ProjectCode} with the given {@code Project} and index to display.
      */
-    public EmployeeCard(Employee employee, int displayedIndex) {
+    public ProjectCard(Employee employee, int displayedIndex) {
         super(FXML);
         this.employee = employee;
         id.setText(displayedIndex + ". ");
         name.setText(employee.getName().fullName);
-        phone.setText(employee.getPhone().value);
-        address.setText(employee.getAddress().value);
         remark.setText(employee.getRemark().value);
-        email.setText(employee.getEmail().value);
-        employee.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
+
 }

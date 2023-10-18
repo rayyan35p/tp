@@ -4,7 +4,7 @@ package seedu.address.model.employee;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Person's remark in the address book.
+ * Represents a Person's remark in the TaskHub.
  * Guarantees: immutable; is always valid
  */
 public class Remark {
