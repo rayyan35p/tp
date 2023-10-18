@@ -27,7 +27,7 @@
                 </Label>
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
             </HBox>
-            <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
+            <Label fx:id="projects" styleClass="cell_small_label" text="\$projects" />
         </VBox>
     </GridPane>
 </HBox>

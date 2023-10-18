@@ -172,7 +172,7 @@ public class AddEmployeeCommandTest {
 
         @Override
         public ObservableList<Project> getFilteredProjectList() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -182,6 +182,11 @@ public class AddEmployeeCommandTest {
 
         @Override
         public void setProject(Project projectToEdit, Project editedProject) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredProjectList(Predicate<Project> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

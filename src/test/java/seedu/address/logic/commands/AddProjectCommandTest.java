@@ -153,6 +153,11 @@ public class AddProjectCommandTest {
         public void setProject(Project projectToEdit, Project editedProject) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateFilteredProjectList(Predicate<Project> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

@@ -148,6 +148,10 @@ public class ModelManager implements Model {
         return filteredEmployees;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Project} backed by the internal list of
+     * {@code versionedTaskHub}
+     */
     @Override
     public ObservableList<Project> getFilteredProjectList() {
         return filteredProjects;
@@ -157,6 +161,12 @@ public class ModelManager implements Model {
     public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
         requireNonNull(predicate);
         filteredEmployees.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredProjectList(Predicate<Project> predicate) {
+        requireNonNull(predicate);
+        filteredProjects.setPredicate(predicate);
     }
 
     @Override

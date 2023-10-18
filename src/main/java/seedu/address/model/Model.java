@@ -15,6 +15,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Employee> PREDICATE_SHOW_ALL_EMPLOYEES = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -107,5 +110,13 @@ public interface Model {
      */
     void updateFilteredEmployeeList(Predicate<Employee> predicate);
 
+
     void setProject(Project projectToEdit, Project editedProject);
+
+    /**
+     * Updates the filter of the filtered project list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredProjectList(Predicate<Project> predicate);
+
 }
