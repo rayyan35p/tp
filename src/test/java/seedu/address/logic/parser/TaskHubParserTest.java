@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddEmployeeCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -39,8 +39,9 @@ public class TaskHubParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Employee employee = new EmployeeBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(EmployeeUtil.getAddCommand(employee));
-        assertEquals(new AddCommand(employee), command);
+        AddEmployeeCommand command = (AddEmployeeCommand) parser
+                .parseCommand(EmployeeUtil.getAddEmployeeCommand(employee));
+        assertEquals(new AddEmployeeCommand(employee), command);
     }
 
     @Test
