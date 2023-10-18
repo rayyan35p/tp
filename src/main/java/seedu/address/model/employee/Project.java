@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -93,8 +94,9 @@ public class Project {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Project // instanceof handles nulls
-                && name.equals(((Project) other).name))
-                && employeeList.equals(((Project) other).employeeList); // state check
+                && name.equals(((Project) other).name)
+                && (Objects.equals(employeeList, ((Project) other).employeeList)));
+                // state check
     }
 
     @Override

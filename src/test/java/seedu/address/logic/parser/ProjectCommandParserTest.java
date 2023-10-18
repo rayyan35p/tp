@@ -13,6 +13,7 @@ import seedu.address.logic.commands.AssignEmployeeCommand;
 import seedu.address.model.employee.Project;
 
 public class ProjectCommandParserTest {
+    //Todo: redesign AssignEmployeeCommandParser
     private AssignEmployeeCommandParser parser = new AssignEmployeeCommandParser();
     private final String nonEmptyProject = "Some project.";
 
