@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.getTypicalTaskHub;
+import static seedu.address.testutil.TypicalProjects.ALPHA;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,7 +27,6 @@ import seedu.address.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.address.testutil.EmployeeBuilder;
 
 public class TaskHubTest {
-    //TODO: add projects in taskhub to test
     private final TaskHub taskHub = new TaskHub();
 
     @Test
@@ -64,8 +64,24 @@ public class TaskHubTest {
     }
 
     @Test
+    public void hasProject_nullProject_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> taskHub.hasProject(null));
+    }
+
+    @Test
     public void hasEmployee_employeeNotInTaskHub_returnsFalse() {
         assertFalse(taskHub.hasEmployee(ALICE));
+    }
+
+    @Test
+    public void hasProject_projectNotInTaskHub_returnFalse() {
+        assertFalse(taskHub.hasProject(ALPHA));
+    }
+
+    @Test
+    public void hasProject_projectInTaskHub_returnsTrue() {
+        taskHub.addProject(ALPHA);
+        assertTrue(taskHub.hasProject(ALPHA));
     }
 
     @Test
@@ -85,6 +101,11 @@ public class TaskHubTest {
     @Test
     public void getEmployeeList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> taskHub.getEmployeeList().remove(0));
+    }
+
+    @Test
+    public void getProjectList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> taskHub.getProjectList().remove(0));
     }
 
     @Test

@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.HOON;
 import static seedu.address.testutil.TypicalEmployees.IDA;
 import static seedu.address.testutil.TypicalEmployees.getTypicalTaskHub;
+import static seedu.address.testutil.TypicalProjects.ALPHA;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -73,7 +74,9 @@ public class JsonTaskHubStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addEmployee(HOON);
+        original.addProject(ALPHA);
         original.removeEmployee(ALICE);
+        original.removeProject(ALPHA);
         jsonTaskHubStorage.saveTaskHub(original, filePath);
         readBack = jsonTaskHubStorage.readTaskHub(filePath).get();
         assertEquals(original, new TaskHub(readBack));
