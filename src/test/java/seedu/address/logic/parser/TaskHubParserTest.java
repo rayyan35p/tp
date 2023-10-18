@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddEmployeeCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteEmployeeCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditEmployeeDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -52,9 +52,9 @@ public class TaskHubParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_EMPLOYEE), command);
+        DeleteEmployeeCommand command = (DeleteEmployeeCommand) parser.parseCommand(
+                DeleteEmployeeCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased());
+        assertEquals(new DeleteEmployeeCommand(INDEX_FIRST_EMPLOYEE), command);
     }
 
     @Test

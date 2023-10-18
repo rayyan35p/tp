@@ -14,9 +14,9 @@ import seedu.address.model.employee.Employee;
 /**
  * Deletes a employee identified using it's displayed index from the TaskHub.
  */
-public class DeleteCommand extends Command {
+public class DeleteEmployeeCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "deleteE";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the employee identified by the index number used in the displayed employee list.\n"
@@ -27,7 +27,7 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public DeleteEmployeeCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -52,12 +52,12 @@ public class DeleteCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteCommand)) {
+        if (!(other instanceof DeleteEmployeeCommand)) {
             return false;
         }
 
-        DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return targetIndex.equals(otherDeleteCommand.targetIndex);
+        DeleteEmployeeCommand otherDeleteEmployeeCommand = (DeleteEmployeeCommand) other;
+        return targetIndex.equals(otherDeleteEmployeeCommand.targetIndex);
     }
 
     @Override
