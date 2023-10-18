@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddEmployeeCommand;
 import seedu.address.logic.commands.EditCommand.EditEmployeeDescriptor;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.tag.Tag;
@@ -22,8 +22,8 @@ public class EmployeeUtil {
     /**
      * Returns an add command string for adding the {@code employee}.
      */
-    public static String getAddCommand(Employee employee) {
-        return AddCommand.COMMAND_WORD + " " + getEmployeeDetails(employee);
+    public static String getAddEmployeeCommand(Employee employee) {
+        return AddEmployeeCommand.COMMAND_WORD + " " + getEmployeeDetails(employee);
     }
 
     /**

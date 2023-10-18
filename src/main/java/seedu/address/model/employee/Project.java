@@ -96,7 +96,7 @@ public class Project {
                 || (other instanceof Project // instanceof handles nulls
                 && name.equals(((Project) other).name)
                 && (Objects.equals(employeeList, ((Project) other).employeeList)));
-                // state check
+        // state check
     }
 
     @Override

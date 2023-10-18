@@ -26,11 +26,11 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Project;
 import seedu.address.testutil.EmployeeBuilder;
 
-public class AddCommandTest {
+public class AddEmployeeCommandTest {
 
     @Test
     public void constructor_nullEmployee_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddEmployeeCommand(null));
     }
 
     @Test
@@ -38,9 +38,9 @@ public class AddCommandTest {
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
         Employee validEmployee = new EmployeeBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validEmployee).execute(modelStub);
+        CommandResult commandResult = new AddEmployeeCommand(validEmployee).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validEmployee)),
+        assertEquals(String.format(AddEmployeeCommand.MESSAGE_SUCCESS, Messages.format(validEmployee)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validEmployee), modelStub.employeesAdded);
     }
@@ -48,25 +48,25 @@ public class AddCommandTest {
     @Test
     public void execute_duplicateEmployee_throwsCommandException() {
         Employee validEmployee = new EmployeeBuilder().build();
-        AddCommand addCommand = new AddCommand(validEmployee);
+        AddEmployeeCommand addEmployeeCommand = new AddEmployeeCommand(validEmployee);
         ModelStub modelStub = new ModelStubWithEmployee(validEmployee);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_EMPLOYEE, () ->
-                addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE, () ->
+                addEmployeeCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Employee alice = new EmployeeBuilder().withName("Alice").build();
         Employee bob = new EmployeeBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddEmployeeCommand addAliceCommand = new AddEmployeeCommand(alice);
+        AddEmployeeCommand addBobCommand = new AddEmployeeCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddEmployeeCommand addAliceCommandCopy = new AddEmployeeCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -81,9 +81,9 @@ public class AddCommandTest {
 
     @Test
     public void toStringMethod() {
-        AddCommand addCommand = new AddCommand(ALICE);
-        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
-        assertEquals(expected, addCommand.toString());
+        AddEmployeeCommand addEmployeeCommand = new AddEmployeeCommand(ALICE);
+        String expected = AddEmployeeCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
+        assertEquals(expected, addEmployeeCommand.toString());
     }
 
     /**

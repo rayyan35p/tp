@@ -1,5 +1,11 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.commands.AddProjectCommand.MESSAGE_DUPLICATE_PROJECT;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEmployees.ALICE;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
@@ -12,7 +18,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TaskHub;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Project;
-import seedu.address.testutil.EmployeeBuilder;
 import seedu.address.testutil.ProjectBuilder;
 
 import java.nio.file.Path;
@@ -20,18 +25,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.commands.AddProjectCommand.MESSAGE_DUPLICATE_PROJECT;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEmployees.ALICE;
-import static seedu.address.testutil.TypicalEmployees.BOB;
-
 public class AddProjectCommandTest {
 
     @Test
     public void constructor_nullProject_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddProjectCommand(null,null));
+        assertThrows(NullPointerException.class, () -> new AddProjectCommand(null, null));
     }
 
     @Test
@@ -39,7 +37,7 @@ public class AddProjectCommandTest {
         ModelStubAcceptingProjectAdded modelStub = new ModelStubAcceptingProjectAdded();
         Project validProject = new ProjectBuilder().withEmployees().build();
 
-        CommandResult commandResult = new AddProjectCommand(validProject,new ArrayList<>()).execute(modelStub);
+        CommandResult commandResult = new AddProjectCommand(validProject, new ArrayList<>()).execute(modelStub);
 
         assertEquals(String.format(AddProjectCommand.MESSAGE_SUCCESS, Messages.format(validProject)),
                 commandResult.getFeedbackToUser());
@@ -49,7 +47,7 @@ public class AddProjectCommandTest {
     @Test
     public void execute_duplicateEmployee_throwsCommandException() {
         Project validProject = new ProjectBuilder().build();
-        AddProjectCommand addProjectCommand = new AddProjectCommand(validProject,new ArrayList<>());
+        AddProjectCommand addProjectCommand = new AddProjectCommand(validProject, new ArrayList<>());
         ModelStub modelStub = new ModelStubWithProject(validProject);
 
         assertThrows(CommandException.class, MESSAGE_DUPLICATE_PROJECT, () ->
@@ -151,29 +149,29 @@ public class AddProjectCommandTest {
         }
     }
 
-/*** A Model stub that contains a single employee.
- */
-private class ModelStubWithProject extends ModelStub {
-    private final Project project;
+    /*** A Model stub that contains a single employee.
+     */
+    private class ModelStubWithProject extends ModelStub {
+        private final Project project;
 
-    ModelStubWithProject(Project project) {
-        requireNonNull(project);
-        this.project = project;
-    }
+        ModelStubWithProject(Project project) {
+            requireNonNull(project);
+            this.project = project;
+        }
 
-    @Override
-    public boolean hasProject(Project project) {
-        requireNonNull(project);
-        return this.project.isSameProject(project);
-    }
+        @Override
+        public boolean hasProject(Project project) {
+            requireNonNull(project);
+            return this.project.isSameProject(project);
+        }
 
-    @Override
-    public ObservableList<Employee> getFilteredEmployeeList() {
-        ObservableList<Employee> list =  FXCollections.observableArrayList();
-        list.add(ALICE);
-        return list;
+        @Override
+        public ObservableList<Employee> getFilteredEmployeeList() {
+            ObservableList<Employee> list =  FXCollections.observableArrayList();
+            list.add(ALICE);
+            return list;
+        }
     }
-}
 
     /**
      * A Model stub that always accept the employee being added.
@@ -184,7 +182,7 @@ private class ModelStubWithProject extends ModelStub {
         @Override
         public boolean hasProject(Project project) {
             requireNonNull(project);
-            return projectsAdded.stream().anyMatch(project::isSameProject);
+            return projectsAdded.stream().anyMatch(project :: isSameProject);
         }
 
         @Override
