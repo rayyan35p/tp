@@ -16,9 +16,14 @@ public class ProjectBuilder {
     private String projectName;
     private List<Employee> employeeList;
 
-    ProjectBuilder() {
+    public ProjectBuilder() {
         projectName = DEFAULT_NAME;
         employeeList = DEFAULT_LIST;
+    }
+
+    public ProjectBuilder(Project toCopy) {
+        projectName = toCopy.name;
+        employeeList = toCopy.getEmployees();
     }
 
     public ProjectBuilder withName(String name) {
