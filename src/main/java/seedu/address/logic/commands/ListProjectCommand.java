@@ -13,7 +13,6 @@ public class ListProjectCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all projects";
 
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
