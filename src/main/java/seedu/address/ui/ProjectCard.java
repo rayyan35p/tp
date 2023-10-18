@@ -30,7 +30,7 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label remark;
+    private Label project;
 
     // Constructor input to be changed to Project
     /**
@@ -41,7 +41,7 @@ public class ProjectCard extends UiPart<Region> {
         this.employee = employee;
         id.setText(displayedIndex + ". ");
         name.setText(employee.getName().fullName);
-        remark.setText(employee.getRemark().value);
+        project.setText(employee.getProject().name);
     }
 
 }

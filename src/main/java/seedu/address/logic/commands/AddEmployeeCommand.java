@@ -14,7 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
 
 /**
- * Adds a employee to the TaskHub.
+ * Adds an employee to the TaskHub.
  */
 public class AddEmployeeCommand extends Command {
 

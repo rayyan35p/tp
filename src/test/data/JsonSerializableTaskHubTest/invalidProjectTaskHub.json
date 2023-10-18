@@ -1,0 +1,18 @@
+{
+  "comment" : "project name is invalid",
+  "employees": [ {
+    "name": "Hans Muster",
+    "phone": "9482424",
+    "email": "valid@email3e.com",
+    "address": "4th street"
+  } ],
+  "projects": [ {
+    "name": "",
+    "employees": [{
+      "name": "Hans Muster",
+      "phone": "9482424",
+      "email": "valid@email3e.com",
+      "address": "4th street"
+    }]
+  }]
+}

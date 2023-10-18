@@ -7,7 +7,9 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.Project;
 import seedu.address.model.employee.UniqueEmployeeList;
+import seedu.address.model.employee.UniqueProjectList;
 
 /**
  * Wraps all data at the task-hub level
@@ -16,6 +18,7 @@ import seedu.address.model.employee.UniqueEmployeeList;
 public class TaskHub implements ReadOnlyTaskHub {
 
     private final UniqueEmployeeList employees;
+    private final UniqueProjectList projects;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,6 +29,7 @@ public class TaskHub implements ReadOnlyTaskHub {
      */
     {
         employees = new UniqueEmployeeList();
+        projects = new UniqueProjectList();
     }
 
     public TaskHub() {}
@@ -49,12 +53,21 @@ public class TaskHub implements ReadOnlyTaskHub {
     }
 
     /**
+     * Replaces the contents of the Project list with {@code projects}.
+     * {@code projects} must not contain duplicate projects.
+     */
+    public void setProjects(List<Project> projects) {
+        this.projects.setProjects(projects);
+    }
+
+    /**
      * Resets the existing data of this {@code TaskHub} with {@code newData}.
      */
     public void resetData(ReadOnlyTaskHub newData) {
         requireNonNull(newData);
 
         setEmployees(newData.getEmployeeList());
+        setProjects(newData.getProjectList());
     }
 
     //// employee-level operations
@@ -95,6 +108,30 @@ public class TaskHub implements ReadOnlyTaskHub {
         employees.remove(key);
     }
 
+    //// project-level operations
+    /**
+     * Returns true if a project with the same identity as {@code project} exists in the TaskHub.
+     */
+    public boolean hasProject(Project project) {
+        requireNonNull(project);
+        return projects.contains(project);
+    }
+
+    /**
+     * Adds a project to the TaskHub.
+     * The project must not already exist in the TaskHub.
+     */
+    public void addProject(Project p) {
+        projects.add(p);
+    }
+
+    /**
+     * Removes {@code key} from this {@code TaskHub}.
+     * {@code key} must exist in the TaskHub.
+     */
+    public void removeProject(Project key) {
+        projects.remove(key);
+    }
     //// util methods
 
     @Override
@@ -110,6 +147,11 @@ public class TaskHub implements ReadOnlyTaskHub {
     }
 
     @Override
+    public ObservableList<Project> getProjectList() {
+        return projects.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -121,7 +163,7 @@ public class TaskHub implements ReadOnlyTaskHub {
         }
 
         TaskHub otherTaskHub = (TaskHub) other;
-        return employees.equals(otherTaskHub.employees);
+        return employees.equals(otherTaskHub.employees) && projects.equals(otherTaskHub.projects);
     }
 
     @Override

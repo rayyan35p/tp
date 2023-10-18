@@ -13,7 +13,7 @@ import seedu.address.model.employee.Address;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
-import seedu.address.model.employee.Remark;
+import seedu.address.model.employee.Project;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -82,18 +82,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String remark} into a {@code Remark}.
+     * Parses a {@code String project} into a {@code Project}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code Remark} is invalid.
+     * @throws ParseException if the given {@code Project} is invalid.
      */
-    public static Remark parseRemark(String remark) throws ParseException {
-        requireNonNull(remark);
-        String trimmedRemark = remark.trim();
-        if (!Remark.isValidRemark(trimmedRemark)) {
-            throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
+    public static Project parseProject(String project) throws ParseException {
+        requireNonNull(project);
+        String trimmedProject = project.trim();
+        if (!Project.isValidProject(trimmedProject)) {
+            throw new ParseException(Project.MESSAGE_CONSTRAINTS);
         }
-        return new Remark(trimmedRemark);
+        return new Project(trimmedProject);
     }
 
     /**

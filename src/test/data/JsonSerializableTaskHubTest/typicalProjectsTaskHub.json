@@ -1,5 +1,5 @@
 {
-  "_comment": "TaskHub save file which contains the same Employee values as in TypicalEmployees#getTypicalTaskHub()",
+  "_comment": "TaskHub save file which contains the same Employee values as in TypicalProjects#getTypicalTaskHub()",
   "employees" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
@@ -50,5 +50,48 @@
     "project" : "",
     "tags" : [ ]
   } ],
-  "projects": []
+  "projects": [ {
+    "name" : "Alpha",
+    "employees" : [
+      {
+        "name": "Alice Pauline",
+        "phone": "94351253",
+        "email": "alice@example.com",
+        "address": "123, Jurong West Ave 6, #08-111",
+        "project" : "",
+        "tags": [ "friends" ]
+      }
+    ]
+  }, {
+     "name" : "Beta",
+     "employees" : [
+       {
+         "name" : "Benson Meier",
+         "phone" : "98765432",
+         "email" : "johnd@example.com",
+         "address" : "311, Clementi Ave 2, #02-25",
+         "project" : "",
+         "tags" : [ "owesMoney", "friends" ]
+       }
+     ]
+    }, {
+    "name" : "Delta",
+    "employees" : [
+      {
+        "name" : "Daniel Meier",
+        "phone" : "87652533",
+        "email" : "cornelia@example.com",
+        "address" : "10th street",
+        "project" : "",
+        "tags" : [ "friends" ]
+      }, {
+        "name" : "Fiona Kunz",
+        "phone" : "9482427",
+        "email" : "lydia@example.com",
+        "address" : "little tokyo",
+        "project" : "",
+        "tags" : [ ]
+      }
+    ]
+  }]
 }
