@@ -18,7 +18,6 @@ import seedu.address.model.employee.Project;
 /**
  * Changes the remark of an existing employee in the TaskHub.
  */
-//Todo: revamp class from remarkCommand to assignEmployee command
 public class AssignEmployeeCommand extends Command {
 
     public static final String COMMAND_WORD = "assignE";
@@ -60,6 +59,9 @@ public class AssignEmployeeCommand extends Command {
         Project projectToEdit = lastShownProjectList.get(projectIndex.getZeroBased());
         Project editedProject = new Project(projectToEdit.name, projectToEdit.employeeList);
         for (Index employeeIndex : employeeIndexes) {
+            if (employeeIndex.getZeroBased() >= lastShownEmployeeList.size()){
+                throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+            }
             Employee employeeToAdd = lastShownEmployeeList.get(employeeIndex.getZeroBased());
             if (!editedProject.employeeList.contains(employeeToAdd)) {
                 editedProject.employeeList.add(employeeToAdd);
