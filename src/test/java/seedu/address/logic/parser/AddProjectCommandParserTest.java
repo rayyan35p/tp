@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.PROJECT_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_AMY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
 
@@ -31,7 +32,7 @@ public class AddProjectCommandParserTest {
     public void parse_allFieldsPresent_success() {
         Project project = new ProjectBuilder().withName(VALID_PROJECT_AMY).withEmployees().build();
         Index targetIndex = INDEX_FIRST_EMPLOYEE;
-        String userInput = PROJECT_DESC_AMY + " em/" + INDEX_FIRST_EMPLOYEE.getOneBased();
+        String userInput = PROJECT_DESC_AMY + " " + PREFIX_EMPLOYEE + INDEX_FIRST_EMPLOYEE.getOneBased();
         assertParseSuccess(parser, userInput,
                             new AddProjectCommand(project,
                                     new ArrayList<>(Arrays.asList(targetIndex))));
