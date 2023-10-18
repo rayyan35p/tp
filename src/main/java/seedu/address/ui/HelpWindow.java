@@ -92,12 +92,12 @@ public class HelpWindow extends UiPart<Stage> {
                 "- Finds employees whose names contain any of the given keywords.");
         employeeCommands.put("deleteE INDEX",
                 "- Deletes the specified employee from the employees list.");
-        employeeCommands.put("assignE pr/PROJECT_NAME e/EMPLOYEE_NAME [e/MORE_EMPLOYEE_NAMES]...",
+        employeeCommands.put("assignE pr/PROJECT_INDEX em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDICES]…\u200B",
                 "- Assigns employee(s) to a project in TaskHub.");
 
         projectCommands.put("listP",
                 "- Shows a list of all projects in TaskHub.");
-        projectCommands.put("addP pr/PROJECT_NAME [e/EMPLOYEE_INDEX]...",
+        projectCommands.put("addP pr/PROJECT_NAME [em/EMPLOYEE_INDEX]…\u200B",
                 "- Adds a new project with the employees assigned to the project.");
         projectCommands.put("deleteP INDEX",
                 "- Deletes the specified project from TaskHub.");
