@@ -23,6 +23,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class MainWindow extends UiPart<Stage> {
 
+    // TODO: refactor ProjectListPanel to actually show Projects
+
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -32,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private EmployeeListPanel employeeListPanel;
+    private ProjectListPanel projectListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +46,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane employeeListPanelPlaceholder;
+
+    @FXML
+    private StackPane projectListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -112,6 +118,9 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         employeeListPanel = new EmployeeListPanel(logic.getFilteredEmployeeList());
         employeeListPanelPlaceholder.getChildren().add(employeeListPanel.getRoot());
+
+        projectListPanel = new ProjectListPanel(logic.getFilteredEmployeeList()); // to be changed to project list
+        projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

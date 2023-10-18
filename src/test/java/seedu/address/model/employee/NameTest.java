@@ -1,5 +1,6 @@
 package seedu.address.model.employee;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -36,6 +37,13 @@ public class NameTest {
         assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+    }
+
+    @Test
+    public void hashCodeGenerator_nonEmptyString_isValidHashCode() {
+        String testNameString = "John";
+        Name name = new Name(testNameString);
+        assertEquals(name.hashCode(), testNameString.hashCode());
     }
 
     @Test
