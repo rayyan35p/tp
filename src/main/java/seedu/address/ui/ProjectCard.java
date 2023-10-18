@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Project;
 
 /**
@@ -43,8 +42,8 @@ public class ProjectCard extends UiPart<Region> {
         this.project = project;
         id.setText(displayedIndex + ". ");
         name.setText(project.getNameString());
-        String listOfEmployeesString
-                = project.getEmployees().size() == 0
+        String listOfEmployeesString =
+                project.getEmployees().size() == 0
                 ? "No members yet."
                 : "Members: " + project.getListOfEmployeeNames();
         projects.setText(listOfEmployeesString);
