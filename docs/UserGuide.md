@@ -102,7 +102,7 @@ Examples:
 
 Shows a list of all employees in TaskHub.
 
-![list example](images/list.png)
+![list example](images/liste.png)
 
 Format: `listE`
 

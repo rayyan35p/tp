@@ -6,11 +6,11 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EMPLOYEES;
 import seedu.address.model.Model;
 
 /**
- * Lists all employees in the address book to the user.
+ * Lists all employees in the TaskHub to the user.
  */
-public class ListCommand extends Command {
+public class ListEmployeeCommand extends Command {
 
-    public static final String COMMAND_WORD = "list";
+    public static final String COMMAND_WORD = "listE";
 
     public static final String MESSAGE_SUCCESS = "Listed all employees";
 

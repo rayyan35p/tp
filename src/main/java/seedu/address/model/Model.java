@@ -35,45 +35,45 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' TaskHub file path.
      */
-    Path getAddressBookFilePath();
+    Path getTaskHubFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' TaskHub file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setTaskHubFilePath(Path taskHubFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces TaskHub data with the data in {@code taskHub}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setTaskHub(ReadOnlyTaskHub taskHub);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the TaskHub */
+    ReadOnlyTaskHub getTaskHub();
 
     /**
-     * Returns true if a employee with the same identity as {@code employee} exists in the address book.
+     * Returns true if a employee with the same identity as {@code employee} exists in the TaskHub.
      */
     boolean hasEmployee(Employee employee);
 
     /**
      * Deletes the given employee.
-     * The employee must exist in the address book.
+     * The employee must exist in the TaskHub.
      */
     void deleteEmployee(Employee target);
 
     /**
      * Adds the given employee.
-     * {@code employee} must not already exist in the address book.
+     * {@code employee} must not already exist in the TaskHub.
      */
     void addEmployee(Employee employee);
 
     /**
      * Replaces the given employee {@code target} with {@code editedEmployee}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the TaskHub.
      * The employee identity of {@code editedEmployee} must not be the same as another existing employee in the
-     * address book.
+     * TaskHub.
      */
     void setEmployee(Employee target, Employee editedEmployee);
 
