@@ -119,7 +119,7 @@ public class MainWindow extends UiPart<Stage> {
         employeeListPanel = new EmployeeListPanel(logic.getFilteredEmployeeList());
         employeeListPanelPlaceholder.getChildren().add(employeeListPanel.getRoot());
 
-        projectListPanel = new ProjectListPanel(logic.getFilteredEmployeeList()); // to be changed to project list
+        projectListPanel = new ProjectListPanel(logic.getFilteredProjectList()); // to be changed to project list
         projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

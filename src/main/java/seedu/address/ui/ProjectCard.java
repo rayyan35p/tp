@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.Project;
 
 /**
  * An UI component that displays information of a {@code Project}.
@@ -21,7 +22,7 @@ public class ProjectCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Employee employee;
+    public final Project project;
 
     @FXML
     private HBox cardPane;
@@ -30,18 +31,23 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label project;
+    private Label projects;
+
 
     // Constructor input to be changed to Project
     /**
      * Creates a {@code ProjectCode} with the given {@code Project} and index to display.
      */
-    public ProjectCard(Employee employee, int displayedIndex) {
+    public ProjectCard(Project project, int displayedIndex) {
         super(FXML);
-        this.employee = employee;
+        this.project = project;
         id.setText(displayedIndex + ". ");
-        name.setText(employee.getName().fullName);
-        project.setText(employee.getProject().name);
+        name.setText(project.getNameString());
+        String listOfEmployeesString
+                = project.getEmployees().size() == 0
+                ? "No members yet."
+                : "Members: " + project.getListOfEmployeeNames();
+        projects.setText(listOfEmployeesString);
     }
 
 }

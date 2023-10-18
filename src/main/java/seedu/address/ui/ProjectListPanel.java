@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.Project;
 
 /**
  * Panel containing the list of projects.
@@ -19,15 +20,15 @@ public class ProjectListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(ProjectListPanel.class);
 
     @FXML
-    private ListView<Employee> projectListView;
+    private ListView<Project> projectListView;
 
     // to be changed to project list for constructor input
     /**
      * Creates a {@code EmployeeListPanel} with the given {@code ObservableList}.
      */
-    public ProjectListPanel(ObservableList<Employee> employeeList) {
+    public ProjectListPanel(ObservableList<Project> projectList) {
         super(FXML);
-        projectListView.setItems(employeeList);
+        projectListView.setItems(projectList);
         projectListView.setCellFactory(listView -> new ProjectListViewCell());
     }
 
@@ -35,16 +36,16 @@ public class ProjectListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Project} using a {@code ProjectCard}.
      */
-    class ProjectListViewCell extends ListCell<Employee> {
+    class ProjectListViewCell extends ListCell<Project> {
         @Override
-        protected void updateItem(Employee employee, boolean empty) {
-            super.updateItem(employee, empty);
+        protected void updateItem(Project project, boolean empty) {
+            super.updateItem(project, empty);
 
-            if (empty || employee == null) {
+            if (empty || project == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ProjectCard(employee, getIndex() + 1).getRoot());
+                setGraphic(new ProjectCard(project, getIndex() + 1).getRoot());
             }
         }
     }
