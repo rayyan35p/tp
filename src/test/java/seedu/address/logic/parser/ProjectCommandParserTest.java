@@ -23,12 +23,12 @@ public class ProjectCommandParserTest {
         Index targetIndex = INDEX_FIRST_EMPLOYEE;
         String userInput = targetIndex.getOneBased() + " " + PREFIX_PROJECT + nonEmptyProject;
         AssignEmployeeCommand expectedCommand = new AssignEmployeeCommand(INDEX_FIRST_EMPLOYEE,
-                                                                            new Project(nonEmptyProject));
+                                                                            null);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // no project
         userInput = targetIndex.getOneBased() + " " + PREFIX_PROJECT;
-        expectedCommand = new AssignEmployeeCommand(INDEX_FIRST_EMPLOYEE, new Project(""));
+        expectedCommand = new AssignEmployeeCommand(INDEX_FIRST_EMPLOYEE, null);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

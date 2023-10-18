@@ -100,6 +100,12 @@ public class TaskHub implements ReadOnlyTaskHub {
         employees.setEmployee(target, editedEmployee);
     }
 
+    public void setProject(Project target, Project editedProject) {
+        requireNonNull(editedProject);
+
+        projects.setProject(target, editedProject);
+    }
+
     /**
      * Removes {@code key} from this {@code TaskHub}.
      * {@code key} must exist in the TaskHub.

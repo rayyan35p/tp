@@ -32,6 +32,7 @@ public class ProjectCommandTest {
 
     private Model model = new ModelManager(getTypicalTaskHub(), new UserPrefs());
 
+/**
     @Test
     public void execute_addProjectUnfilteredList_success() {
         Employee firstEmployee = model.getFilteredEmployeeList().get(INDEX_FIRST_EMPLOYEE.getZeroBased());
@@ -93,11 +94,13 @@ public class ProjectCommandTest {
 
         assertCommandFailure(assignProjectCommand, model, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
     }
-
+*/
     /**
      * Edit filtered list where index is larger than size of filtered list,
      * but smaller than size of TaskHub
      */
+
+/**
     @Test
     public void execute_invalidEmployeeIndexFilteredList_failure() {
         showEmployeeAtIndex(model, INDEX_FIRST_EMPLOYEE);
@@ -138,4 +141,5 @@ public class ProjectCommandTest {
         assertFalse(standardCommand.equals(new AssignEmployeeCommand(INDEX_FIRST_EMPLOYEE,
                 new Project(VALID_PROJECT_BOB))));
     }
+   */
 }

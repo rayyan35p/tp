@@ -1,8 +1,11 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EMPLOYEES;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -26,56 +29,53 @@ public class AssignEmployeeCommand extends Command {
             + "Existing project will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "r/ [PROJECT]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + "r/ Likes to swim.";
+            + "Example: " + COMMAND_WORD + PREFIX_PROJECT +"1 "
+            + PREFIX_EMPLOYEE + "2 3 1";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Project: %2$s";
-
-    public static final String MESSAGE_ADD_PROJECT_SUCCESS = "Added project to Employee: %1$s";
-
-    public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "Removed project from Employee: %1$s";
+    public static final String MESSAGE_ADD_PROJECT_SUCCESS = "Updated project : %1$s";
 
 
-    private final Index index;
-    private final Project project;
+    private final Index projectIndex;
+    private final List<Index> employeeIndexes;
 
     /**
      * @param index of the employee in the filtered employee list to edit the remark
      * @param project of the employee to be updated to
      */
-    public AssignEmployeeCommand(Index index, Project project) {
-        requireAllNonNull(index, project);
+    public AssignEmployeeCommand(Index projectIndex, List<Index> employeeIndexes) {
+        requireAllNonNull(projectIndex, employeeIndexes);
 
-        this.index = index;
-        this.project = project;
+        this.projectIndex = projectIndex;
+        this.employeeIndexes = employeeIndexes;
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Employee> lastShownList = model.getFilteredEmployeeList();
+        List<Employee> lastShownEmployeeList = model.getFilteredEmployeeList();
+        List<Project> lastShownProjectList = model.getFilteredProjectList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+        if (projectIndex.getZeroBased() >= lastShownProjectList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
 
-        Employee employeeToEdit = lastShownList.get(index.getZeroBased());
-        Employee editedEmployee = new Employee(
-                employeeToEdit.getName(), employeeToEdit.getPhone(), employeeToEdit.getEmail(),
-                employeeToEdit.getAddress(), project, employeeToEdit.getTags());
+        Project projectToEdit = lastShownProjectList.get(projectIndex.getZeroBased());
+        Project editedProject = new Project(projectToEdit.name, projectToEdit.employeeList);
+        for (Index employeeIndex : employeeIndexes) {
+            editedProject.employeeList.add(lastShownEmployeeList.get(employeeIndex.getZeroBased()));
+        }
 
-        model.setEmployee(employeeToEdit, editedEmployee);
+        model.setProject(projectToEdit, editedProject);
         model.updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
 
-        return new CommandResult(generateSuccessMessage(editedEmployee));
+        return new CommandResult(generateSuccessMessage(editedProject));
     }
 
     /**
      * Generates a command execution success message based on whether
      * the remark is added to or removed from
-     * {@code employeeToEdit}.
+     * {@code projectToEdit}.
      */
-    private String generateSuccessMessage(Employee employeeToEdit) {
-        String message = !project.name.isEmpty() ? MESSAGE_ADD_PROJECT_SUCCESS : MESSAGE_DELETE_PROJECT_SUCCESS;
-        return String.format(message, employeeToEdit);
+    private String generateSuccessMessage(Project projectToEdit) {
+        return String.format(MESSAGE_ADD_PROJECT_SUCCESS, projectToEdit);
     }
 
     @Override
@@ -90,7 +90,7 @@ public class AssignEmployeeCommand extends Command {
         }
 
         AssignEmployeeCommand e = (AssignEmployeeCommand) other;
-        return index.equals(e.index)
-                && project.equals(e.project);
+        return projectIndex.equals(e.projectIndex)
+                && employeeIndexes.equals(e.employeeIndexes);
     }
 }

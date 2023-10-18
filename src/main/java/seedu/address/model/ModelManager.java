@@ -130,6 +130,13 @@ public class ModelManager implements Model {
         taskHub.setEmployee(target, editedEmployee);
     }
 
+    @Override
+    public void setProject(Project project, Project editedProject) {
+        requireAllNonNull(project, editedProject);
+
+        taskHub.setProject(project, editedProject);
+    }
+
     //=========== Filtered Employee List Accessors =============================================================
 
     /**

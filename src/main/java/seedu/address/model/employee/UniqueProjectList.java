@@ -8,7 +8,9 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.address.model.employee.exceptions.DuplicateProjectException;
+import seedu.address.model.employee.exceptions.EmployeeNotFoundException;
 import seedu.address.model.employee.exceptions.ProjectNotFoundException;
 
 /**
@@ -69,6 +71,25 @@ public class UniqueProjectList implements Iterable<Project> {
         internalList.setAll(projects);
     }
 
+    /**
+     * Replaces the employee {@code target} in the list with {@code editedProject}.
+     * {@code target} must exist in the list.
+     * The project identity of {@code editedProject} must not be the same as another existing project in the list.
+     */
+    public void setProject(Project target, Project editedProject) {
+        requireAllNonNull(target, editedProject);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new ProjectNotFoundException();
+        }
+
+        if (!target.isSameProject(editedProject) && contains(editedProject)) {
+            throw new DuplicateProjectException();
+        }
+
+        internalList.set(index, editedProject);
+    }
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
