@@ -106,9 +106,10 @@ Shows a list of all employees in TaskHub.
 
 Format: `listE`
 
-### Editing an employee : `edit`
 
-Edits an existing employee in the address book.
+### Editing an employee : `editE`
+
+Edits an existing employee in the TaskHub.
 
 Format: `editE INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -216,10 +217,10 @@ TaskHub's data is saved in the hard disk automatically after any command that ch
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+TaskHub data are saved automatically as a JSON file `[JAR file location]/data/taskhub.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
+If your changes to the data file makes its format invalid, TaskHub will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -243,16 +244,16 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**List all employees** | `listE`
-**Clear** | `clear`
-**Help** | `help`
-**Add Employee** | `addE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ r/REMARK` <br> e.g., `addE n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague r/a good friend`
-**Delete Employee** | `deleteE INDEX`<br> e.g., `deleteE 3`
-**Find Employee** | `findE KEYWORD [MORE_KEYWORDS]`<br> e.g., `findE James Jake`
-**List Projects** | `listP`
-**Add Project** | `addP pr/PROJECT_NAME [em/EMPLOYEE_INDEX]…​` <br> e.g, `addP pr/CS2103T em/2 3 4 5`
-**Assign Employee to Project** | `assignE pr/PROJECT_INDEX em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDICES]…​` <br> e.g, `assignE pr/4 em/1 2 3`
-**Delete Project** | `deleteP INDEX`<br> e.g., `deleteP 3`
+| Action                         | Format, Examples                                                                                                                                                                                 |
+|--------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **List all employees**         | `listE`                                                                                                                                                                                          |
+| **Clear**                      | `clear`                                                                                                                                                                                          |
+| **Help**                       | `help`                                                                                                                                                                                           |
+| **Add Employee**               | `addE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ r/REMARK` <br> e.g., `addE n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague r/a good friend` |
+| **Delete Employee**            | `deleteE INDEX`<br> e.g., `deleteE 3`                                                                                                                                                            |
+| **Find Employee**              | `findE KEYWORD [MORE_KEYWORDS]`<br> e.g., `findE James Jake`                                                                                                                                     |
+| **List Projects**              | `listP`                                                                                                                                                                                          |
+| **Add Project**                | `addP pr/PROJECT_NAME [em/EMPLOYEE_INDEX]…​` <br> e.g, `addP pr/CS2103T em/2 3 4 5`                                                                                                              |
+| **Assign Employee to Project** | `assignE pr/PROJECT_INDEX em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDICES]…​` <br> e.g, `assignE pr/4 em/1 2 3`                                                                                      |
+| **Delete Project**             | `deleteP INDEX`<br> e.g., `deleteP 3`                                                                                                                                                            |
 
