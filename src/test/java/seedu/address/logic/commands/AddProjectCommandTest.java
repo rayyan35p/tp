@@ -6,9 +6,15 @@ import static seedu.address.logic.commands.AddProjectCommand.MESSAGE_DUPLICATE_P
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Predicate;
+
+import org.junit.jupiter.api.Test;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -19,11 +25,6 @@ import seedu.address.model.TaskHub;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Project;
 import seedu.address.testutil.ProjectBuilder;
-
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
 
 public class AddProjectCommandTest {
 
@@ -149,7 +150,8 @@ public class AddProjectCommandTest {
         }
     }
 
-    /*** A Model stub that contains a single employee.
+    /**
+     * A Model stub that contains a single employee.
      */
     private class ModelStubWithProject extends ModelStub {
         private final Project project;
@@ -167,7 +169,7 @@ public class AddProjectCommandTest {
 
         @Override
         public ObservableList<Employee> getFilteredEmployeeList() {
-            ObservableList<Employee> list =  FXCollections.observableArrayList();
+            ObservableList<Employee> list = FXCollections.observableArrayList();
             list.add(ALICE);
             return list;
         }
@@ -198,7 +200,7 @@ public class AddProjectCommandTest {
 
         @Override
         public ObservableList<Employee> getFilteredEmployeeList() {
-            ObservableList<Employee> list =  FXCollections.observableArrayList();
+            ObservableList<Employee> list = FXCollections.observableArrayList();
             list.add(ALICE);
             return list;
         }

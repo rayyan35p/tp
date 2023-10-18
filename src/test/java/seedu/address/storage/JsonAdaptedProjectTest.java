@@ -1,18 +1,18 @@
 package seedu.address.storage;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.employee.Name;
-import seedu.address.model.employee.Project;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.storage.JsonAdaptedProject.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalProjects.ALPHA;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.storage.JsonAdaptedProject.MISSING_FIELD_MESSAGE_FORMAT;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEmployees.BENSON;
-import static seedu.address.testutil.TypicalProjects.ALPHA;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.employee.Name;
+import seedu.address.model.employee.Project;
 
 public class JsonAdaptedProjectTest {
     public static final String INVALID_NAME = "     ";

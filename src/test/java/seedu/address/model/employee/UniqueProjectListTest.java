@@ -1,18 +1,17 @@
 package seedu.address.model.employee;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEmployees.BOB;
+import static seedu.address.testutil.TypicalProjects.ALPHA;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.employee.exceptions.DuplicateProjectException;
 import seedu.address.model.employee.exceptions.ProjectNotFoundException;
 import seedu.address.testutil.ProjectBuilder;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEmployees.ALICE;
-import static seedu.address.testutil.TypicalEmployees.BOB;
-import static seedu.address.testutil.TypicalProjects.ALPHA;
 
 public class UniqueProjectListTest {
     private final UniqueProjectList uniqueProjectList = new UniqueProjectList();

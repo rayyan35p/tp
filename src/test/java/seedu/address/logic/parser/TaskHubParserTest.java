@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AssignEmployeeCommand;
 import seedu.address.logic.commands.AddEmployeeCommand;
+import seedu.address.logic.commands.AssignEmployeeCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteEmployeeCommand;
 import seedu.address.logic.commands.EditCommand;

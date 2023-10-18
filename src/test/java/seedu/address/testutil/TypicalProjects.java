@@ -1,16 +1,16 @@
 package seedu.address.testutil;
 
-import seedu.address.model.TaskHub;
-import seedu.address.model.employee.Project;
+import static seedu.address.testutil.TypicalEmployees.BENSON;
+import static seedu.address.testutil.TypicalEmployees.DANIEL;
+import static seedu.address.testutil.TypicalEmployees.FIONA;
+import static seedu.address.testutil.TypicalEmployees.GEORGE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static seedu.address.testutil.TypicalEmployees.BENSON;
-import static seedu.address.testutil.TypicalEmployees.DANIEL;
-import static seedu.address.testutil.TypicalEmployees.FIONA;
-import static seedu.address.testutil.TypicalEmployees.GEORGE;
+import seedu.address.model.TaskHub;
+import seedu.address.model.employee.Project;
 
 /**
  * A utility class containing a list of {@code Project} objects to be used in tests.
@@ -18,7 +18,7 @@ import static seedu.address.testutil.TypicalEmployees.GEORGE;
 public class TypicalProjects {
     public static final Project ALPHA = new ProjectBuilder().build();
     public static final Project BETA = new ProjectBuilder().withName("Beta").withEmployees(BENSON).build();
-    public static final Project DELTA = new ProjectBuilder().withName("Delta").withEmployees(DANIEL,FIONA).build();
+    public static final Project DELTA = new ProjectBuilder().withName("Delta").withEmployees(DANIEL, FIONA).build();
 
     //Manually added
     public static final Project GAMMA = new ProjectBuilder().withName("Gamma").withEmployees(GEORGE).build();
