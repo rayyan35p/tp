@@ -107,7 +107,7 @@ Shows a list of all employees in TaskHub.
 Format: `listE`
 
 
-### Editing an employee : `edit`
+### Editing an employee : `editE`
 
 Edits an existing employee in the TaskHub.
 
