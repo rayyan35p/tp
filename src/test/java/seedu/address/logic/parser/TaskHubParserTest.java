@@ -7,7 +7,9 @@ import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
+import static seedu.address.testutil.TypicalProjects.ALPHA;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +17,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddEmployeeCommand;
+import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.commands.AssignEmployeeCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteEmployeeCommand;
@@ -101,6 +104,13 @@ public class TaskHubParserTest {
         assertEquals(new AssignEmployeeCommand(INDEX_FIRST_EMPLOYEE, project), command);
     }
 
+    @Test
+    public void parseCommand_newProject() throws Exception {
+        AddProjectCommand command = (AddProjectCommand) parser.parseCommand( AddProjectCommand.COMMAND_WORD + " "
+                            + PREFIX_PROJECT + "Alpha");
+        AddProjectCommand expected = new AddProjectCommand(new Project("Alpha"), new ArrayList<>());
+        assertEquals(expected, command);
+    }
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
