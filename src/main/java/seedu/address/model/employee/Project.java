@@ -85,6 +85,23 @@ public class Project {
     public List<Employee> getEmployees() {
         return employeeList;
     }
+
+    public String getListOfEmployeeNames() {
+        StringBuilder employeeListString = new StringBuilder();
+        for (Employee employee : employeeList) {
+            employeeListString.append(employee.getName() + ", ");
+        }
+        if (employeeList.size() != 0) {
+            employeeListString.delete(employeeListString.length() - 2,
+                    employeeListString.length());
+        }
+        return employeeListString.toString();
+    }
+
+    public String getNameString() {
+        return this.name;
+    }
+
     @Override
     public String toString() {
         return name;
