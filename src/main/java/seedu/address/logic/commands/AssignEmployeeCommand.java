@@ -27,8 +27,8 @@ public class AssignEmployeeCommand extends Command {
             + ": Edits the project of the employee identified "
             + "by the index number used in the last employee listing. "
             + "Existing project will be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "r/ [PROJECT]\n"
+            + "Parameters: PROJECT_INDEX, EMPLOYEE_INDEX (must be a positive integer) "
+            + "pr/[PROJECT_INDEX] em/[EMPLOYEE_INDEX ...]\n"
             + "Example: " + COMMAND_WORD + PREFIX_PROJECT +"1 "
             + PREFIX_EMPLOYEE + "2 3 1";
 
@@ -39,8 +39,8 @@ public class AssignEmployeeCommand extends Command {
     private final List<Index> employeeIndexes;
 
     /**
-     * @param index of the employee in the filtered employee list to edit the remark
-     * @param project of the employee to be updated to
+     * @param projectIndex index of the project in the filtered project list to update
+     * @param employeeIndexes index of the employees in the filtered employee list to be added to the project
      */
     public AssignEmployeeCommand(Index projectIndex, List<Index> employeeIndexes) {
         requireAllNonNull(projectIndex, employeeIndexes);
@@ -60,7 +60,10 @@ public class AssignEmployeeCommand extends Command {
         Project projectToEdit = lastShownProjectList.get(projectIndex.getZeroBased());
         Project editedProject = new Project(projectToEdit.name, projectToEdit.employeeList);
         for (Index employeeIndex : employeeIndexes) {
-            editedProject.employeeList.add(lastShownEmployeeList.get(employeeIndex.getZeroBased()));
+            Employee employeeToAdd = lastShownEmployeeList.get(employeeIndex.getZeroBased());
+            if (!editedProject.employeeList.contains(employeeToAdd)) {
+                editedProject.employeeList.add(employeeToAdd);
+            }
         }
 
         model.setProject(projectToEdit, editedProject);
