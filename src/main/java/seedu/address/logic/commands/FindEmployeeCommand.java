@@ -11,9 +11,9 @@ import seedu.address.model.employee.NameContainsKeywordsPredicate;
  * Finds and lists all employees in TaskHub whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindCommand extends Command {
+public class FindEmployeeCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "findE";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all employees whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
@@ -22,7 +22,7 @@ public class FindCommand extends Command {
 
     private final NameContainsKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindEmployeeCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -41,12 +41,12 @@ public class FindCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindCommand)) {
+        if (!(other instanceof FindEmployeeCommand)) {
             return false;
         }
 
-        FindCommand otherFindCommand = (FindCommand) other;
-        return predicate.equals(otherFindCommand.predicate);
+        FindEmployeeCommand otherFindEmployeeCommand = (FindEmployeeCommand) other;
+        return predicate.equals(otherFindEmployeeCommand.predicate);
     }
 
     @Override

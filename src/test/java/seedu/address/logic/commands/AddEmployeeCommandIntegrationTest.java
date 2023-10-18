@@ -15,9 +15,9 @@ import seedu.address.model.employee.Employee;
 import seedu.address.testutil.EmployeeBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddCommand}.
+ * Contains integration tests (interaction with the Model) for {@code AddEmployeeCommand}.
  */
-public class AddCommandIntegrationTest {
+public class AddEmployeeCommandIntegrationTest {
 
     private Model model;
 
@@ -33,16 +33,16 @@ public class AddCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getTaskHub(), new UserPrefs());
         expectedModel.addEmployee(validEmployee);
 
-        assertCommandSuccess(new AddCommand(validEmployee), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validEmployee)),
+        assertCommandSuccess(new AddEmployeeCommand(validEmployee), model,
+                String.format(AddEmployeeCommand.MESSAGE_SUCCESS, Messages.format(validEmployee)),
                 expectedModel);
     }
 
     @Test
     public void execute_duplicateEmployee_throwsCommandException() {
         Employee employeeInList = model.getTaskHub().getEmployeeList().get(0);
-        assertCommandFailure(new AddCommand(employeeInList), model,
-                AddCommand.MESSAGE_DUPLICATE_EMPLOYEE);
+        assertCommandFailure(new AddEmployeeCommand(employeeInList), model,
+                AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
     }
 
 }

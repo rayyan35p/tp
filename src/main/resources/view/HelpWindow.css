@@ -1,19 +1,24 @@
-#copyButton, #helpMessage {
-    -fx-text-fill: white;
+#container {
+    -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 #copyButton {
-    -fx-background-color: dimgray;
+    -fx-text-fill: white;
 }
 
-#copyButton:hover {
-    -fx-background-color: gray;
+#helpLabel {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 24px;
 }
 
-#copyButton:armed {
-    -fx-background-color: darkgray;
+#helpMessage {
+    -fx-text-fill: #0078d4; /* Set the text color to blue */
+    -fx-underline: true; /* Underline the text */
+    -fx-cursor: hand; /* Change cursor on hover to indicate it's clickable (optional) */
 }
 
 #helpMessageContainer {
     -fx-background-color: derive(#1d1d1d, 20%);
 }
+
