@@ -7,7 +7,6 @@ import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
-import static seedu.address.testutil.TypicalProjects.ALPHA;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -106,7 +105,7 @@ public class TaskHubParserTest {
 
     @Test
     public void parseCommand_newProject() throws Exception {
-        AddProjectCommand command = (AddProjectCommand) parser.parseCommand( AddProjectCommand.COMMAND_WORD + " "
+        AddProjectCommand command = (AddProjectCommand) parser.parseCommand(AddProjectCommand.COMMAND_WORD + " "
                             + PREFIX_PROJECT + "Alpha");
         AddProjectCommand expected = new AddProjectCommand(new Project("Alpha"), new ArrayList<>());
         assertEquals(expected, command);
