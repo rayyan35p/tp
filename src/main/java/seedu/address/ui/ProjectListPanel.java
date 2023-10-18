@@ -21,7 +21,6 @@ public class ProjectListPanel extends UiPart<Region> {
     @FXML
     private ListView<Project> projectListView;
 
-    // to be changed to project list for constructor input
     /**
      * Creates a {@code EmployeeListPanel} with the given {@code ObservableList}.
      */
@@ -31,7 +30,6 @@ public class ProjectListPanel extends UiPart<Region> {
         projectListView.setCellFactory(listView -> new ProjectListViewCell());
     }
 
-    // to be changed to extend ListCell<Project> and replace employee with project
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Project} using a {@code ProjectCard}.
      */

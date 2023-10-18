@@ -33,7 +33,6 @@ public class ProjectCard extends UiPart<Region> {
     private Label projects;
 
 
-    // Constructor input to be changed to Project
     /**
      * Creates a {@code ProjectCode} with the given {@code Project} and index to display.
      */

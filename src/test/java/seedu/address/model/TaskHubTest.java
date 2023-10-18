@@ -114,7 +114,6 @@ public class TaskHubTest {
         assertEquals(expected, taskHub.toString());
     }
 
-    // to be changed to project list
     @Test
     public void hashCodeGenerator_nonEmptyString_isValidHashCode() {
         UniqueEmployeeList list = new UniqueEmployeeList();
