@@ -190,7 +190,7 @@ Format: `assignE pr/PROJECT_NAME em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDEX]...`
 * The project name and employee names must exist in TaskHub.
 
 Examples:
-* `assignE pr/Project1 em/ 1 2 3` will add employees 1, 2 and 3 to `Project1`
+* `assignE pr/Project1 em/1 2 3` will add employees 1, 2 and 3 to `Project1`
 
 ### Delete a project: `deleteP`
 
@@ -253,6 +253,6 @@ Action | Format, Examples
 **Find Employee** | `findE KEYWORD [MORE_KEYWORDS]`<br> e.g., `findE James Jake`
 **List Projects** | `listP`
 **Add Project** | `addP pr/PROJECT_NAME [em/EMPLOYEE_INDEX]…​` <br> e.g, `addP pr/CS2103T em/2 3 4 5`
-**Assign Employee to Project** | `assignE pr/PROJECT_INDEX em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDICES]…​` <br> e.g, `assignE pr/4 em/ 1 2 3`
+**Assign Employee to Project** | `assignE pr/PROJECT_INDEX em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDICES]…​` <br> e.g, `assignE pr/4 em/1 2 3`
 **Delete Project** | `deleteP INDEX`<br> e.g., `deleteP 3`
 
