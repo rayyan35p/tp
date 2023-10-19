@@ -16,19 +16,19 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Project;
 
 /**
- * Changes the remark of an existing employee in the TaskHub.
+ * Assigns an existing project to a number of existing employee in the TaskHub.
  */
 public class AssignEmployeeCommand extends Command {
 
     public static final String COMMAND_WORD = "assignE";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the project of the employee identified "
+            + ": Edits the project of the employees identified "
             + "by the index number used in the last employee listing. "
-            + "Existing project will be overwritten by the input.\n"
+            + "\n"
             + "Parameters: PROJECT_INDEX, EMPLOYEE_INDEX (must be a positive integer) "
             + "pr/[PROJECT_INDEX] em/[EMPLOYEE_INDEX ...]\n"
-            + "Example: " + COMMAND_WORD + PREFIX_PROJECT +"1 "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_PROJECT +"1 "
             + PREFIX_EMPLOYEE + "2 3 1";
 
     public static final String MESSAGE_ADD_PROJECT_SUCCESS = "Updated project : %1$s";
@@ -80,7 +80,7 @@ public class AssignEmployeeCommand extends Command {
      * {@code projectToEdit}.
      */
     private String generateSuccessMessage(Project projectToEdit) {
-        return String.format(MESSAGE_ADD_PROJECT_SUCCESS, projectToEdit);
+        return String.format(MESSAGE_ADD_PROJECT_SUCCESS, Messages.format(projectToEdit));
     }
 
     @Override

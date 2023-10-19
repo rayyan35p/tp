@@ -37,6 +37,5 @@ public class TypicalProjects {
     }
     public static List<Project> getTypicalProjects() {
         return new ArrayList<>(Arrays.asList(ALPHA, BETA, DELTA));
-
     }
 }

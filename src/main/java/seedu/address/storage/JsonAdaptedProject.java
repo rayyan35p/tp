@@ -11,6 +11,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Project;
 import seedu.address.model.employee.UniqueEmployeeList;
+import seedu.address.model.employee.exceptions.DuplicateEmployeeException;
 
 /**
  * Jackson-friendly version of {@link Project}.
@@ -51,8 +52,12 @@ public class JsonAdaptedProject {
      */
     public Project toModelType() throws IllegalValueException {
         final UniqueEmployeeList employeeList = new UniqueEmployeeList();
-        for (JsonAdaptedEmployee employee : employees) {
-            employeeList.add(employee.toModelType());
+        try {
+            for (JsonAdaptedEmployee employee : employees) {
+                employeeList.add(employee.toModelType());
+            }
+        } catch (DuplicateEmployeeException e) {
+            throw new IllegalValueException(e.getMessage());
         }
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));

@@ -8,6 +8,7 @@ import seedu.address.model.employee.UniqueEmployeeList;
 
 /**
  * A utility class to help with building Project objects.
+ * Default {@code ProjectBuilder} has name "Alpha" and typical employee Alice.
  */
 public class ProjectBuilder {
     public static final String DEFAULT_NAME = "Alpha";

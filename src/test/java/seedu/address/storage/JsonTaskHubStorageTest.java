@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalProjects.ALPHA;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -65,6 +66,7 @@ public class JsonTaskHubStorageTest {
     public void readAndSaveTaskHub_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempTaskHub.json");
         TaskHub original = getTypicalTaskHub();
+        original.setProjects(new ArrayList<>());
         JsonTaskHubStorage jsonTaskHubStorage = new JsonTaskHubStorage(filePath);
 
         // Save in new file and read back

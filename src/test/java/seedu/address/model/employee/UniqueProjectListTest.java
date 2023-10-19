@@ -40,6 +40,15 @@ public class UniqueProjectListTest {
     }
 
     @Test
+    public void updateProject_success() {
+        uniqueProjectList.add(ALPHA);
+        UniqueProjectList otherList = new UniqueProjectList();
+        otherList.setProjects(uniqueProjectList);
+
+        assertEquals(uniqueProjectList,otherList);
+    }
+
+    @Test
     public void add_nullProject_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueProjectList.add(null));
     }

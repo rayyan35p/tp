@@ -46,8 +46,6 @@ public class AssignEmployeeCommandParser implements Parser<AssignEmployeeCommand
                     AssignEmployeeCommand.MESSAGE_USAGE), ive);
         }
 
-        String project = argMultimap.getValue(PREFIX_PROJECT).orElse("");
-
         return new AssignEmployeeCommand(index, employeeIndexes);
     }
 

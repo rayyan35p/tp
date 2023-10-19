@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
@@ -95,12 +96,12 @@ public class TaskHubParserTest {
     }
 
     @Test
-    public void parseCommand_project() throws Exception {
-        final Project project = new Project("Some project.");
+    public void parseCommand_assignEmployeeToProject() throws Exception {
         AssignEmployeeCommand command =
                 (AssignEmployeeCommand) parser.parseCommand(AssignEmployeeCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_EMPLOYEE.getOneBased() + " " + PREFIX_PROJECT + project.name);
-        assertEquals(new AssignEmployeeCommand(INDEX_FIRST_EMPLOYEE, null), command);
+                 + PREFIX_PROJECT + INDEX_FIRST_EMPLOYEE.getOneBased() + " " + PREFIX_EMPLOYEE +
+                        INDEX_FIRST_EMPLOYEE.getOneBased());
+        assertEquals(new AssignEmployeeCommand(INDEX_FIRST_EMPLOYEE, new ArrayList<>(Arrays.asList(INDEX_FIRST_EMPLOYEE))), command);
     }
 
     @Test

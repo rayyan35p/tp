@@ -2,9 +2,13 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.AddProjectCommand.MESSAGE_DUPLICATE_PROJECT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
+import static seedu.address.testutil.TypicalProjects.ALPHA;
+import static seedu.address.testutil.TypicalProjects.BETA;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -53,6 +57,35 @@ public class AddProjectCommandTest {
 
         assertThrows(CommandException.class, MESSAGE_DUPLICATE_PROJECT, () ->
                 addProjectCommand.execute(modelStub));
+    }
+
+    @Test
+    public void equals() {
+        AddProjectCommand addAlphaCommand = new AddProjectCommand(ALPHA, new ArrayList<>());
+        AddProjectCommand addBetaCommand = new AddProjectCommand(BETA, new ArrayList<>());
+
+        // same object -> returns true
+        assertTrue(addAlphaCommand.equals(addAlphaCommand));
+
+        // same values -> returns true
+        AddProjectCommand addAlphaCommandCopy = new AddProjectCommand(ALPHA, new ArrayList<>());
+        assertTrue(addAlphaCommand.equals(addAlphaCommandCopy));
+
+        // different types -> returns false
+        assertFalse(addAlphaCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(addAlphaCommand.equals(null));
+
+        // different employee -> returns false
+        assertFalse(addAlphaCommand.equals(addBetaCommand));
+    }
+
+    @Test
+    public void toStringMethod() {
+        AddProjectCommand addProjectCommand = new AddProjectCommand(ALPHA, new ArrayList<>());
+        String expected = AddProjectCommand.class.getCanonicalName() + "{toAdd=" + ALPHA + "}";
+        assertEquals(expected, addProjectCommand.toString());
     }
 
     /**
