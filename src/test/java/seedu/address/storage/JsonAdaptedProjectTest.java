@@ -17,7 +17,8 @@ import seedu.address.model.employee.Project;
 public class JsonAdaptedProjectTest {
     public static final String INVALID_NAME = "     ";
     public static final String VALID_NAME = ALPHA.name;
-    public static final List<JsonAdaptedEmployee> VALID_EMPLOYEES = ALPHA.getEmployees().stream()
+    public static final List<JsonAdaptedEmployee> VALID_EMPLOYEES = ALPHA.getEmployees().asUnmodifiableObservableList()
+            .stream()
             .map(JsonAdaptedEmployee::new)
             .collect(Collectors.toList());
 
