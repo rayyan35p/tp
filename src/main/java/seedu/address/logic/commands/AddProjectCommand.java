@@ -64,7 +64,7 @@ public class AddProjectCommand extends Command {
             if (employeeToAdd.getProject().name != "") {
                 //TODO: get project by name
             }
-            toAdd.addEmployee(employeeToAdd);
+            toAdd.addEmployee(lastShownList.get(targetIndex.getZeroBased()));
         }
 
         if (model.hasProject(toAdd)) {
