@@ -8,22 +8,23 @@ import java.util.List;
 
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Project;
+import seedu.address.model.employee.UniqueEmployeeList;
 
 /**
  * A utility class to help with building Project objects.
  */
 public class ProjectBuilder {
     public static final String DEFAULT_NAME = "Alpha";
-    public static final List<Employee> DEFAULT_LIST = new ArrayList<>(Arrays.asList(ALICE));
     private String projectName;
-    private List<Employee> employeeList;
+    private UniqueEmployeeList employeeList;
 
     /**
      * Instantiates a {@code Project} with the default details
      */
     public ProjectBuilder() {
         projectName = DEFAULT_NAME;
-        employeeList = DEFAULT_LIST;
+        employeeList = new UniqueEmployeeList();
+        employeeList.add(ALICE);
     }
 
     /**
@@ -46,7 +47,10 @@ public class ProjectBuilder {
      * Sets the employees of the {@code Project} we are building.
      */
     public ProjectBuilder withEmployees(Employee... employees) {
-        this.employeeList = new ArrayList<>(Arrays.asList(employees));
+        this.employeeList = new UniqueEmployeeList();
+        for(Employee employee : employees) {
+            employeeList.add(employee);
+        }
         return this;
     }
     public Project build() {

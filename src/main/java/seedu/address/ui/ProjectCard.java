@@ -42,7 +42,7 @@ public class ProjectCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(project.getNameString());
         String listOfEmployeesString =
-                project.getEmployees().size() == 0
+                project.getEmployees().asUnmodifiableObservableList().size() == 0
                 ? "No members yet."
                 : "Members: " + project.getListOfEmployeeNames();
         projects.setText(listOfEmployeesString);
