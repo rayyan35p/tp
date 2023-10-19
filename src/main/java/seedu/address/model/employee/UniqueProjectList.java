@@ -8,9 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.address.model.employee.exceptions.DuplicateProjectException;
-import seedu.address.model.employee.exceptions.EmployeeNotFoundException;
 import seedu.address.model.employee.exceptions.ProjectNotFoundException;
 
 /**

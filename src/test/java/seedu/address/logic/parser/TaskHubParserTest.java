@@ -79,7 +79,8 @@ public class TaskHubParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindEmployeeCommand command = (FindEmployeeCommand) parser.parseCommand(
-                FindEmployeeCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindEmployeeCommand.COMMAND_WORD + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindEmployeeCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
@@ -99,9 +100,10 @@ public class TaskHubParserTest {
     public void parseCommand_assignEmployeeToProject() throws Exception {
         AssignEmployeeCommand command =
                 (AssignEmployeeCommand) parser.parseCommand(AssignEmployeeCommand.COMMAND_WORD + " "
-                 + PREFIX_PROJECT + INDEX_FIRST_EMPLOYEE.getOneBased() + " " + PREFIX_EMPLOYEE +
-                        INDEX_FIRST_EMPLOYEE.getOneBased());
-        assertEquals(new AssignEmployeeCommand(INDEX_FIRST_EMPLOYEE, new ArrayList<>(Arrays.asList(INDEX_FIRST_EMPLOYEE))), command);
+                 + PREFIX_PROJECT + INDEX_FIRST_EMPLOYEE.getOneBased() + " " + PREFIX_EMPLOYEE
+                        + INDEX_FIRST_EMPLOYEE.getOneBased());
+        assertEquals(new AssignEmployeeCommand(INDEX_FIRST_EMPLOYEE,
+                                                new ArrayList<>(Arrays.asList(INDEX_FIRST_EMPLOYEE))), command);
     }
 
     @Test

@@ -53,7 +53,7 @@ public class AddProjectCommand extends Command {
             Employee employeeToAdd = lastShownList.get(targetIndex.getZeroBased());
             EditCommand.EditEmployeeDescriptor editEmployeeDescriptor = new EditCommand.EditEmployeeDescriptor();
             editEmployeeDescriptor.setProject(toAdd);
-            new EditCommand(targetIndex,editEmployeeDescriptor).execute(model);
+            new EditCommand(targetIndex, editEmployeeDescriptor).execute(model);
 
 
             //removes employee from previous project

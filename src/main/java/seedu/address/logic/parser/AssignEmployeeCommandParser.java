@@ -5,16 +5,14 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.commands.AddEmployeeCommand;
-import seedu.address.logic.commands.AssignEmployeeCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.employee.Project;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.commands.AssignEmployeeCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new RemarkCommand object
@@ -29,13 +27,14 @@ public class AssignEmployeeCommandParser implements Parser<AssignEmployeeCommand
     public AssignEmployeeCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_PROJECT,PREFIX_EMPLOYEE);
+                PREFIX_PROJECT, PREFIX_EMPLOYEE);
 
         Index index;
         List<Index> employeeIndexes = new ArrayList<>();
         try {
             if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT, PREFIX_EMPLOYEE)) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignEmployeeCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                                         AssignEmployeeCommand.MESSAGE_USAGE));
             }
             index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PROJECT).get());
             for (String employeeIndex : argMultimap.getValue(PREFIX_EMPLOYEE).get().split(" ")) {

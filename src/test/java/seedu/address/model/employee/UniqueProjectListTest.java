@@ -45,7 +45,7 @@ public class UniqueProjectListTest {
         UniqueProjectList otherList = new UniqueProjectList();
         otherList.setProjects(uniqueProjectList);
 
-        assertEquals(uniqueProjectList,otherList);
+        assertEquals(uniqueProjectList, otherList);
     }
 
     @Test

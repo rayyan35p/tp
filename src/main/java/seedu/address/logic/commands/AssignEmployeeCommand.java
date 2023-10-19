@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EMPLOYEES;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -28,7 +27,7 @@ public class AssignEmployeeCommand extends Command {
             + "\n"
             + "Parameters: PROJECT_INDEX, EMPLOYEE_INDEX (must be a positive integer) "
             + "pr/[PROJECT_INDEX] em/[EMPLOYEE_INDEX ...]\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_PROJECT +"1 "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_PROJECT + "1 "
             + PREFIX_EMPLOYEE + "2 3 1";
 
     public static final String MESSAGE_ADD_PROJECT_SUCCESS = "Updated project : %1$s";
@@ -59,7 +58,7 @@ public class AssignEmployeeCommand extends Command {
         Project projectToEdit = lastShownProjectList.get(projectIndex.getZeroBased());
         Project editedProject = new Project(projectToEdit.name, projectToEdit.employeeList);
         for (Index employeeIndex : employeeIndexes) {
-            if (employeeIndex.getZeroBased() >= lastShownEmployeeList.size()){
+            if (employeeIndex.getZeroBased() >= lastShownEmployeeList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
             }
             Employee employeeToAdd = lastShownEmployeeList.get(employeeIndex.getZeroBased());
