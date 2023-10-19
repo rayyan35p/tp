@@ -2,10 +2,6 @@ package seedu.address.testutil;
 
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Project;
 import seedu.address.model.employee.UniqueEmployeeList;
@@ -48,7 +44,7 @@ public class ProjectBuilder {
      */
     public ProjectBuilder withEmployees(Employee... employees) {
         this.employeeList = new UniqueEmployeeList();
-        for(Employee employee : employees) {
+        for (Employee employee : employees) {
             employeeList.add(employee);
         }
         return this;
