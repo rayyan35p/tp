@@ -1,4 +1,4 @@
-package seedu.address.model.employee;
+package seedu.address.model.project;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -7,7 +7,6 @@ import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.BOB;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.project.Project;
 
 public class ProjectTest {
 

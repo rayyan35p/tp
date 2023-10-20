@@ -1,13 +1,11 @@
-
 package seedu.address.model.project;
-
-import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.UniqueEmployeeList;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.UniqueEmployeeList;
 
 /**
  * Represents a Person's remark in the address book.

@@ -3,8 +3,8 @@ package seedu.address.testutil;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 
 import seedu.address.model.employee.Employee;
-import seedu.address.model.project.Project;
 import seedu.address.model.employee.UniqueEmployeeList;
+import seedu.address.model.project.Project;
 
 /**
  * A utility class to help with building Project objects.

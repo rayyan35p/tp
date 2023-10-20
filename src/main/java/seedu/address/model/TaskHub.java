@@ -7,8 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.project.Project;
 import seedu.address.model.employee.UniqueEmployeeList;
+import seedu.address.model.project.Project;
 import seedu.address.model.project.UniqueProjectList;
 
 /**
