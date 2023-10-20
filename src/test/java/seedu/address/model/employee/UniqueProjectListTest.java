@@ -9,8 +9,10 @@ import static seedu.address.testutil.TypicalProjects.ALPHA;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.employee.exceptions.DuplicateProjectException;
-import seedu.address.model.employee.exceptions.ProjectNotFoundException;
+import seedu.address.model.project.UniqueProjectList;
+import seedu.address.model.project.exceptions.DuplicateProjectException;
+import seedu.address.model.project.exceptions.ProjectNotFoundException;
+import seedu.address.model.project.Project;
 import seedu.address.testutil.ProjectBuilder;
 
 public class UniqueProjectListTest {

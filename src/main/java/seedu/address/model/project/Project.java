@@ -1,5 +1,8 @@
 
-package seedu.address.model.employee;
+package seedu.address.model.project;
+
+import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.UniqueEmployeeList;
 
 import static java.util.Objects.requireNonNull;
 

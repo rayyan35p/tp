@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 
 import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.Project;
+import seedu.address.model.project.Project;
 import seedu.address.model.employee.UniqueEmployeeList;
 
 /**

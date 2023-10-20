@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.employee.Name;
-import seedu.address.model.employee.Project;
+import seedu.address.model.project.Project;
 import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.employee.exceptions.DuplicateEmployeeException;
 

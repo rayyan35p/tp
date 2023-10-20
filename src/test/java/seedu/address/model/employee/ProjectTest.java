@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.BOB;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.model.project.Project;
 
 public class ProjectTest {
 

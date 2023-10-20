@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.employee.Name;
-import seedu.address.model.employee.Project;
+import seedu.address.model.project.Project;
 
 public class JsonAdaptedProjectTest {
     public static final String INVALID_NAME = "     ";

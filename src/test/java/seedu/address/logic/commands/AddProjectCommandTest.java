@@ -27,7 +27,7 @@ import seedu.address.model.ReadOnlyTaskHub;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TaskHub;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.Project;
+import seedu.address.model.project.Project;
 import seedu.address.testutil.ProjectBuilder;
 
 public class AddProjectCommandTest {

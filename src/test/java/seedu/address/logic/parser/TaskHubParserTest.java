@@ -30,7 +30,7 @@ import seedu.address.logic.commands.ListEmployeeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.NameContainsKeywordsPredicate;
-import seedu.address.model.employee.Project;
+import seedu.address.model.project.Project;
 import seedu.address.testutil.EditEmployeeDescriptorBuilder;
 import seedu.address.testutil.EmployeeBuilder;
 import seedu.address.testutil.EmployeeUtil;

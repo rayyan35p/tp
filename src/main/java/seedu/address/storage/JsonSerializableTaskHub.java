@@ -12,7 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyTaskHub;
 import seedu.address.model.TaskHub;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.Project;
+import seedu.address.model.project.Project;
 
 /**
  * An Immutable TaskHub that is serializable to JSON format.
