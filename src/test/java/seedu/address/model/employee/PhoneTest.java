@@ -1,5 +1,6 @@
 package seedu.address.model.employee;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -36,6 +37,13 @@ public class PhoneTest {
         assertTrue(Phone.isValidPhone("911")); // exactly 3 numbers
         assertTrue(Phone.isValidPhone("93121534"));
         assertTrue(Phone.isValidPhone("124293842033123")); // long phone numbers
+    }
+
+    @Test
+    public void hashCodeGenerator_nonEmptyString_isValidHashCode() {
+        String testPhoneString = "98765432";
+        Phone phone = new Phone(testPhoneString);
+        assertEquals(phone.hashCode(), testPhoneString.hashCode());
     }
 
     @Test

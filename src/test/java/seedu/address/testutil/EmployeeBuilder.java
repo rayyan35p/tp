@@ -8,7 +8,7 @@ import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
-import seedu.address.model.employee.Remark;
+import seedu.address.model.employee.Project;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,13 +21,13 @@ public class EmployeeBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_REMARK = "She likes aardvarks.";
+    public static final String DEFAULT_PROJECT = "";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
-    private Remark remark;
+    private Project project;
     private Set<Tag> tags;
 
     /**
@@ -38,7 +38,7 @@ public class EmployeeBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        remark = new Remark(DEFAULT_REMARK);
+        project = new Project(DEFAULT_PROJECT);
         tags = new HashSet<>();
     }
 
@@ -50,7 +50,7 @@ public class EmployeeBuilder {
         phone = employeeToCopy.getPhone();
         email = employeeToCopy.getEmail();
         address = employeeToCopy.getAddress();
-        remark = employeeToCopy.getRemark();
+        project = employeeToCopy.getProject();
         tags = new HashSet<>(employeeToCopy.getTags());
     }
 
@@ -97,13 +97,13 @@ public class EmployeeBuilder {
     /**
      * Sets the {@code Remark} of the {@code Person} that we are building.
      */
-    public EmployeeBuilder withRemark(String remark) {
-        this.remark = new Remark(remark);
+    public EmployeeBuilder withProject(String project) {
+        this.project = new Project(project);
         return this;
     }
 
     public Employee build() {
-        return new Employee(name, phone, email, address, remark, tags);
+        return new Employee(name, phone, email, address, project, tags);
     }
 
 }

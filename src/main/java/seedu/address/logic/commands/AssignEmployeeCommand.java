@@ -10,43 +10,44 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.Remark;
+import seedu.address.model.employee.Project;
 
 /**
  * Changes the remark of an existing employee in the TaskHub.
  */
-public class RemarkCommand extends Command {
+//Todo: revamp class from remarkCommand to assignEmployee command
+public class AssignEmployeeCommand extends Command {
 
-    public static final String COMMAND_WORD = "remark";
+    public static final String COMMAND_WORD = "assignE";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the remark of the employee identified "
+            + ": Edits the project of the employee identified "
             + "by the index number used in the last employee listing. "
-            + "Existing remark will be overwritten by the input.\n"
+            + "Existing project will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "r/ [REMARK]\n"
+            + "r/ [PROJECT]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "r/ Likes to swim.";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Remark: %2$s";
+    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Project: %2$s";
 
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Employee: %1$s";
+    public static final String MESSAGE_ADD_PROJECT_SUCCESS = "Added project to Employee: %1$s";
 
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Employee: %1$s";
+    public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "Removed project from Employee: %1$s";
 
 
     private final Index index;
-    private final Remark remark;
+    private final Project project;
 
     /**
      * @param index of the employee in the filtered employee list to edit the remark
-     * @param remark of the employee to be updated to
+     * @param project of the employee to be updated to
      */
-    public RemarkCommand(Index index, Remark remark) {
-        requireAllNonNull(index, remark);
+    public AssignEmployeeCommand(Index index, Project project) {
+        requireAllNonNull(index, project);
 
         this.index = index;
-        this.remark = remark;
+        this.project = project;
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -59,7 +60,7 @@ public class RemarkCommand extends Command {
         Employee employeeToEdit = lastShownList.get(index.getZeroBased());
         Employee editedEmployee = new Employee(
                 employeeToEdit.getName(), employeeToEdit.getPhone(), employeeToEdit.getEmail(),
-                employeeToEdit.getAddress(), remark, employeeToEdit.getTags());
+                employeeToEdit.getAddress(), project, employeeToEdit.getTags());
 
         model.setEmployee(employeeToEdit, editedEmployee);
         model.updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
@@ -73,7 +74,7 @@ public class RemarkCommand extends Command {
      * {@code employeeToEdit}.
      */
     private String generateSuccessMessage(Employee employeeToEdit) {
-        String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
+        String message = !project.name.isEmpty() ? MESSAGE_ADD_PROJECT_SUCCESS : MESSAGE_DELETE_PROJECT_SUCCESS;
         return String.format(message, employeeToEdit);
     }
 
@@ -84,12 +85,12 @@ public class RemarkCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof RemarkCommand)) {
+        if (!(other instanceof AssignEmployeeCommand)) {
             return false;
         }
 
-        RemarkCommand e = (RemarkCommand) other;
+        AssignEmployeeCommand e = (AssignEmployeeCommand) other;
         return index.equals(e.index)
-                && remark.equals(e.remark);
+                && project.equals(e.project);
     }
 }

@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.Project;
 
 /**
  * Container for user visible messages.
@@ -43,10 +44,24 @@ public class Messages {
                 .append(employee.getEmail())
                 .append("; Address: ")
                 .append(employee.getAddress())
-                .append("; Remarks: ")
-                .append(employee.getRemark())
+                .append("; Project: ")
+                .append(employee.getProject())
                 .append("; Tags: ");
         employee.getTags().forEach(builder::append);
+        return builder.toString();
+    }
+
+    /**
+     * Formats the {@code project} for display to the user.
+     */
+    public static String format(Project project) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(project.name);
+        builder.append("; Employees: ");
+        for (Employee employee : project.getEmployees()) {
+            builder.append(employee.getName() + ", ");
+        }
+        builder.substring(0, builder.lastIndexOf(", ") == -1 ? builder.length() : builder.lastIndexOf(", "));
         return builder.toString();
     }
 

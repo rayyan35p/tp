@@ -18,21 +18,21 @@ import seedu.address.model.employee.Address;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
-import seedu.address.model.employee.Remark;
+import seedu.address.model.employee.Project;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_REMARK = " ";
+    private static final String INVALID_PROJECT = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
-    private static final String VALID_REMARK = "likes to dance";
+    private static final String VALID_PROJECT = "likes to dance";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -129,26 +129,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseRemark_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseRemark((String) null));
+    public void parseProject_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseProject((String) null));
     }
 
     @Test
-    public void parseRemark_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseRemark(INVALID_REMARK));
+    public void parseProject_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseProject(INVALID_PROJECT));
     }
 
     @Test
-    public void parseRemark_validValueWithoutWhitespace_returnsRemark() throws Exception {
-        Remark expectedRemark = new Remark(VALID_REMARK);
-        assertEquals(expectedRemark, ParserUtil.parseRemark(VALID_REMARK));
+    public void parseProject_validValueWithoutWhitespace_returnsProject() throws Exception {
+        Project expectedProject = new Project(VALID_PROJECT);
+        assertEquals(expectedProject, ParserUtil.parseProject(VALID_PROJECT));
     }
 
     @Test
-    public void parseRemark_validValueWithWhitespace_returnsTrimmedRemark() throws Exception {
-        String remarkWithWhitespace = WHITESPACE + VALID_REMARK + WHITESPACE;
-        Remark expectedRemark = new Remark(VALID_REMARK);
-        assertEquals(expectedRemark, ParserUtil.parseRemark(remarkWithWhitespace));
+    public void parseProject_validValueWithWhitespace_returnsTrimmedProject() throws Exception {
+        String projectWithWhitespace = WHITESPACE + VALID_PROJECT + WHITESPACE;
+        Project expectedProject = new Project(VALID_PROJECT);
+        assertEquals(expectedProject, ParserUtil.parseProject(projectWithWhitespace));
     }
 
     @Test
