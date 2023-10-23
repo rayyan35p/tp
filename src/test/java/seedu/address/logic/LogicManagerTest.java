@@ -88,6 +88,11 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void getFilteredProejctList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredProjectList().remove(0));
+    }
+
+    @Test
     public void getTaskHub_validModel_returnsTaskHub() {
         ReadOnlyTaskHub expectedTaskHub = model.getTaskHub();
         ReadOnlyTaskHub actualTaskHub = logic.getTaskHub();

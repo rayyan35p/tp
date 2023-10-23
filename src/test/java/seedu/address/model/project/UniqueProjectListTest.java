@@ -1,4 +1,4 @@
-package seedu.address.model.employee;
+package seedu.address.model.project;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -9,8 +9,8 @@ import static seedu.address.testutil.TypicalProjects.ALPHA;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.employee.exceptions.DuplicateProjectException;
-import seedu.address.model.employee.exceptions.ProjectNotFoundException;
+import seedu.address.model.project.exceptions.DuplicateProjectException;
+import seedu.address.model.project.exceptions.ProjectNotFoundException;
 import seedu.address.testutil.ProjectBuilder;
 
 public class UniqueProjectListTest {
@@ -37,6 +37,15 @@ public class UniqueProjectListTest {
         uniqueProjectList.add(ALPHA);
         Project editedAlpha = new ProjectBuilder(ALPHA).withEmployees(BOB).build();
         assertTrue(uniqueProjectList.contains(editedAlpha));
+    }
+
+    @Test
+    public void updateProject_success() {
+        uniqueProjectList.add(ALPHA);
+        UniqueProjectList otherList = new UniqueProjectList();
+        otherList.setProjects(uniqueProjectList);
+
+        assertEquals(uniqueProjectList, otherList);
     }
 
     @Test
