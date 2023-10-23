@@ -6,7 +6,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
-import seedu.address.model.employee.ProjectDoneByFilteredEmployeesPredicate;
+import seedu.address.model.project.ProjectDoneByFilteredEmployeesPredicate;
 
 /**
  * Finds and lists all employees in TaskHub whose name contains any of the argument keywords.

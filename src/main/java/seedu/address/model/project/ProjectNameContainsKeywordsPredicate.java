@@ -1,4 +1,4 @@
-package seedu.address.model.employee;
+package seedu.address.model.project;
 
 import java.util.List;
 import java.util.function.Predicate;

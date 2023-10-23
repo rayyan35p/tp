@@ -6,7 +6,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.employee.EmployeeUnderFilteredProjectsPredicate;
-import seedu.address.model.employee.ProjectNameContainsKeywordsPredicate;
+import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all projects in TaskHub whose name contains any of the argument keywords.

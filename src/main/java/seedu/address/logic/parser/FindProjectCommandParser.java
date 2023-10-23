@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FindProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.employee.ProjectNameContainsKeywordsPredicate;
+import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindProjectCommand object

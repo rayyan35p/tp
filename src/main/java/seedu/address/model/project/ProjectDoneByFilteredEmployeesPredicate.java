@@ -1,9 +1,10 @@
-package seedu.address.model.employee;
+package seedu.address.model.project;
 
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.employee.Employee;
 
 /**
  * Tests that a {@code Project} is done by any of the specified filtered employees.
@@ -19,8 +20,7 @@ public class ProjectDoneByFilteredEmployeesPredicate implements Predicate<Projec
     @Override
     public boolean test(Project project) {
         return filteredEmployees.stream()
-                .anyMatch(employee -> project.getEmployees().stream()
-                        .anyMatch(otherEmployee -> otherEmployee.isSameEmployee(employee)));
+                .anyMatch(employee -> project.getEmployees().contains(employee));
     }
 
     @Override

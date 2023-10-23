@@ -4,6 +4,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.project.Project;
 
 /**
  * Tests that a {@code Employee} is under any of the specified filtered projects.
@@ -19,8 +20,7 @@ public class EmployeeUnderFilteredProjectsPredicate implements Predicate<Employe
     @Override
     public boolean test(Employee employee) {
         return filteredProjects.stream()
-                .anyMatch(project -> project.getEmployees().stream()
-                        .anyMatch(otherEmployee -> otherEmployee.isSameEmployee(employee)));
+                .anyMatch(project -> project.getEmployees().contains(employee));
     }
 
     @Override
