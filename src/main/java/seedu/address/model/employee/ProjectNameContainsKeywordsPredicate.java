@@ -1,10 +1,7 @@
-package seedu.address.model;
+package seedu.address.model.employee;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
-import seedu.address.model.employee.Project;
 
 import java.util.List;
 import java.util.function.Predicate;

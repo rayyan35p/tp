@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.ProjectNameContainsKeywordsPredicate;
+import seedu.address.model.employee.ProjectNameContainsKeywordsPredicate;
 
 import static java.util.Objects.requireNonNull;
 

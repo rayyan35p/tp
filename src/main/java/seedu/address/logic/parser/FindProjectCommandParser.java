@@ -3,8 +3,7 @@ package seedu.address.logic.parser;
 import seedu.address.logic.commands.FindEmployeeCommand;
 import seedu.address.logic.commands.FindProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ProjectNameContainsKeywordsPredicate;
-import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
+import seedu.address.model.employee.ProjectNameContainsKeywordsPredicate;
 
 import java.util.Arrays;
 
@@ -24,7 +23,7 @@ public class FindProjectCommandParser {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindEmployeeCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindProjectCommand.MESSAGE_USAGE));
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
