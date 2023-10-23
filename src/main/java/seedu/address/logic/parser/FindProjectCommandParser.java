@@ -11,7 +11,7 @@ import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 /**
  * Parses input arguments and creates a new FindProjectCommand object
  */
-public class FindProjectCommandParser {
+public class FindProjectCommandParser implements Parser<FindProjectCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindProjectCommand
