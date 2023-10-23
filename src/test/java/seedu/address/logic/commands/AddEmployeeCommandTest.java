@@ -23,7 +23,7 @@ import seedu.address.model.ReadOnlyTaskHub;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TaskHub;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.Project;
+import seedu.address.model.project.Project;
 import seedu.address.testutil.EmployeeBuilder;
 
 public class AddEmployeeCommandTest {
@@ -177,6 +177,11 @@ public class AddEmployeeCommandTest {
 
         @Override
         public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setProject(Project projectToEdit, Project editedProject) {
             throw new AssertionError("This method should not be called.");
         }
 

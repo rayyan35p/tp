@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddProjectCommand;
-import seedu.address.model.employee.Project;
+import seedu.address.model.project.Project;
 import seedu.address.testutil.ProjectBuilder;
 
 public class AddProjectCommandParserTest {

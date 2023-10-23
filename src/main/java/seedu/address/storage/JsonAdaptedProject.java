@@ -8,9 +8,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Name;
-import seedu.address.model.employee.Project;
+import seedu.address.model.employee.UniqueEmployeeList;
+import seedu.address.model.employee.exceptions.DuplicateEmployeeException;
+import seedu.address.model.project.Project;
 
 /**
  * Jackson-friendly version of {@link Project}.
@@ -39,7 +40,7 @@ public class JsonAdaptedProject {
      */
     public JsonAdaptedProject(Project source) {
         name = source.name;
-        employees.addAll(source.getEmployees().stream()
+        employees.addAll(source.getEmployees().asUnmodifiableObservableList().stream()
                 .map(JsonAdaptedEmployee::new)
                 .collect(Collectors.toList()));
     }
@@ -50,9 +51,13 @@ public class JsonAdaptedProject {
      * @throws IllegalValueException if there were any data constraints violated in the adapted employee.
      */
     public Project toModelType() throws IllegalValueException {
-        final List<Employee> employeeList = new ArrayList<>();
-        for (JsonAdaptedEmployee employee : employees) {
-            employeeList.add(employee.toModelType());
+        final UniqueEmployeeList employeeList = new UniqueEmployeeList();
+        try {
+            for (JsonAdaptedEmployee employee : employees) {
+                employeeList.add(employee.toModelType());
+            }
+        } catch (DuplicateEmployeeException e) {
+            throw new IllegalValueException(e.getMessage());
         }
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));

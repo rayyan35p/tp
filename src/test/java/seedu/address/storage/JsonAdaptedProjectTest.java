@@ -12,12 +12,13 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.employee.Name;
-import seedu.address.model.employee.Project;
+import seedu.address.model.project.Project;
 
 public class JsonAdaptedProjectTest {
     public static final String INVALID_NAME = "     ";
     public static final String VALID_NAME = ALPHA.name;
-    public static final List<JsonAdaptedEmployee> VALID_EMPLOYEES = ALPHA.getEmployees().stream()
+    public static final List<JsonAdaptedEmployee> VALID_EMPLOYEES = ALPHA.getEmployees().asUnmodifiableObservableList()
+            .stream()
             .map(JsonAdaptedEmployee::new)
             .collect(Collectors.toList());
 
