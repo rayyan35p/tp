@@ -65,9 +65,7 @@ public class TypicalEmployees {
      */
     public static TaskHub getTypicalTaskHub() {
         TaskHub ab = new TaskHub();
-        for (Employee employee : getTypicalEmployees()) {
-            ab.addEmployee(employee);
-        }
+        ab.setEmployees(getTypicalEmployees());
         ab.setProjects(getTypicalProjects());
         return ab;
     }

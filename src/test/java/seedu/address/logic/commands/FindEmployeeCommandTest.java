@@ -19,9 +19,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
+import seedu.address.model.project.ProjectDoneByFilteredEmployeesPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindEmployeeCommand}.
  */
 public class FindEmployeeCommandTest {
     private Model model = new ModelManager(getTypicalTaskHub(), new UserPrefs());
@@ -57,9 +58,14 @@ public class FindEmployeeCommandTest {
     @Test
     public void execute_zeroKeywords_noEmployeeFound() {
         String expectedMessage = String.format(MESSAGE_EMPLOYEES_LISTED_OVERVIEW, 0);
-        EmployeeNameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindEmployeeCommand command = new FindEmployeeCommand(predicate);
-        expectedModel.updateFilteredEmployeeList(predicate);
+        EmployeeNameContainsKeywordsPredicate employeePredicate = preparePredicate(" ");
+        FindEmployeeCommand command = new FindEmployeeCommand(employeePredicate);
+        expectedModel.updateFilteredEmployeeList(employeePredicate);
+
+        ProjectDoneByFilteredEmployeesPredicate projectPredicate =
+                new ProjectDoneByFilteredEmployeesPredicate(model.getFilteredEmployeeList());
+        expectedModel.updateFilteredProjectList(projectPredicate);
+
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredEmployeeList());
     }
@@ -67,9 +73,14 @@ public class FindEmployeeCommandTest {
     @Test
     public void execute_multipleKeywords_multipleEmployeesFound() {
         String expectedMessage = String.format(MESSAGE_EMPLOYEES_LISTED_OVERVIEW, 3);
-        EmployeeNameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindEmployeeCommand command = new FindEmployeeCommand(predicate);
-        expectedModel.updateFilteredEmployeeList(predicate);
+        EmployeeNameContainsKeywordsPredicate employeePredicate = preparePredicate("Kurz Elle Kunz");
+        FindEmployeeCommand command = new FindEmployeeCommand(employeePredicate);
+        expectedModel.updateFilteredEmployeeList(employeePredicate);
+
+        ProjectDoneByFilteredEmployeesPredicate projectPredicate =
+                new ProjectDoneByFilteredEmployeesPredicate(model.getFilteredEmployeeList());
+        expectedModel.updateFilteredProjectList(projectPredicate);
+
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredEmployeeList());
     }
