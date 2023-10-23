@@ -96,7 +96,7 @@ An employee can have any number of tags (including 0)
 
 Examples:
 * `addE n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `addE n/Betsy Crowe t/Junior SWE e/betsycrowe@example.com a/Brick street p/+65 9123 4567 t/Employee of the month`
+* `addE n/Betsy Crowe t/Junior e/betsycrowe@example.com a/Brick street p/91234567 t/Employee`
 
 ### Listing all employees : `listE`
 
