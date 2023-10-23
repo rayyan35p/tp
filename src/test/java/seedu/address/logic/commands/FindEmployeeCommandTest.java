@@ -76,7 +76,8 @@ public class FindEmployeeCommandTest {
 
     @Test
     public void toStringMethod() {
-        EmployeeNameContainsKeywordsPredicate predicate = new EmployeeNameContainsKeywordsPredicate(Arrays.asList("keyword"));
+        EmployeeNameContainsKeywordsPredicate predicate =
+                new EmployeeNameContainsKeywordsPredicate(Arrays.asList("keyword"));
         FindEmployeeCommand findEmployeeCommand = new FindEmployeeCommand(predicate);
         String expected = FindEmployeeCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, findEmployeeCommand.toString());

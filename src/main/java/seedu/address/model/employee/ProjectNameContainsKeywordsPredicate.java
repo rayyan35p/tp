@@ -1,11 +1,14 @@
 package seedu.address.model.employee;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.commons.util.ToStringBuilder;
-
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.StringUtil;
+import seedu.address.commons.util.ToStringBuilder;
+
+/**
+ * Tests that a {@code Project}'s {@code Name} matches any of the keywords given.
+ */
 public class ProjectNameContainsKeywordsPredicate implements Predicate<Project> {
 
     private final List<String> keywords;
@@ -31,7 +34,8 @@ public class ProjectNameContainsKeywordsPredicate implements Predicate<Project> 
             return false;
         }
 
-        ProjectNameContainsKeywordsPredicate otherProjectNameContainsKeywordsPredicate = (ProjectNameContainsKeywordsPredicate) other;
+        ProjectNameContainsKeywordsPredicate otherProjectNameContainsKeywordsPredicate =
+                (ProjectNameContainsKeywordsPredicate) other;
         return keywords.equals(otherProjectNameContainsKeywordsPredicate.keywords);
     }
 

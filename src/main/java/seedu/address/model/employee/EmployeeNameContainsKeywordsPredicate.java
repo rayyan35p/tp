@@ -33,7 +33,8 @@ public class EmployeeNameContainsKeywordsPredicate implements Predicate<Employee
             return false;
         }
 
-        EmployeeNameContainsKeywordsPredicate otherEmployeeNameContainsKeywordsPredicate = (EmployeeNameContainsKeywordsPredicate) other;
+        EmployeeNameContainsKeywordsPredicate otherEmployeeNameContainsKeywordsPredicate =
+                (EmployeeNameContainsKeywordsPredicate) other;
         return keywords.equals(otherEmployeeNameContainsKeywordsPredicate.keywords);
     }
 

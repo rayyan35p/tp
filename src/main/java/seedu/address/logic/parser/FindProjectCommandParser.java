@@ -1,13 +1,12 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.FindEmployeeCommand;
-import seedu.address.logic.commands.FindProjectCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.employee.ProjectNameContainsKeywordsPredicate;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import seedu.address.logic.commands.FindProjectCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.employee.ProjectNameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindProjectCommand object

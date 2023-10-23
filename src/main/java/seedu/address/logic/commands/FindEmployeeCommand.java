@@ -6,6 +6,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
+import seedu.address.model.employee.ProjectDoneByFilteredEmployeesPredicate;
 
 /**
  * Finds and lists all employees in TaskHub whose name contains any of the argument keywords.
@@ -30,6 +31,12 @@ public class FindEmployeeCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredEmployeeList(predicate);
+
+        // update project list to contain only relevant projects
+        final ProjectDoneByFilteredEmployeesPredicate projectDoneByFilteredEmployeesPredicate =
+                new ProjectDoneByFilteredEmployeesPredicate(model.getFilteredEmployeeList());
+        model.updateFilteredProjectList(projectDoneByFilteredEmployeesPredicate);
+
         return new CommandResult(
                 String.format(Messages.MESSAGE_EMPLOYEES_LISTED_OVERVIEW, model.getFilteredEmployeeList().size()));
     }
