@@ -1,12 +1,11 @@
-
-package seedu.address.model.employee;
+package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
+import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.UniqueEmployeeList;
 
 /**
  * Represents a Person's remark in the address book.
@@ -23,7 +22,7 @@ public class Project {
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String name;
-    public final List<Employee> employeeList;
+    public final UniqueEmployeeList employeeList;
 
     /**
      * Constructs a {@code Project}.
@@ -33,7 +32,7 @@ public class Project {
     public Project(String project) {
         requireNonNull(project);
         name = project;
-        employeeList = new ArrayList<>();
+        employeeList = new UniqueEmployeeList();
     }
 
     /**
@@ -42,7 +41,7 @@ public class Project {
      * @param project A valid Project.
      * @param employees A list of Employees that are in the project
      */
-    public Project(String project, List<Employee> employees) {
+    public Project(String project, UniqueEmployeeList employees) {
         requireNonNull(project);
         name = project;
         employeeList = employees;
@@ -82,7 +81,7 @@ public class Project {
                 && otherProject.name.equals(this.name);
     }
 
-    public List<Employee> getEmployees() {
+    public UniqueEmployeeList getEmployees() {
         return employeeList;
     }
 
@@ -91,7 +90,7 @@ public class Project {
         for (Employee employee : employeeList) {
             employeeListString.append(employee.getName() + ", ");
         }
-        if (employeeList.size() != 0) {
+        if (employeeList.asUnmodifiableObservableList().size() != 0) {
             employeeListString.delete(employeeListString.length() - 2,
                     employeeListString.length());
         }

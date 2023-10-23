@@ -7,9 +7,9 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.Project;
 import seedu.address.model.employee.UniqueEmployeeList;
-import seedu.address.model.employee.UniqueProjectList;
+import seedu.address.model.project.Project;
+import seedu.address.model.project.UniqueProjectList;
 
 /**
  * Wraps all data at the task-hub level
@@ -98,6 +98,12 @@ public class TaskHub implements ReadOnlyTaskHub {
         requireNonNull(editedEmployee);
 
         employees.setEmployee(target, editedEmployee);
+    }
+
+    public void setProject(Project target, Project editedProject) {
+        requireNonNull(editedProject);
+
+        projects.setProject(target, editedProject);
     }
 
     /**

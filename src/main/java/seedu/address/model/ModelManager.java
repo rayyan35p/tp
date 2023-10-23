@@ -12,7 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.Project;
+import seedu.address.model.project.Project;
 
 /**
  * Represents the in-memory model of the TaskHub data.
@@ -128,6 +128,13 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedEmployee);
 
         taskHub.setEmployee(target, editedEmployee);
+    }
+
+    @Override
+    public void setProject(Project project, Project editedProject) {
+        requireAllNonNull(project, editedProject);
+
+        taskHub.setProject(project, editedProject);
     }
 
     //=========== Filtered Employee List Accessors =============================================================
