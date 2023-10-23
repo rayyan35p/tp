@@ -36,6 +36,6 @@ public class TypicalProjects {
         return ab;
     }
     public static List<Project> getTypicalProjects() {
-        return new ArrayList<>(Arrays.asList(BETA, DELTA, GAMMA));
+        return new ArrayList<>(Arrays.asList(ALPHA, BETA, DELTA, GAMMA));
     }
 }
