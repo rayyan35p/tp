@@ -1,0 +1,35 @@
+package seedu.address.logic.parser;
+
+import seedu.address.logic.commands.FindEmployeeCommand;
+import seedu.address.logic.commands.FindProjectCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ProjectNameContainsKeywordsPredicate;
+import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
+
+import java.util.Arrays;
+
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+/**
+ * Parses input arguments and creates a new FindProjectCommand object
+ */
+public class FindProjectCommandParser {
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the FindProjectCommand
+     * and returns a FindProjectCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    public FindProjectCommand parse(String args) throws ParseException {
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindEmployeeCommand.MESSAGE_USAGE));
+        }
+
+        String[] nameKeywords = trimmedArgs.split("\\s+");
+
+        return new FindProjectCommand(new ProjectNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+    }
+
+}

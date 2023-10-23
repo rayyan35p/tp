@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.employee.NameContainsKeywordsPredicate;
+import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all employees in TaskHub whose name contains any of the argument keywords.
@@ -20,9 +20,9 @@ public class FindEmployeeCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final EmployeeNameContainsKeywordsPredicate predicate;
 
-    public FindEmployeeCommand(NameContainsKeywordsPredicate predicate) {
+    public FindEmployeeCommand(EmployeeNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
