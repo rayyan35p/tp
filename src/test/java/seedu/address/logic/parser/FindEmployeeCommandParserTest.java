@@ -9,7 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindEmployeeCommand;
-import seedu.address.model.employee.NameContainsKeywordsPredicate;
+import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
 
 public class FindEmployeeCommandParserTest {
 
@@ -25,7 +25,7 @@ public class FindEmployeeCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindEmployeeCommand expectedFindEmployeeCommand =
-                new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+                new FindEmployeeCommand(new EmployeeNameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
         assertParseSuccess(parser, "Alice Bob", expectedFindEmployeeCommand);
 
         // multiple whitespaces between keywords

@@ -18,10 +18,11 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.employee.NameContainsKeywordsPredicate;
+import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
+import seedu.address.model.project.ProjectDoneByFilteredEmployeesPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindEmployeeCommand}.
  */
 public class FindEmployeeCommandTest {
     private Model model = new ModelManager(getTypicalTaskHub(), new UserPrefs());
@@ -29,10 +30,10 @@ public class FindEmployeeCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        EmployeeNameContainsKeywordsPredicate firstPredicate =
+                new EmployeeNameContainsKeywordsPredicate(Collections.singletonList("first"));
+        EmployeeNameContainsKeywordsPredicate secondPredicate =
+                new EmployeeNameContainsKeywordsPredicate(Collections.singletonList("second"));
 
         FindEmployeeCommand findFirstCommand = new FindEmployeeCommand(firstPredicate);
         FindEmployeeCommand findSecondCommand = new FindEmployeeCommand(secondPredicate);
@@ -57,9 +58,14 @@ public class FindEmployeeCommandTest {
     @Test
     public void execute_zeroKeywords_noEmployeeFound() {
         String expectedMessage = String.format(MESSAGE_EMPLOYEES_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindEmployeeCommand command = new FindEmployeeCommand(predicate);
-        expectedModel.updateFilteredEmployeeList(predicate);
+        EmployeeNameContainsKeywordsPredicate employeePredicate = preparePredicate(" ");
+        FindEmployeeCommand command = new FindEmployeeCommand(employeePredicate);
+        expectedModel.updateFilteredEmployeeList(employeePredicate);
+
+        ProjectDoneByFilteredEmployeesPredicate projectPredicate =
+                new ProjectDoneByFilteredEmployeesPredicate(model.getFilteredEmployeeList());
+        expectedModel.updateFilteredProjectList(projectPredicate);
+
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredEmployeeList());
     }
@@ -67,25 +73,31 @@ public class FindEmployeeCommandTest {
     @Test
     public void execute_multipleKeywords_multipleEmployeesFound() {
         String expectedMessage = String.format(MESSAGE_EMPLOYEES_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindEmployeeCommand command = new FindEmployeeCommand(predicate);
-        expectedModel.updateFilteredEmployeeList(predicate);
+        EmployeeNameContainsKeywordsPredicate employeePredicate = preparePredicate("Kurz Elle Kunz");
+        FindEmployeeCommand command = new FindEmployeeCommand(employeePredicate);
+        expectedModel.updateFilteredEmployeeList(employeePredicate);
+
+        ProjectDoneByFilteredEmployeesPredicate projectPredicate =
+                new ProjectDoneByFilteredEmployeesPredicate(model.getFilteredEmployeeList());
+        expectedModel.updateFilteredProjectList(projectPredicate);
+
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredEmployeeList());
     }
 
     @Test
     public void toStringMethod() {
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Arrays.asList("keyword"));
+        EmployeeNameContainsKeywordsPredicate predicate =
+                new EmployeeNameContainsKeywordsPredicate(Arrays.asList("keyword"));
         FindEmployeeCommand findEmployeeCommand = new FindEmployeeCommand(predicate);
         String expected = FindEmployeeCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, findEmployeeCommand.toString());
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code EmployeeNameContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private EmployeeNameContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new EmployeeNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
