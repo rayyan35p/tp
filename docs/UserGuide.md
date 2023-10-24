@@ -182,6 +182,24 @@ Examples:
 * `addP pr/Project1 em/1` will add `Project1` to the projects list with the employee index 1 assigned to the project.
 * `addP pr/Project2` will add an empty `Project2` to the projects list.
 
+### Edit deadline of a project: `dl`
+
+Edit the deadline of a project in the projects list.
+
+Format: `dl INDEX d/DATE`
+
+* Edits the deadline of the project at the specified `INDEX`.
+* The index refers to the index number shown in the displayed projects list.
+* The index **must be a positive integer** 1, 2, 3, …
+* The date must be in the `dd/MM/yyyy` format.
+* Existing deadline will be updated to the new deadline.
+* You can remove the deadline by typing `d/` without specifying any date after it.
+
+Examples:
+*  `dl 2 d/18/01/2022` sets the deadline of the 2nd project to be `18/01/2022`.
+*  `dl 1 d/` removes the deadline of the 1st project.
+*  `findP Infinity` followed by `dl 1 d/25/11/2024` sets the deadline of the 1st project in the results of the `findP` command to be `25/11/2024`.
+
 ### Assign employee(s) to a project: `assignE`
 
 Assigns employee(s) to a project in TaskHub
