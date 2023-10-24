@@ -19,7 +19,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.TaskHub;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.NameContainsKeywordsPredicate;
+import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditEmployeeDescriptorBuilder;
 
 /**
@@ -125,7 +125,7 @@ public class CommandTestUtil {
 
         Employee employee = model.getFilteredEmployeeList().get(targetIndex.getZeroBased());
         final String[] splitName = employee.getName().fullName.split("\\s+");
-        model.updateFilteredEmployeeList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredEmployeeList(new EmployeeNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredEmployeeList().size());
     }
