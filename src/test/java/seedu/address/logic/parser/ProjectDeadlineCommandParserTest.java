@@ -24,7 +24,8 @@ public class ProjectDeadlineCommandParserTest {
     public void parse_validArgs_success() {
         Index targetIndex = INDEX_FIRST_PROJECT;
         String userInput = targetIndex.getOneBased() + " " + PREFIX_DEADLINE + validDeadline;
-        ProjectDeadlineCommand expectedCommand = new ProjectDeadlineCommand(INDEX_FIRST_PROJECT, new Deadline(validDeadline));
+        ProjectDeadlineCommand expectedCommand = new ProjectDeadlineCommand(INDEX_FIRST_PROJECT,
+                new Deadline(validDeadline));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

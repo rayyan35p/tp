@@ -13,8 +13,8 @@ import static seedu.address.testutil.TypicalProjects.getTypicalTaskHub;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -69,8 +69,8 @@ public class ProjectDeadlineCommandTest {
         showProjectAtIndex(model, INDEX_FIRST_PROJECT);
 
         Project firstProject = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
-        Project editedProject = new ProjectBuilder(model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased()))
-                .withDeadline(DEADLINE_STUB).build();
+        Project editedProject = new ProjectBuilder(model.getFilteredProjectList()
+                .get(INDEX_FIRST_PROJECT.getZeroBased())).withDeadline(DEADLINE_STUB).build();
 
         ProjectDeadlineCommand projectDeadlineCommand = new ProjectDeadlineCommand(INDEX_FIRST_PROJECT,
                 new Deadline(editedProject.getDeadline().value));
