@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.employee.Name;
+import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 
 public class JsonAdaptedProjectTest {
@@ -48,5 +49,19 @@ public class JsonAdaptedProjectTest {
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }
 
+    @Test
+    public void toModelType_invalidDeadline_throwsIllegalValueException() {
+        JsonAdaptedProject project =
+                new JsonAdaptedProject(VALID_NAME, VALID_EMPLOYEES, INVALID_DEADLINE);
+        String expectedMessage = Deadline.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
+    }
 
+    @Test
+    public void toModelType_nullDeadline_throwsIllegalValueException() {
+        JsonAdaptedProject project =
+                new JsonAdaptedProject(VALID_NAME, VALID_EMPLOYEES, null);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "Deadline");
+        assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
+    }
 }

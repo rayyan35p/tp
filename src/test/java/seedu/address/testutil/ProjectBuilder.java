@@ -56,6 +56,15 @@ public class ProjectBuilder {
         }
         return this;
     }
+
+    /**
+     * Sets the {@code Deadline} of the {@code Project} we are building.
+     */
+    public ProjectBuilder withDeadline(String deadline) {
+        this.deadline = new Deadline(deadline);
+        return this;
+    }
+
     public Project build() {
         return new Project(projectName, employeeList, deadline);
     }
