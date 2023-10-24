@@ -15,7 +15,7 @@ import seedu.address.model.project.Deadline;
 /**
  * Parses input arguments and creates a new ProjectDeadlineCommand object
  */
-public class ProjectDeadlineCommandParser {
+public class ProjectDeadlineCommandParser implements Parser<ProjectDeadlineCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the ProjectDeadlineCommand
