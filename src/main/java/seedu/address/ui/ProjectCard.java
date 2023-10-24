@@ -59,7 +59,7 @@ public class ProjectCard extends UiPart<Region> {
         projects.setText(listOfEmployeesString);
 
         // Set the deadline
-        if (project.getDeadline().value == "") {
+        if (project.getDeadline().value.equals("")) {
             deadline.setText("No deadline set");
         } else {
             LocalDate currentDateTime = LocalDate.now(); // Get the current date
