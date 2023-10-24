@@ -75,7 +75,7 @@ public class AssignEmployeeCommand extends Command {
 
     /**
      * Generates a command execution success message based on whether
-     * the remark is added to or removed from
+     * the employees are added to a project.
      * {@code projectToEdit}.
      */
     private String generateSuccessMessage(Project projectToEdit) {

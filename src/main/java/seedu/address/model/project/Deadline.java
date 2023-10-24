@@ -5,16 +5,16 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 
 /**
- * Represents a Person's remark in the address book.
+ * Represents a Project's deadline in TaskHub.
  * Guarantees: immutable; is always valid
  */
 public class Deadline {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Project deadline should be a valid date in the format DD/MM/YY, with leading 0s. E.g.: 17/02/2009";
+            "Project deadline should be a valid date in the dd/MM/yyyy format.\n Example: 17/02/2009";
 
     /**
-     * Either DD/MM/YYYY or empty string
+     * Either dd/MM/yyyy or empty string
      */
     public static final String VALIDATION_REGEX =
             "^(([0]?[1-9]|[1|2][0-9]|[3][0|1])[/]([0]?[1-9]|[1][0-2])[/]([0-9]{4}))?$";

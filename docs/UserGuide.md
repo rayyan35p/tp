@@ -262,16 +262,16 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                         | Format, Examples                                                                                                                                                                                 |
-|--------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **List all employees**         | `listE`                                                                                                                                                                                          |
-| **Clear**                      | `clear`                                                                                                                                                                                          |
-| **Help**                       | `help`                                                                                                                                                                                           |
-| **Add Employee**               | `addE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ r/REMARK` <br> e.g., `addE n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague r/a good friend` |
-| **Delete Employee**            | `deleteE INDEX`<br> e.g., `deleteE 3`                                                                                                                                                            |
-| **Find Employee**              | `findE KEYWORD [MORE_KEYWORDS]`<br> e.g., `findE James Jake`                                                                                                                                     |
-| **List Projects**              | `listP`                                                                                                                                                                                          |
-| **Add Project**                | `addP pr/PROJECT_NAME [em/EMPLOYEE_INDEX]…​` <br> e.g, `addP pr/CS2103T em/2 3 4 5`                                                                                                              |
-| **Assign Employee to Project** | `assignE pr/PROJECT_INDEX em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDICES]…​` <br> e.g, `assignE pr/4 em/1 2 3`                                                                                      |
-| **Delete Project**             | `deleteP INDEX`<br> e.g., `deleteP 3`                                                                                                                                                            |
+| Action                         | Format, Examples                                                                                                                                                                         |
+|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **List all employees**         | `listE`                                                                                                                                                                                  |
+| **Clear**                      | `clear`                                                                                                                                                                                  |
+| **Help**                       | `help`                                                                                                                                                                                   |
+| **Add Employee**               | `addE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` <br> e.g., `addE n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague r/a good friend` |
+| **Delete Employee**            | `deleteE INDEX`<br> e.g., `deleteE 3`                                                                                                                                                    |
+| **Find Employee**              | `findE KEYWORD [MORE_KEYWORDS]`<br> e.g., `findE James Jake`                                                                                                                             |
+| **List Projects**              | `listP`                                                                                                                                                                                  |
+| **Add Project**                | `addP pr/PROJECT_NAME [em/EMPLOYEE_INDEX]…​` <br> e.g, `addP pr/CS2103T em/2 3 4 5`                                                                                                      |
+| **Assign Employee to Project** | `assignE pr/PROJECT_INDEX em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDICES]…​` <br> e.g, `assignE pr/4 em/1 2 3`                                                                              |
+| **Delete Project**             | `deleteP INDEX`<br> e.g., `deleteP 3`                                                                                                                                                    |
 

@@ -8,7 +8,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
 
 /**
- * Represents a Person's remark in the address book.
+ * Represents a Project in TaskHub.
  * Guarantees: immutable; is always valid
  */
 public class Project {

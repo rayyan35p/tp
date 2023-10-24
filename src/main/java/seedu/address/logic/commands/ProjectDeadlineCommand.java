@@ -35,8 +35,8 @@ public class ProjectDeadlineCommand extends Command {
     private final Deadline deadline;
 
     /**
-     * @param index of the project in the filtered project list to edit the remark
-     * @param deadline of the person to be updated to
+     * @param index of the project in the filtered project list to edit the deadline
+     * @param deadline of the project to be updated to
      */
     public ProjectDeadlineCommand(Index index, Deadline deadline) {
         requireAllNonNull(index, deadline);
@@ -64,8 +64,8 @@ public class ProjectDeadlineCommand extends Command {
     }
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code personToEdit}.
+     * Generates a command execution success message based on whether the deadline is added to or removed from
+     * {@code projectToEdit}.
      */
     private String generateSuccessMessage(Project projectToEdit) {
         String message = !deadline.value.isEmpty() ? MESSAGE_ADD_DEADLINE_SUCCESS : MESSAGE_DELETE_DEADLINE_SUCCESS;
