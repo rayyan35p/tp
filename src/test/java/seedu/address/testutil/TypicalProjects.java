@@ -4,7 +4,6 @@ import static seedu.address.testutil.TypicalEmployees.BENSON;
 import static seedu.address.testutil.TypicalEmployees.DANIEL;
 import static seedu.address.testutil.TypicalEmployees.FIONA;
 import static seedu.address.testutil.TypicalEmployees.GEORGE;
-import static seedu.address.testutil.TypicalEmployees.getTypicalEmployees;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,11 +29,9 @@ public class TypicalProjects {
      * Returns an {@code TaskHub} with all the typical projects.
      */
     public static TaskHub getTypicalTaskHub() {
-        TaskHub ab = new TaskHub();
-        ab.setEmployees(getTypicalEmployees());
-        ab.setProjects(getTypicalProjects());
-        return ab;
+        return TypicalEmployees.getTypicalTaskHub();
     }
+
     public static List<Project> getTypicalProjects() {
         return new ArrayList<>(Arrays.asList(ALPHA, BETA, DELTA, GAMMA));
     }

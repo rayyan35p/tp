@@ -32,7 +32,7 @@ public class FindProjectCommand extends Command {
         requireNonNull(model);
         model.updateFilteredProjectList(predicate);
 
-        // update employee list to contain only relevant employees
+        // update employee list to contain only employees under the filtered projects
         final EmployeeUnderFilteredProjectsPredicate employeeUnderFilteredProjectsPredicate =
                 new EmployeeUnderFilteredProjectsPredicate(model.getFilteredProjectList());
         model.updateFilteredEmployeeList(employeeUnderFilteredProjectsPredicate);
