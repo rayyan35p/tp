@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 
+import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
@@ -11,8 +12,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
-
-import java.util.List;
 
 /**
  * Adds a deadline to an existing project in TaskHub.

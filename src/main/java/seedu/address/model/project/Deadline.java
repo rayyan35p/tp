@@ -1,19 +1,25 @@
 package seedu.address.model.project;
 
-import java.time.LocalDate;
-
 import static java.util.Objects.requireNonNull;
+
+import java.time.LocalDate;
 
 /**
  * Represents a Person's remark in the address book.
  * Guarantees: immutable; is always valid
  */
 public class Deadline {
-    public final String value;
 
     public static final String MESSAGE_CONSTRAINTS =
             "Project deadline should be a valid date in the format DD/MM/YY, with leading 0s. E.g.: 17/02/2009";
-    public static final String VALIDATION_REGEX = "^(([0]?[1-9]|[1|2][0-9]|[3][0|1])[/]([0]?[1-9]|[1][0-2])[/]([0-9]{4}))?$";
+
+    /**
+     * Either DD/MM/YYYY or empty string
+     */
+    public static final String VALIDATION_REGEX =
+            "^(([0]?[1-9]|[1|2][0-9]|[3][0|1])[/]([0]?[1-9]|[1][0-2])[/]([0-9]{4}))?$";
+
+    public final String value;
 
     /**
      * Constructs a {@code Deadline}.
@@ -32,6 +38,9 @@ public class Deadline {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns date in LocalDate format
+     */
     public LocalDate getLocalDate() {
         String[] date = value.split("/");
         return LocalDate.of(Integer.parseInt(date[2]), Integer.parseInt(date[1]), Integer.parseInt(date[0]));

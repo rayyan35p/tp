@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.Objects;
 
 import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.Name;
 import seedu.address.model.employee.UniqueEmployeeList;
 
 /**

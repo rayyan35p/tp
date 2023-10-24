@@ -1,26 +1,35 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.commands.AddEmployeeCommand;
-import seedu.address.logic.commands.ProjectDeadlineCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.Deadline;
-
-import java.util.stream.Stream;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 
+import java.util.stream.Stream;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.commands.ProjectDeadlineCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.project.Deadline;
+
+/**
+ * Parses input arguments and creates a new ProjectDeadlineCommand object
+ */
 public class ProjectDeadlineCommandParser {
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the ProjectDeadlineCommand
+     * and returns an ProjectDeadlineCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public ProjectDeadlineCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_DEADLINE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ProjectDeadlineCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ProjectDeadlineCommand.MESSAGE_USAGE));
         }
 
         Index index;

@@ -1,13 +1,13 @@
 package seedu.address.ui;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.project.Project;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  * An UI component that displays information of a {@code Project}.
@@ -65,7 +65,7 @@ public class ProjectCard extends UiPart<Region> {
             LocalDate currentDateTime = LocalDate.now(); // Get the current date
             LocalDate deadlineDate = project.getDeadline().getLocalDate();
 
-            String formattedDeadline = deadlineDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")); // Format deadline for display
+            String formattedDeadline = deadlineDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             deadline.setText("Deadline: " + formattedDeadline);
 
             if (deadlineDate.isBefore(currentDateTime)) {
