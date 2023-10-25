@@ -7,6 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EMPLOYEES;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.BENSON;
+import static seedu.address.testutil.TypicalProjects.ALPHA;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,7 +16,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.employee.NameContainsKeywordsPredicate;
+import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
 import seedu.address.testutil.TaskHubBuilder;
 
 public class ModelManagerTest {
@@ -78,14 +79,30 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasProject_nullProject_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasProject(null));
+    }
+
+    @Test
     public void hasEmployee_employeeNotInTaskHub_returnsFalse() {
         assertFalse(modelManager.hasEmployee(ALICE));
+    }
+
+    @Test
+    public void hasProject_projectNotInTaskHub_returnsFalse() {
+        assertFalse(modelManager.hasProject(ALPHA));
     }
 
     @Test
     public void hasEmployee_employeeInTaskHub_returnsTrue() {
         modelManager.addEmployee(ALICE);
         assertTrue(modelManager.hasEmployee(ALICE));
+    }
+
+    @Test
+    public void hasProject_projectInTaskHub_returnsTrue() {
+        modelManager.addProject(ALPHA);
+        assertTrue(modelManager.hasProject(ALPHA));
     }
 
     @Test
@@ -118,7 +135,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredEmployeeList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredEmployeeList(new EmployeeNameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(taskHub, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

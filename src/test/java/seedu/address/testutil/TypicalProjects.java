@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.TaskHub;
-import seedu.address.model.employee.Project;
+import seedu.address.model.project.Project;
 
 /**
  * A utility class containing a list of {@code Project} objects to be used in tests.
@@ -29,14 +29,10 @@ public class TypicalProjects {
      * Returns an {@code TaskHub} with all the typical projects.
      */
     public static TaskHub getTypicalTaskHub() {
-        TaskHub ab = new TaskHub(TypicalEmployees.getTypicalTaskHub());
-        for (Project project : getTypicalProjects()) {
-            ab.addProject(project);
-        }
-        return ab;
+        return TypicalEmployees.getTypicalTaskHub();
     }
-    public static List<Project> getTypicalProjects() {
-        return new ArrayList<>(Arrays.asList(ALPHA, BETA, DELTA));
 
+    public static List<Project> getTypicalProjects() {
+        return new ArrayList<>(Arrays.asList(ALPHA, BETA, DELTA, GAMMA));
     }
 }

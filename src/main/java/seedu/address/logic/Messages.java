@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.Project;
+import seedu.address.model.project.Project;
 
 /**
  * Container for user visible messages.
@@ -17,7 +17,12 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX = "The employee index provided is invalid";
     public static final String MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX = "The project index provided is invalid";
+<<<<<<< HEAD
     public static final String MESSAGE_EMPLOYEES_LISTED_OVERVIEW = "%1$d employees listed!";
+=======
+    public static final String MESSAGE_EMPLOYEES_LISTED_OVERVIEW = "%1$d employees and their projects listed!";
+    public static final String MESSAGE_PROJECTS_LISTED_OVERVIEW = "%1$d projects and their employees listed!";
+>>>>>>> 3f66d98020761026aa36a68c7f8c273aa670e2c0
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
 

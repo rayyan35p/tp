@@ -5,6 +5,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,6 +27,7 @@ public class JsonSerializableTaskHubTest {
                 JsonSerializableTaskHub.class).get();
         TaskHub taskHubFromFile = dataFromFile.toModelType();
         TaskHub typicalEmployeesTaskHub = TypicalEmployees.getTypicalTaskHub();
+        typicalEmployeesTaskHub.setProjects(new ArrayList<>());
         assertEquals(taskHubFromFile, typicalEmployeesTaskHub);
     }
 
