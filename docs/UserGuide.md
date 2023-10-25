@@ -173,9 +173,10 @@ Format: `clear`
 
 Adds a new project in TaskHub
 
-Format: `addP pr/PROJECT_NAME [em/EMPLOYEE_INDEX] ...`
+Format: `addP pr/PROJECT_NAME [em/EMPLOYEE_INDEXES] ...`
 
 * Adds a new project with the employees assigned to the project.
+* Each employee index __must be separated with a space.__
 * The employee must exist in the employees list. 
 
 Examples: 
@@ -186,8 +187,9 @@ Examples:
 
 Assigns employee(s) to a project in TaskHub
 
-Format: `assignE pr/PROJECT_NAME em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDEX]...`
+Format: `assignE pr/PROJECT_INDEX em/EMPLOYEE_INDEX OTHER_EMPLOYEE_INDEXES...`
 * The employee(s) will be assigned to the project
+* Each employee index __must be separated with a space.__
 * The project name and employee names must exist in TaskHub.
 
 Examples:
