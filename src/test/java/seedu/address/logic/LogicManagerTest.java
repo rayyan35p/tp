@@ -22,6 +22,7 @@ import seedu.address.logic.commands.AddEmployeeCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListEmployeeCommand;
 import seedu.address.logic.commands.ListProjectCommand;
+import seedu.address.logic.commands.ListEmployeeAndProjectCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -66,15 +67,21 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_validListEmployeesCommand_success() throws Exception {
+    public void execute_validListEmployeeCommand_success() throws Exception {
         String listEmployeeCommand = ListEmployeeCommand.COMMAND_WORD;
         assertCommandSuccess(listEmployeeCommand, ListEmployeeCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
-    public void execute_validListProjectsCommand_success() throws Exception {
+    public void execute_validListProjectCommand_success() throws Exception {
         String listProjectCommand = ListProjectCommand.COMMAND_WORD;
         assertCommandSuccess(listProjectCommand, ListProjectCommand.MESSAGE_SUCCESS, model);
+    }
+
+    @Test
+    public void execute_validListEmployeeAndProjectCommand_success() throws Exception {
+        String listEmployeeAndProjectCommand = ListEmployeeAndProjectCommand.COMMAND_WORD;
+        assertCommandSuccess(listEmployeeAndProjectCommand, ListEmployeeAndProjectCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
