@@ -14,10 +14,12 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.employee.Name;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectPriority;
 
 public class JsonAdaptedProjectTest {
     public static final String INVALID_NAME = "     ";
     public static final String INVALID_DEADLINE = "32/13/2024";
+    public static final String INVALID_PRIORITY = "    ";
 
     public static final String VALID_NAME = ALPHA.name;
     public static final List<JsonAdaptedEmployee> VALID_EMPLOYEES = ALPHA.getEmployees().asUnmodifiableObservableList()
@@ -25,7 +27,7 @@ public class JsonAdaptedProjectTest {
             .map(JsonAdaptedEmployee::new)
             .collect(Collectors.toList());
     public static final String VALID_DEADLINE = ALPHA.getDeadline().toString();
-
+    public static final String VALID_PRIORITY = "normal";
 
     @Test
     public void toModelType_validProjectDetails_returnsProject() throws Exception {
@@ -36,7 +38,7 @@ public class JsonAdaptedProjectTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedProject project =
-                new JsonAdaptedProject(INVALID_NAME, VALID_EMPLOYEES, VALID_DEADLINE);
+                new JsonAdaptedProject(INVALID_NAME, VALID_EMPLOYEES, VALID_PRIORITY, VALID_DEADLINE);
         String expectedMessage = Project.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }
@@ -44,15 +46,31 @@ public class JsonAdaptedProjectTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedProject project =
-            new JsonAdaptedProject(null, VALID_EMPLOYEES, VALID_DEADLINE);
+            new JsonAdaptedProject(null, VALID_EMPLOYEES, VALID_PRIORITY, VALID_DEADLINE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidPriority_throwsIllegalValueException() {
+        JsonAdaptedProject project =
+                new JsonAdaptedProject(VALID_NAME, VALID_EMPLOYEES, INVALID_PRIORITY, VALID_DEADLINE);
+        String expectedMessage = ProjectPriority.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullPriority_throwsIllegalValueException() {
+        JsonAdaptedProject project =
+                new JsonAdaptedProject(VALID_NAME, VALID_EMPLOYEES, null, VALID_DEADLINE);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ProjectPriority.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }
 
     @Test
     public void toModelType_invalidDeadline_throwsIllegalValueException() {
         JsonAdaptedProject project =
-                new JsonAdaptedProject(VALID_NAME, VALID_EMPLOYEES, INVALID_DEADLINE);
+                new JsonAdaptedProject(VALID_NAME, VALID_EMPLOYEES, VALID_PRIORITY, INVALID_DEADLINE);
         String expectedMessage = Deadline.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }
@@ -60,7 +78,7 @@ public class JsonAdaptedProjectTest {
     @Test
     public void toModelType_nullDeadline_throwsIllegalValueException() {
         JsonAdaptedProject project =
-                new JsonAdaptedProject(VALID_NAME, VALID_EMPLOYEES, null);
+                new JsonAdaptedProject(VALID_NAME, VALID_EMPLOYEES, VALID_PRIORITY, null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "Deadline");
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }

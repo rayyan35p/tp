@@ -24,6 +24,8 @@ public class Project {
     public final String name;
     public final Deadline deadline;
     public final UniqueEmployeeList employeeList;
+    private final ProjectPriority projectPriority;
+
 
     /**
      * Constructs a {@code Project}.
@@ -33,8 +35,9 @@ public class Project {
     public Project(String project) {
         requireNonNull(project);
         this.name = project;
+        this.projectPriority = new ProjectPriority("normal");
         this.deadline = new Deadline("");
-        employeeList = new UniqueEmployeeList();
+        this.employeeList = new UniqueEmployeeList();
     }
 
     /**
@@ -46,8 +49,39 @@ public class Project {
     public Project(String project, UniqueEmployeeList employees, Deadline deadline) {
         requireNonNull(project);
         this.name = project;
+        this.projectPriority = new ProjectPriority("normal");
+        this.employeeList = employees;
         this.deadline = deadline;
-        employeeList = employees;
+    }
+
+    /**
+     * Constructs a {@code Project}.
+     *
+     * @param project A valid Project.
+     * @param employees A list of Employees that are in the project
+     * @param priority A valid ProjectPriority for the project.
+     */
+    public Project(String project, UniqueEmployeeList employees, ProjectPriority priority) {
+        requireNonNull(project);
+        this.name = project;
+        this.projectPriority = priority;
+        this.deadline = new Deadline("");
+        this.employeeList = employees;
+    }
+
+    /**
+     * Constructs a {@code Project}.
+     *
+     * @param project A valid Project.
+     * @param employees A list of Employees that are in the project
+     * @param priority A valid ProjectPriority for the project.
+     */
+    public Project(String project, UniqueEmployeeList employees, ProjectPriority priority, Deadline deadline) {
+        requireNonNull(project);
+        this.name = project;
+        this.projectPriority = priority;
+        this.employeeList = employees;
+        this.deadline = deadline;
     }
 
     /**
@@ -86,6 +120,10 @@ public class Project {
 
     public UniqueEmployeeList getEmployees() {
         return employeeList;
+    }
+
+    public ProjectPriority getProjectPriority() {
+        return projectPriority;
     }
 
     public String getListOfEmployeeNames() {

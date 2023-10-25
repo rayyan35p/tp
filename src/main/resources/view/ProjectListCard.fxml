@@ -27,6 +27,7 @@
                 </Label>
                 <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
             </HBox>
+            <Label fx:id="priority" text="\$first" />
             <Label fx:id="projects" styleClass="cell_small_label" text="\$projects" />
         </VBox>
         <HBox GridPane.columnIndex="1"> <!-- Set the column index to 1 for the "deadline" label -->

@@ -234,7 +234,7 @@ Examples:
 Assigns employee(s) to a project in TaskHub
 
 Format: `assignE pr/PROJECT_NAME em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDEX]...`
-* The employee(s) will be assigned to the project
+* The employee(s) will be assigned to the project.
 * The project name and employee names must exist in TaskHub.
 
 Examples:
@@ -245,12 +245,26 @@ Examples:
 Deletes the specified project from TaskHub.
 
 Format: `deleteP INDEX`
-* Deletes the project at the specified `INDEX`
+* Deletes the project at the specified `INDEX`.
 * The index refers to the index number shown in the displayed employees list.
 * The index __must be a positive integer__ 1, 2, 3,...
 
 Examples:
 * `listP` followed by `deleteP 2` deletes the 2nd project in TaskHub.
+
+### Prioritise projects: `priorityP`
+
+Sets a priority for a specified project in TaskHub.
+
+Format: `priorityP INDEX priority/PRIORITY`
+* Sets the project to the specified `PRIORITY`.
+* The index refers to the index number shown in the displayed projects list.
+* The index __must be a positive integer__ 1, 2, 3,...
+* The `PRIORITY` must be one of the following: `low`, `normal`, `high`.
+* All projects are set to normal priority by default.
+
+Examples:
+* `listP` followed by `priorityP 2 priority/high` sets the 2nd project as high priority in TaskHub.
 
 ### Exiting the program : `exit`
 

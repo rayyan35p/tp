@@ -58,4 +58,3 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
-
