@@ -18,6 +18,7 @@ import java.util.List;
 
 import seedu.address.model.TaskHub;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.project.Project;
 
 /**
  * A utility class containing a list of {@code Employee} objects to be used in tests.
@@ -68,7 +69,9 @@ public class TypicalEmployees {
         for (Employee employee : getTypicalEmployees()) {
             ab.addEmployee(employee);
         }
-        ab.setProjects(getTypicalProjects());
+        for (Project project : getTypicalProjects()) {
+            ab.addProject(project);
+        }
         return ab;
     }
 
