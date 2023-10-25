@@ -4,6 +4,7 @@ import static seedu.address.testutil.TypicalEmployees.ALICE;
 
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
+import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 
 /**
@@ -12,8 +13,11 @@ import seedu.address.model.project.Project;
  */
 public class ProjectBuilder {
     public static final String DEFAULT_NAME = "Alpha";
+    public static final String DEFAULT_DEADLINE = "";
+
     private String projectName;
     private UniqueEmployeeList employeeList;
+    private Deadline deadline;
 
     /**
      * Instantiates a {@code Project} with the default details
@@ -22,6 +26,7 @@ public class ProjectBuilder {
         projectName = DEFAULT_NAME;
         employeeList = new UniqueEmployeeList();
         employeeList.add(ALICE);
+        deadline = new Deadline(DEFAULT_DEADLINE);
     }
 
     /**
@@ -30,6 +35,7 @@ public class ProjectBuilder {
     public ProjectBuilder(Project toCopy) {
         projectName = toCopy.name;
         employeeList = toCopy.getEmployees();
+        deadline = toCopy.getDeadline();
     }
 
     /**
@@ -50,7 +56,16 @@ public class ProjectBuilder {
         }
         return this;
     }
+
+    /**
+     * Sets the {@code Deadline} of the {@code Project} we are building.
+     */
+    public ProjectBuilder withDeadline(String deadline) {
+        this.deadline = new Deadline(deadline);
+        return this;
+    }
+
     public Project build() {
-        return new Project(projectName, employeeList);
+        return new Project(projectName, employeeList, deadline);
     }
 }

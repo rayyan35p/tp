@@ -211,6 +211,24 @@ Examples:
 * `findP presentation` returns `Presentation` <br>
   ![result for 'findP presentation'](images/findPpresentationresult.png)
 
+### Edit deadline of a project: `dl`
+
+Edit the deadline of a project in the projects list.
+
+Format: `dl INDEX d/DATE`
+
+* Edits the deadline of the project at the specified `INDEX`.
+* The index refers to the index number shown in the displayed projects list.
+* The index **must be a positive integer** 1, 2, 3, …
+* The date must be in the `dd-MM-yyyy` format.
+* Existing deadline will be updated to the new deadline.
+* You can remove the deadline by typing `d/` without specifying any date after it.
+
+Examples:
+*  `dl 2 d/18-01-2022` sets the deadline of the 2nd project to be `18-01-2022`.
+*  `dl 1 d/` removes the deadline of the 1st project.
+*  `findP Infinity` followed by `dl 1 d/25-11-2024` sets the deadline of the 1st project in the results of the `findP` command to be `25-11-2024`.
+
 ### Assign employee(s) to a project: `assignE`
 
 Assigns employee(s) to a project in TaskHub
@@ -283,6 +301,7 @@ _Details coming soon ..._
 | **Find Employee**                   | `findE KEYWORD [MORE_KEYWORDS]`<br> e.g., `findE James Jake`                                                                                                                                     |
 | **List All Projects**               | `listP`                                                                                                                                                                                          |
 | **Add Project**                     | `addP pr/PROJECT_NAME [em/EMPLOYEE_INDEX]…​` <br> e.g, `addP pr/CS2103T em/2 3 4 5`                                                                                                              |
+| **Edit Project Deadline**           | `dl INDEX d/DATE` <br> e.g., `dl 2 d/27-11-2023` <br>                                                                                                                                            |
 | **Assign Employee to Project**      | `assignE pr/PROJECT_INDEX em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDICES]…​` <br> e.g, `assignE pr/4 em/1 2 3`                                                                                      |
 | **Delete Project**                  | `deleteP INDEX`<br> e.g., `deleteP 3`                                                                                                                                                            |
 | **Find Project**                    | `findP KEYWORD [MORE_KEYWORDS]`<br> e.g., `findP Website Create`                                                                                                                                 |
