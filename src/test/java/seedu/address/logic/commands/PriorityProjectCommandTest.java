@@ -40,7 +40,8 @@ public class PriorityProjectCommandTest {
                 INDEX_FIRST_PROJECT);
         Project projectWithNewPriority = new Project(projectToSetPriority.name,
                 projectToSetPriority.employeeList,
-                new ProjectPriority("high"));
+                new ProjectPriority("high"),
+                projectToSetPriority.deadline);
 
         String expectedMessage = String.format(PriorityProjectCommand.MESSAGE_SUCCESS,
                 Messages.format(projectWithNewPriority));
