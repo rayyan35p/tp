@@ -20,7 +20,7 @@ public class PriorityProjectCommandParserTest {
     public void parse_allFieldsPresent_success() {
         ProjectPriority priority = new ProjectPriority("high");
         Index targetIndex = INDEX_FIRST_PROJECT;
-        String userInput = PROJECT_PRIORITY_AMY + " " + PREFIX_PROJECT + INDEX_FIRST_PROJECT.getOneBased();
+        String userInput = INDEX_FIRST_PROJECT.getOneBased() + PROJECT_PRIORITY_AMY;
         assertParseSuccess(parser, userInput,
                 new PriorityProjectCommand(priority, targetIndex));
     }

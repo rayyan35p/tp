@@ -2,11 +2,11 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.PriorityProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.ProjectPriority;
@@ -24,19 +24,22 @@ public class PriorityProjectCommandParser implements Parser<PriorityProjectComma
      */
     public PriorityProjectCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_PRIORITY, PREFIX_PROJECT);
+                ArgumentTokenizer.tokenize(args, PREFIX_PRIORITY);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_PRIORITY, PREFIX_PROJECT)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_PRIORITY)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     PriorityProjectCommand.MESSAGE_USAGE));
         }
 
+        Index projectIndex;
+        try {
+            projectIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (IllegalValueException ive) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    PriorityProjectCommand.MESSAGE_USAGE), ive);
+        }
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PRIORITY);
         ProjectPriority priority = ParserUtil.parseProjectPriority(argMultimap.getValue(PREFIX_PRIORITY).get());
-
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PROJECT);
-        Index projectIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PROJECT).get());
 
         return new PriorityProjectCommand(priority, projectIndex);
     }
