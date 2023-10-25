@@ -31,6 +31,8 @@ public class ProjectCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label projects;
+    @FXML
+    private Label priority;
 
 
     /**
@@ -46,6 +48,14 @@ public class ProjectCard extends UiPart<Region> {
                 ? "No members yet."
                 : "Members: " + project.getListOfEmployeeNames();
         projects.setText(listOfEmployeesString);
+        String priorityString = project.getProjectPriority().value;
+        priority.setText("Priority: " + priorityString);
+        if (priorityString.equals("low")) {
+            priority.setStyle("-fx-text-fill: green;");
+        }
+        if (priorityString.equals("high")) {
+            priority.setStyle("-fx-text-fill: red;");
+        }
     }
 
 }

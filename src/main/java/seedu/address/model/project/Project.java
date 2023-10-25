@@ -23,6 +23,8 @@ public class Project {
 
     public final String name;
     public final UniqueEmployeeList employeeList;
+    private final ProjectPriority projectPriority;
+
 
     /**
      * Constructs a {@code Project}.
@@ -32,6 +34,7 @@ public class Project {
     public Project(String project) {
         requireNonNull(project);
         name = project;
+        projectPriority = new ProjectPriority("normal");
         employeeList = new UniqueEmployeeList();
     }
 
@@ -44,6 +47,21 @@ public class Project {
     public Project(String project, UniqueEmployeeList employees) {
         requireNonNull(project);
         name = project;
+        projectPriority = new ProjectPriority("normal");
+        employeeList = employees;
+    }
+
+    /**
+     * Constructs a {@code Project}.
+     *
+     * @param project A valid Project.
+     * @param employees A list of Employees that are in the project
+     * @param priority A valid ProjectPriority for the project.
+     */
+    public Project(String project, UniqueEmployeeList employees, ProjectPriority priority) {
+        requireNonNull(project);
+        name = project;
+        projectPriority = priority;
         employeeList = employees;
     }
 
@@ -83,6 +101,10 @@ public class Project {
 
     public UniqueEmployeeList getEmployees() {
         return employeeList;
+    }
+
+    public ProjectPriority getProjectPriority() {
+        return projectPriority;
     }
 
     public String getListOfEmployeeNames() {

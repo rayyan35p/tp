@@ -14,6 +14,7 @@ import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectPriority;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -136,5 +137,19 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a String priority into a ProjectPriority. Leading and trailing whitespaces will be trimmed.
+     * All characters will also be set to lowercase.
+     * @throws ParseException if the given priority is invalid.
+     */
+    public static ProjectPriority parseProjectPriority(String priority) throws ParseException {
+        requireNonNull(priority);
+        String formattedPriority = priority.trim().toLowerCase();
+        if (!ProjectPriority.isValidPriority(formattedPriority)) {
+            throw new ParseException(ProjectPriority.MESSAGE_CONSTRAINTS);
+        }
+        return new ProjectPriority(formattedPriority);
     }
 }
