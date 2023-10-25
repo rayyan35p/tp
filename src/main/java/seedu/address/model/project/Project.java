@@ -8,7 +8,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
 
 /**
- * Represents a Person's remark in the address book.
+ * Represents a Project in TaskHub.
  * Guarantees: immutable; is always valid
  */
 public class Project {
@@ -22,6 +22,7 @@ public class Project {
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String name;
+    public final Deadline deadline;
     public final UniqueEmployeeList employeeList;
 
     /**
@@ -31,7 +32,8 @@ public class Project {
      */
     public Project(String project) {
         requireNonNull(project);
-        name = project;
+        this.name = project;
+        this.deadline = new Deadline("");
         employeeList = new UniqueEmployeeList();
     }
 
@@ -41,9 +43,10 @@ public class Project {
      * @param project A valid Project.
      * @param employees A list of Employees that are in the project
      */
-    public Project(String project, UniqueEmployeeList employees) {
+    public Project(String project, UniqueEmployeeList employees, Deadline deadline) {
         requireNonNull(project);
-        name = project;
+        this.name = project;
+        this.deadline = deadline;
         employeeList = employees;
     }
 
@@ -99,6 +102,10 @@ public class Project {
 
     public String getNameString() {
         return this.name;
+    }
+
+    public Deadline getDeadline() {
+        return deadline;
     }
 
     @Override
