@@ -18,11 +18,14 @@ import seedu.address.model.project.ProjectPriority;
  */
 public class TypicalProjects {
     public static final Project ALPHA = new ProjectBuilder().build();
-    public static final Project BETA = new ProjectBuilder().withName("Beta").withEmployees(BENSON).build();
-    public static final Project DELTA = new ProjectBuilder().withName("Delta").withEmployees(DANIEL, FIONA).build();
+    public static final Project BETA = new ProjectBuilder().withName("Beta").withEmployees(BENSON)
+            .withDeadline("10-12-2022").build();
+    public static final Project DELTA = new ProjectBuilder().withName("Delta").withEmployees(DANIEL, FIONA)
+            .withDeadline("24-11-2024").build();
 
     //Manually added
-    public static final Project GAMMA = new ProjectBuilder().withName("Gamma").withEmployees(GEORGE).build();
+    public static final Project GAMMA = new ProjectBuilder().withName("Gamma").withEmployees(GEORGE)
+            .withDeadline("08-07-2023").build();
 
     public static final Project HIGH_PRIORITY_PROJECT = new ProjectBuilder()
             .withName("High Priority Project")

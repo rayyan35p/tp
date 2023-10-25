@@ -11,6 +11,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.employee.exceptions.DuplicateEmployeeException;
+import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectPriority;
 
@@ -19,10 +20,11 @@ import seedu.address.model.project.ProjectPriority;
  */
 
 public class JsonAdaptedProject {
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Projects' %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Project's %s field is missing!";
     private final String name;
     private final List<JsonAdaptedEmployee> employees = new ArrayList<>();
     private final String priority;
+    private final String deadline;
 
     /**
      * Constructs a {@code JsonAdaptedProject} with the given project details.
@@ -31,12 +33,14 @@ public class JsonAdaptedProject {
     @JsonCreator
     public JsonAdaptedProject(@JsonProperty("name") String name,
                               @JsonProperty("employees") List<JsonAdaptedEmployee> employees,
-                              @JsonProperty("priority") String priority) {
+                              @JsonProperty("priority") String priority,
+                              @JsonProperty("deadline") String deadline) {
         this.name = name;
         if (employees != null) {
             this.employees.addAll(employees);
         }
         this.priority = priority;
+        this.deadline = deadline;
     }
 
     /**
@@ -48,10 +52,11 @@ public class JsonAdaptedProject {
                 .map(JsonAdaptedEmployee::new)
                 .collect(Collectors.toList()));
         priority = source.getProjectPriority().value;
+        deadline = source.getDeadline().toString();
     }
 
     /**
-     * Converts this Jackson-friendly adapted employee object into the model's {@code Employee} object.
+     * Converts this Jackson-friendly adapted Project object into the model's {@code Project} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted employee.
      */
@@ -64,6 +69,7 @@ public class JsonAdaptedProject {
         } catch (DuplicateEmployeeException e) {
             throw new IllegalValueException(e.getMessage());
         }
+
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -78,8 +84,15 @@ public class JsonAdaptedProject {
             throw new IllegalValueException(ProjectPriority.MESSAGE_CONSTRAINTS);
         }
         final ProjectPriority modelPriority = new ProjectPriority(priority);
-        return new Project(name, employeeList, modelPriority);
+        if (deadline == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Deadline.class.getSimpleName()));
+        }
+        if (!Deadline.isValidDeadline(deadline)) {
+            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        final Deadline modelDeadline = new Deadline(this.deadline);
+
+        return new Project(name, employeeList, modelPriority, modelDeadline);
     }
-
-
 }
