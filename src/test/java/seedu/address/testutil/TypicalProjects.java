@@ -17,11 +17,14 @@ import seedu.address.model.project.Project;
  */
 public class TypicalProjects {
     public static final Project ALPHA = new ProjectBuilder().build();
-    public static final Project BETA = new ProjectBuilder().withName("Beta").withEmployees(BENSON).build();
-    public static final Project DELTA = new ProjectBuilder().withName("Delta").withEmployees(DANIEL, FIONA).build();
+    public static final Project BETA = new ProjectBuilder().withName("Beta").withEmployees(BENSON)
+            .withDeadline("10-12-2022").build();
+    public static final Project DELTA = new ProjectBuilder().withName("Delta").withEmployees(DANIEL, FIONA)
+            .withDeadline("24-11-2024").build();
 
     //Manually added
-    public static final Project GAMMA = new ProjectBuilder().withName("Gamma").withEmployees(GEORGE).build();
+    public static final Project GAMMA = new ProjectBuilder().withName("Gamma").withEmployees(GEORGE)
+            .withDeadline("08-07-2023").build();
 
     private TypicalProjects() {} // prevents instantiation
 

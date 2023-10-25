@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -31,6 +34,8 @@ public class ProjectCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label projects;
+    @FXML
+    private Label deadline;
 
 
     /**
@@ -39,13 +44,39 @@ public class ProjectCard extends UiPart<Region> {
     public ProjectCard(Project project, int displayedIndex) {
         super(FXML);
         this.project = project;
+
+        // Set the index
         id.setText(displayedIndex + ". ");
+
+        // Set the name
         name.setText(project.getNameString());
+
+        // Set the list of employees
         String listOfEmployeesString =
                 project.getEmployees().asUnmodifiableObservableList().size() == 0
                 ? "No members yet."
                 : "Members: " + project.getListOfEmployeeNames();
         projects.setText(listOfEmployeesString);
+
+        // Set the deadline
+        if (project.getDeadline().value.isEmpty()) {
+            deadline.setText("No deadline set");
+        } else {
+            LocalDate currentDateTime = LocalDate.now(); // Get the current date
+            LocalDate deadlineDate = project.getDeadline().getLocalDate(); // Get project deadline
+
+            String formattedDeadline = deadlineDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            deadline.setText("Deadline: " + formattedDeadline);
+
+            // Compare project deadline with current date
+            if (deadlineDate.isBefore(currentDateTime)) {
+                // Set the style to red if the deadline is in the past
+                deadline.setStyle("-fx-text-fill: red;");
+            } else {
+                // Set the style to green if the deadline is in the future
+                deadline.setStyle("-fx-text-fill: green;");
+            }
+        }
     }
 
 }
