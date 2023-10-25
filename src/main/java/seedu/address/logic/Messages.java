@@ -17,8 +17,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX = "The employee index provided is invalid";
     public static final String MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX = "The project index provided is invalid";
-    public static final String MESSAGE_EMPLOYEES_LISTED_OVERVIEW = "%1$d employees and their projects listed!";
-    public static final String MESSAGE_PROJECTS_LISTED_OVERVIEW = "%1$d projects and their employees listed!";
+    public static final String MESSAGE_EMPLOYEES_LISTED_OVERVIEW = "%1$d employee(s) and their project(s) listed!";
+    public static final String MESSAGE_PROJECTS_LISTED_OVERVIEW = "%1$d project(s) and their employee(s) listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
 
