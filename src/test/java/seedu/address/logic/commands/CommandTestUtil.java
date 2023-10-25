@@ -3,9 +3,11 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -19,7 +21,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.TaskHub;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.NameContainsKeywordsPredicate;
+import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
+import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditEmployeeDescriptorBuilder;
 
 /**
@@ -27,6 +31,7 @@ import seedu.address.testutil.EditEmployeeDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    // Employee valid fields
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -39,7 +44,13 @@ public class CommandTestUtil {
     public static final String VALID_PROJECT_BOB = "Beta";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_PRIORITY_AMY = "high";
 
+    // Project valid fields
+    public static final String VALID_DEADLINE_PROJECT_AMY = "21/02/2021";
+    public static final String VALID_DEADLINE_PROJECT_BOB = "15/11/2024";
+
+    // Employee field descriptions
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -52,6 +63,11 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String PROJECT_DESC_AMY = " " + PREFIX_PROJECT + VALID_PROJECT_AMY;
     public static final String PROJECT_DESC_BOB = " " + PREFIX_PROJECT + VALID_PROJECT_BOB;
+    public static final String PROJECT_PRIORITY_AMY = " " + PREFIX_PRIORITY + VALID_PRIORITY_AMY;
+
+    // Project field descriptions
+    public static final String DEADLINE_PROJECT_DESC_AMY = " " + PREFIX_DEADLINE + VALID_DEADLINE_PROJECT_AMY;
+    public static final String DEADLINE_PROJECT_DESC_BOB = " " + PREFIX_DEADLINE + VALID_DEADLINE_PROJECT_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -116,6 +132,7 @@ public class CommandTestUtil {
         assertEquals(expectedTaskHub, actualModel.getTaskHub());
         assertEquals(expectedFilteredList, actualModel.getFilteredEmployeeList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the employee at the given {@code targetIndex} in the
      * {@code model}'s TaskHub.
@@ -125,9 +142,23 @@ public class CommandTestUtil {
 
         Employee employee = model.getFilteredEmployeeList().get(targetIndex.getZeroBased());
         final String[] splitName = employee.getName().fullName.split("\\s+");
-        model.updateFilteredEmployeeList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredEmployeeList(new EmployeeNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredEmployeeList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the project at the given {@code targetIndex} in the
+     * {@code model}'s TaskHub.
+     */
+    public static void showProjectAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredProjectList().size());
+
+        Project project = model.getFilteredProjectList().get(targetIndex.getZeroBased());
+        final String[] splitName = project.getNameString().split("\\s+");
+        model.updateFilteredProjectList(new ProjectNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredProjectList().size());
     }
 
 }

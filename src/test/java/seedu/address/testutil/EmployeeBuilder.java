@@ -95,7 +95,7 @@ public class EmployeeBuilder {
     }
 
     /**
-     * Sets the {@code Remark} of the {@code Person} that we are building.
+     * Sets the {@code Project} of the {@code Employee} that we are building.
      */
     public EmployeeBuilder withProject(String project) {
         this.project = new Project(project);
