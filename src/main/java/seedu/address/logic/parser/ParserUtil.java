@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +17,7 @@ import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.employee.Project;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -94,6 +97,38 @@ public class ParserUtil {
             throw new ParseException(Project.MESSAGE_CONSTRAINTS);
         }
         return new Project(trimmedProject);
+    }
+
+    /**
+     * Parses a {@code String taskName} into a {@code Task}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Task} is invalid.
+     */
+    public static Task parseTask(String taskName, String deadlineString) throws ParseException {
+        requireNonNull(taskName, deadlineString);
+        String trimmedTaskName = taskName.trim();
+        if (!Project.isValidProject(trimmedTaskName)) {
+            throw new ParseException(Task.MESSAGE_CONSTRAINTS);
+        }
+        return new Task(taskName, parseLocalDateTime(deadlineString));
+    }
+
+    /**
+     * Parses a {@code String deadlineString} into a {@code LocalDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Task} is invalid.
+     */
+    public static LocalDateTime parseLocalDateTime(String deadlineString) throws ParseException {
+        requireNonNull(deadlineString);
+        String trimmedDeadlineString = deadlineString.trim();
+        if (!Task.isValidDateTime(deadlineString)) {
+            throw new ParseException(Task.MESSAGE_CONSTRAINTS);
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        LocalDateTime parsedDateTime = LocalDateTime.parse(trimmedDeadlineString, formatter);
+        return parsedDateTime;
     }
 
     /**

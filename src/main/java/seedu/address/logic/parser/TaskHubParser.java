@@ -8,18 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.AddEmployeeCommand;
-import seedu.address.logic.commands.AddProjectCommand;
-import seedu.address.logic.commands.AssignEmployeeCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteEmployeeCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindEmployeeCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListEmployeeCommand;
-import seedu.address.logic.commands.ListProjectCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -82,6 +71,9 @@ public class TaskHubParser {
 
         case ListProjectCommand.COMMAND_WORD:
             return new ListProjectCommand();
+
+        case AddTaskCommand.COMMAND_WORD:
+            return new AddTaskCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
