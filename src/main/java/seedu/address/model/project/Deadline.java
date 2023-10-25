@@ -20,7 +20,7 @@ public class Deadline {
 
 
     /**
-     * Either dd/MM/yyyy or empty string
+     * Either dd-MM-yyyy or empty string
      */
     public final String value;
 
