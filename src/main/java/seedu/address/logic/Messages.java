@@ -59,6 +59,7 @@ public class Messages {
     public static String format(Project project) {
         final StringBuilder builder = new StringBuilder();
         builder.append(project.name);
+        builder.append("; Priority: " + project.getProjectPriority().value);
         builder.append("; Employees: ");
         for (Employee employee : project.getEmployees()) {
             builder.append(employee.getName() + ", ");
