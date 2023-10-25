@@ -59,15 +59,16 @@ public class ProjectCard extends UiPart<Region> {
         projects.setText(listOfEmployeesString);
 
         // Set the deadline
-        if (project.getDeadline().value.equals("")) {
+        if (project.getDeadline().value.isEmpty()) {
             deadline.setText("No deadline set");
         } else {
             LocalDate currentDateTime = LocalDate.now(); // Get the current date
-            LocalDate deadlineDate = project.getDeadline().getLocalDate();
+            LocalDate deadlineDate = project.getDeadline().getLocalDate(); // Get project deadline
 
-            String formattedDeadline = deadlineDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            String formattedDeadline = deadlineDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
             deadline.setText("Deadline: " + formattedDeadline);
 
+            // Compare project deadline with current date
             if (deadlineDate.isBefore(currentDateTime)) {
                 // Set the style to red if the deadline is in the past
                 deadline.setStyle("-fx-text-fill: red;");

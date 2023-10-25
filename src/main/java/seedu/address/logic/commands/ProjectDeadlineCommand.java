@@ -24,11 +24,11 @@ public class ProjectDeadlineCommand extends Command {
             + "by the index number used in the last project listing. "
             + "Existing deadline will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_DEADLINE + "[DEADLINE]\n"
+            + PREFIX_DEADLINE + "[DATE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DEADLINE + "21/02/2021";
+            + PREFIX_DEADLINE + "21-02-2021";
 
-    public static final String MESSAGE_ADD_DEADLINE_SUCCESS = "Added deadline to project: %1$s";
+    public static final String MESSAGE_ADD_DEADLINE_SUCCESS = "Added deadline: %1$s to project: %2$s";
     public static final String MESSAGE_DELETE_DEADLINE_SUCCESS = "Removed deadline from project: %1$s";
 
     private final Index index;
@@ -68,8 +68,10 @@ public class ProjectDeadlineCommand extends Command {
      * {@code projectToEdit}.
      */
     private String generateSuccessMessage(Project projectToEdit) {
-        String message = !deadline.value.isEmpty() ? MESSAGE_ADD_DEADLINE_SUCCESS : MESSAGE_DELETE_DEADLINE_SUCCESS;
-        return String.format(message, projectToEdit);
+        String message = !deadline.value.isEmpty()
+                ? String.format(MESSAGE_ADD_DEADLINE_SUCCESS, this.deadline.toString(), projectToEdit)
+                : String.format(MESSAGE_DELETE_DEADLINE_SUCCESS, projectToEdit);
+        return message;
     }
 
     @Override
