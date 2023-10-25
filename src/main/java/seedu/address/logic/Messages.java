@@ -67,5 +67,4 @@ public class Messages {
         builder.substring(0, builder.lastIndexOf(", ") == -1 ? builder.length() : builder.lastIndexOf(", "));
         return builder.toString();
     }
-
 }

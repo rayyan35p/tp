@@ -22,6 +22,8 @@ public class JsonAdaptedProjectTest {
             .map(JsonAdaptedEmployee::new)
             .collect(Collectors.toList());
 
+    public static final String VALID_PRIORITY = "normal";
+
     @Test
     public void toModelType_validProjectDetails_returnsProject() throws Exception {
         JsonAdaptedProject project = new JsonAdaptedProject(ALPHA);
@@ -31,7 +33,7 @@ public class JsonAdaptedProjectTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedProject project =
-                new JsonAdaptedProject(INVALID_NAME, VALID_EMPLOYEES);
+                new JsonAdaptedProject(INVALID_NAME, VALID_EMPLOYEES, VALID_PRIORITY);
         String expectedMessage = Project.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }
@@ -39,10 +41,8 @@ public class JsonAdaptedProjectTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedProject project =
-            new JsonAdaptedProject(null, VALID_EMPLOYEES);
+            new JsonAdaptedProject(null, VALID_EMPLOYEES, VALID_PRIORITY);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }
-
-
 }

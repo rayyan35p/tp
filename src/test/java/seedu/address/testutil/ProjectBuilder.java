@@ -5,15 +5,19 @@ import static seedu.address.testutil.TypicalEmployees.ALICE;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectPriority;
 
 /**
  * A utility class to help with building Project objects.
- * Default {@code ProjectBuilder} has name "Alpha" and typical employee Alice.
+ * Default {@code ProjectBuilder} has name "Alpha", typical employee Alice and normal priority.
  */
 public class ProjectBuilder {
     public static final String DEFAULT_NAME = "Alpha";
+    public static final String DEFAULT_PRIORITY = "normal";
     private String projectName;
     private UniqueEmployeeList employeeList;
+
+    private ProjectPriority projectPriority;
 
     /**
      * Instantiates a {@code Project} with the default details
@@ -22,6 +26,7 @@ public class ProjectBuilder {
         projectName = DEFAULT_NAME;
         employeeList = new UniqueEmployeeList();
         employeeList.add(ALICE);
+        projectPriority = new ProjectPriority(DEFAULT_PRIORITY);
     }
 
     /**
@@ -30,6 +35,7 @@ public class ProjectBuilder {
     public ProjectBuilder(Project toCopy) {
         projectName = toCopy.name;
         employeeList = toCopy.getEmployees();
+        projectPriority = toCopy.getProjectPriority();
     }
 
     /**
@@ -50,6 +56,15 @@ public class ProjectBuilder {
         }
         return this;
     }
+
+    /**
+     * Sets the priority of the {@code Project} we are building.
+     */
+    public ProjectBuilder withPriority(ProjectPriority priority) {
+        this.projectPriority = priority;
+        return this;
+    }
+
     public Project build() {
         return new Project(projectName, employeeList);
     }
