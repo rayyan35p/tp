@@ -5,7 +5,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.Project;
+import seedu.address.model.project.Project;
 
 import java.util.List;
 
@@ -38,10 +38,12 @@ public class DeleteProjectCommand extends Command {
         }
         Project projectToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteProject(projectToDelete);
-        /**
-         * TODO: remove project from employee
-         * projectToDelete.getEmployees().stream().forEach(employee -> );
-         */
+
+        projectToDelete.getEmployees().asUnmodifiableObservableList().stream().forEach(employee -> {
+            model.setEmployee(employee, new Employee(employee.getName(), employee.getPhone(),
+                    employee.getEmail(), employee.getAddress(), new Project(""), employee.getTags()));
+        });
+
 
         return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, Messages.format(projectToDelete)));
     }

@@ -64,6 +64,9 @@ public class AssignEmployeeCommand extends Command {
             Employee employeeToAdd = lastShownEmployeeList.get(employeeIndex.getZeroBased());
             if (!editedProject.employeeList.contains(employeeToAdd)) {
                 editedProject.employeeList.add(employeeToAdd);
+                EditCommand.EditEmployeeDescriptor editEmployeeDescriptor = new EditCommand.EditEmployeeDescriptor();
+                editEmployeeDescriptor.setProject(projectToEdit);
+                new EditCommand(employeeIndex, editEmployeeDescriptor).execute(model);
             }
         }
 
