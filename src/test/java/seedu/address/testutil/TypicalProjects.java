@@ -44,6 +44,6 @@ public class TypicalProjects {
     }
 
     public static List<Project> getTypicalProjects() {
-        return new ArrayList<>(Arrays.asList(ALPHA, BETA, DELTA, GAMMA));
+        return new ArrayList<>(Arrays.asList(ALPHA, BETA, DELTA, GAMMA, HIGH_PRIORITY_PROJECT, LOW_PRIORITY_PROJECT));
     }
 }

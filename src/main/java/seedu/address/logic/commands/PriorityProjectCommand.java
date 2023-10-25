@@ -38,6 +38,8 @@ public class PriorityProjectCommand extends Command {
      * Creates a PriorityProjectCommand to set the priority of the specified Project.
      */
     public PriorityProjectCommand(ProjectPriority priority, Index targetIndex) {
+        requireNonNull(priority);
+        requireNonNull(targetIndex);
         this.toSet = priority;
         this.targetIndex = targetIndex;
     }
