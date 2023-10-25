@@ -17,7 +17,7 @@ public class ProjectDeadlineCommandParserTest {
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, ProjectDeadlineCommand.MESSAGE_USAGE);
 
     private ProjectDeadlineCommandParser parser = new ProjectDeadlineCommandParser();
-    private final String validDeadline = "21/02/2023";
+    private final String validDeadline = "21-02-2023";
 
 
     @Test
@@ -45,11 +45,11 @@ public class ProjectDeadlineCommandParserTest {
     @Test
     public void parse_invalidDeadline_failure() {
         // Invalid date format
-        String userInput = INDEX_FIRST_PROJECT.getOneBased() + " " + PREFIX_DEADLINE + "21-02-2023";
+        String userInput = INDEX_FIRST_PROJECT.getOneBased() + " " + PREFIX_DEADLINE + "21/02/2023";
         assertParseFailure(parser, userInput, Deadline.MESSAGE_CONSTRAINTS);
 
         // Invalid date value
-        userInput = INDEX_FIRST_PROJECT.getOneBased() + " " + PREFIX_DEADLINE + "32/02/2023";
+        userInput = INDEX_FIRST_PROJECT.getOneBased() + " " + PREFIX_DEADLINE + "32-02-2023";
         assertParseFailure(parser, userInput, Deadline.MESSAGE_CONSTRAINTS);
     }
 }

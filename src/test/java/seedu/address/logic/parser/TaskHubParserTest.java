@@ -128,7 +128,7 @@ public class TaskHubParserTest {
 
     @Test
     public void parseCommand_projectDeadline() throws Exception {
-        final Deadline deadline = new Deadline("12/10/2022");
+        final Deadline deadline = new Deadline("12-10-2022");
         ProjectDeadlineCommand command =
                 (ProjectDeadlineCommand) parser.parseCommand(ProjectDeadlineCommand.COMMAND_WORD + " "
                  + INDEX_FIRST_PROJECT.getOneBased() + " " + PREFIX_DEADLINE + deadline.value);

@@ -13,7 +13,7 @@ import seedu.address.model.project.Project;
  */
 public class ProjectBuilder {
     public static final String DEFAULT_NAME = "Alpha";
-    public static final String DEFAULT_DEADLINE = "01/01/2020";
+    public static final String DEFAULT_DEADLINE = "";
 
     private String projectName;
     private UniqueEmployeeList employeeList;

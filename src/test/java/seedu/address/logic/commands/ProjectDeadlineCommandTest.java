@@ -40,7 +40,8 @@ public class ProjectDeadlineCommandTest {
         ProjectDeadlineCommand projectDeadlineCommand = new ProjectDeadlineCommand(INDEX_FIRST_PROJECT,
                 new Deadline(editedProject.getDeadline().value));
 
-        String expectedMessage = String.format(ProjectDeadlineCommand.MESSAGE_ADD_DEADLINE_SUCCESS, editedProject);
+        String expectedMessage = String.format(ProjectDeadlineCommand.MESSAGE_ADD_DEADLINE_SUCCESS,
+                editedProject.getDeadline(), editedProject);
 
         Model expectedModel = new ModelManager(model.getTaskHub(), new UserPrefs());
         expectedModel.setProject(firstProject, editedProject);
@@ -75,7 +76,8 @@ public class ProjectDeadlineCommandTest {
         ProjectDeadlineCommand projectDeadlineCommand = new ProjectDeadlineCommand(INDEX_FIRST_PROJECT,
                 new Deadline(editedProject.getDeadline().value));
 
-        String expectedMessage = String.format(ProjectDeadlineCommand.MESSAGE_ADD_DEADLINE_SUCCESS, editedProject);
+        String expectedMessage = String.format(ProjectDeadlineCommand.MESSAGE_ADD_DEADLINE_SUCCESS,
+                editedProject.getDeadline(), editedProject);
 
         Model expectedModel = new ModelManager(model.getTaskHub(), new UserPrefs());
         expectedModel.setProject(firstProject, editedProject);
