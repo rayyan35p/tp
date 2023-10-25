@@ -51,7 +51,7 @@ public class JsonAdaptedProject {
         employees.addAll(source.getEmployees().asUnmodifiableObservableList().stream()
                 .map(JsonAdaptedEmployee::new)
                 .collect(Collectors.toList()));
-        priority = source.getProjectPriority().value;
+        priority = source.getProjectPriority().toString();
         deadline = source.getDeadline().toString();
     }
 

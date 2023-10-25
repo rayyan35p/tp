@@ -8,10 +8,15 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidPriority(String)}
  */
 public class ProjectPriority {
+    private enum Level {
+        LOW,
+        NORMAL,
+        HIGH
+    }
     public static final String MESSAGE_CONSTRAINTS =
             "Priority should only be low, normal, or high.";
 
-    public final String value;
+    public final Level value;
 
     /**
      * Constructs a {@code ProjectPriority}.
@@ -21,7 +26,7 @@ public class ProjectPriority {
     public ProjectPriority(String priority) {
         requireNonNull(priority);
         checkArgument(isValidPriority(priority), MESSAGE_CONSTRAINTS);
-        this.value = priority.toLowerCase().trim();
+        this.value = toLevel(priority.toLowerCase().trim());
     }
 
     /**
@@ -32,9 +37,29 @@ public class ProjectPriority {
         return lowerCaseTest.equals("low") || lowerCaseTest.equals("normal") || lowerCaseTest.equals("high");
     }
 
+    /**
+     * Converts a String priority into a Level enum.
+     */
+    public static Level toLevel(String priority) {
+        if (priority.equals("low")) {
+            return Level.LOW;
+        }
+        if (priority.equals("high")) {
+            return Level.HIGH;
+        }
+        return Level.NORMAL;
+    }
+
     @Override
     public String toString() {
-        return value;
+        switch(value) {
+        case LOW:
+            return "low";
+        case HIGH:
+            return "high";
+        default:
+            return "normal";
+        }
     }
 
     @Override

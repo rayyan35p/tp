@@ -61,7 +61,7 @@ public class ProjectCard extends UiPart<Region> {
         projects.setText(listOfEmployeesString);
 
         // Set the priority
-        String priorityString = project.getProjectPriority().value;
+        String priorityString = project.getProjectPriority().toString();
         priority.setText("Priority: " + priorityString);
         if (priorityString.equals("low")) {
             priority.setStyle("-fx-text-fill: green;");
