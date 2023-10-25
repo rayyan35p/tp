@@ -46,9 +46,9 @@ public class JsonAdaptedProject {
     }
 
     /**
-     * Converts this Jackson-friendly adapted employee object into the model's {@code Employee} object.
+     * Converts this Jackson-friendly adapted project object into the model's {@code Project} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted employee.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted project.
      */
     public Project toModelType() throws IllegalValueException {
         final UniqueEmployeeList employeeList = new UniqueEmployeeList();

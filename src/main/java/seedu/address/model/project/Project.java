@@ -8,7 +8,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
 
 /**
- * Represents a Person's remark in the address book.
+ * Represents a Person's project in the address book.
  * Guarantees: immutable; is always valid
  */
 public class Project {
@@ -16,7 +16,7 @@ public class Project {
     public static final String MESSAGE_CONSTRAINTS = "Projects can take any values, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";

@@ -13,7 +13,6 @@ import seedu.address.model.project.exceptions.ProjectNotFoundException;
 
 /**
  * A list of projects that enforces uniqueness between its elements and does not allow nulls.
- * (inspired from UniqueEmployeeList.java)
  */
 public class UniqueProjectList implements Iterable<Project> {
     private final ObservableList<Project> internalList = FXCollections.observableArrayList();
