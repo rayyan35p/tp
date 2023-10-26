@@ -62,6 +62,26 @@ public class Project {
         this.completionStatus = completionStatus;
     }
 
+    public String getNameString() {
+        return this.name;
+    }
+
+    public UniqueEmployeeList getEmployees() {
+        return employeeList;
+    }
+
+    public ProjectPriority getProjectPriority() {
+        return projectPriority;
+    }
+
+    public Deadline getDeadline() {
+        return deadline;
+    }
+
+    public CompletionStatus getCompletionStatus() {
+        return completionStatus;
+    }
+
     /**
      * Returns true if a given string is a valid project name.
      */
@@ -96,18 +116,6 @@ public class Project {
                 && otherProject.name.equals(this.name);
     }
 
-    public UniqueEmployeeList getEmployees() {
-        return employeeList;
-    }
-
-    public ProjectPriority getProjectPriority() {
-        return projectPriority;
-    }
-
-    public CompletionStatus getCompletionStatus() {
-        return completionStatus;
-    }
-
     public String getListOfEmployeeNames() {
         StringBuilder employeeListString = new StringBuilder();
         for (Employee employee : employeeList) {
@@ -118,14 +126,6 @@ public class Project {
                     employeeListString.length());
         }
         return employeeListString.toString();
-    }
-
-    public String getNameString() {
-        return this.name;
-    }
-
-    public Deadline getDeadline() {
-        return deadline;
     }
 
     @Override

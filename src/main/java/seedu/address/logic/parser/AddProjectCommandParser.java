@@ -46,10 +46,7 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
                 employeeIndexes.add(ParserUtil.parseIndex(index));
             }
         }
-        ProjectPriority priority = new ProjectPriority("normal");
-        Deadline deadline = new Deadline("");
-        CompletionStatus completionStatus = new CompletionStatus(false);
-        project = new Project(project.getNameString(), new UniqueEmployeeList(), priority, deadline, completionStatus);
+        project = new Project(project.getNameString());
 
         return new AddProjectCommand(project, employeeIndexes);
     }
