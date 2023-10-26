@@ -47,4 +47,19 @@ public class DeleteProjectCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, Messages.format(projectToDelete)));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof DeleteProjectCommand)) {
+            return false;
+        }
+
+        DeleteProjectCommand otherDeleteProjectCommand = (DeleteProjectCommand) other;
+        return targetIndex.equals(otherDeleteProjectCommand.targetIndex);
+    }
 }

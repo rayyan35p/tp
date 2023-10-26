@@ -70,4 +70,14 @@ public class ProjectTest {
         project.removeEmployee(ALICE);
         assertTrue(!project.employeeList.contains(ALICE) && project.employeeList.contains(BOB));
     }
+
+    @Test
+    public void getEmployeeListTest() {
+        Project project = new Project("some project");
+        project.addEmployee(ALICE);
+        project.addEmployee(BOB);
+        String expected = "Alice Pauline, Bob Choo";
+
+        assertTrue(project.getListOfEmployeeNames().equals(expected));
+    }
 }
