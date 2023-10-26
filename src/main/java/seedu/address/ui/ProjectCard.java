@@ -98,5 +98,7 @@ public class ProjectCard extends UiPart<Region> {
         // Set the completion status
         completionStatusText.setText("Completed?:");
         completionStatus.setSelected(project.getCompletionStatus().isCompleted);
+        // Prevent user from interacting with the checkbox through GUI
+        completionStatus.setDisable(true);
     }
 }
