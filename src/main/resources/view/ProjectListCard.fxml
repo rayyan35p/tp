@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -12,7 +13,8 @@
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+         <ColumnConstraints />
         </columnConstraints>
         <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
             <padding>
@@ -30,8 +32,16 @@
             <Label fx:id="priority" text="\$first" />
             <Label fx:id="projects" styleClass="cell_small_label" text="\$projects" />
         </VBox>
-        <HBox GridPane.columnIndex="1"> <!-- Set the column index to 1 for the "deadline" label -->
-            <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
+        <HBox GridPane.columnIndex="1">
+         <VBox>
+            <children>
+                <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
+                <HBox spacing="10">
+                    <Label fx:id="completionStatusText" styleClass="cell_small_label" text="\$completionStatus" />
+                    <CheckBox fx:id="completionStatus" />
+                </HBox>
+            </children>
+         </VBox>
         </HBox>
       <rowConstraints>
          <RowConstraints />
