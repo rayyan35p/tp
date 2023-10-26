@@ -16,7 +16,7 @@ public class Project {
     public static final String MESSAGE_CONSTRAINTS = "Projects can take any values, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
