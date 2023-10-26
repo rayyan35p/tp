@@ -80,6 +80,6 @@ public class ProjectBuilder {
     }
 
     public Project build() {
-        return new Project(projectName, employeeList, deadline);
+        return new Project(projectName, employeeList, projectPriority, deadline);
     }
 }
