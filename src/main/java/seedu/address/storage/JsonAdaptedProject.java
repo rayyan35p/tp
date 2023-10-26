@@ -11,6 +11,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.employee.exceptions.DuplicateEmployeeException;
+import seedu.address.model.project.CompletionStatus;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectPriority;
@@ -25,6 +26,7 @@ public class JsonAdaptedProject {
     private final List<JsonAdaptedEmployee> employees = new ArrayList<>();
     private final String priority;
     private final String deadline;
+    private final boolean completionStatus;
 
     /**
      * Constructs a {@code JsonAdaptedProject} with the given project details.
@@ -34,13 +36,15 @@ public class JsonAdaptedProject {
     public JsonAdaptedProject(@JsonProperty("name") String name,
                               @JsonProperty("employees") List<JsonAdaptedEmployee> employees,
                               @JsonProperty("priority") String priority,
-                              @JsonProperty("deadline") String deadline) {
+                              @JsonProperty("deadline") String deadline,
+                              @JsonProperty("completionStatus") boolean completionStatus) {
         this.name = name;
         if (employees != null) {
             this.employees.addAll(employees);
         }
         this.priority = priority;
         this.deadline = deadline;
+        this.completionStatus = completionStatus;
     }
 
     /**
@@ -53,6 +57,7 @@ public class JsonAdaptedProject {
                 .collect(Collectors.toList()));
         priority = source.getProjectPriority().toString();
         deadline = source.getDeadline().toString();
+        completionStatus = source.getCompletionStatus().isCompleted;
     }
 
     /**
@@ -76,6 +81,7 @@ public class JsonAdaptedProject {
         if (!Project.isValidProject(name)) {
             throw new IllegalValueException(Project.MESSAGE_CONSTRAINTS);
         }
+
         if (priority == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ProjectPriority.class.getSimpleName()));
@@ -84,6 +90,7 @@ public class JsonAdaptedProject {
             throw new IllegalValueException(ProjectPriority.MESSAGE_CONSTRAINTS);
         }
         final ProjectPriority modelPriority = new ProjectPriority(priority);
+
         if (deadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Deadline.class.getSimpleName()));
@@ -93,6 +100,12 @@ public class JsonAdaptedProject {
         }
         final Deadline modelDeadline = new Deadline(this.deadline);
 
-        return new Project(name, employeeList, modelPriority, modelDeadline);
+        // Since completionStatus is a boolean primitive type, we do not need to check if it is null
+        if (!CompletionStatus.isValidCompletionStatus(completionStatus)) {
+            throw new IllegalValueException(CompletionStatus.MESSAGE_CONSTRAINTS);
+        }
+        final CompletionStatus modelCompletionStatus = new CompletionStatus(this.completionStatus);
+
+        return new Project(name, employeeList, modelPriority, modelDeadline, modelCompletionStatus);
     }
 }

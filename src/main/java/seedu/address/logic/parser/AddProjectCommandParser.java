@@ -12,6 +12,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.UniqueEmployeeList;
+import seedu.address.model.project.CompletionStatus;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectPriority;
@@ -47,7 +48,8 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
         }
         ProjectPriority priority = new ProjectPriority("normal");
         Deadline deadline = new Deadline("");
-        project = new Project(project.getNameString(), new UniqueEmployeeList(), priority, deadline);
+        CompletionStatus completionStatus = new CompletionStatus(false);
+        project = new Project(project.getNameString(), new UniqueEmployeeList(), priority, deadline, completionStatus);
 
         return new AddProjectCommand(project, employeeIndexes);
     }
