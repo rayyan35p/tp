@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -43,6 +44,7 @@ public class CommandTestUtil {
     public static final String VALID_PROJECT_BOB = "Beta";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_PRIORITY_AMY = "high";
 
     // Project valid fields
     public static final String VALID_DEADLINE_PROJECT_AMY = "21/02/2021";
@@ -61,6 +63,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String PROJECT_DESC_AMY = " " + PREFIX_PROJECT + VALID_PROJECT_AMY;
     public static final String PROJECT_DESC_BOB = " " + PREFIX_PROJECT + VALID_PROJECT_BOB;
+    public static final String PROJECT_PRIORITY_AMY = " " + PREFIX_PRIORITY + VALID_PRIORITY_AMY;
 
     // Project field descriptions
     public static final String DEADLINE_PROJECT_DESC_AMY = " " + PREFIX_DEADLINE + VALID_DEADLINE_PROJECT_AMY;
@@ -129,6 +132,7 @@ public class CommandTestUtil {
         assertEquals(expectedTaskHub, actualModel.getTaskHub());
         assertEquals(expectedFilteredList, actualModel.getFilteredEmployeeList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the employee at the given {@code targetIndex} in the
      * {@code model}'s TaskHub.
@@ -151,7 +155,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredProjectList().size());
 
         Project project = model.getFilteredProjectList().get(targetIndex.getZeroBased());
-        final String[] splitName = project.name.split("\\s+");
+        final String[] splitName = project.getNameString().split("\\s+");
         model.updateFilteredProjectList(new ProjectNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredProjectList().size());

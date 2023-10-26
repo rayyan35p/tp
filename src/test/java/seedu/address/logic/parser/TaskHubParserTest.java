@@ -29,6 +29,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindEmployeeCommand;
 import seedu.address.logic.commands.FindProjectCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListEmployeeAndProjectCommand;
 import seedu.address.logic.commands.ListEmployeeCommand;
 import seedu.address.logic.commands.ListProjectCommand;
 import seedu.address.logic.commands.ProjectDeadlineCommand;
@@ -114,6 +115,14 @@ public class TaskHubParserTest {
     public void parseCommand_listProject() throws Exception {
         assertTrue(parser.parseCommand(ListProjectCommand.COMMAND_WORD) instanceof ListProjectCommand);
         assertTrue(parser.parseCommand(ListProjectCommand.COMMAND_WORD + " 3") instanceof ListProjectCommand);
+    }
+
+    @Test
+    public void parseCommand_listEmployeeAndProject() throws Exception {
+        assertTrue(parser.parseCommand(ListEmployeeAndProjectCommand.COMMAND_WORD)
+                instanceof ListEmployeeAndProjectCommand);
+        assertTrue(parser.parseCommand(ListEmployeeAndProjectCommand.COMMAND_WORD + " 3")
+                instanceof ListEmployeeAndProjectCommand);
     }
 
     @Test

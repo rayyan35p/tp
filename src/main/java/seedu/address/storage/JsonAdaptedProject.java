@@ -13,6 +13,7 @@ import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectPriority;
 
 /**
  * Jackson-friendly version of {@link Project}.
@@ -22,6 +23,7 @@ public class JsonAdaptedProject {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Project's %s field is missing!";
     private final String name;
     private final List<JsonAdaptedEmployee> employees = new ArrayList<>();
+    private final String priority;
     private final String deadline;
 
     /**
@@ -31,11 +33,13 @@ public class JsonAdaptedProject {
     @JsonCreator
     public JsonAdaptedProject(@JsonProperty("name") String name,
                               @JsonProperty("employees") List<JsonAdaptedEmployee> employees,
+                              @JsonProperty("priority") String priority,
                               @JsonProperty("deadline") String deadline) {
         this.name = name;
         if (employees != null) {
             this.employees.addAll(employees);
         }
+        this.priority = priority;
         this.deadline = deadline;
     }
 
@@ -47,6 +51,7 @@ public class JsonAdaptedProject {
         employees.addAll(source.getEmployees().asUnmodifiableObservableList().stream()
                 .map(JsonAdaptedEmployee::new)
                 .collect(Collectors.toList()));
+        priority = source.getProjectPriority().toString();
         deadline = source.getDeadline().toString();
     }
 
@@ -71,7 +76,14 @@ public class JsonAdaptedProject {
         if (!Project.isValidProject(name)) {
             throw new IllegalValueException(Project.MESSAGE_CONSTRAINTS);
         }
-
+        if (priority == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ProjectPriority.class.getSimpleName()));
+        }
+        if (!ProjectPriority.isValidPriority(priority)) {
+            throw new IllegalValueException(ProjectPriority.MESSAGE_CONSTRAINTS);
+        }
+        final ProjectPriority modelPriority = new ProjectPriority(priority);
         if (deadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Deadline.class.getSimpleName()));
@@ -81,8 +93,6 @@ public class JsonAdaptedProject {
         }
         final Deadline modelDeadline = new Deadline(this.deadline);
 
-        return new Project(name, employeeList, modelDeadline);
+        return new Project(name, employeeList, modelPriority, modelDeadline);
     }
-
-
 }

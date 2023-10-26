@@ -35,6 +35,8 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private Label projects;
     @FXML
+    private Label priority;
+    @FXML
     private Label deadline;
 
 
@@ -58,6 +60,16 @@ public class ProjectCard extends UiPart<Region> {
                 : "Members: " + project.getListOfEmployeeNames();
         projects.setText(listOfEmployeesString);
 
+        // Set the priority
+        String priorityString = project.getProjectPriority().toString();
+        priority.setText("Priority: " + priorityString);
+        if (priorityString.equals("low")) {
+            priority.setStyle("-fx-text-fill: green;");
+        }
+        if (priorityString.equals("high")) {
+            priority.setStyle("-fx-text-fill: red;");
+        }
+
         // Set the deadline
         if (project.getDeadline().value.isEmpty()) {
             deadline.setText("No deadline set");
@@ -78,5 +90,4 @@ public class ProjectCard extends UiPart<Region> {
             }
         }
     }
-
 }

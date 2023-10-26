@@ -14,6 +14,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectPriority;
 
 
 /**
@@ -44,8 +45,9 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
                 employeeIndexes.add(ParserUtil.parseIndex(index));
             }
         }
+        ProjectPriority priority = new ProjectPriority("normal");
         Deadline deadline = new Deadline("");
-        project = new Project(project.getNameString(), new UniqueEmployeeList(), deadline);
+        project = new Project(project.getNameString(), new UniqueEmployeeList(), priority, deadline);
 
         return new AddProjectCommand(project, employeeIndexes);
     }
@@ -58,4 +60,3 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
-
