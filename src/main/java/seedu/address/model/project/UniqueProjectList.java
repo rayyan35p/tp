@@ -13,7 +13,6 @@ import seedu.address.model.project.exceptions.ProjectNotFoundException;
 
 /**
  * A list of projects that enforces uniqueness between its elements and does not allow nulls.
- * (inspired from UniqueEmployeeList.java)
  */
 public class UniqueProjectList implements Iterable<Project> {
     private final ObservableList<Project> internalList = FXCollections.observableArrayList();
@@ -29,8 +28,8 @@ public class UniqueProjectList implements Iterable<Project> {
     }
 
     /**
-     * Adds a employee to the list.
-     * The employee must not already exist in the list.
+     * Adds a project to the list.
+     * The project must not already exist in the list.
      */
     public void add(Project toAdd) {
         requireNonNull(toAdd);
@@ -70,7 +69,7 @@ public class UniqueProjectList implements Iterable<Project> {
     }
 
     /**
-     * Replaces the employee {@code target} in the list with {@code editedProject}.
+     * Replaces the project {@code target} in the list with {@code editedProject}.
      * {@code target} must exist in the list.
      * The project identity of {@code editedProject} must not be the same as another existing project in the list.
      */

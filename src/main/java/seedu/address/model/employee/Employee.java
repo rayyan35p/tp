@@ -101,8 +101,7 @@ public class Employee {
                 && phone.equals(otherEmployee.phone)
                 && email.equals(otherEmployee.email)
                 && address.equals(otherEmployee.address)
-                && tags.equals(otherEmployee.tags)
-                && project.equals(otherEmployee.project);
+                && tags.equals(otherEmployee.tags);
     }
 
     @Override
