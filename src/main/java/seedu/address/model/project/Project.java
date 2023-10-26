@@ -23,10 +23,9 @@ public class Project {
 
     public final String name;
     public final UniqueEmployeeList employeeList;
-    private final ProjectPriority projectPriority;
     public final Deadline deadline;
+    private final ProjectPriority projectPriority;
     private final CompletionStatus completionStatus;
-
 
 
     /**

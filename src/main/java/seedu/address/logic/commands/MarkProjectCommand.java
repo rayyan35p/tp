@@ -1,5 +1,9 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -7,10 +11,9 @@ import seedu.address.model.Model;
 import seedu.address.model.project.CompletionStatus;
 import seedu.address.model.project.Project;
 
-import java.util.List;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
+/**
+ * Marks a project as completed in TaskHub.
+ */
 public class MarkProjectCommand extends Command {
 
     public static final String COMMAND_WORD = "markP";
@@ -24,6 +27,10 @@ public class MarkProjectCommand extends Command {
 
     private final List<Index> projectIndexes;
 
+    /**
+     * Creates a MarkProjectCommand to mark the specified projects as completed.
+     * @param projectIndexes which are the indexes of the projects to mark as completed.
+     */
     public MarkProjectCommand(List<Index> projectIndexes) {
         requireAllNonNull(projectIndexes);
 
@@ -34,7 +41,7 @@ public class MarkProjectCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         List<Project> lastShownProjectList = model.getFilteredProjectList();
 
-        // Check if all indexes are valid
+        // Check if all indexes are valid first
         for (Index projectIndex : projectIndexes) {
             if (projectIndex.getZeroBased() >= lastShownProjectList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);

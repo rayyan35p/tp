@@ -11,12 +11,7 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.employee.UniqueEmployeeList;
-import seedu.address.model.project.CompletionStatus;
-import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectPriority;
-
 
 /**
  * Parses input arguments and creates a new AddProjectCommand object

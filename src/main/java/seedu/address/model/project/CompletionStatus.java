@@ -9,10 +9,15 @@ import static java.util.Objects.requireNonNull;
 public class CompletionStatus {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Completion status should only be true or false.";
+            "Completion status should only be true or false boolean values.";
 
     public final boolean isCompleted;
 
+    /**
+     * Constructs a {@code CompletionStatus}.
+     *
+     * @param isCompleted A valid completion status.
+     */
     public CompletionStatus(boolean isCompleted) {
         requireNonNull(isCompleted);
         this.isCompleted = isCompleted;
