@@ -8,7 +8,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
 
 /**
- * Represents a Person's project in the address book.
+ * Represents a Project in TaskHub.
  * Guarantees: immutable; is always valid
  */
 public class Project {
@@ -22,7 +22,10 @@ public class Project {
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String name;
+    public final Deadline deadline;
     public final UniqueEmployeeList employeeList;
+    private final ProjectPriority projectPriority;
+
 
     /**
      * Constructs a {@code Project}.
@@ -31,8 +34,10 @@ public class Project {
      */
     public Project(String project) {
         requireNonNull(project);
-        name = project;
-        employeeList = new UniqueEmployeeList();
+        this.name = project;
+        this.projectPriority = new ProjectPriority("normal");
+        this.deadline = new Deadline("");
+        this.employeeList = new UniqueEmployeeList();
     }
 
     /**
@@ -40,11 +45,15 @@ public class Project {
      *
      * @param project A valid Project.
      * @param employees A list of Employees that are in the project
+     * @param priority A valid ProjectPriority for the project.
+     * @param deadline A valid Deadline for the project.
      */
-    public Project(String project, UniqueEmployeeList employees) {
+    public Project(String project, UniqueEmployeeList employees, ProjectPriority priority, Deadline deadline) {
         requireNonNull(project);
-        name = project;
-        employeeList = employees;
+        this.name = project;
+        this.projectPriority = priority;
+        this.employeeList = employees;
+        this.deadline = deadline;
     }
 
     /**
@@ -85,6 +94,10 @@ public class Project {
         return employeeList;
     }
 
+    public ProjectPriority getProjectPriority() {
+        return projectPriority;
+    }
+
     public String getListOfEmployeeNames() {
         StringBuilder employeeListString = new StringBuilder();
         for (Employee employee : employeeList) {
@@ -99,6 +112,10 @@ public class Project {
 
     public String getNameString() {
         return this.name;
+    }
+
+    public Deadline getDeadline() {
+        return deadline;
     }
 
     @Override

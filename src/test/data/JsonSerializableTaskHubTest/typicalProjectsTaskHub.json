@@ -61,7 +61,8 @@
         "project" : "",
         "tags": [ "friends" ]
       }
-    ]
+    ],
+    "deadline" : "22/05/2023"
   }, {
      "name" : "Beta",
      "employees" : [
@@ -73,7 +74,8 @@
          "project" : "",
          "tags" : [ "owesMoney", "friends" ]
        }
-     ]
+     ],
+    "deadline" : "15/11/2024"
     }, {
     "name" : "Delta",
     "employees" : [
@@ -92,6 +94,7 @@
         "project" : "",
         "tags" : [ ]
       }
-    ]
+    ],
+    "deadline" : ""
   }]
 }

@@ -11,17 +11,31 @@ import java.util.List;
 
 import seedu.address.model.TaskHub;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectPriority;
 
 /**
  * A utility class containing a list of {@code Project} objects to be used in tests.
  */
 public class TypicalProjects {
     public static final Project ALPHA = new ProjectBuilder().build();
-    public static final Project BETA = new ProjectBuilder().withName("Beta").withEmployees(BENSON).build();
-    public static final Project DELTA = new ProjectBuilder().withName("Delta").withEmployees(DANIEL, FIONA).build();
+    public static final Project BETA = new ProjectBuilder().withName("Beta").withEmployees(BENSON)
+            .withDeadline("10-12-2022").build();
+    public static final Project DELTA = new ProjectBuilder().withName("Delta").withEmployees(DANIEL, FIONA)
+            .withDeadline("24-11-2024").build();
 
     //Manually added
-    public static final Project GAMMA = new ProjectBuilder().withName("Gamma").withEmployees(GEORGE).build();
+    public static final Project GAMMA = new ProjectBuilder().withName("Gamma").withEmployees(GEORGE)
+            .withDeadline("08-07-2023").build();
+
+    public static final Project HIGH_PRIORITY_PROJECT = new ProjectBuilder()
+            .withName("High Priority Project")
+            .withPriority(new ProjectPriority("high"))
+            .build();
+
+    public static final Project LOW_PRIORITY_PROJECT = new ProjectBuilder()
+            .withName("Low Priority Project")
+            .withPriority(new ProjectPriority("low"))
+            .build();
 
     private TypicalProjects() {} // prevents instantiation
 
@@ -33,6 +47,6 @@ public class TypicalProjects {
     }
 
     public static List<Project> getTypicalProjects() {
-        return new ArrayList<>(Arrays.asList(ALPHA, BETA, DELTA, GAMMA));
+        return new ArrayList<>(Arrays.asList(ALPHA, BETA, DELTA, GAMMA, HIGH_PRIORITY_PROJECT, LOW_PRIORITY_PROJECT));
     }
 }

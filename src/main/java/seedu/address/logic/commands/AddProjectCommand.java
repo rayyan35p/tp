@@ -55,7 +55,7 @@ public class AddProjectCommand extends Command {
             editEmployeeDescriptor.setProject(toAdd);
             new EditCommand(targetIndex, editEmployeeDescriptor).execute(model);
 
-            toAdd.addEmployee(lastShownList.get(targetIndex.getZeroBased()));
+            toAdd.addEmployee(employeeToAdd);
         }
 
         if (model.hasProject(toAdd)) {

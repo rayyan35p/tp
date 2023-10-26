@@ -56,7 +56,8 @@ public class AssignEmployeeCommand extends Command {
         }
 
         Project projectToEdit = lastShownProjectList.get(projectIndex.getZeroBased());
-        Project editedProject = new Project(projectToEdit.name, projectToEdit.employeeList);
+        Project editedProject = new Project(projectToEdit.name, projectToEdit.employeeList,
+                projectToEdit.getProjectPriority(), projectToEdit.deadline);
         for (Index employeeIndex : employeeIndexes) {
             if (employeeIndex.getZeroBased() >= lastShownEmployeeList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
@@ -78,7 +79,7 @@ public class AssignEmployeeCommand extends Command {
 
     /**
      * Generates a command execution success message based on whether
-     * the remark is added to or removed from
+     * the employees are added to a project.
      * {@code projectToEdit}.
      */
     private String generateSuccessMessage(Project projectToEdit) {
