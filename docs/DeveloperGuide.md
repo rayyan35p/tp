@@ -162,15 +162,41 @@ Given below is an example usage scenario and the internal changes that happen at
 
 Step 1. The user launches the application. All employees and projects will be shown to the user.
 
-Step 2. The user executes `addP pr/Project1 em/1` to add a new `Project` called `Project1` with the 1st `Employee` on the list as a member. `LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to an `AddProjectParser`.
+Step 2. The user executes `addP pr/Project1 em/1` to add a new `Project` called `Project1` with the 1st `Employee` on the list as a member. `LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to an `AddProjectCommandParser`.
 
-Step 3. `TaskHubParser` will call `AddProjectParser#parse(arguments)` to produce a `AddProjectCommand` to be executed by the `LogicManager`.
+Step 3. `TaskHubParser` will call `AddProjectCommandParser#parse(arguments)` to produce a `AddProjectCommand` to be executed by the `LogicManager`.
 
 Step 4. `LogicManager` calls `AddProjectCommand#execute(model)` to produce a `CommandResult `to be logged. 
 
 Step 5. During the execution of the `AddProjectCommand`, selected `Employee` objects are extracted from the current `UniqueEmployeeList` of `TaskHub` and added to the `Project` in the `AddProjectCommand`. New copies of `Employee` objects are also created to replace the original `Employee` objects in the UniqueEmployeeList using a new `EditCommand`.  
 
 Step 6. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`. 
+
+### Prioritise Projects Feature
+
+Upon creation of a new `Project`, a `ProjectPriority` can be assigned to that `Project` using the `PriorityP` command. 
+
+This command modifies the `ProjectPriority` attribute of a `Project` by creating a new `Project` with the updated `ProjectPriority` and replacing the existing `Project` with the updated one.
+
+Currently, only a single project's `ProjectPriority` can be changed at a time.
+
+Given below is an example usage scenario and the internal changes that happen at each step.
+
+![PriorityPSequenceDiagram](images/PriorityPSequenceDiagram.png)
+
+Step 1. The user launches the application. All employees and projects will be shown to the user.
+
+Step 2. The user executes `priorityP 1 priority/high` to assign a high priority to the project indexed at 1. `LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to an `PriorityProjectCommandParser`.
+
+Step 3. `TaskHubParser` will call `PriorityProjectCommandParser#parse(arguments)` to produce a `PriorityProjectCommand` to be executed by the `LogicManager`.
+
+Step 4. `LogicManager` calls `PriorityProjectCommand#execute(model)` to produce a `CommandResult`.
+
+Step 5. During the execution of the `PriorityProjectCommand`, a new `Project` with the same details as the `Project` which is to have its `ProjectPriority` updated is created but the `ProjectPriority` is now high.
+
+Step 6. The model is updated accordingly through `ModelManager`.
+
+Step 7. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`.
 
 ### Mark Project feature
 
