@@ -198,6 +198,37 @@ Step 6. The model is updated accordingly through `ModelManager`.
 
 Step 7. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`.
 
+
+### Finding Projects Feature
+
+The displayed list of `project`s can be filtered by name (specifically, the keywords that the project name contains).
+
+The `findP` command accepts a sequence of keywords (at least 1) and filters the displayed `project`s accordingly.
+
+Once the `project`s are filtered out, the displayed list of `employee`s will also be filtered out, according to whether
+they are under at least one of the said filtered `project`s.
+
+
+Given below is an example usage scenario and the internal changes that happen at each step.
+
+Step 1. The user launches the application. All employees and projects will be shown to the user.
+
+Step 2. The user executes the `findP website presentation` command to search for projects with name containing "website" and/or "presentation".
+`LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to an `FindProjectCommandParser`.
+
+Step 3. `TaskHubParser` will call `FindProjectCommandParser#parse(arguments)` to produce a `FindProjectCommand` to be executed by the `LogicManager`.
+
+Step 4. `LogicManager` calls `FindProjectCommand#execute(model)` to produce a `CommandResult`.
+
+Step 5. During the execution of the `FindProjectCommand`, the `ProjectNameContainsKeywordsPredicate` predicate that is received, is
+used to update the model's `filteredProjectList` through `ModelManager`. 
+
+Step 6. Then, using the updated `filteredProjectList` from step 5, a new `EmployeeUnderFilteredProjectsPredicate` predicate is created. Using this predicate, 
+the model's `filteredEmployeeList` is updated through `ModelManager`.
+
+Step 7. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`.
+
+
 ### \[Proposed\] Mark Project feature
 
 Execution of the `markP` command will result in each `Project` being marked as completed. This is done by setting each `Project`'s `isCompleted` attribute to `true`.
@@ -303,7 +334,6 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
