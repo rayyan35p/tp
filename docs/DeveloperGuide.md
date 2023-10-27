@@ -253,6 +253,8 @@ they are under at least one of the said filtered `Project`s.
 
 Given below is an example usage scenario and the internal changes that happen at each step.
 
+![FindPSequenceDiagram](images/FindPSequenceDiagram.png)
+
 Step 1. The user launches the application. All employees and projects will be shown to the user.
 
 Step 2. The user executes the `findP website presentation` command to search for projects with name containing "website" and/or "presentation".
