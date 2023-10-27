@@ -174,7 +174,7 @@ Step 6. A `CommandResult` is produced based on whether the execution was a succe
 
 ### Prioritise Projects Feature
 
-Upon creation of a new `Project`, a `ProjectPriority` can be assigned to that `Project` using the `PriorityP` command. 
+Upon creation of a new `Project`, a `ProjectPriority` can be assigned to that `Project` using the `priorityP` command. 
 
 This command modifies the `ProjectPriority` attribute of a `Project` by creating a new `Project` with the updated `ProjectPriority` and replacing the existing `Project` with the updated one.
 
