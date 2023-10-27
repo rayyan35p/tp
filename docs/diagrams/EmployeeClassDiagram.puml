@@ -1,0 +1,35 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Employee as EmployeePackage <<Rectangle>>{
+Class Employee
+Class Address
+Class Email
+Class Name
+Class Phone
+Class Tag
+Class Project
+
+Class I #FFFFFF
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Employee
+
+Employee *-down-> "1" Name
+Employee *-down-> "1" Phone
+Employee *-down-> "1" Email
+Employee *-down-> "1" Address
+Employee -down-> "*" Project
+Employee -down-> "*" Tag
+
+Name -[hidden]right-> Phone
+Phone -[hidden]right-> Email
+Email -[hidden]right-> Address
+Address -[hidden]right-> Project
+Project -[hidden]right-> Tag
+
+@enduml
