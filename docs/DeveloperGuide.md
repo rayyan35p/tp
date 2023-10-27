@@ -198,7 +198,7 @@ Step 6. The model is updated accordingly through `ModelManager`.
 
 Step 7. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`.
 
-### Mark Project feature
+### \[Proposed\] Mark Project feature
 
 Execution of the `markP` command will result in each `Project` being marked as completed. This is done by setting each `Project`'s `isCompleted` attribute to `true`.
 
