@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Project;
+import seedu.address.model.task.Task;
 
 /**
  * The API of the Model component.
@@ -89,6 +90,12 @@ public interface Model {
      * {@code project} must not already exist in the TaskHub.
      */
     void addProject(Project project);
+
+    /**
+     * Adds the given task.
+     * {@code task} may exist in TaskHub as multiple employees may need to do similar tasks.
+     */
+    void addTask(Task task);
 
     /**
      * Replaces the given employee {@code target} with {@code editedEmployee}.

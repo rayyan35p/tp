@@ -69,4 +69,9 @@ shadowJar {
     archiveFileName = 'taskhub.jar'
 }
 
+run {
+    enableAssertions = true
+}
+
+
 defaultTasks 'clean', 'test'

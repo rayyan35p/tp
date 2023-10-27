@@ -3,6 +3,7 @@ package seedu.address.model;
 import javafx.collections.ObservableList;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Project;
+import seedu.address.model.task.Task;
 
 /**
  * Unmodifiable view of an TaskHub
@@ -15,5 +16,6 @@ public interface ReadOnlyTaskHub {
      */
     ObservableList<Employee> getEmployeeList();
     ObservableList<Project> getProjectList();
+    ObservableList<Task> getTaskList();
 
 }

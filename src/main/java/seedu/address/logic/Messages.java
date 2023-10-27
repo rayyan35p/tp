@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Project;
+import seedu.address.model.task.Task;
 
 /**
  * Container for user visible messages.
@@ -62,6 +63,16 @@ public class Messages {
             builder.append(employee.getName() + ", ");
         }
         builder.substring(0, builder.lastIndexOf(", ") == -1 ? builder.length() : builder.lastIndexOf(", "));
+        return builder.toString();
+    }
+
+    /**
+     * Formats the {@code Task} for display to the user.
+     */
+    public static String format(Task task) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(task.getName());
+        builder.append("; Deadline: " + task.getDeadline().toString());
         return builder.toString();
     }
 

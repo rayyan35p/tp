@@ -23,7 +23,7 @@ public class AddProjectCommand extends Command {
             + "Parameters: "
             + PREFIX_PROJECT + "PROJECT_NAME\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_PROJECT + "Rebuild Taskhub";
+            + PREFIX_PROJECT + "Rebuild Taskxhub";
 
 
     public static final String MESSAGE_SUCCESS = "New project added: %1$s";

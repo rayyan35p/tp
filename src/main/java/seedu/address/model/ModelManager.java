@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Project;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the TaskHub data.
@@ -121,6 +122,10 @@ public class ModelManager implements Model {
     @Override
     public void addProject(Project project) {
         taskHub.addProject(project);
+    }
+    @Override
+    public void addTask(Task task) {
+        taskHub.addTask(task);
     }
 
     @Override
