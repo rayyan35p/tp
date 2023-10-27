@@ -33,7 +33,23 @@ public class CompletionStatus {
     }
 
     @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof CompletionStatus)) {
+            return false;
+        }
+
+        CompletionStatus otherCompletionStatus = (CompletionStatus) other;
+        return isCompleted == otherCompletionStatus.isCompleted;
+    }
+
+    @Override
     public int hashCode() {
         return isCompleted ? 1 : 0;
     }
+
 }
