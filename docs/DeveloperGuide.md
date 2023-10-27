@@ -51,7 +51,7 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deleteE 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -101,9 +101,9 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to a `TaskHubParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a employee).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to delete a employee).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -121,8 +121,8 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the TaskHub data i.e., all `Employee` objects (which are contained in a `UniqueEmployeeList` object).
-* stores the currently 'selected' `Employee` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Employee>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the TaskHub data i.e., all `Employee` and `Project` objects (which are separately contained in a `UniqueEmployeeList` object and a `UniqueProjectList` object).
+* stores the currently 'selected' `Employee` and `Project` objects (e.g., results of a search query) as 2 separate _filtered_ list which are exposed to outsiders as an unmodifiable `ObservableList<Employee>` and `ObservableList<Project>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -153,6 +153,72 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Add Project feature
+
+When creating a new project from the `addP` command, each `Employee` that is to be added to the `Project` is updated to have an empty `Project`. This is to avoid cyclic dependency between an `Employee` and a `Project`.
+
+Given below is an example usage scenario and the internal changes that happen at each step.
+
+Step 1. The user launches the application. All employees and projects will be shown to the user.
+
+Step 2. The user executes `addP pr/Project1 em/1` to add a new `Project` called `Project1` with the 1st `Employee` on the list as a member. `LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to an `AddProjectCommandParser`.
+
+Step 3. `TaskHubParser` will call `AddProjectCommandParser#parse(arguments)` to produce a `AddProjectCommand` to be executed by the `LogicManager`.
+
+Step 4. `LogicManager` calls `AddProjectCommand#execute(model)` to produce a `CommandResult `to be logged. 
+
+Step 5. During the execution of the `AddProjectCommand`, selected `Employee` objects are extracted from the current `UniqueEmployeeList` of `TaskHub` and added to the `Project` in the `AddProjectCommand`. New copies of `Employee` objects are also created to replace the original `Employee` objects in the UniqueEmployeeList using a new `EditCommand`.  
+
+Step 6. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`. 
+
+### Prioritise Projects Feature
+
+Upon creation of a new `Project`, a `ProjectPriority` can be assigned to that `Project` using the `priorityP` command. 
+
+This command modifies the `ProjectPriority` attribute of a `Project` by creating a new `Project` with the updated `ProjectPriority` and replacing the existing `Project` with the updated one.
+
+Currently, only a single project's `ProjectPriority` can be changed at a time.
+
+Given below is an example usage scenario and the internal changes that happen at each step.
+
+![PriorityPSequenceDiagram](images/PriorityPSequenceDiagram.png)
+
+Step 1. The user launches the application. All employees and projects will be shown to the user.
+
+Step 2. The user executes `priorityP 1 priority/high` to assign a high priority to the project indexed at 1. `LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to an `PriorityProjectCommandParser`.
+
+Step 3. `TaskHubParser` will call `PriorityProjectCommandParser#parse(arguments)` to produce a `PriorityProjectCommand` to be executed by the `LogicManager`.
+
+Step 4. `LogicManager` calls `PriorityProjectCommand#execute(model)` to produce a `CommandResult`.
+
+Step 5. During the execution of the `PriorityProjectCommand`, a new `Project` with the same details as the `Project` which is to have its `ProjectPriority` updated is created but the `ProjectPriority` is now high.
+
+Step 6. The model is updated accordingly through `ModelManager`.
+
+Step 7. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`.
+
+### \[Proposed\] Mark Project feature
+
+Execution of the `markP` command will result in each `Project` being marked as completed. This is done by setting each `Project`'s `isCompleted` attribute to `true`.
+
+Given below is an example usage scenario and the internal changes that happen at each step.
+
+![MarkPSequenceDiagram](images/MarkPSequenceDiagram.png)
+
+Step 1. The user launches the application. All employees and projects will be shown to the user.
+
+Step 2. The user executes `markP 1 3` to mark the 1st and 3rd `Project` on the shown list as completed. `LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to a `MarkProjectParser`.
+
+Step 3. `TaskHubParser` will call `MarkProjectParser#parse(arguments)` to produce a `MarkProjectCommand` to be executed by the `LogicManager`.
+
+Step 4. `LogicManager` calls `MarkProjectCommand#execute(model)` to produce a `CommandResult `to be logged.
+
+Step 5. During the execution of the `MarkProjectCommand`, a new `Project` object is created for each `Project` to be marked as completed. The new `Project` objects are then used to replace the original `Project` objects in the `UniqueProjectList`.
+
+Step 6. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`.
+
+A similar sequence of events will occur when executing the `unmarkP` command, except that the `isCompleted` attribute of each `Project` will be set to `false` instead of `true`.
 
 ### \[Proposed\] Undo/redo feature
 
