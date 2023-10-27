@@ -199,15 +199,14 @@ Step 6. The model is updated accordingly through `ModelManager`.
 Step 7. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`.
 
 
-### Finding Projects Feature
+### Find Projects Feature
 
-The displayed list of `project`s can be filtered by name (specifically, the keywords that the project name contains).
+The displayed list of `Project`s can be filtered by name (specifically, the keywords that the project name contains).
 
-The `findP` command accepts a sequence of keywords (at least 1) and filters the displayed `project`s accordingly.
+The `findP` command accepts a sequence of keywords (at least 1) and filters the displayed `Project`s accordingly.
 
-Once the `project`s are filtered out, the displayed list of `employee`s will also be filtered out, according to whether
-they are under at least one of the said filtered `project`s.
-
+Once the `Project`s are filtered out, the displayed list of `Employee`s will also be filtered out, according to whether
+they are under at least one of the said filtered `Project`s.
 
 Given below is an example usage scenario and the internal changes that happen at each step.
 
@@ -221,10 +220,10 @@ Step 3. `TaskHubParser` will call `FindProjectCommandParser#parse(arguments)` to
 Step 4. `LogicManager` calls `FindProjectCommand#execute(model)` to produce a `CommandResult`.
 
 Step 5. During the execution of the `FindProjectCommand`, the `ProjectNameContainsKeywordsPredicate` predicate that is received, is
-used to update the model's `filteredProjectList` through `ModelManager`. 
+used to update the model's `FilteredProjectList` through `ModelManager`. 
 
-Step 6. Then, using the updated `filteredProjectList` from step 5, a new `EmployeeUnderFilteredProjectsPredicate` predicate is created. Using this predicate, 
-the model's `filteredEmployeeList` is updated through `ModelManager`.
+Step 6. Then, using the updated `FilteredProjectList` from step 5, a new `EmployeeUnderFilteredProjectsPredicate` predicate is created. Using this predicate, 
+the model's `FilteredEmployeeList` is updated through `ModelManager`.
 
 Step 7. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`.
 
