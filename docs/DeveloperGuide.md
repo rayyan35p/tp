@@ -154,6 +154,49 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Upgraded help feature 
+In the `initialize()` method of the `HelpWindow` class, commands are organized into different categories using HashMaps. Here's an explanation:
+
+```java
+// Initializes HashMaps to store commands for different sections
+Map<String, String> generalCommands = new HashMap<>();
+Map<String, String> employeeCommands = new HashMap<>();
+Map<String, String> projectCommands = new HashMap<>();
+
+// Adds general commands with their descriptions to the generalCommands HashMap
+generalCommands.put("help", "- Get help pop-up to display.");
+generalCommands.put("clear", "- Clears all entries from TaskHub.");
+generalCommands.put("exit", "- Exits the program.");
+
+// Adds employee-related commands with their descriptions to the employeeCommands HashMap
+employeeCommands.put("addE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…\u200B",
+        "- Adds an employee to the employees list.");
+// ... (other employee commands)
+
+// Adds project-related commands with their descriptions to the projectCommands HashMap
+projectCommands.put("listP", "- Shows a list of all projects in TaskHub.");
+// ... (other project commands)
+```
+
+In this code snippet, each HashMap (`generalCommands`, `employeeCommands`, and `projectCommands`) is used to store commands related to a specific section of the application. The keys in the HashMap represent the commands themselves, while the corresponding values provide a description of what each command does.
+
+```java
+// Adds sections and their respective commands to the VBox layout
+addToVBox("General Commands", generalCommands);
+addToVBox("Employee Commands", employeeCommands);
+addToVBox("Project Commands", projectCommands);
+```
+
+The `addToVBox()` method takes a section header (like "General Commands") and a corresponding HashMap of commands. It then formats and adds these commands to the `VBox` layout of the help window. Inline code formatting (using backticks) could be applied as follows:
+
+```java
+String command = "addE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…\u200B";
+String description = "- Adds an employee to the employees list.";
+```
+
+This code structure efficiently organizes commands into distinct sections, making it easier for users to locate and understand the functionalities provided by each command. It also promotes code readability and maintainability for developers working on the application.
+
+
 ### Add Project feature
 
 When creating a new project from the `addP` command, each `Employee` that is to be added to the `Project` is updated to have an empty `Project`. This is to avoid cyclic dependency between an `Employee` and a `Project`.
@@ -197,6 +240,36 @@ Step 5. During the execution of the `PriorityProjectCommand`, a new `Project` wi
 Step 6. The model is updated accordingly through `ModelManager`.
 
 Step 7. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`.
+
+
+### Find Projects Feature
+
+The displayed list of `Project`s can be filtered by name (specifically, the keywords that the project name contains).
+
+The `findP` command accepts a sequence of keywords (at least 1) and filters the displayed `Project`s accordingly.
+
+Once the `Project`s are filtered out, the displayed list of `Employee`s will also be filtered out, according to whether
+they are under at least one of the said filtered `Project`s.
+
+Given below is an example usage scenario and the internal changes that happen at each step.
+
+Step 1. The user launches the application. All employees and projects will be shown to the user.
+
+Step 2. The user executes the `findP website presentation` command to search for projects with name containing "website" and/or "presentation".
+`LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to an `FindProjectCommandParser`.
+
+Step 3. `TaskHubParser` will call `FindProjectCommandParser#parse(arguments)` to produce a `FindProjectCommand` to be executed by the `LogicManager`.
+
+Step 4. `LogicManager` calls `FindProjectCommand#execute(model)` to produce a `CommandResult`.
+
+Step 5. During the execution of the `FindProjectCommand`, the `ProjectNameContainsKeywordsPredicate` predicate that is received, is
+used to update the model's `FilteredProjectList` through `ModelManager`. 
+
+Step 6. Then, using the updated `FilteredProjectList` from step 5, a new `EmployeeUnderFilteredProjectsPredicate` predicate is created. Using this predicate, 
+the model's `FilteredEmployeeList` is updated through `ModelManager`.
+
+Step 7. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`.
+
 
 ### \[Proposed\] Mark Project feature
 
@@ -303,7 +376,6 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
