@@ -1,6 +1,8 @@
 package seedu.address.model.project;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
@@ -70,4 +72,25 @@ public class ProjectTest {
         project.removeEmployee(ALICE);
         assertTrue(!project.employeeList.contains(ALICE) && project.employeeList.contains(BOB));
     }
+
+    @Test
+    public void getEmployeeListTest() {
+        Project project = new Project("some project");
+        project.addEmployee(ALICE);
+        project.addEmployee(BOB);
+        String expected = "Alice Pauline, Bob Choo";
+
+        assertTrue(project.getListOfEmployeeNames().equals(expected));
+    }
+
+    @Test
+    void hashCodeTest() {
+        Project project1 = new Project("Test Project 1");
+        Project project2 = new Project("Test Project 1");
+
+        assertEquals(project1.hashCode(), project2.hashCode());
+        assertNotEquals(project1.hashCode(), new Project("Test Project 2").hashCode());
+    }
+
+
 }

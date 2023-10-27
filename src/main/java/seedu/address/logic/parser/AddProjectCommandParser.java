@@ -14,16 +14,17 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectPriority;
 
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddProjectCommand object
  */
 public class AddProjectCommandParser implements Parser<AddProjectCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddProjectCommand
-     * and returns an AddCommand object for execution.
+     * and returns an AddProjectCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -44,8 +45,9 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
                 employeeIndexes.add(ParserUtil.parseIndex(index));
             }
         }
+        ProjectPriority priority = new ProjectPriority("normal");
         Deadline deadline = new Deadline("");
-        project = new Project(project.getNameString(), new UniqueEmployeeList(), deadline);
+        project = new Project(project.getNameString(), new UniqueEmployeeList(), priority, deadline);
 
         return new AddProjectCommand(project, employeeIndexes);
     }

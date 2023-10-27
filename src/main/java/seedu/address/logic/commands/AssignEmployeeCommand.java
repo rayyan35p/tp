@@ -15,7 +15,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
 
 /**
- * Assigns an existing project to a number of existing employee in the TaskHub.
+ * Assigns an existing project to a number of existing employees in the TaskHub.
  */
 public class AssignEmployeeCommand extends Command {
 
@@ -56,7 +56,8 @@ public class AssignEmployeeCommand extends Command {
         }
 
         Project projectToEdit = lastShownProjectList.get(projectIndex.getZeroBased());
-        Project editedProject = new Project(projectToEdit.name, projectToEdit.employeeList, projectToEdit.deadline);
+        Project editedProject = new Project(projectToEdit.name, projectToEdit.employeeList,
+                projectToEdit.getProjectPriority(), projectToEdit.deadline);
         for (Index employeeIndex : employeeIndexes) {
             if (employeeIndex.getZeroBased() >= lastShownEmployeeList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
@@ -64,6 +65,9 @@ public class AssignEmployeeCommand extends Command {
             Employee employeeToAdd = lastShownEmployeeList.get(employeeIndex.getZeroBased());
             if (!editedProject.employeeList.contains(employeeToAdd)) {
                 editedProject.employeeList.add(employeeToAdd);
+                EditCommand.EditEmployeeDescriptor editEmployeeDescriptor = new EditCommand.EditEmployeeDescriptor();
+                editEmployeeDescriptor.setProject(projectToEdit);
+                new EditCommand(employeeIndex, editEmployeeDescriptor).execute(model);
             }
         }
 

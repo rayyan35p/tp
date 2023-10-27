@@ -16,7 +16,7 @@ public class Project {
     public static final String MESSAGE_CONSTRAINTS = "Projects can take any values, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
@@ -45,36 +45,8 @@ public class Project {
      *
      * @param project A valid Project.
      * @param employees A list of Employees that are in the project
-     */
-    public Project(String project, UniqueEmployeeList employees, Deadline deadline) {
-        requireNonNull(project);
-        this.name = project;
-        this.projectPriority = new ProjectPriority("normal");
-        this.employeeList = employees;
-        this.deadline = deadline;
-    }
-
-    /**
-     * Constructs a {@code Project}.
-     *
-     * @param project A valid Project.
-     * @param employees A list of Employees that are in the project
      * @param priority A valid ProjectPriority for the project.
-     */
-    public Project(String project, UniqueEmployeeList employees, ProjectPriority priority) {
-        requireNonNull(project);
-        this.name = project;
-        this.projectPriority = priority;
-        this.deadline = new Deadline("");
-        this.employeeList = employees;
-    }
-
-    /**
-     * Constructs a {@code Project}.
-     *
-     * @param project A valid Project.
-     * @param employees A list of Employees that are in the project
-     * @param priority A valid ProjectPriority for the project.
+     * @param deadline A valid Deadline for the project.
      */
     public Project(String project, UniqueEmployeeList employees, ProjectPriority priority, Deadline deadline) {
         requireNonNull(project);
