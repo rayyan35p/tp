@@ -172,7 +172,7 @@ Step 5. During the execution of the `AddProjectCommand`, selected `Employee` obj
 
 Step 6. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`. 
 
-### Prioritising Projects Feature
+### Prioritise Projects Feature
 
 Upon creation of a new `Project`, a `ProjectPriority` can be assigned to that `Project` using the `PriorityP` command. 
 
