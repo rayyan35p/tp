@@ -174,21 +174,25 @@ Step 6. A `CommandResult` is produced based on whether the execution was a succe
 
 ### Mark Project feature
 
-Execution of the `markP` command will result in the `Project` being marked as completed. This is done by setting the `Project`'s `isCompleted` attribute to `true`.
+Execution of the `markP` command will result in each `Project` being marked as completed. This is done by setting each `Project`'s `isCompleted` attribute to `true`.
 
 Given below is an example usage scenario and the internal changes that happen at each step.
 
+![MarkPSequenceDiagram](images/MarkPSequenceDiagram.png)
+
 Step 1. The user launches the application. All employees and projects will be shown to the user.
 
-Step 2. The user executes `markP 1` to mark the 1st `Project` on the list as completed. `LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to a `MarkProjectParser`.
+Step 2. The user executes `markP 1 3` to mark the 1st and 3rd `Project` on the shown list as completed. `LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to a `MarkProjectParser`.
 
 Step 3. `TaskHubParser` will call `MarkProjectParser#parse(arguments)` to produce a `MarkProjectCommand` to be executed by the `LogicManager`.
 
 Step 4. `LogicManager` calls `MarkProjectCommand#execute(model)` to produce a `CommandResult `to be logged.
 
-Step 5. During the execution of the `MarkProjectCommand`, the `Project` object is extracted from the current `UniqueProjectList` of `TaskHub` and marked as completed.
+Step 5. During the execution of the `MarkProjectCommand`, a new `Project` object is created for each `Project` to be marked as completed. The new `Project` objects are then used to replace the original `Project` objects in the `UniqueProjectList`.
 
 Step 6. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`.
+
+A similar sequence of events will occur when executing the `unmarkP` command, except that the `isCompleted` attribute of each `Project` will be set to `false` instead of `true`.
 
 ### \[Proposed\] Undo/redo feature
 
