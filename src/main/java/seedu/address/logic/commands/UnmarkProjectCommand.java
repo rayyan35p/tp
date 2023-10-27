@@ -20,7 +20,7 @@ public class UnmarkProjectCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks project(s) as incomplete in TaskHub.\n"
-            + "Parameters: INDEXES (must be one or more positive integers, separated by spaces)\n"
+            + "Parameters: INDEXES (must be one or more positive integers, separated by a space between each INDEX)\n"
             + "Example: " + COMMAND_WORD + " 1 2 4";
 
     public static final String MESSAGE_PROJECTS_UNMARKED_SUCCESSFULLY = "%1$d project(s) marked as incomplete.";

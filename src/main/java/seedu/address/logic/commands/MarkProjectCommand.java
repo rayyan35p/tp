@@ -20,10 +20,10 @@ public class MarkProjectCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks a project as completed in TaskHub.\n"
-            + "Parameters: INDEXES (must be one or more positive integers, separated by spaces)\n"
+            + "Parameters: INDEXES (must be one or more positive integers, separated by a space between each INDEX)\n"
             + "Example: " + COMMAND_WORD + " 1 2 4";
 
-    public static final String MESSAGE_PROJECTS_MARKED_SUCCESSFULLY = "%1$d projects marked as completed.";
+    public static final String MESSAGE_PROJECTS_MARKED_SUCCESSFULLY = "%1$d project(s) marked as completed.";
 
     private final List<Index> projectIndexes;
 
