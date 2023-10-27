@@ -74,6 +74,16 @@ public class ProjectTest {
     }
 
     @Test
+    public void getEmployeeListTest() {
+        Project project = new Project("some project");
+        project.addEmployee(ALICE);
+        project.addEmployee(BOB);
+        String expected = "Alice Pauline, Bob Choo";
+
+        assertTrue(project.getListOfEmployeeNames().equals(expected));
+    }
+
+    @Test
     void hashCodeTest() {
         Project project1 = new Project("Test Project 1");
         Project project2 = new Project("Test Project 1");
@@ -81,5 +91,6 @@ public class ProjectTest {
         assertEquals(project1.hashCode(), project2.hashCode());
         assertNotEquals(project1.hashCode(), new Project("Test Project 2").hashCode());
     }
+
 
 }
