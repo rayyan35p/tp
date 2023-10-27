@@ -154,6 +154,49 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Upgraded help feature 
+In the `initialize()` method of the `HelpWindow` class, commands are organized into different categories using HashMaps. Here's an explanation:
+
+```java
+// Initializes HashMaps to store commands for different sections
+Map<String, String> generalCommands = new HashMap<>();
+Map<String, String> employeeCommands = new HashMap<>();
+Map<String, String> projectCommands = new HashMap<>();
+
+// Adds general commands with their descriptions to the generalCommands HashMap
+generalCommands.put("help", "- Get help pop-up to display.");
+generalCommands.put("clear", "- Clears all entries from TaskHub.");
+generalCommands.put("exit", "- Exits the program.");
+
+// Adds employee-related commands with their descriptions to the employeeCommands HashMap
+employeeCommands.put("addE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…\u200B",
+        "- Adds an employee to the employees list.");
+// ... (other employee commands)
+
+// Adds project-related commands with their descriptions to the projectCommands HashMap
+projectCommands.put("listP", "- Shows a list of all projects in TaskHub.");
+// ... (other project commands)
+```
+
+In this code snippet, each HashMap (`generalCommands`, `employeeCommands`, and `projectCommands`) is used to store commands related to a specific section of the application. The keys in the HashMap represent the commands themselves, while the corresponding values provide a description of what each command does.
+
+```java
+// Adds sections and their respective commands to the VBox layout
+addToVBox("General Commands", generalCommands);
+addToVBox("Employee Commands", employeeCommands);
+addToVBox("Project Commands", projectCommands);
+```
+
+The `addToVBox()` method takes a section header (like "General Commands") and a corresponding HashMap of commands. It then formats and adds these commands to the `VBox` layout of the help window. Inline code formatting (using backticks) could be applied as follows:
+
+```java
+String command = "addE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…\u200B";
+String description = "- Adds an employee to the employees list.";
+```
+
+This code structure efficiently organizes commands into distinct sections, making it easier for users to locate and understand the functionalities provided by each command. It also promotes code readability and maintainability for developers working on the application.
+
+
 ### Add Project feature
 
 When creating a new project from the `addP` command, each `Employee` that is to be added to the `Project` is updated to have an empty `Project`. This is to avoid cyclic dependency between an `Employee` and a `Project`.
