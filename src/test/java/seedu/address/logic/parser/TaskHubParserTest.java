@@ -4,9 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,12 +27,18 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditEmployeeDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindEmployeeCommand;
+import seedu.address.logic.commands.FindProjectCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListEmployeeAndProjectCommand;
 import seedu.address.logic.commands.ListEmployeeCommand;
+import seedu.address.logic.commands.ListProjectCommand;
+import seedu.address.logic.commands.ProjectDeadlineCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.NameContainsKeywordsPredicate;
-import seedu.address.model.employee.Project;
+import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
+import seedu.address.model.project.Deadline;
+import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditEmployeeDescriptorBuilder;
 import seedu.address.testutil.EmployeeBuilder;
 import seedu.address.testutil.EmployeeUtil;
@@ -75,11 +84,19 @@ public class TaskHubParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_findEmployee() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindEmployeeCommand command = (FindEmployeeCommand) parser.parseCommand(
                 FindEmployeeCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindEmployeeCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindEmployeeCommand(new EmployeeNameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findProject() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindProjectCommand command = (FindProjectCommand) parser.parseCommand(
+                FindProjectCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindProjectCommand(new ProjectNameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
@@ -95,12 +112,36 @@ public class TaskHubParserTest {
     }
 
     @Test
-    public void parseCommand_project() throws Exception {
-        final Project project = new Project("Some project.");
+    public void parseCommand_listProject() throws Exception {
+        assertTrue(parser.parseCommand(ListProjectCommand.COMMAND_WORD) instanceof ListProjectCommand);
+        assertTrue(parser.parseCommand(ListProjectCommand.COMMAND_WORD + " 3") instanceof ListProjectCommand);
+    }
+
+    @Test
+    public void parseCommand_listEmployeeAndProject() throws Exception {
+        assertTrue(parser.parseCommand(ListEmployeeAndProjectCommand.COMMAND_WORD)
+                instanceof ListEmployeeAndProjectCommand);
+        assertTrue(parser.parseCommand(ListEmployeeAndProjectCommand.COMMAND_WORD + " 3")
+                instanceof ListEmployeeAndProjectCommand);
+    }
+
+    @Test
+    public void parseCommand_assignEmployeeToProject() throws Exception {
         AssignEmployeeCommand command =
                 (AssignEmployeeCommand) parser.parseCommand(AssignEmployeeCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_EMPLOYEE.getOneBased() + " " + PREFIX_PROJECT + project.name);
-        assertEquals(new AssignEmployeeCommand(INDEX_FIRST_EMPLOYEE, project), command);
+                 + PREFIX_PROJECT + INDEX_FIRST_EMPLOYEE.getOneBased() + " " + PREFIX_EMPLOYEE
+                        + INDEX_FIRST_EMPLOYEE.getOneBased());
+        assertEquals(new AssignEmployeeCommand(INDEX_FIRST_EMPLOYEE,
+                                                new ArrayList<>(Arrays.asList(INDEX_FIRST_EMPLOYEE))), command);
+    }
+
+    @Test
+    public void parseCommand_projectDeadline() throws Exception {
+        final Deadline deadline = new Deadline("12-10-2022");
+        ProjectDeadlineCommand command =
+                (ProjectDeadlineCommand) parser.parseCommand(ProjectDeadlineCommand.COMMAND_WORD + " "
+                 + INDEX_FIRST_PROJECT.getOneBased() + " " + PREFIX_DEADLINE + deadline.value);
+        assertEquals(new ProjectDeadlineCommand(INDEX_FIRST_PROJECT, deadline), command);
     }
 
     @Test
@@ -110,6 +151,7 @@ public class TaskHubParserTest {
         AddProjectCommand expected = new AddProjectCommand(new Project("Alpha"), new ArrayList<>());
         assertEquals(expected, command);
     }
+
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()

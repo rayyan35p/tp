@@ -84,6 +84,13 @@ Alternatively, quickly enter a `help` command into TaskHub to display the pop-up
 Format: `help`
 
 
+### Listing all employees and projects: `list`
+
+Shows a list of all employees and projects in TaskHub.
+
+Format: `list`
+
+
 ### Adding an employee: `addE`
 
 Adds an employee to the employees list.
@@ -127,6 +134,7 @@ Examples:
 ### Locating employees by name: `findE`
 
 Finds employees whose names contain any of the given keywords.
+Additionally, it shows only the projects that these employees are under.
 
 Format: `findE KEYWORD [MORE_KEYWORDS]`
 
@@ -134,7 +142,7 @@ Format: `findE KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* employees matching at least one keyword will be returned (i.e. `OR` search).
+* Employees matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -142,12 +150,6 @@ Examples:
 * `findE alex david` returns `Alex Yeoh`, `David Li`
 * `findE james` returns `James` <br>
   ![result for 'findE james'](images/findEjamesresult.png)
-
-### Listing all projects: `listP`
-
-Shows a list of all projects in TaskHub.
-
-![list example](images/listp.png)
 
 ### Deleting an employee : `deleteE`
 
@@ -173,22 +175,69 @@ Format: `clear`
 
 Adds a new project in TaskHub
 
-Format: `addP pr/PROJECT_NAME [em/EMPLOYEE_INDEX] ...`
+Format: `addP pr/PROJECT_NAME [em/EMPLOYEE_INDEXES] ...`
 
 * Adds a new project with the employees assigned to the project.
+* Each employee index __must be separated with a space.__
 * The employee must exist in the employees list. 
 
 Examples: 
 * `addP pr/Project1 em/1` will add `Project1` to the projects list with the employee index 1 assigned to the project.
 * `addP pr/Project2` will add an empty `Project2` to the projects list.
 
+### Listing all projects: `listP`
+
+Shows a list of all projects in TaskHub.
+
+![list example](images/listp.png)
+
+Format: `listP`
+
+### Locating projects by name: `findP`
+
+Finds projects whose names contain any of the given keywords.
+Additionally, it shows only the employees that are under these projects.
+
+Format: `findP KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `website` will match `Website`
+* The order of the keywords does not matter. e.g. `Create Website` will match `Website Create`
+* Only the name is searched.
+* Only full words will be matched e.g. `Website` will not match `Websites`
+* Projects matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Website Model` will return `Create Website`, `Build Model`
+
+Examples:
+* `findP website model` returns `Create Website`, `Build Model`
+* `findP presentation` returns `Presentation` <br>
+  ![result for 'findP presentation'](images/findPpresentationresult.png)
+
+### Edit deadline of a project: `dl`
+
+Edit the deadline of a project in the projects list.
+
+Format: `dl INDEX d/DATE`
+
+* Edits the deadline of the project at the specified `INDEX`.
+* The index refers to the index number shown in the displayed projects list.
+* The index **must be a positive integer** 1, 2, 3, …
+* The date must be in the `dd-MM-yyyy` format.
+* Existing deadline will be updated to the new deadline.
+* You can remove the deadline by typing `d/` without specifying any date after it.
+
+Examples:
+*  `dl 2 d/18-01-2022` sets the deadline of the 2nd project to be `18-01-2022`.
+*  `dl 1 d/` removes the deadline of the 1st project.
+*  `findP Infinity` followed by `dl 1 d/25-11-2024` sets the deadline of the 1st project in the results of the `findP` command to be `25-11-2024`.
+
 ### Assign employee(s) to a project: `assignE`
 
 Assigns employee(s) to a project in TaskHub
 
-Format: `assignE pr/PROJECT_NAME em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDEX]...`
+Format: `assignE pr/PROJECT_INDEX em/EMPLOYEE_INDEX OTHER_EMPLOYEE_INDEXES...`
 * The employee(s) will be assigned to the project
-* The project name and employee names must exist in TaskHub.
+* Each employee index __must be separated with a space.__
+* The project and employee index refers to the index number shown in the displayed project and employees list.
 
 Examples:
 * `assignE pr/Project1 em/1 2 3` will add employees 1, 2 and 3 to `Project1`
@@ -198,12 +247,26 @@ Examples:
 Deletes the specified project from TaskHub.
 
 Format: `deleteP INDEX`
-* Deletes the project at the specified `INDEX`
+* Deletes the project at the specified `INDEX`.
 * The index refers to the index number shown in the displayed employees list.
 * The index __must be a positive integer__ 1, 2, 3,...
 
 Examples:
 * `listP` followed by `deleteP 2` deletes the 2nd project in TaskHub.
+
+### Prioritise projects: `priorityP`
+
+Sets a priority for a specified project in TaskHub.
+
+Format: `priorityP INDEX priority/PRIORITY`
+* Sets the project to the specified `PRIORITY`.
+* The index refers to the index number shown in the displayed projects list.
+* The index __must be a positive integer__ 1, 2, 3,...
+* The `PRIORITY` must be one of the following: `low`, `normal`, `high`.
+* All projects are set to normal priority by default.
+
+Examples:
+* `listP` followed by `priorityP 2 priority/high` sets the 2nd project as high priority in TaskHub.
 
 ### Exiting the program : `exit`
 
@@ -244,16 +307,20 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                         | Format, Examples                                                                                                                                                                                 |
-|--------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **List all employees**         | `listE`                                                                                                                                                                                          |
-| **Clear**                      | `clear`                                                                                                                                                                                          |
-| **Help**                       | `help`                                                                                                                                                                                           |
-| **Add Employee**               | `addE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ r/REMARK` <br> e.g., `addE n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague r/a good friend` |
-| **Delete Employee**            | `deleteE INDEX`<br> e.g., `deleteE 3`                                                                                                                                                            |
-| **Find Employee**              | `findE KEYWORD [MORE_KEYWORDS]`<br> e.g., `findE James Jake`                                                                                                                                     |
-| **List Projects**              | `listP`                                                                                                                                                                                          |
-| **Add Project**                | `addP pr/PROJECT_NAME [em/EMPLOYEE_INDEX]…​` <br> e.g, `addP pr/CS2103T em/2 3 4 5`                                                                                                              |
-| **Assign Employee to Project** | `assignE pr/PROJECT_INDEX em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDICES]…​` <br> e.g, `assignE pr/4 em/1 2 3`                                                                                      |
-| **Delete Project**             | `deleteP INDEX`<br> e.g., `deleteP 3`                                                                                                                                                            |
+| Action                              | Format, Examples                                                                                                                                                                                 |
+|-------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **List All Employees**              | `listE`                                                                                                                                                                                          |
+| **Clear**                           | `clear`                                                                                                                                                                                          |
+| **Help**                            | `help`                                                                                                                                                                                           |
+| **Add Employee**                    | `addE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ r/REMARK` <br> e.g., `addE n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague r/a good friend` |
+| **Delete Employee**                 | `deleteE INDEX`<br> e.g., `deleteE 3`                                                                                                                                                            |
+| **Find Employee**                   | `findE KEYWORD [MORE_KEYWORDS]`<br> e.g., `findE James Jake`                                                                                                                                     |
+| **List All Projects**               | `listP`                                                                                                                                                                                          |
+| **Add Project**                     | `addP pr/PROJECT_NAME [em/EMPLOYEE_INDEX]…​` <br> e.g, `addP pr/CS2103T em/2 3 4 5`                                                                                                              |
+| **Edit Project Deadline**           | `dl INDEX d/DATE` <br> e.g., `dl 2 d/27-11-2023` <br>                                                                                                                                            |
+| **Assign Employee to Project**      | `assignE pr/PROJECT_INDEX em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDICES]…​` <br> e.g, `assignE pr/4 em/1 2 3`                                                                                      |
+| **Delete Project**                  | `deleteP INDEX`<br> e.g., `deleteP 3`                                                                                                                                                            |
+| **Find Project**                    | `findP KEYWORD [MORE_KEYWORDS]`<br> e.g., `findP Website Create`                                                                                                                                 |
+| **List All Employees And Projects** | `list`                                                                                                                                                                                           |
+
 

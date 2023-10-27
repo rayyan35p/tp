@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -100,8 +101,7 @@ public class Employee {
                 && phone.equals(otherEmployee.phone)
                 && email.equals(otherEmployee.email)
                 && address.equals(otherEmployee.address)
-                && tags.equals(otherEmployee.tags)
-                && project.equals(otherEmployee.project);
+                && tags.equals(otherEmployee.tags);
     }
 
     @Override

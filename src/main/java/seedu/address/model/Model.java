@@ -6,8 +6,8 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.Project;
 import seedu.address.model.task.Task;
+import seedu.address.model.project.Project;
 
 /**
  * The API of the Model component.
@@ -117,9 +117,13 @@ public interface Model {
      */
     void updateFilteredEmployeeList(Predicate<Employee> predicate);
 
+
+    void setProject(Project projectToEdit, Project editedProject);
+
     /**
      * Updates the filter of the filtered project list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredProjectList(Predicate<Project> predicate);
+
 }

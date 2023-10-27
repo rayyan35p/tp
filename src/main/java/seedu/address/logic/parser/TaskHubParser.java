@@ -8,8 +8,26 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.AddEmployeeCommand;
+import seedu.address.logic.commands.AddProjectCommand;
+import seedu.address.logic.commands.AssignEmployeeCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteEmployeeCommand;
+import seedu.address.logic.commands.DeleteProjectCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindEmployeeCommand;
+import seedu.address.logic.commands.FindProjectCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListEmployeeAndProjectCommand;
+import seedu.address.logic.commands.ListEmployeeCommand;
+import seedu.address.logic.commands.ListProjectCommand;
+import seedu.address.logic.commands.PriorityProjectCommand;
+import seedu.address.logic.commands.ProjectDeadlineCommand;
+import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+
 
 /**
  * Parses user input.
@@ -60,11 +78,17 @@ public class TaskHubParser {
         case DeleteEmployeeCommand.COMMAND_WORD:
             return new DeleteEmployeeCommandParser().parse(arguments);
 
+        case DeleteProjectCommand.COMMAND_WORD:
+            return new DeleteProjectCommandParser().parse(arguments);
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
         case FindEmployeeCommand.COMMAND_WORD:
             return new FindEmployeeCommandParser().parse(arguments);
+
+        case FindProjectCommand.COMMAND_WORD:
+            return new FindProjectCommandParser().parse(arguments);
 
         case ListEmployeeCommand.COMMAND_WORD:
             return new ListEmployeeCommand();
@@ -74,6 +98,15 @@ public class TaskHubParser {
 
         case AddTaskCommand.COMMAND_WORD:
             return new AddTaskCommandParser().parse(arguments);
+
+        case ListEmployeeAndProjectCommand.COMMAND_WORD:
+            return new ListEmployeeAndProjectCommand();
+
+        case PriorityProjectCommand.COMMAND_WORD:
+            return new PriorityProjectCommandParser().parse(arguments);
+
+        case ProjectDeadlineCommand.COMMAND_WORD:
+            return new ProjectDeadlineCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

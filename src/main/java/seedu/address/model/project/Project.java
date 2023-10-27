@@ -1,15 +1,14 @@
-
-package seedu.address.model.employee;
+package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
+import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.UniqueEmployeeList;
 
 /**
- * Represents a Person's remark in the address book.
+ * Represents a Project in TaskHub.
  * Guarantees: immutable; is always valid
  */
 public class Project {
@@ -17,13 +16,16 @@ public class Project {
     public static final String MESSAGE_CONSTRAINTS = "Projects can take any values, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String name;
-    public final List<Employee> employeeList;
+    public final Deadline deadline;
+    public final UniqueEmployeeList employeeList;
+    private final ProjectPriority projectPriority;
+
 
     /**
      * Constructs a {@code Project}.
@@ -32,8 +34,10 @@ public class Project {
      */
     public Project(String project) {
         requireNonNull(project);
-        name = project;
-        employeeList = new ArrayList<>();
+        this.name = project;
+        this.projectPriority = new ProjectPriority("normal");
+        this.deadline = new Deadline("");
+        this.employeeList = new UniqueEmployeeList();
     }
 
     /**
@@ -41,11 +45,15 @@ public class Project {
      *
      * @param project A valid Project.
      * @param employees A list of Employees that are in the project
+     * @param priority A valid ProjectPriority for the project.
+     * @param deadline A valid Deadline for the project.
      */
-    public Project(String project, List<Employee> employees) {
+    public Project(String project, UniqueEmployeeList employees, ProjectPriority priority, Deadline deadline) {
         requireNonNull(project);
-        name = project;
-        employeeList = employees;
+        this.name = project;
+        this.projectPriority = priority;
+        this.employeeList = employees;
+        this.deadline = deadline;
     }
 
     /**
@@ -82,8 +90,12 @@ public class Project {
                 && otherProject.name.equals(this.name);
     }
 
-    public List<Employee> getEmployees() {
+    public UniqueEmployeeList getEmployees() {
         return employeeList;
+    }
+
+    public ProjectPriority getProjectPriority() {
+        return projectPriority;
     }
 
     public String getListOfEmployeeNames() {
@@ -91,7 +103,7 @@ public class Project {
         for (Employee employee : employeeList) {
             employeeListString.append(employee.getName() + ", ");
         }
-        if (employeeList.size() != 0) {
+        if (employeeList.asUnmodifiableObservableList().size() != 0) {
             employeeListString.delete(employeeListString.length() - 2,
                     employeeListString.length());
         }
@@ -100,6 +112,10 @@ public class Project {
 
     public String getNameString() {
         return this.name;
+    }
+
+    public Deadline getDeadline() {
+        return deadline;
     }
 
     @Override

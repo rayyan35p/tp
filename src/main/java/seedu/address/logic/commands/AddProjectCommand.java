@@ -11,7 +11,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.Project;
+import seedu.address.model.project.Project;
 
 /**
  * Adds a project to the TaskHub.
@@ -33,7 +33,7 @@ public class AddProjectCommand extends Command {
     private final List<Index> employeeIndexes;
 
     /**
-     * Creates an AddCommand to add the specified {@code Project}
+     * Creates an AddProjectCommand to add the specified {@code Project}
      */
     public AddProjectCommand(Project project, List<Index> employeeIndexes) {
         requireNonNull(project);
@@ -53,17 +53,8 @@ public class AddProjectCommand extends Command {
             Employee employeeToAdd = lastShownList.get(targetIndex.getZeroBased());
             EditCommand.EditEmployeeDescriptor editEmployeeDescriptor = new EditCommand.EditEmployeeDescriptor();
             editEmployeeDescriptor.setProject(toAdd);
-            editEmployeeDescriptor.setName(employeeToAdd.getName());
-            editEmployeeDescriptor.setAddress(employeeToAdd.getAddress());
-            editEmployeeDescriptor.setEmail(employeeToAdd.getEmail());
-            editEmployeeDescriptor.setPhone(employeeToAdd.getPhone());
-            editEmployeeDescriptor.setTags(employeeToAdd.getTags());
             new EditCommand(targetIndex, editEmployeeDescriptor).execute(model);
 
-            //removes employee from previous project
-            if (employeeToAdd.getProject().name != "") {
-                //TODO: get project by name
-            }
             toAdd.addEmployee(employeeToAdd);
         }
 
