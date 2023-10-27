@@ -172,6 +172,24 @@ Step 5. During the execution of the `AddProjectCommand`, selected `Employee` obj
 
 Step 6. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`. 
 
+### Mark Project feature
+
+Execution of the `markP` command will result in the `Project` being marked as completed. This is done by setting the `Project`'s `isCompleted` attribute to `true`.
+
+Given below is an example usage scenario and the internal changes that happen at each step.
+
+Step 1. The user launches the application. All employees and projects will be shown to the user.
+
+Step 2. The user executes `markP 1` to mark the 1st `Project` on the list as completed. `LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to a `MarkProjectParser`.
+
+Step 3. `TaskHubParser` will call `MarkProjectParser#parse(arguments)` to produce a `MarkProjectCommand` to be executed by the `LogicManager`.
+
+Step 4. `LogicManager` calls `MarkProjectCommand#execute(model)` to produce a `CommandResult `to be logged.
+
+Step 5. During the execution of the `MarkProjectCommand`, the `Project` object is extracted from the current `UniqueProjectList` of `TaskHub` and marked as completed.
+
+Step 6. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
