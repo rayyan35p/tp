@@ -3,7 +3,9 @@ package seedu.address.logic.commands;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -25,6 +27,8 @@ public class MarkProjectCommand extends Command {
 
     public static final String MESSAGE_PROJECTS_MARKED_SUCCESSFULLY = "%1$d project(s) marked as completed.";
 
+    private static final Logger logger = LogsCenter.getLogger(MarkProjectCommand.class);
+
     private final List<Index> projectIndexes;
 
     /**
@@ -33,6 +37,7 @@ public class MarkProjectCommand extends Command {
      */
     public MarkProjectCommand(List<Index> projectIndexes) {
         requireAllNonNull(projectIndexes);
+        assert projectIndexes.size() > 0;
 
         this.projectIndexes = projectIndexes;
     }
@@ -44,12 +49,16 @@ public class MarkProjectCommand extends Command {
         // Check if all indexes are valid first
         for (Index projectIndex : projectIndexes) {
             if (projectIndex.getZeroBased() >= lastShownProjectList.size()) {
+                logger.warning("Invalid project index: " + projectIndex.getOneBased());
                 throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
             }
         }
 
         // Mark all projects as completed
         for (Index projectIndex : projectIndexes) {
+            assert projectIndex.getZeroBased() >= 0;
+            assert projectIndex.getZeroBased() < lastShownProjectList.size();
+
             Project projectToMark = lastShownProjectList.get(projectIndex.getZeroBased());
             Project markedProject = new Project(projectToMark.name, projectToMark.employeeList,
                     projectToMark.getProjectPriority(), projectToMark.deadline, new CompletionStatus(true));

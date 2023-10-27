@@ -17,8 +17,12 @@ public class MarkProjectCommandParser implements Parser<MarkProjectCommand> {
     @Override
     public MarkProjectCommand parse(String args) throws ParseException {
         requireNonNull(args);
+        assert args != null;
+
         try {
             List<Index> indexes = ParserUtil.parseIndexes(args);
+            assert indexes.size() > 0;
+
             return new MarkProjectCommand(indexes);
         } catch (ParseException pe) {
             throw new ParseException(

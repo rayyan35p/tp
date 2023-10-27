@@ -17,8 +17,12 @@ public class UnmarkProjectCommandParser implements Parser<UnmarkProjectCommand> 
     @Override
     public UnmarkProjectCommand parse(String args) throws ParseException {
         requireNonNull(args);
+        assert args != null;
+
         try {
             List<Index> indexes = ParserUtil.parseIndexes(args);
+            assert indexes.size() > 0;
+
             return new UnmarkProjectCommand(indexes);
         } catch (ParseException pe) {
             throw new ParseException(
