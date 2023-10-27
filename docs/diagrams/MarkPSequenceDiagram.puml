@@ -1,0 +1,58 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskHubParser" as TaskHubParser LOGIC_COLOR
+participant "c:MarkProjectCommand" as MarkProjectCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute("markP 1 3")
+activate LogicManager
+
+LogicManager -> TaskHubParser : parseCommand("markP 1 3")
+activate TaskHubParser
+
+create MarkProjectCommand
+TaskHubParser -> MarkProjectCommand
+activate MarkProjectCommand
+
+MarkProjectCommand --> TaskHubParser
+deactivate MarkProjectCommand
+
+TaskHubParser --> LogicManager : c
+deactivate TaskHubParser
+
+LogicManager -> MarkProjectCommand : execute()
+activate MarkProjectCommand
+
+MarkProjectCommand -> Model : getFilteredProjectList()
+activate Model
+
+Model --> MarkProjectCommand
+deactivate Model
+
+loop for each project
+MarkProjectCommand -> Model : setProject()
+activate Model
+
+Model --> MarkProjectCommand
+deactivate Model
+end
+
+MarkProjectCommand -> Model : updateFilteredProjectList()
+activate Model
+
+Model --> MarkProjectCommand
+deactivate Model
+
+MarkProjectCommand --> LogicManager : result
+destroy MarkProjectCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
