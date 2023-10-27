@@ -1,0 +1,56 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskHubParser" as TaskHubParser LOGIC_COLOR
+participant "p:PriorityProjectCommand" as PriorityProjectCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute(priorityP 1 priority/high)
+activate LogicManager
+
+LogicManager -> TaskHubParser : parseCommand(priorityP 1 priority/high)
+activate TaskHubParser
+
+create PriorityProjectCommand
+TaskHubParser -> PriorityProjectCommand
+activate PriorityProjectCommand
+
+PriorityProjectCommand --> TaskHubParser
+deactivate PriorityProjectCommand
+
+TaskHubParser --> LogicManager : p
+deactivate TaskHubParser
+
+LogicManager -> PriorityProjectCommand : execute()
+activate PriorityProjectCommand
+
+PriorityProjectCommand -> Model : getFilteredProjectList()
+activate Model
+
+Model --> PriorityProjectCommand
+deactivate Model
+
+PriorityProjectCommand -> Model : setProject()
+activate Model
+
+Model --> PriorityProjectCommand
+deactivate Model
+
+PriorityProjectCommand -> Model : updateFilteredProjectList()
+activate Model
+
+Model --> PriorityProjectCommand
+deactivate Model
+
+PriorityProjectCommand --> LogicManager : result
+destroy PriorityProjectCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
