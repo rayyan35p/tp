@@ -30,16 +30,14 @@ public class AssignEmployeeCommandParser implements Parser<AssignEmployeeCommand
                 PREFIX_PROJECT, PREFIX_EMPLOYEE);
 
         Index index;
-        List<Index> employeeIndexes = new ArrayList<>();
+        List<Index> employeeIndexes;
         try {
             if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT, PREFIX_EMPLOYEE)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                                          AssignEmployeeCommand.MESSAGE_USAGE));
             }
             index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PROJECT).get());
-            for (String employeeIndex : argMultimap.getValue(PREFIX_EMPLOYEE).get().split(" ")) {
-                employeeIndexes.add(ParserUtil.parseIndex(employeeIndex));
-            }
+            employeeIndexes = ParserUtil.parseIndexes(argMultimap.getValue(PREFIX_EMPLOYEE).get());
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AssignEmployeeCommand.MESSAGE_USAGE), ive);
