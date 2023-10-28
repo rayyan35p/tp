@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -38,6 +39,10 @@ public class ProjectCard extends UiPart<Region> {
     private Label priority;
     @FXML
     private Label deadline;
+    @FXML
+    private CheckBox completionStatus;
+    @FXML
+    private Label completionStatusText;
 
 
     /**
@@ -89,5 +94,11 @@ public class ProjectCard extends UiPart<Region> {
                 deadline.setStyle("-fx-text-fill: green;");
             }
         }
+
+        // Set the completion status
+        completionStatusText.setText("Completed?:");
+        completionStatus.setSelected(project.getCompletionStatus().isCompleted);
+        // Prevent user from interacting with the checkbox through GUI
+        completionStatus.setDisable(true);
     }
 }

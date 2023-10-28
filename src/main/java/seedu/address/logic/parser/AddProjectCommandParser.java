@@ -11,11 +11,7 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.employee.UniqueEmployeeList;
-import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectPriority;
-
 
 /**
  * Parses input arguments and creates a new AddProjectCommand object
@@ -40,14 +36,11 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PROJECT);
         Project project = ParserUtil.parseProject(argMultimap.getValue(PREFIX_PROJECT).get());
         List<Index> employeeIndexes = new ArrayList<>();
+
         if (argMultimap.getValue(PREFIX_EMPLOYEE).isPresent()) {
-            for (String index : argMultimap.getValue(PREFIX_EMPLOYEE).get().split(" ")) {
-                employeeIndexes.add(ParserUtil.parseIndex(index));
-            }
+            employeeIndexes = ParserUtil.parseIndexes(argMultimap.getValue(PREFIX_EMPLOYEE).get());
         }
-        ProjectPriority priority = new ProjectPriority("normal");
-        Deadline deadline = new Deadline("");
-        project = new Project(project.getNameString(), new UniqueEmployeeList(), priority, deadline);
+        project = new Project(project.getNameString());
 
         return new AddProjectCommand(project, employeeIndexes);
     }

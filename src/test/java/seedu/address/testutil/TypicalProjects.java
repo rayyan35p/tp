@@ -19,9 +19,9 @@ import seedu.address.model.project.ProjectPriority;
 public class TypicalProjects {
     public static final Project ALPHA = new ProjectBuilder().build();
     public static final Project BETA = new ProjectBuilder().withName("Beta").withEmployees(BENSON)
-            .withDeadline("10-12-2022").build();
+            .withDeadline("10-12-2022").withCompletionStatus(false).build();
     public static final Project DELTA = new ProjectBuilder().withName("Delta").withEmployees(DANIEL, FIONA)
-            .withDeadline("24-11-2024").build();
+            .withDeadline("24-11-2024").withCompletionStatus(true).build();
 
     //Manually added
     public static final Project GAMMA = new ProjectBuilder().withName("Gamma").withEmployees(GEORGE)
