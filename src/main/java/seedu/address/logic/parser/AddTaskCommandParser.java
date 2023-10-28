@@ -16,13 +16,13 @@ import seedu.address.model.task.Task;
 
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddTaskCommand object
  */
 public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddProjectCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddTaskCommand
+     * and returns an AddTaskCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */

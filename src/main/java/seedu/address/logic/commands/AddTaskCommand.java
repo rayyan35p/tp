@@ -17,10 +17,8 @@ import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
 
-
-
 /**
- * Changes the remark of an existing person in the address book.
+ *  Adds a Task to a project existing in TaskHub upon execution.
  */
 public class AddTaskCommand extends Command {
     public static final String COMMAND_WORD = "addT";
@@ -66,7 +64,8 @@ public class AddTaskCommand extends Command {
         // Add a task to the project with the selected index.
         projectToEdit.addTask(this.task);
 
-        Project editedProject = new Project(projectToEdit.name, projectToEdit.employeeList, projectToEdit.getTasks(),
+        Project editedProject = new Project(projectToEdit.getNameString(),
+                projectToEdit.getEmployees(), projectToEdit.getTasks(),
                 projectToEdit.getProjectPriority(), projectToEdit.getDeadline(), projectToEdit.getCompletionStatus());
 
         // update model and filtered list for Ui update.
@@ -84,11 +83,11 @@ public class AddTaskCommand extends Command {
             return true;
         }
         // instanceof handles nulls
-        if (other instanceof AddTaskCommand) {
-            AddTaskCommand e = (AddTaskCommand) other;
-            return this.task.equals(e.task);
+        if (!(other instanceof AddTaskCommand)) {
+            return false;
         }
-        return false;
+        AddTaskCommand e = (AddTaskCommand) other;
+        return this.task.equals(e.task) && this.projectIndex.equals(e.projectIndex);
     }
 
     @Override

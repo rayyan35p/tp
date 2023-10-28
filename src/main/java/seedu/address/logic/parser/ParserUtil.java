@@ -137,7 +137,7 @@ public class ParserUtil {
     public static Task parseTask(String taskName, String deadlineString) throws ParseException {
         requireNonNull(taskName, deadlineString);
         String trimmedTaskName = taskName.trim();
-        if (!Project.isValidProject(trimmedTaskName)) {
+        if (!Task.isValidTask(trimmedTaskName)) {
             throw new ParseException(Task.MESSAGE_CONSTRAINTS);
         }
         return new Task(taskName, parseLocalDateTime(deadlineString));

@@ -11,7 +11,7 @@ import seedu.address.model.task.Task;
  * Default {@code taskBuilder} has name "Alpha", typical employee Alice and normal priority.
  */
 public class TaskBuilder {
-    public static final String DEFAULT_NAME = "Read Book";
+    public static final String DEFAULT_NAME = "ALPHA_TASK";
     public static final String DEFAULT_DEADLINE = "2023-11-11 2359";
     public static final boolean DEFAULT_COMPLETION_STATUS = false;
 

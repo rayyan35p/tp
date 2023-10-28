@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import seedu.address.model.employee.Employee;
 
@@ -114,20 +112,24 @@ public class Task {
      * @return A boolean value which tells us if the string represents a LocalDate.
      */
     public static boolean isValidDateTime(String input) {
-        Pattern pattern = Pattern.compile("^\\d{4}-\\d{2}-\\d{2} \\d{4}$");
-        Matcher matcher = pattern.matcher(input);
-        return matcher.matches();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        try {
+            LocalDateTime.parse(input, dtf);
+            return true; // Parsing success: Valid date/time
+        } catch (Exception e) {
+            return false; // Parsing failed: Invalid date/time
+        }
     }
 
     @Override
     public boolean equals(Object other) {
         if (this == other) {
             return true;
-        } else if (other instanceof Task) {
-            Task castedTask = (Task) other;
-            return this.name.equals(castedTask.name)
-                        && this.deadline.equals(castedTask.deadline);
+        } else if (!(other instanceof Task)) {
+            return false;
         }
-        return false;
+        Task castedTask = (Task) other;
+        return this.name.equals(castedTask.name)
+                    && this.deadline.equals(castedTask.deadline);
     }
 }
