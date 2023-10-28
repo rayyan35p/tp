@@ -119,23 +119,6 @@ public class Task {
         return matcher.matches();
     }
 
-    /**
-     * Returns true if this task and otherTask are the same.
-     * This defines a weak notion of equality between two tasks.
-     *
-     * @param otherTask The other Task to be compared to this task.
-     */
-    public boolean isSameTask(Task otherTask) {
-        if (otherTask == this) {
-            return true;
-        }
-
-        return otherTask != null
-                && otherTask.name.equals(this.name)
-                && otherTask.deadline.equals(this.deadline)
-                && otherTask.isDone == this.isDone;
-    }
-
     @Override
     public boolean equals(Object other) {
         if (this == other) {

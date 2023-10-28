@@ -50,7 +50,6 @@ public class TaskList implements Iterable<Task> {
      */
     public void setTasks(List<Task> tasks) {
         requireAllNonNull(tasks);
-
         internalList.setAll(tasks);
     }
 
@@ -81,13 +80,4 @@ public class TaskList implements Iterable<Task> {
         return internalList.equals(otherTaskList.internalList);
     }
 
-    @Override
-    public int hashCode() {
-        return internalList.hashCode();
-    }
-
-    @Override
-    public String toString() {
-        return internalList.toString();
-    }
 }
