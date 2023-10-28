@@ -4,10 +4,14 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -28,17 +32,40 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
+    private static final Logger logger = LogsCenter.getLogger(ParserUtil.class);
+
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
+     * Parses {@code String oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will
+     * be trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            logger.warning("Expected a non-zero unsigned integer but received: " + trimmedIndex + ".");
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
+
+        assert Integer.parseInt(trimmedIndex) > 0;
+        assert !trimmedIndex.startsWith("+"); // Integer.parseInt("+1") returns 1, which is not what we want
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code Collection<String> oneBasedIndexes} into a {@code List<Index>} and returns it.
+     * @param oneBasedIndexes
+     * @throws ParseException if any of the specified indexes is invalid (not non-zero unsigned integer).
+     */
+    public static List<Index> parseIndexes(String oneBasedIndexes) throws ParseException {
+        String[] trimmedIndexes = oneBasedIndexes.trim().split(" ");
+        List<Index> indexList = new ArrayList<>();
+        for (String index : trimmedIndexes) {
+            indexList.add(parseIndex(index));
+        }
+
+        assert indexList != null;
+        assert indexList.size() > 0;
+        return indexList;
     }
 
     /**

@@ -64,7 +64,7 @@ public class PriorityProjectCommand extends Command {
         assert projectToSetPriority != null;
         return new Project(projectToSetPriority.name, projectToSetPriority.employeeList,
                 projectToSetPriority.getTasks(), priority,
-                projectToSetPriority.deadline);
+                projectToSetPriority.getDeadline(), projectToSetPriority.getCompletionStatus());
     }
 
     @Override

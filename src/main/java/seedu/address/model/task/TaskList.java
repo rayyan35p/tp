@@ -20,14 +20,6 @@ public class TaskList implements Iterable<Task> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent Task as the given argument.
-     */
-    public boolean contains(Task toCheck) {
-        requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameTask);
-    }
-
-    /**
      * Adds a task to the list.
      * The employee must not already exist in the list.
      */

@@ -131,7 +131,9 @@ public class Task {
         }
 
         return otherTask != null
-                && otherTask.name.equals(this.name);
+                && otherTask.name.equals(this.name)
+                && otherTask.deadline.equals(this.deadline)
+                && otherTask.isDone == this.isDone;
     }
 
     @Override
@@ -141,14 +143,8 @@ public class Task {
         } else if (other instanceof Task) {
             Task castedTask = (Task) other;
             return this.name.equals(castedTask.name)
-                        && this.employee.equals(castedTask.employee)
-                            && this.deadline.equals(castedTask.deadline);
+                        && this.deadline.equals(castedTask.deadline);
         }
         return false;
-    }
-
-    @Override
-    public int hashCode() {
-        return name.hashCode();
     }
 }

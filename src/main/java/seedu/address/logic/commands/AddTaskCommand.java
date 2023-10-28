@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
@@ -9,6 +10,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -23,7 +25,7 @@ import seedu.address.model.task.Task;
 public class AddTaskCommand extends Command {
     public static final String COMMAND_WORD = "addT";
 
-    public static final String MESSAGE_SUCCESS = "New task to project %1$s, %2$s";
+    public static final String MESSAGE_SUCCESS = "New task added to project %1$s, %2$s";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the TaskHub.\n"
             + "Parameters: "
             + PREFIX_NAME + "TASK_NAME\n"
@@ -44,7 +46,7 @@ public class AddTaskCommand extends Command {
      * @param projectIndex The index of the project that should contain the task.
      */
     public AddTaskCommand(Task task, Index projectIndex) {
-
+        requireAllNonNull(task, projectIndex);
         this.task = task;
         this.projectIndex = projectIndex;
     }
@@ -65,7 +67,7 @@ public class AddTaskCommand extends Command {
         projectToEdit.addTask(this.task);
 
         Project editedProject = new Project(projectToEdit.name, projectToEdit.employeeList, projectToEdit.getTasks(),
-                projectToEdit.getProjectPriority(), projectToEdit.deadline);
+                projectToEdit.getProjectPriority(), projectToEdit.getDeadline(), projectToEdit.getCompletionStatus());
 
         // update model and filtered list for Ui update.
         model.setProject(projectToEdit, editedProject);
@@ -87,5 +89,12 @@ public class AddTaskCommand extends Command {
             return this.task.equals(e.task);
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("toAdd", task)
+                .toString();
     }
 }
