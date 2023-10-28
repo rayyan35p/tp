@@ -6,6 +6,8 @@ import java.util.Objects;
 
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 /**
  * Represents a Project in TaskHub.
@@ -24,6 +26,7 @@ public class Project {
     public final String name;
     public final Deadline deadline;
     public final UniqueEmployeeList employeeList;
+    private final TaskList tasks;
     private final ProjectPriority projectPriority;
 
 
@@ -38,6 +41,7 @@ public class Project {
         this.projectPriority = new ProjectPriority("normal");
         this.deadline = new Deadline("");
         this.employeeList = new UniqueEmployeeList();
+        this.tasks = new TaskList();
     }
 
     /**
@@ -45,14 +49,17 @@ public class Project {
      *
      * @param project A valid Project.
      * @param employees A list of Employees that are in the project
+     * @param tasks A list of Tasks that are in the project
      * @param priority A valid ProjectPriority for the project.
      * @param deadline A valid Deadline for the project.
      */
-    public Project(String project, UniqueEmployeeList employees, ProjectPriority priority, Deadline deadline) {
+    public Project(String project, UniqueEmployeeList employees,
+                   TaskList tasks, ProjectPriority priority, Deadline deadline) {
         requireNonNull(project);
         this.name = project;
         this.projectPriority = priority;
         this.employeeList = employees;
+        this.tasks = tasks;
         this.deadline = deadline;
     }
 
@@ -92,6 +99,26 @@ public class Project {
 
     public UniqueEmployeeList getEmployees() {
         return employeeList;
+    }
+    public TaskList getTasks() {
+        return tasks;
+    }
+
+    /**
+     * Adds a task to the project
+     * @param task The task to be added.
+     */
+    public void addTask(Task task) {
+        tasks.add(task);
+    }
+
+    /**
+     * Removes a task from the project
+     * @param task The task to be removed.
+     */
+
+    public void removeTask(Task task) {
+        tasks.remove(task);
     }
 
     public ProjectPriority getProjectPriority() {

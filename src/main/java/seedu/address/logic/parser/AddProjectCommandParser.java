@@ -15,6 +15,7 @@ import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectPriority;
+import seedu.address.model.task.TaskList;
 
 
 /**
@@ -47,7 +48,7 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
         }
         ProjectPriority priority = new ProjectPriority("normal");
         Deadline deadline = new Deadline("");
-        project = new Project(project.getNameString(), new UniqueEmployeeList(), priority, deadline);
+        project = new Project(project.getNameString(), new UniqueEmployeeList(), new TaskList(), priority, deadline);
 
         return new AddProjectCommand(project, employeeIndexes);
     }

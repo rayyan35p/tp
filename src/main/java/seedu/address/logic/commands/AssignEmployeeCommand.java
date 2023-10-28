@@ -56,7 +56,7 @@ public class AssignEmployeeCommand extends Command {
         }
 
         Project projectToEdit = lastShownProjectList.get(projectIndex.getZeroBased());
-        Project editedProject = new Project(projectToEdit.name, projectToEdit.employeeList,
+        Project editedProject = new Project(projectToEdit.name, projectToEdit.employeeList, projectToEdit.getTasks(),
                 projectToEdit.getProjectPriority(), projectToEdit.deadline);
         for (Index employeeIndex : employeeIndexes) {
             if (employeeIndex.getZeroBased() >= lastShownEmployeeList.size()) {

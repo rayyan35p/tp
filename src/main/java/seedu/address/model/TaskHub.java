@@ -8,10 +8,10 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.UniqueProjectList;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 /**
  * Wraps all data at the task-hub level
@@ -158,6 +158,14 @@ public class TaskHub implements ReadOnlyTaskHub {
      */
     public void removeProject(Project key) {
         projects.remove(key);
+    }
+
+    /**
+     * Removes {@code key} from this {@code TaskHub}.
+     * {@code key} must exist in the TaskHub.
+     */
+    public void removeTask(Task key) {
+        tasks.remove(key);
     }
     //// util methods
 

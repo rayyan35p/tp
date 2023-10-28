@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddEmployeeCommand;
 import seedu.address.logic.commands.AddProjectCommand;
+import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.AssignEmployeeCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -25,7 +26,6 @@ import seedu.address.logic.commands.ListEmployeeCommand;
 import seedu.address.logic.commands.ListProjectCommand;
 import seedu.address.logic.commands.PriorityProjectCommand;
 import seedu.address.logic.commands.ProjectDeadlineCommand;
-import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 

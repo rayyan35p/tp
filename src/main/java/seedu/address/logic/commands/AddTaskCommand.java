@@ -1,18 +1,21 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
+
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.employee.Employee;
+import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
 
-import java.time.LocalDateTime;
-import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Changes the remark of an existing person in the address book.
@@ -20,52 +23,57 @@ import static seedu.address.logic.parser.CliSyntax.*;
 public class AddTaskCommand extends Command {
     public static final String COMMAND_WORD = "addT";
 
-    public static final String MESSAGE_ARGUMENTS = "Name: %1$s, Deadline: %2$s";
-    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
-    private final Task task;
-    public AddTaskCommand(Task task) {
-        this.task= task;
-    }
-
+    public static final String MESSAGE_SUCCESS = "New task to project %1$s, %2$s";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the TaskHub.\n"
             + "Parameters: "
             + PREFIX_NAME + "TASK_NAME\n"
+            + PREFIX_PROJECT + "PROJECT_INDEX\n"
             + PREFIX_DEADLINE + "TASK_DEADLINE{yyyy-MM-dd HHmm}\n\n"
             + "Example: "
             + COMMAND_WORD + " "
-            + PREFIX_NAME + "Implement addT "
+            + PREFIX_NAME + "name of task"
+            + PREFIX_PROJECT + "1 "
             + PREFIX_DEADLINE + "2023-11-31 2359";
 
+    private final Task task;
+    private final Index projectIndex;
+
+    /**
+     * Constructs an AddTaskCommand.
+     * @param task The task to be added.
+     * @param projectIndex The index of the project that should contain the task.
+     */
+    public AddTaskCommand(Task task, Index projectIndex) {
+
+        this.task = task;
+        this.projectIndex = projectIndex;
+    }
+
+
+
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         // TODO modifying employee ? do we need to do this? employees should know all the tasks that they have?
-//        List<Employee> lastShownList = model.getFilteredEmployeeList();
-//        for (Index targetIndex : employeeIndexes) {
-//            if (targetIndex.getZeroBased() >= lastShownList.size()) {
-//                throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
-//            }
-//            //changes project of employee
-//            Employee employeeToAdd = lastShownList.get(targetIndex.getZeroBased());
-//            EditCommand.EditEmployeeDescriptor editEmployeeDescriptor = new EditCommand.EditEmployeeDescriptor();
-//            editEmployeeDescriptor.setProject(toAdd);
-//            editEmployeeDescriptor.setName(employeeToAdd.getName());
-//            editEmployeeDescriptor.setAddress(employeeToAdd.getAddress());
-//            editEmployeeDescriptor.setEmail(employeeToAdd.getEmail());
-//            editEmployeeDescriptor.setPhone(employeeToAdd.getPhone());
-//            editEmployeeDescriptor.setTags(employeeToAdd.getTags());
-//            new EditCommand(targetIndex, editEmployeeDescriptor).execute(model);
-//
-//            //removes employee from previous project
-//            toAdd.addEmployee(employeeToAdd);
-//        }
-          //TODO: we should allow duplicate tasks if multiple need to do the same thing in a project?
-//        if (model.hasProject(toAdd)) {
-//            throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
-//        }
+        List<Project> lastShownProjectList = model.getFilteredProjectList();
+        if (projectIndex.getZeroBased() >= lastShownProjectList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+        }
+        Project projectToEdit = lastShownProjectList.get(projectIndex.getZeroBased());
+
+        // Add a task to the project with the selected index.
+        projectToEdit.addTask(this.task);
+
+        Project editedProject = new Project(projectToEdit.name, projectToEdit.employeeList, projectToEdit.getTasks(),
+                projectToEdit.getProjectPriority(), projectToEdit.deadline);
+
+        // update model and filtered list for Ui update.
+        model.setProject(projectToEdit, editedProject);
         model.addTask(this.task);
-//        return new CommandResult(String.format(MESSAGE_ARGUMENTS, task.getName(), task.getDeadline()));
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(this.task)));
+
+        model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, projectIndex.getOneBased(),
+                                               Messages.format(this.task)));
     }
 
     @Override

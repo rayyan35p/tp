@@ -6,13 +6,13 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10" prefWidth="150" />
         </columnConstraints>
         <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
             <padding>
@@ -33,8 +33,11 @@
         <HBox GridPane.columnIndex="1"> <!-- Set the column index to 1 for the "deadline" label -->
             <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
         </HBox>
-      <rowConstraints>
-         <RowConstraints />
-      </rowConstraints>
+        <VBox GridPane.rowIndex="1" GridPane.columnSpan="2"> <!-- Set GridPane.rowIndex to 1 for second row -->
+            <!-- Add a StackPane placeholder for TaskListPanel -->
+            <StackPane fx:id="taskListPlaceholder" HBox.hgrow="ALWAYS">
+            </StackPane>
+        </VBox>
     </GridPane>
 </HBox>
+

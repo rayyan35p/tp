@@ -1,16 +1,14 @@
 package seedu.address.storage;
 
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Name;
 import seedu.address.model.task.Task;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Jackson-friendly version of {@link Task}.
@@ -19,8 +17,9 @@ import java.util.stream.Collectors;
 public class JsonAdaptedTask {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Tasks' %s field is missing!";
     private final String name;
-//    private final List<JsonAdaptedEmployee> employees = new ArrayList<>();
     private final LocalDateTime deadline;
+
+    private final boolean isDone;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given Task details.
@@ -28,9 +27,11 @@ public class JsonAdaptedTask {
 
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name,
-                           @JsonProperty("deadline") LocalDateTime deadline) {
+                           @JsonProperty("deadline") LocalDateTime deadline,
+                           @JsonProperty("isDone") Boolean isDone) {
         this.deadline = deadline;
         this.name = name;
+        this.isDone = isDone;
     }
 
     /**
@@ -39,6 +40,7 @@ public class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         name = source.getName();
         deadline = source.getDeadline();
+        isDone = source.isDone();
     }
 
     /**
@@ -54,6 +56,6 @@ public class JsonAdaptedTask {
         if (!Task.isValidTask(name)) {
             throw new IllegalValueException(Task.MESSAGE_CONSTRAINTS);
         }
-        return new Task(name, deadline);
+        return new Task(name, deadline, isDone);
     }
 }

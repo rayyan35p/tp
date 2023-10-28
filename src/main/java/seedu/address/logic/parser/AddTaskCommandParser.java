@@ -1,15 +1,18 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AddProjectCommand;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
+
+import java.util.stream.Stream;
+
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Task;
 
-import java.util.stream.Stream;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 
 /**
@@ -25,24 +28,19 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
      */
     public AddTaskCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PROJECT, PREFIX_DEADLINE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DEADLINE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PROJECT, PREFIX_DEADLINE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME);
+        Index projectIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PROJECT).get());
         Task task = ParserUtil.parseTask(argMultimap.getValue(PREFIX_NAME).get(),
                                          argMultimap.getValue(PREFIX_DEADLINE).get());
-//        List<Index> employeeIndexes = new ArrayList<>();
-//        if (argMultimap.getValue(PREFIX_EMPLOYEE).isPresent()) {
-//            for (String index : argMultimap.getValue(PREFIX_EMPLOYEE).get().split(" ")) {
-//                employeeIndexes.add(ParserUtil.parseIndex(index));
-//            }
-//        }
 
-        return new AddTaskCommand(task);
+        return new AddTaskCommand(task, projectIndex);
     }
 
     /**

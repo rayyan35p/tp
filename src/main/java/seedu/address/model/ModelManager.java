@@ -12,8 +12,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.task.Task;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the TaskHub data.
@@ -25,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Employee> filteredEmployees;
     private final FilteredList<Project> filteredProjects;
+    private final FilteredList<Task> filteredTasks;
 
     /**
      * Initializes a ModelManager with the given taskHub and userPrefs.
@@ -38,6 +39,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredEmployees = new FilteredList<>(this.taskHub.getEmployeeList());
         filteredProjects = new FilteredList<>(this.taskHub.getProjectList());
+        filteredTasks = new FilteredList<>(this.taskHub.getTaskList());
     }
 
     public ModelManager() {
@@ -114,6 +116,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteTask(Task task) {
+        taskHub.removeTask(task);
+    }
+
+    @Override
     public void addEmployee(Employee employee) {
         taskHub.addEmployee(employee);
         updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
@@ -163,6 +170,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
+    }
+
+    @Override
     public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
         requireNonNull(predicate);
         filteredEmployees.setPredicate(predicate);
@@ -172,6 +184,12 @@ public class ModelManager implements Model {
     public void updateFilteredProjectList(Predicate<Project> predicate) {
         requireNonNull(predicate);
         filteredProjects.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
     }
 
     @Override

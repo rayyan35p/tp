@@ -6,8 +6,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.task.Task;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
 
 /**
  * Container for user visible messages.

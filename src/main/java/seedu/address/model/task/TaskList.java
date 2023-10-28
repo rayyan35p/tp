@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.task.Task;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -57,10 +56,10 @@ public class TaskList implements Iterable<Task> {
      * Replaces the contents of this list with {@code Tasks}.
      * {@code Tasks} may contain duplicate Tasks.
      */
-    public void setTasks(List<Task> Tasks) {
-        requireAllNonNull(Tasks);
+    public void setTasks(List<Task> tasks) {
+        requireAllNonNull(tasks);
 
-        internalList.setAll(Tasks);
+        internalList.setAll(tasks);
     }
 
     /**

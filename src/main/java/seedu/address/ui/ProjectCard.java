@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import seedu.address.model.project.Project;
 
 /**
@@ -38,6 +39,8 @@ public class ProjectCard extends UiPart<Region> {
     private Label priority;
     @FXML
     private Label deadline;
+    @FXML
+    private StackPane taskListPlaceholder;
 
 
     /**
@@ -69,6 +72,9 @@ public class ProjectCard extends UiPart<Region> {
         if (priorityString.equals("high")) {
             priority.setStyle("-fx-text-fill: red;");
         }
+
+        TaskListPanel taskListPanel = new TaskListPanel(project.getTasks().asUnmodifiableObservableList());
+        taskListPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         // Set the deadline
         if (project.getDeadline().value.isEmpty()) {

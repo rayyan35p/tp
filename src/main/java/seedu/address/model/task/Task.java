@@ -1,11 +1,13 @@
 package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
-import seedu.address.model.employee.Employee;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import seedu.address.model.employee.Employee;
 
 /**
  * Represents a task which belongs to a certain project.
@@ -20,10 +22,10 @@ public class Task {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
-    public String name;
-    public boolean isDone;
-    public Employee employee;
-    public LocalDateTime deadline;
+    private final String name;
+    private boolean isDone;
+    private Employee employee;
+    private final LocalDateTime deadline;
     /**
      * Constructs a {@code Task}
      * @param taskName The name of the task.
@@ -34,6 +36,18 @@ public class Task {
         name = taskName;
         this.deadline = deadline;
         this.isDone = false;
+    }
+
+    /**
+     * Constructs a {@code Task} with a pre-determined Done status - for loading of tasks from taskhub.json.
+     * @param taskName The name of the task.
+     */
+    public Task(String taskName, LocalDateTime deadline, Boolean isDone) {
+        requireNonNull(taskName);
+        requireNonNull(deadline);
+        name = taskName;
+        this.deadline = deadline;
+        this.isDone = isDone;
     }
 
     /**

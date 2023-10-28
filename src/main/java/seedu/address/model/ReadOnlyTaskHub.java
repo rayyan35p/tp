@@ -2,8 +2,8 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.task.Task;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
 
 /**
  * Unmodifiable view of an TaskHub
