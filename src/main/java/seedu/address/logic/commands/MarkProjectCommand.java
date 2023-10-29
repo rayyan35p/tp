@@ -61,7 +61,8 @@ public class MarkProjectCommand extends Command {
 
             Project projectToMark = lastShownProjectList.get(projectIndex.getZeroBased());
             Project markedProject = new Project(projectToMark.name, projectToMark.employeeList,
-                    projectToMark.getProjectPriority(), projectToMark.deadline, new CompletionStatus(true));
+                    projectToMark.getTasks(),
+                    projectToMark.getProjectPriority(), projectToMark.getDeadline(), new CompletionStatus(true));
             model.setProject(projectToMark, markedProject);
         }
 

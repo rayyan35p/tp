@@ -6,11 +6,13 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
+import static seedu.address.testutil.TypicalTasks.ALPHA_TASK;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,9 +24,11 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddEmployeeCommand;
 import seedu.address.logic.commands.AddProjectCommand;
+import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.AssignEmployeeCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteEmployeeCommand;
+import seedu.address.logic.commands.DeleteProjectCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditEmployeeDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -35,6 +39,7 @@ import seedu.address.logic.commands.ListEmployeeAndProjectCommand;
 import seedu.address.logic.commands.ListEmployeeCommand;
 import seedu.address.logic.commands.ListProjectCommand;
 import seedu.address.logic.commands.MarkProjectCommand;
+import seedu.address.logic.commands.PriorityProjectCommand;
 import seedu.address.logic.commands.ProjectDeadlineCommand;
 import seedu.address.logic.commands.UnmarkProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -43,6 +48,7 @@ import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
+import seedu.address.model.project.ProjectPriority;
 import seedu.address.testutil.EditEmployeeDescriptorBuilder;
 import seedu.address.testutil.EmployeeBuilder;
 import seedu.address.testutil.EmployeeUtil;
@@ -175,6 +181,32 @@ public class TaskHubParserTest {
         AddProjectCommand command = (AddProjectCommand) parser.parseCommand(AddProjectCommand.COMMAND_WORD + " "
                             + PREFIX_PROJECT + "Alpha");
         AddProjectCommand expected = new AddProjectCommand(new Project("Alpha"), new ArrayList<>());
+        assertEquals(expected, command);
+    }
+    @Test
+    public void parseCommand_deleteProject() throws Exception {
+        DeleteProjectCommand command = (DeleteProjectCommand) parser
+                .parseCommand(DeleteProjectCommand.COMMAND_WORD + " 1");
+        DeleteProjectCommand expected = new DeleteProjectCommand(ParserUtil.parseIndex("1"));
+        assertEquals(expected, command);
+    }
+
+    @Test
+    public void parseCommand_priorityProject() throws Exception {
+        PriorityProjectCommand command = (PriorityProjectCommand) parser
+                .parseCommand(PriorityProjectCommand.COMMAND_WORD + " 1" + " priority/low");
+        PriorityProjectCommand expected = new PriorityProjectCommand(new ProjectPriority("low"),
+                ParserUtil.parseIndex("1"));
+        assertEquals(expected, command);
+    }
+
+    @Test
+    public void parseCommand_addTask() throws Exception {
+        AddTaskCommand command = (AddTaskCommand) parser.parseCommand(AddTaskCommand.COMMAND_WORD + " "
+                            + PREFIX_NAME + "ALPHA_TASK "
+                            + PREFIX_PROJECT + "1 "
+                            + PREFIX_DEADLINE + "2023-11-11 2359");
+        AddTaskCommand expected = new AddTaskCommand(ALPHA_TASK, ParserUtil.parseIndex("1"));
         assertEquals(expected, command);
     }
 
