@@ -52,4 +52,11 @@ public class ProjectDeadlineCommandParserTest {
         userInput = INDEX_FIRST_PROJECT.getOneBased() + " " + PREFIX_DEADLINE + "32-02-2023";
         assertParseFailure(parser, userInput, Deadline.MESSAGE_CONSTRAINTS);
     }
+
+    @Test
+    public void parse_invalidIndex_failure() {
+        // Invalid index
+        String userInput = "-1" + " " + PREFIX_DEADLINE + "31-02-2023";
+        assertParseFailure(parser, userInput, MESSAGE_INVALID_FORMAT);
+    }
 }

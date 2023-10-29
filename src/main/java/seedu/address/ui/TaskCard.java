@@ -89,10 +89,10 @@ public class TaskCard extends UiPart<Region> {
         // Compare Task deadline with current date
         if (deadlineDateTime.isBefore(currentDateTime)) {
             // Set the style to red if the deadline is in the past
-            deadline.setStyle("-fx-text-fill: red; -fx-font-size: 10px;");
+            deadline.setStyle("-fx-text-fill: red; -fx-font-size: 10px; -fx-font-weight: bold");
         } else {
             // Set the style to green if the deadline is in the future
-            deadline.setStyle("-fx-text-fill: green; -fx-font-size: 10px;");
+            deadline.setStyle("-fx-text-fill: green; -fx-font-size: 10px; -fx-font-weight: bold");
         }
     }
 }

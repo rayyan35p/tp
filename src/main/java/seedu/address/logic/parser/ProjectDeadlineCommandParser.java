@@ -35,7 +35,7 @@ public class ProjectDeadlineCommandParser implements Parser<ProjectDeadlineComma
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (IllegalValueException ive) {
+        } catch (ParseException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ProjectDeadlineCommand.MESSAGE_USAGE), ive);
         }
