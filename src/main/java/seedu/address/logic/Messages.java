@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -61,12 +62,21 @@ public class Messages {
     public static String format(Project project) {
         final StringBuilder builder = new StringBuilder();
         builder.append(project.name);
-        builder.append("; Priority: " + project.getProjectPriority().value);
-        builder.append("; Employees: ");
-        for (Employee employee : project.getEmployees()) {
-            builder.append(employee.getName() + ", ");
+        builder.append("; Completion Status: " + project.getCompletionStatus());
+        builder.append("; Deadline: " + project.getDeadline());
+        builder.append("; Priority: " + project.getProjectPriority().value + "\n");
+        builder.append("Employees: ");
+
+        List<Employee> employees = project.getEmployees().asUnmodifiableObservableList();
+        if (!employees.isEmpty()) {
+            builder.append(employees.get(0).getName());
+            for (int i = 1; i < employees.size(); i++) {
+                builder.append(", " + employees.get(i).getName());
+            }
+        } else {
+            builder.append("None");
         }
-        builder.substring(0, builder.lastIndexOf(", ") == -1 ? builder.length() : builder.lastIndexOf(", "));
+
         return builder.toString();
     }
 
