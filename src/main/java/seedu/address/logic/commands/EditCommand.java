@@ -28,7 +28,6 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.employee.UniqueEmployeeList;
-import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -110,10 +109,9 @@ public class EditCommand extends Command {
         Phone updatedPhone = editEmployeeDescriptor.getPhone().orElse(employeeToEdit.getPhone());
         Email updatedEmail = editEmployeeDescriptor.getEmail().orElse(employeeToEdit.getEmail());
         Address updatedAddress = editEmployeeDescriptor.getAddress().orElse(employeeToEdit.getAddress());
-        Project updatedProject = editEmployeeDescriptor.getProject().orElse(employeeToEdit.getProject());
         Set<Tag> updatedTags = editEmployeeDescriptor.getTags().orElse(employeeToEdit.getTags());
 
-        return new Employee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedProject, updatedTags);
+        return new Employee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -149,7 +147,6 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Project project;
         private Set<Tag> tags;
 
         public EditEmployeeDescriptor() {}
@@ -163,7 +160,6 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setProject(toCopy.project);
             setTags(toCopy.tags);
         }
 
@@ -204,14 +200,6 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
-        }
-
-        public void setProject(Project project) {
-            this.project = project;
-        }
-
-        public Optional<Project> getProject() {
-            return Optional.ofNullable(project);
         }
 
         /**

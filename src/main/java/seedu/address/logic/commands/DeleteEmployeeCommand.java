@@ -49,6 +49,7 @@ public class DeleteEmployeeCommand extends Command {
             if (employeeList.contains(employeeToDelete)) {
                 employeeList.remove(employeeToDelete);
             }
+
         });
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, Messages.format(employeeToDelete)));
