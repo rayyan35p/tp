@@ -25,6 +25,7 @@ import seedu.address.logic.commands.ListEmployeeAndProjectCommand;
 import seedu.address.logic.commands.ListEmployeeCommand;
 import seedu.address.logic.commands.ListProjectCommand;
 import seedu.address.logic.commands.MarkProjectCommand;
+import seedu.address.logic.commands.MarkTaskCommand;
 import seedu.address.logic.commands.PriorityProjectCommand;
 import seedu.address.logic.commands.ProjectDeadlineCommand;
 import seedu.address.logic.commands.UnmarkProjectCommand;
@@ -115,6 +116,9 @@ public class TaskHubParser {
 
         case UnmarkProjectCommand.COMMAND_WORD:
             return new UnmarkProjectCommandParser().parse(arguments);
+
+        case MarkTaskCommand.COMMAND_WORD:
+            return new MarkTaskCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
