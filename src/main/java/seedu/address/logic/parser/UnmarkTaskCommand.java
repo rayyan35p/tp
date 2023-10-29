@@ -16,31 +16,27 @@ import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 
+public class UnmarkTaskCommand extends Command {
 
-/**
- * Marks a task as completed in TaskHub.
- */
-public class MarkTaskCommand extends Command {
-
-    public static final String COMMAND_WORD = "markT";
+    public static final String COMMAND_WORD = "unmarkT";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks a task as completed in TaskHub.\n"
+            + ": Marks a task as incomplete in TaskHub.\n"
             + "Parameters: " + PREFIX_PROJECT + "PROJECT_INDEX " + PREFIX_TASK + "TASK_INDEXES\n"
             + "PROJECT_INDEX must be one positive integer and "
             + "TASK_INDEXES must be one or more positive integers, separated by a space between each INDEX\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_PROJECT + "2 " + PREFIX_TASK + "1 2 4";
 
-    public static final String MESSAGE_TASKS_MARKED_SUCCESSFULLY = "%1$d task(s) marked as completed.";
+    public static final String MESSAGE_TASKS_MARKED_SUCCESSFULLY = "%1$d task(s) marked as incomplete.";
     private static final Logger logger = LogsCenter.getLogger(MarkTaskCommand.class);
     private final Index projectIndex;
     private final List<Index> taskIndexes;
 
     /**
-     * Creates a MarkTaskCommand to mark the specified tasks as completed.
-     * @param taskIndexes which are the indexes of the tasks to mark as completed.
+     * Creates an UnmarkTaskCommand to mark the specified tasks as incomplete.
+     * @param taskIndexes which are the indexes of the tasks to mark as incomplete.
      */
-    public MarkTaskCommand(Index projectIndex, List<Index> taskIndexes) {
+    public UnmarkTaskCommand(Index projectIndex, List<Index> taskIndexes) {
         requireAllNonNull(taskIndexes);
         assert taskIndexes.size() > 0;
         this.projectIndex = projectIndex;
@@ -53,7 +49,7 @@ public class MarkTaskCommand extends Command {
 
         // Check if project index is valid first
         if (projectIndex.getZeroBased() >= lastShownProjectList.size()
-            || projectIndex.getZeroBased() < 0) {
+                || projectIndex.getZeroBased() < 0) {
             logger.warning("Invalid project index: " + projectIndex.getOneBased());
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
@@ -71,7 +67,7 @@ public class MarkTaskCommand extends Command {
             }
 
             Task taskToUpdate = lastShownTaskList.getTask(taskIndex);
-            Task updatedTask = new Task(taskToUpdate.getName(), taskToUpdate.getDeadline(), true);
+            Task updatedTask = new Task(taskToUpdate.getName(), taskToUpdate.getDeadline(), false);
             lastShownTaskList.setTask(taskToUpdate, updatedTask);
         }
 
@@ -86,7 +82,7 @@ public class MarkTaskCommand extends Command {
     }
 
     /**
-     * Generates a command execution success message based on whether all the tasks were marked as completed.
+     * Generates a command execution success message based on whether all the tasks were marked as incomplete.
      */
     private String generateSuccessMessage() {
         return String.format(MESSAGE_TASKS_MARKED_SUCCESSFULLY, taskIndexes.size());
@@ -98,11 +94,11 @@ public class MarkTaskCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof MarkTaskCommand)) {
+        if (!(other instanceof UnmarkTaskCommand)) {
             return false;
         }
 
-        MarkTaskCommand otherCommand = (MarkTaskCommand) other;
+        UnmarkTaskCommand otherCommand = (UnmarkTaskCommand) other;
         return projectIndex.equals(otherCommand.projectIndex) && taskIndexes.equals(otherCommand.taskIndexes);
     }
 }
