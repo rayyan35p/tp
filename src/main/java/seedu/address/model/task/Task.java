@@ -103,17 +103,17 @@ public class Task {
         return completionString + " | "
                                     + this.name + " | "
                                         + this.employee + " | "
-                                            + DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm").format(this.deadline);
+                                            + DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm").format(this.deadline);
     }
 
     /**
-     * Determines if a string is of the format "yyyy-MM-dd HHmm" i.e., a valid LocalDateTime object.
+     * Determines if a string is of the format "dd-MM-yyyy HHmm" i.e., a valid LocalDateTime object.
      *
      * @param input The string to be examined.
      * @return A boolean value which tells us if the string represents a LocalDate.
      */
     public static boolean isValidDateTime(String input) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
         try {
             LocalDateTime.parse(input, dtf);
             return true; // Parsing success: Valid date/time
