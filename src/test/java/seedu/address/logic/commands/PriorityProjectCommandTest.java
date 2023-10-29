@@ -39,9 +39,10 @@ public class PriorityProjectCommandTest {
         PriorityProjectCommand projectPriorityCommand = new PriorityProjectCommand(new ProjectPriority("high"),
                 INDEX_FIRST_PROJECT);
         Project projectWithNewPriority = new Project(projectToSetPriority.name,
-                projectToSetPriority.employeeList,
+                projectToSetPriority.getEmployees(),
+                projectToSetPriority.getTasks(),
                 new ProjectPriority("high"),
-                projectToSetPriority.deadline,
+                projectToSetPriority.getDeadline(),
                 projectToSetPriority.getCompletionStatus());
 
         String expectedMessage = String.format(PriorityProjectCommand.MESSAGE_SUCCESS,

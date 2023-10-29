@@ -4,6 +4,9 @@ import static seedu.address.testutil.TypicalEmployees.BENSON;
 import static seedu.address.testutil.TypicalEmployees.DANIEL;
 import static seedu.address.testutil.TypicalEmployees.FIONA;
 import static seedu.address.testutil.TypicalEmployees.GEORGE;
+import static seedu.address.testutil.TypicalTasks.ALPHA_TASK;
+import static seedu.address.testutil.TypicalTasks.BETA_TASK;
+import static seedu.address.testutil.TypicalTasks.CHARLIE_TASK;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,22 +21,26 @@ import seedu.address.model.project.ProjectPriority;
  */
 public class TypicalProjects {
     public static final Project ALPHA = new ProjectBuilder().build();
-    public static final Project BETA = new ProjectBuilder().withName("Beta").withEmployees(BENSON)
+    public static final Project BETA = new ProjectBuilder().withName("Beta").withEmployees(BENSON).withTasks(ALPHA_TASK)
             .withDeadline("10-12-2022").withCompletionStatus(false).build();
     public static final Project DELTA = new ProjectBuilder().withName("Delta").withEmployees(DANIEL, FIONA)
+            .withTasks(ALPHA_TASK, BETA_TASK)
             .withDeadline("24-11-2024").withCompletionStatus(true).build();
 
     //Manually added
     public static final Project GAMMA = new ProjectBuilder().withName("Gamma").withEmployees(GEORGE)
+            .withTasks(ALPHA_TASK, BETA_TASK, CHARLIE_TASK)
             .withDeadline("08-07-2023").build();
 
     public static final Project HIGH_PRIORITY_PROJECT = new ProjectBuilder()
             .withName("High Priority Project")
+            .withTasks(ALPHA_TASK, BETA_TASK, CHARLIE_TASK)
             .withPriority(new ProjectPriority("high"))
             .build();
 
     public static final Project LOW_PRIORITY_PROJECT = new ProjectBuilder()
             .withName("Low Priority Project")
+            .withTasks(ALPHA_TASK, BETA_TASK, CHARLIE_TASK)
             .withPriority(new ProjectPriority("low"))
             .build();
 

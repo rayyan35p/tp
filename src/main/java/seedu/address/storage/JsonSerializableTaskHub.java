@@ -69,5 +69,4 @@ class JsonSerializableTaskHub {
         }
         return taskHub;
     }
-
 }
