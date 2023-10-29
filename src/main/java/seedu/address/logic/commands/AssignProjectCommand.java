@@ -17,9 +17,9 @@ import seedu.address.model.project.Project;
 /**
  * Assigns an existing project to a number of existing employees in the TaskHub.
  */
-public class AssignEmployeeCommand extends Command {
+public class AssignProjectCommand extends Command {
 
-    public static final String COMMAND_WORD = "assignE";
+    public static final String COMMAND_WORD = "assignP";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the project of the employees identified "
@@ -40,7 +40,7 @@ public class AssignEmployeeCommand extends Command {
      * @param projectIndex index of the project in the filtered project list to update
      * @param employeeIndexes index of the employees in the filtered employee list to be added to the project
      */
-    public AssignEmployeeCommand(Index projectIndex, List<Index> employeeIndexes) {
+    public AssignProjectCommand(Index projectIndex, List<Index> employeeIndexes) {
         requireAllNonNull(projectIndex, employeeIndexes);
 
         this.projectIndex = projectIndex;
@@ -90,11 +90,11 @@ public class AssignEmployeeCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AssignEmployeeCommand)) {
+        if (!(other instanceof AssignProjectCommand)) {
             return false;
         }
 
-        AssignEmployeeCommand e = (AssignEmployeeCommand) other;
+        AssignProjectCommand e = (AssignProjectCommand) other;
         return projectIndex.equals(e.projectIndex)
                 && employeeIndexes.equals(e.employeeIndexes);
     }

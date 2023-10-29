@@ -25,7 +25,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddEmployeeCommand;
 import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.commands.AddTaskCommand;
-import seedu.address.logic.commands.AssignEmployeeCommand;
+import seedu.address.logic.commands.AssignProjectCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteEmployeeCommand;
 import seedu.address.logic.commands.DeleteProjectCommand;
@@ -137,11 +137,11 @@ public class TaskHubParserTest {
 
     @Test
     public void parseCommand_assignEmployeeToProject() throws Exception {
-        AssignEmployeeCommand command =
-                (AssignEmployeeCommand) parser.parseCommand(AssignEmployeeCommand.COMMAND_WORD + " "
+        AssignProjectCommand command =
+                (AssignProjectCommand) parser.parseCommand(AssignProjectCommand.COMMAND_WORD + " "
                  + PREFIX_PROJECT + INDEX_FIRST_EMPLOYEE.getOneBased() + " " + PREFIX_EMPLOYEE
                         + INDEX_FIRST_EMPLOYEE.getOneBased());
-        assertEquals(new AssignEmployeeCommand(INDEX_FIRST_EMPLOYEE,
+        assertEquals(new AssignProjectCommand(INDEX_FIRST_EMPLOYEE,
                                                 new ArrayList<>(Arrays.asList(INDEX_FIRST_EMPLOYEE))), command);
     }
 
