@@ -59,8 +59,16 @@ public class ParserUtil {
     public static List<Index> parseIndexes(String oneBasedIndexes) throws ParseException {
         String[] trimmedIndexes = oneBasedIndexes.trim().split(" ");
         List<Index> indexList = new ArrayList<>();
+        Set<String> uniqueStringSet = new HashSet<>();
+
         for (String index : trimmedIndexes) {
-            indexList.add(parseIndex(index));
+            if (uniqueStringSet.contains(index)) {
+                logger.warning("Duplicate indexes are not allowed. \n" + "Duplicate Index: " + index);
+                throw new ParseException("Duplicate indexes are not allowed.\n" + "Duplicate Index: " + index);
+            } else {
+                uniqueStringSet.add(index);
+                indexList.add(parseIndex(index));
+            }
         }
 
         assert indexList != null;
