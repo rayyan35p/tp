@@ -28,7 +28,7 @@ public class UnmarkTaskCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_PROJECT + "2 " + PREFIX_TASK + "1 2 4";
 
     public static final String MESSAGE_TASKS_MARKED_SUCCESSFULLY = "%1$d task(s) marked as incomplete.";
-    private static final Logger logger = LogsCenter.getLogger(MarkTaskCommand.class);
+    private static final Logger logger = LogsCenter.getLogger(UnmarkTaskCommand.class);
     private final Index projectIndex;
     private final List<Index> taskIndexes;
 
