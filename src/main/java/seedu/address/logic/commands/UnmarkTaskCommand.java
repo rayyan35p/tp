@@ -16,6 +16,9 @@ import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 
+/**
+ * Marks a task as incomplete in TaskHub.
+ */
 public class UnmarkTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "unmarkT";
@@ -27,7 +30,7 @@ public class UnmarkTaskCommand extends Command {
             + "TASK_INDEXES must be one or more positive integers, separated by a space between each INDEX\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_PROJECT + "2 " + PREFIX_TASK + "1 2 4";
 
-    public static final String MESSAGE_TASKS_MARKED_SUCCESSFULLY = "%1$d task(s) marked as incomplete.";
+    public static final String MESSAGE_TASKS_UNMARKED_SUCCESSFULLY = "%1$d task(s) marked as incomplete.";
     private static final Logger logger = LogsCenter.getLogger(UnmarkTaskCommand.class);
     private final Index projectIndex;
     private final List<Index> taskIndexes;
@@ -85,7 +88,7 @@ public class UnmarkTaskCommand extends Command {
      * Generates a command execution success message based on whether all the tasks were marked as incomplete.
      */
     private String generateSuccessMessage() {
-        return String.format(MESSAGE_TASKS_MARKED_SUCCESSFULLY, taskIndexes.size());
+        return String.format(MESSAGE_TASKS_UNMARKED_SUCCESSFULLY, taskIndexes.size());
     }
 
     @Override
