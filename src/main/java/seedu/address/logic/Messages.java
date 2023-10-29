@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -7,6 +8,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
 
 /**
  * Container for user visible messages.
@@ -17,6 +19,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX = "The employee index provided is invalid";
     public static final String MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX = "The project index provided is invalid";
+    public static final String MESSAGE_NO_PROJECT_TO_ADD_TASK = "You don't have any projects to add tasks to.\n "
+            + "Try creating a project with addP!";
     public static final String MESSAGE_EMPLOYEES_LISTED_OVERVIEW = "%1$d employee(s) and their project(s) listed!";
     public static final String MESSAGE_PROJECTS_LISTED_OVERVIEW = "%1$d project(s) and their employee(s) listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
@@ -67,4 +71,20 @@ public class Messages {
         builder.substring(0, builder.lastIndexOf(", ") == -1 ? builder.length() : builder.lastIndexOf(", "));
         return builder.toString();
     }
+
+    /**
+     * Formats the {@code Task} for display to the user.
+     */
+    public static String format(Task task) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(task.getName());
+
+        // Format the deadline
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mma");
+        String formattedDeadline = task.getDeadline().format(formatter);
+
+        builder.append("; Deadline: " + formattedDeadline);
+        return builder.toString();
+    }
+
 }

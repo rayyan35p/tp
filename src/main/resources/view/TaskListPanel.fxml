@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox alignment="CENTER_LEFT" minHeight="20" GridPane.columnIndex="0">
+        <Label fx:id="tasks" styleClass="label-bright" text="Tasks:" />
+    </VBox>
+    <ListView fx:id="taskListView" maxHeight="170"/>
+</VBox>

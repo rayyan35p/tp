@@ -24,6 +24,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.EmployeeBuilder;
 
 public class TaskHubTest {
@@ -53,7 +54,7 @@ public class TaskHubTest {
         Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Employee> newEmployees = Arrays.asList(ALICE, editedAlice);
-        TaskHubStub newData = new TaskHubStub(newEmployees, new ArrayList<>());
+        TaskHubStub newData = new TaskHubStub(newEmployees, new ArrayList<>(), new ArrayList<>());
 
         assertThrows(DuplicateEmployeeException.class, () -> taskHub.resetData(newData));
     }
@@ -138,10 +139,12 @@ public class TaskHubTest {
     private static class TaskHubStub implements ReadOnlyTaskHub {
         private final ObservableList<Employee> employees = FXCollections.observableArrayList();
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
+        private final ObservableList<Task> tasks = FXCollections.observableArrayList();
 
-        TaskHubStub(Collection<Employee> employees, Collection<Project> projects) {
+        TaskHubStub(Collection<Employee> employees, Collection<Project> projects, Collection<Task> tasks) {
             this.employees.setAll(employees);
             this.projects.setAll(projects);
+            this.tasks.setAll(tasks);
         }
 
         @Override
@@ -153,6 +156,12 @@ public class TaskHubTest {
         public ObservableList<Project> getProjectList() {
             return projects;
         }
+
+        @Override
+        public ObservableList<Task> getTaskList() {
+            return tasks;
+        }
+
     }
 
 }
