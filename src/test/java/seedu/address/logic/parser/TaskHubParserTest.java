@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddEmployeeCommand;
 import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.commands.AssignEmployeeCommand;
@@ -32,7 +34,9 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListEmployeeAndProjectCommand;
 import seedu.address.logic.commands.ListEmployeeCommand;
 import seedu.address.logic.commands.ListProjectCommand;
+import seedu.address.logic.commands.MarkProjectCommand;
 import seedu.address.logic.commands.ProjectDeadlineCommand;
+import seedu.address.logic.commands.UnmarkProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
@@ -48,7 +52,7 @@ public class TaskHubParserTest {
     private final TaskHubParser parser = new TaskHubParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
+    public void parseCommand_addEmployee() throws Exception {
         Employee employee = new EmployeeBuilder().build();
         AddEmployeeCommand command = (AddEmployeeCommand) parser
                 .parseCommand(EmployeeUtil.getAddEmployeeCommand(employee));
@@ -62,14 +66,14 @@ public class TaskHubParserTest {
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
+    public void parseCommand_deleteEmployee() throws Exception {
         DeleteEmployeeCommand command = (DeleteEmployeeCommand) parser.parseCommand(
                 DeleteEmployeeCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased());
         assertEquals(new DeleteEmployeeCommand(INDEX_FIRST_EMPLOYEE), command);
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
+    public void parseCommand_editEmployee() throws Exception {
         Employee employee = new EmployeeBuilder().build();
         EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(employee).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
@@ -145,7 +149,29 @@ public class TaskHubParserTest {
     }
 
     @Test
-    public void parseCommand_newProject() throws Exception {
+    public void parseCommand_markProject() throws Exception {
+        MarkProjectCommand command =
+                (MarkProjectCommand) parser.parseCommand(MarkProjectCommand.COMMAND_WORD + " "
+                 + INDEX_FIRST_PROJECT.getOneBased() + " " + INDEX_SECOND_PROJECT.getOneBased());
+        List<Index> indexes = new ArrayList<>();
+        indexes.add(INDEX_FIRST_PROJECT);
+        indexes.add(INDEX_SECOND_PROJECT);
+        assertEquals(new MarkProjectCommand(indexes), command);
+    }
+
+    @Test
+    public void parseCommand_unmarkProject() throws Exception {
+        UnmarkProjectCommand command =
+                (UnmarkProjectCommand) parser.parseCommand(UnmarkProjectCommand.COMMAND_WORD + " "
+                 + INDEX_FIRST_PROJECT.getOneBased() + " " + INDEX_SECOND_PROJECT.getOneBased());
+        List<Index> indexes = new ArrayList<>();
+        indexes.add(INDEX_FIRST_PROJECT);
+        indexes.add(INDEX_SECOND_PROJECT);
+        assertEquals(new UnmarkProjectCommand(indexes), command);
+    }
+
+    @Test
+    public void parseCommand_addProject() throws Exception {
         AddProjectCommand command = (AddProjectCommand) parser.parseCommand(AddProjectCommand.COMMAND_WORD + " "
                             + PREFIX_PROJECT + "Alpha");
         AddProjectCommand expected = new AddProjectCommand(new Project("Alpha"), new ArrayList<>());

@@ -22,9 +22,10 @@ public class Project {
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String name;
-    public final Deadline deadline;
     public final UniqueEmployeeList employeeList;
+    public final Deadline deadline;
     private final ProjectPriority projectPriority;
+    private final CompletionStatus completionStatus;
 
 
     /**
@@ -38,6 +39,7 @@ public class Project {
         this.projectPriority = new ProjectPriority("normal");
         this.deadline = new Deadline("");
         this.employeeList = new UniqueEmployeeList();
+        this.completionStatus = new CompletionStatus(false);
     }
 
     /**
@@ -47,13 +49,36 @@ public class Project {
      * @param employees A list of Employees that are in the project
      * @param priority A valid ProjectPriority for the project.
      * @param deadline A valid Deadline for the project.
+     * @param completionStatus A valid CompletionStatus for the project.
      */
-    public Project(String project, UniqueEmployeeList employees, ProjectPriority priority, Deadline deadline) {
+    public Project(String project, UniqueEmployeeList employees, ProjectPriority priority, Deadline deadline,
+                   CompletionStatus completionStatus) {
         requireNonNull(project);
         this.name = project;
         this.projectPriority = priority;
         this.employeeList = employees;
         this.deadline = deadline;
+        this.completionStatus = completionStatus;
+    }
+
+    public String getNameString() {
+        return this.name;
+    }
+
+    public UniqueEmployeeList getEmployees() {
+        return employeeList;
+    }
+
+    public ProjectPriority getProjectPriority() {
+        return projectPriority;
+    }
+
+    public Deadline getDeadline() {
+        return deadline;
+    }
+
+    public CompletionStatus getCompletionStatus() {
+        return completionStatus;
     }
 
     /**
@@ -90,14 +115,6 @@ public class Project {
                 && otherProject.name.equals(this.name);
     }
 
-    public UniqueEmployeeList getEmployees() {
-        return employeeList;
-    }
-
-    public ProjectPriority getProjectPriority() {
-        return projectPriority;
-    }
-
     public String getListOfEmployeeNames() {
         StringBuilder employeeListString = new StringBuilder();
         for (Employee employee : employeeList) {
@@ -108,14 +125,6 @@ public class Project {
                     employeeListString.length());
         }
         return employeeListString.toString();
-    }
-
-    public String getNameString() {
-        return this.name;
-    }
-
-    public Deadline getDeadline() {
-        return deadline;
     }
 
     @Override
