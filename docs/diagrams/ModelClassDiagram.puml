@@ -13,12 +13,9 @@ Class ModelManager
 Class UserPrefs
 
 Class UniqueEmployeeList
+Class UniqueProjectList
 Class Employee
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
+Class Project
 
 Class I #FFFFFF
 }
@@ -37,18 +34,12 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 TaskHub *--> "1" UniqueEmployeeList
 UniqueEmployeeList --> "~* all" Employee
-Employee *--> Name
-Employee *--> Phone
-Employee *--> Email
-Employee *--> Address
-Employee *--> "*" Tag
+TaskHub *--> "1" UniqueProjectList
+UniqueProjectList --> "~* all" Project
 
 Employee -[hidden]up--> I
 UniqueEmployeeList -[hidden]right-> I
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
-
-ModelManager --> "~* filtered" Employee
+ModelManager -down-> "~* filtered" Employee
+ModelManager -down-> "~* filtered" Project
 @enduml

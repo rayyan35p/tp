@@ -1,0 +1,58 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskHubParser" as TaskHubParser LOGIC_COLOR
+participant "c:FindProjectCommand" as FindProjectCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("findP team build")
+activate LogicManager
+
+LogicManager -> TaskHubParser : parseCommand("findP team build")
+activate TaskHubParser
+
+create FindProjectCommand
+TaskHubParser -> FindProjectCommand
+activate FindProjectCommand
+
+FindProjectCommand --> TaskHubParser
+deactivate FindProjectCommand
+
+TaskHubParser --> LogicManager : c
+deactivate TaskHubParser
+
+LogicManager -> FindProjectCommand : execute()
+activate FindProjectCommand
+
+FindProjectCommand -> Model : updateFilteredProjectList()
+activate Model
+
+Model --> FindProjectCommand
+deactivate Model
+
+FindProjectCommand -> Model : getFilteredEmployeeList()
+activate Model
+
+Model --> FindProjectCommand
+deactivate Model
+
+FindProjectCommand -> Model : updateFilteredEmployeeList()
+activate Model
+
+Model --> FindProjectCommand
+deactivate Model
+
+FindProjectCommand --> LogicManager : result
+destroy FindProjectCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

@@ -37,10 +37,9 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PROJECT);
         Project project = ParserUtil.parseProject(argMultimap.getValue(PREFIX_PROJECT).get());
         List<Index> employeeIndexes = new ArrayList<>();
+
         if (argMultimap.getValue(PREFIX_EMPLOYEE).isPresent()) {
-            for (String index : argMultimap.getValue(PREFIX_EMPLOYEE).get().split(" ")) {
-                employeeIndexes.add(ParserUtil.parseIndex(index));
-            }
+            employeeIndexes = ParserUtil.parseIndexes(argMultimap.getValue(PREFIX_EMPLOYEE).get());
         }
         project = new Project(project.getNameString());
 

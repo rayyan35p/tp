@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Project as ProjectPackage <<Rectangle>>{
+Class Project {
+    + name : String
+}
+Class Deadline
+Class UniqueEmployeeList
+Class ProjectPriority
+Class Employee
+Class CompletionStatus
+
+Class I #FFFFFF
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Project
+
+Project -down-> "0..1" Deadline
+Project *-down-> "1" UniqueEmployeeList
+Project *-down-> "1" ProjectPriority
+Project *-down-> "1" CompletionStatus
+
+UniqueEmployeeList --> "~* filtered" Employee
+
+@enduml
