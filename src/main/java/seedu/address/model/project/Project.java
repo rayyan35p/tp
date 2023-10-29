@@ -6,6 +6,8 @@ import java.util.Objects;
 
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 /**
  * Represents a Project in TaskHub.
@@ -23,7 +25,8 @@ public class Project {
 
     public final String name;
     public final UniqueEmployeeList employeeList;
-    public final Deadline deadline;
+    private final TaskList tasks;
+    private final Deadline deadline;
     private final ProjectPriority projectPriority;
     private final CompletionStatus completionStatus;
 
@@ -40,6 +43,7 @@ public class Project {
         this.deadline = new Deadline("");
         this.employeeList = new UniqueEmployeeList();
         this.completionStatus = new CompletionStatus(false);
+        this.tasks = new TaskList();
     }
 
     /**
@@ -47,16 +51,22 @@ public class Project {
      *
      * @param project A valid Project.
      * @param employees A list of Employees that are in the project
+     * @param tasks A list of Tasks that are in the project
      * @param priority A valid ProjectPriority for the project.
      * @param deadline A valid Deadline for the project.
      * @param completionStatus A valid CompletionStatus for the project.
      */
-    public Project(String project, UniqueEmployeeList employees, ProjectPriority priority, Deadline deadline,
+    public Project(String project,
+                   UniqueEmployeeList employees,
+                   TaskList tasks,
+                   ProjectPriority priority,
+                   Deadline deadline,
                    CompletionStatus completionStatus) {
         requireNonNull(project);
         this.name = project;
         this.projectPriority = priority;
         this.employeeList = employees;
+        this.tasks = tasks;
         this.deadline = deadline;
         this.completionStatus = completionStatus;
     }
@@ -113,6 +123,27 @@ public class Project {
 
         return otherProject != null
                 && otherProject.name.equals(this.name);
+    }
+
+    public TaskList getTasks() {
+        return tasks;
+    }
+
+    /**
+     * Adds a task to the project
+     * @param task The task to be added.
+     */
+    public void addTask(Task task) {
+        tasks.add(task);
+    }
+
+    /**
+     * Removes a task from the project
+     * @param task The task to be removed.
+     */
+
+    public void removeTask(Task task) {
+        tasks.remove(task);
     }
 
     public String getListOfEmployeeNames() {

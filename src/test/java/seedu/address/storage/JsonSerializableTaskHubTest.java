@@ -20,6 +20,7 @@ public class JsonSerializableTaskHubTest {
     private static final Path TYPICAL_EMPLOYEES_FILE = TEST_DATA_FOLDER.resolve("typicalEmployeesTaskHub.json");
     private static final Path INVALID_EMPLOYEE_FILE = TEST_DATA_FOLDER.resolve("invalidEmployeeTaskHub.json");
     private static final Path DUPLICATE_EMPLOYEE_FILE = TEST_DATA_FOLDER.resolve("duplicateEmployeeTaskHub.json");
+    private static final Path DUPLICATE_PROJECT_FILE = TEST_DATA_FOLDER.resolve("duplicateProjectTaskHub.json");
 
     @Test
     public void toModelType_typicalEmployeesFile_success() throws Exception {
@@ -43,6 +44,14 @@ public class JsonSerializableTaskHubTest {
         JsonSerializableTaskHub dataFromFile = JsonUtil.readJsonFile(DUPLICATE_EMPLOYEE_FILE,
                 JsonSerializableTaskHub.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableTaskHub.MESSAGE_DUPLICATE_EMPLOYEE,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_duplicateProjects_throwsIllegalValueException() throws Exception {
+        JsonSerializableTaskHub dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PROJECT_FILE,
+                JsonSerializableTaskHub.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableTaskHub.MESSAGE_DUPLICATE_PROJECT,
                 dataFromFile::toModelType);
     }
 

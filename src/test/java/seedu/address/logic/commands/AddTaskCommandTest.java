@@ -4,15 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.AddProjectCommand.MESSAGE_DUPLICATE_PROJECT;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalProjects.ALPHA;
-import static seedu.address.testutil.TypicalProjects.BETA;
+import static seedu.address.testutil.TypicalTasks.ALPHA_TASK;
+import static seedu.address.testutil.TypicalTasks.BETA_TASK;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,56 +19,69 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTaskHub;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.TaskHub;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.ProjectBuilder;
+import seedu.address.testutil.TaskBuilder;
 
-public class AddProjectCommandTest {
+public class AddTaskCommandTest {
 
     @Test
-    public void constructor_nullProject_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddProjectCommand(null, null));
+    public void constructor_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddTaskCommand(null, null));
     }
 
     @Test
-    public void execute_projectAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingProjectAdded modelStub = new ModelStubAcceptingProjectAdded();
-        Project validProject = new ProjectBuilder().withEmployees().build();
-
-        CommandResult commandResult = new AddProjectCommand(validProject, new ArrayList<>()).execute(modelStub);
-
-        assertEquals(String.format(AddProjectCommand.MESSAGE_SUCCESS, Messages.format(validProject)),
+    public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(ALPHA, ALICE);
+        Task validTask = new TaskBuilder().build();
+        Index index = ParserUtil.parseIndex("1");
+        CommandResult commandResult = new AddTaskCommand(validTask,
+                                                         index).execute(modelStub);
+        assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, index.getOneBased(),
+                Messages.format(validTask)),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validProject), modelStub.projectsAdded);
     }
 
     @Test
-    public void execute_duplicateEmployee_throwsCommandException() {
-        Project validProject = new ProjectBuilder().build();
-        AddProjectCommand addProjectCommand = new AddProjectCommand(validProject, new ArrayList<>());
-        ModelStub modelStub = new ModelStubWithProject(validProject);
-
-        assertThrows(CommandException.class, MESSAGE_DUPLICATE_PROJECT, () ->
-                addProjectCommand.execute(modelStub));
+    public void execute_addTaskToInvalidProjectIndex_throwsCommandException() throws Exception {
+        ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(ALPHA, ALICE);
+        Task validTask = new TaskBuilder().build();
+        Index index = ParserUtil.parseIndex("2");
+        AddTaskCommand addTaskCommand = new AddTaskCommand(validTask,
+                                                         index);
+        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX, () ->
+                addTaskCommand.execute(modelStub));
     }
 
     @Test
-    public void equals() {
-        AddProjectCommand addAlphaCommand = new AddProjectCommand(ALPHA, new ArrayList<>());
-        AddProjectCommand addBetaCommand = new AddProjectCommand(BETA, new ArrayList<>());
+    public void execute_addTaskToEmptyProjectList_throwsCommandException() throws Exception {
+        ModelStubWithEmptyProjectList modelStub = new ModelStubWithEmptyProjectList();
+        Task validTask = new TaskBuilder().build();
+        Index index = ParserUtil.parseIndex("1");
+        AddTaskCommand addTaskCommand = new AddTaskCommand(validTask,
+                                                           index);
+        assertThrows(CommandException.class, Messages.MESSAGE_NO_PROJECT_TO_ADD_TASK, () ->
+                addTaskCommand.execute(modelStub));
+    }
+    @Test
+    public void equals() throws ParseException {
+        AddTaskCommand addAlphaCommand = new AddTaskCommand(ALPHA_TASK, ParserUtil.parseIndex("1"));
+        AddTaskCommand addBetaCommand = new AddTaskCommand(BETA_TASK, ParserUtil.parseIndex("1"));
 
         // same object -> returns true
         assertTrue(addAlphaCommand.equals(addAlphaCommand));
 
         // same values -> returns true
-        AddProjectCommand addAlphaCommandCopy = new AddProjectCommand(ALPHA, new ArrayList<>());
+        AddTaskCommand addAlphaCommandCopy = new AddTaskCommand(ALPHA_TASK, ParserUtil.parseIndex("1"));
         assertTrue(addAlphaCommand.equals(addAlphaCommandCopy));
 
         // different types -> returns false
@@ -78,15 +90,15 @@ public class AddProjectCommandTest {
         // null -> returns false
         assertFalse(addAlphaCommand.equals(null));
 
-        // different employee -> returns false
+        // different task names -> returns false
         assertFalse(addAlphaCommand.equals(addBetaCommand));
     }
 
     @Test
-    public void toStringMethod() {
-        AddProjectCommand addProjectCommand = new AddProjectCommand(ALPHA, new ArrayList<>());
-        String expected = AddProjectCommand.class.getCanonicalName() + "{toAdd=" + ALPHA + "}";
-        assertEquals(expected, addProjectCommand.toString());
+    public void toStringMethod() throws ParseException {
+        AddTaskCommand addTaskCommand = new AddTaskCommand(ALPHA_TASK, ParserUtil.parseIndex("1"));
+        String expected = AddTaskCommand.class.getCanonicalName() + "{toAdd=" + ALPHA_TASK + "}";
+        assertEquals(expected, addTaskCommand.toString());
     }
 
     /**
@@ -183,6 +195,7 @@ public class AddProjectCommandTest {
 
         @Override
         public ObservableList<Project> getFilteredProjectList() {
+
             throw new AssertionError("This method should not be called.");
         }
 
@@ -190,6 +203,7 @@ public class AddProjectCommandTest {
         public ObservableList<Task> getFilteredTaskList() {
             throw new AssertionError("This method should not be called.");
         }
+
 
         @Override
         public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
@@ -211,66 +225,83 @@ public class AddProjectCommandTest {
         }
     }
 
-    /**
-     * A Model stub that contains a single employee.
-     */
-    private class ModelStubWithProject extends ModelStub {
-        private final Project project;
+    private class ModelStubWithProjectAndEmployee extends ModelStub {
+        private Project project;
+        private Employee employee;
 
-        ModelStubWithProject(Project project) {
-            requireNonNull(project);
+        ModelStubWithProjectAndEmployee(Project project, Employee employee) {
+            requireAllNonNull(project, employee);
+            this.employee = employee;
             this.project = project;
         }
 
+        @Override
+        public ObservableList<Project> getFilteredProjectList() {
+            ObservableList<Project> filteredList = FXCollections.observableArrayList();
+            filteredList.add(project); // Add the project to the list
+            return filteredList;
+        }
         @Override
         public boolean hasProject(Project project) {
             requireNonNull(project);
             return this.project.isSameProject(project);
         }
+        @Override
+        public void updateFilteredProjectList(Predicate<Project> predicate) {
+            // do nothing - no need to update the model stub with just one project
+        }
+        @Override
+        public void setProject(Project project, Project editedProject) {
+            requireAllNonNull(project, editedProject);
+            this.project = editedProject;
+
+        }
+        @Override
+        public void addTask(Task task) {
+            this.project.addTask(task);
+
+        }
+
 
         @Override
         public ObservableList<Employee> getFilteredEmployeeList() {
-            ObservableList<Employee> list = FXCollections.observableArrayList();
-            list.add(ALICE);
-            return list;
+            ObservableList<Employee> filteredList = FXCollections.observableArrayList();
+            filteredList.add(employee); // Add the employee to the list
+            return filteredList;
         }
     }
+    private class ModelStubWithEmptyProjectList extends ModelStub {
 
-    /**
-     * A Model stub that always accept the employee being added.
-     */
-    private class ModelStubAcceptingProjectAdded extends ModelStub {
-        final ArrayList<Project> projectsAdded = new ArrayList<>();
 
+        @Override
+        public ObservableList<Project> getFilteredProjectList() {
+            ObservableList<Project> filteredList = FXCollections.observableArrayList();
+            return filteredList;
+        }
         @Override
         public boolean hasProject(Project project) {
             requireNonNull(project);
-            return projectsAdded.stream().anyMatch(project :: isSameProject);
+            return false;
+        }
+        @Override
+        public void updateFilteredProjectList(Predicate<Project> predicate) {
+            // do nothing - no need to update the model stub with just one project
+        }
+        @Override
+        public void setProject(Project project, Project editedProject) {
+            requireAllNonNull(project, editedProject);
+        }
+        @Override
+        public void addTask(Task task) {
+            // do nothing
         }
 
-        @Override
-        public void addProject(Project project) {
-            requireNonNull(project);
-            projectsAdded.add(project);
-        }
-
-        @Override
-        public ReadOnlyTaskHub getTaskHub() {
-            return new TaskHub();
-        }
 
         @Override
         public ObservableList<Employee> getFilteredEmployeeList() {
-            ObservableList<Employee> list = FXCollections.observableArrayList();
-            list.add(ALICE);
-            return list;
+            ObservableList<Employee> filteredList = FXCollections.observableArrayList();
+            return filteredList;
         }
     }
 
 }
-
-
-
-
-
-

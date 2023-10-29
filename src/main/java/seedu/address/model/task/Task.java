@@ -1,0 +1,136 @@
+package seedu.address.model.task;
+
+import static java.util.Objects.requireNonNull;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import seedu.address.model.employee.Employee;
+
+/**
+ * Represents a task which belongs to a certain project.
+ */
+public class Task {
+
+    public static final String MESSAGE_CONSTRAINTS = "You must enter a name for a task!\n"
+            + "You must also enter a deadline, which should be in the format: yyyy-mm-dd HHmm\n "
+            + "e.g., addT n/name pr/1 d/2023-11-11 2359";
+
+    /**
+     * The first character must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = "[^\\s].*";
+    private final String name;
+    private boolean isDone;
+    private Employee employee;
+    private final LocalDateTime deadline;
+    /**
+     * Constructs a {@code Task}
+     * @param taskName The name of the task.
+     */
+    public Task(String taskName, LocalDateTime deadline) {
+        requireNonNull(taskName);
+        requireNonNull(deadline);
+        name = taskName;
+        this.deadline = deadline;
+        this.isDone = false;
+    }
+
+    /**
+     * Constructs a {@code Task} with a pre-determined Done status - for loading of tasks from taskhub.json.
+     * @param taskName The name of the task.
+     */
+    public Task(String taskName, LocalDateTime deadline, Boolean isDone) {
+        requireNonNull(taskName);
+        requireNonNull(deadline);
+        name = taskName;
+        this.deadline = deadline;
+        this.isDone = isDone;
+    }
+
+    /**
+     * Returns true if a given string is a valid project name.
+     */
+    public static boolean isValidTask(String testString) {
+        return testString.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Assigns an employee to the task.
+     */
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+
+    /**
+     * Tells us if a task is done.
+     * @return A boolean value indicating if the task is done.
+     */
+    public boolean isDone() {
+        return this.isDone;
+    }
+
+    /**
+     * Marks a task as done.
+     */
+    public void markAsDone() {
+        this.isDone = true;
+    }
+
+    /**
+     * Marks a task as not done.
+     */
+    public void markAsUndone() {
+        this.isDone = false;
+    }
+
+    public Employee getEmployee() {
+        return this.employee;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+    public LocalDateTime getDeadline() {
+        return this.deadline;
+    }
+
+    @Override
+    public String toString() {
+        String completionString = this.isDone() ? "[X]" : "[]";
+        return completionString + " | "
+                                    + this.name + " | "
+                                        + this.employee + " | "
+                                            + DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm").format(this.deadline);
+    }
+
+    /**
+     * Determines if a string is of the format "yyyy-MM-dd HHmm" i.e., a valid LocalDateTime object.
+     *
+     * @param input The string to be examined.
+     * @return A boolean value which tells us if the string represents a LocalDate.
+     */
+    public static boolean isValidDateTime(String input) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        try {
+            LocalDateTime.parse(input, dtf);
+            return true; // Parsing success: Valid date/time
+        } catch (Exception e) {
+            return false; // Parsing failed: Invalid date/time
+        }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        } else if (!(other instanceof Task)) {
+            return false;
+        }
+        Task castedTask = (Task) other;
+        return this.name.equals(castedTask.name)
+                    && this.deadline.equals(castedTask.deadline);
+    }
+}
