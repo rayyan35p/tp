@@ -14,6 +14,7 @@
     "project" : "",
     "tags" : [ "owesMoney", "friends" ]
   } ],
+
   "projects": [
     {
       "name": "Alpha",
@@ -26,7 +27,10 @@
           "project" : "",
           "tags": [ "friends" ]
         }
-      ]
+      ],
+      "priority" : "normal",
+      "deadline" : "",
+      "completionStatus" : false
     }, {
       "name": "Alpha",
       "employees": [
@@ -38,7 +42,10 @@
           "project" : "",
           "tags": [ "friends" ]
         }
-      ]
+      ],
+      "priority" : "normal",
+      "deadline" : "",
+      "completionStatus" : false
     }
     ]
 }
