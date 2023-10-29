@@ -49,14 +49,14 @@ public class AddTaskCommand extends Command {
         this.projectIndex = projectIndex;
     }
 
-
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         // TODO modifying employee ? do we need to do this? employees should know all the tasks that they have?
         List<Project> lastShownProjectList = model.getFilteredProjectList();
-        if (projectIndex.getZeroBased() >= lastShownProjectList.size()) {
+        if (lastShownProjectList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_NO_PROJECT_TO_ADD_TASK);
+        } else if (projectIndex.getZeroBased() >= lastShownProjectList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
         Project projectToEdit = lastShownProjectList.get(projectIndex.getZeroBased());

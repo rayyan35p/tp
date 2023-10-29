@@ -61,6 +61,17 @@ public class AddTaskCommandTest {
         assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX, () ->
                 addTaskCommand.execute(modelStub));
     }
+
+    @Test
+    public void execute_addTaskToEmptyProjectList_throwsCommandException() throws Exception {
+        ModelStubWithEmptyProjectList modelStub = new ModelStubWithEmptyProjectList();
+        Task validTask = new TaskBuilder().build();
+        Index index = ParserUtil.parseIndex("1");
+        AddTaskCommand addTaskCommand = new AddTaskCommand(validTask,
+                                                           index);
+        assertThrows(CommandException.class, Messages.MESSAGE_NO_PROJECT_TO_ADD_TASK, () ->
+                addTaskCommand.execute(modelStub));
+    }
     @Test
     public void equals() throws ParseException {
         AddTaskCommand addAlphaCommand = new AddTaskCommand(ALPHA_TASK, ParserUtil.parseIndex("1"));
@@ -256,6 +267,39 @@ public class AddTaskCommandTest {
         public ObservableList<Employee> getFilteredEmployeeList() {
             ObservableList<Employee> filteredList = FXCollections.observableArrayList();
             filteredList.add(employee); // Add the employee to the list
+            return filteredList;
+        }
+    }
+    private class ModelStubWithEmptyProjectList extends ModelStub {
+
+
+        @Override
+        public ObservableList<Project> getFilteredProjectList() {
+            ObservableList<Project> filteredList = FXCollections.observableArrayList();
+            return filteredList;
+        }
+        @Override
+        public boolean hasProject(Project project) {
+            requireNonNull(project);
+            return false;
+        }
+        @Override
+        public void updateFilteredProjectList(Predicate<Project> predicate) {
+            // do nothing - no need to update the model stub with just one project
+        }
+        @Override
+        public void setProject(Project project, Project editedProject) {
+            requireAllNonNull(project, editedProject);
+        }
+        @Override
+        public void addTask(Task task) {
+            // do nothing
+        }
+
+
+        @Override
+        public ObservableList<Employee> getFilteredEmployeeList() {
+            ObservableList<Employee> filteredList = FXCollections.observableArrayList();
             return filteredList;
         }
     }

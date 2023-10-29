@@ -12,8 +12,9 @@ import seedu.address.model.employee.Employee;
  */
 public class Task {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tasks must be bound to a project first"
-        + " and later assigned to an Employee";
+    public static final String MESSAGE_CONSTRAINTS = "You must enter a name for a task!\n"
+            + "You must also enter a deadline, which should be in the format: yyyy-mm-dd HHmm\n "
+            + "e.g., addT n/name pr/1 d/2023-11-11 2359";
 
     /**
      * The first character must not be a whitespace,
