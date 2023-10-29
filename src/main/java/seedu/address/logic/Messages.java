@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -75,7 +76,12 @@ public class Messages {
     public static String format(Task task) {
         final StringBuilder builder = new StringBuilder();
         builder.append(task.getName());
-        builder.append("; Deadline: " + task.getDeadline().toString());
+
+        // Format the deadline
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mma");
+        String formattedDeadline = task.getDeadline().format(formatter);
+
+        builder.append("; Deadline: " + formattedDeadline);
         return builder.toString();
     }
 
