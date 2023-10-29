@@ -44,8 +44,8 @@ public class UnmarkTaskCommandTest {
         ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(targetProject, employee);
 
         CommandResult commandResult = new UnmarkTaskCommand(projectIndex, taskIndexes).execute(modelStub);
-        assertEquals(String.format(MESSAGE_TASKS_UNMARKED_SUCCESSFULLY, taskIndexes.size()),
-                commandResult.getFeedbackToUser());
+        assertEquals(String.format(MESSAGE_TASKS_UNMARKED_SUCCESSFULLY, taskIndexes.size(),
+                        targetProject.getNameString()), commandResult.getFeedbackToUser());
     }
 
     @Test

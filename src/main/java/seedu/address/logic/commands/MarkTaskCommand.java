@@ -31,9 +31,11 @@ public class MarkTaskCommand extends Command {
             + "TASK_INDEXES must be one or more positive integers, separated by a space between each INDEX\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_PROJECT + "2 " + PREFIX_TASK + "1 2 4";
 
-    public static final String MESSAGE_TASKS_MARKED_SUCCESSFULLY = "%1$d task(s) marked as completed.";
+    public static final String MESSAGE_TASKS_MARKED_SUCCESSFULLY =
+            "%d task(s) marked as completed under the project: %s";
     private static final Logger logger = LogsCenter.getLogger(MarkTaskCommand.class);
     private final Index projectIndex;
+    private String projectName;
     private final List<Index> taskIndexes;
 
     /**
@@ -80,6 +82,8 @@ public class MarkTaskCommand extends Command {
                 lastShownTaskList, targetProject.getProjectPriority(),
                 targetProject.getDeadline(), targetProject.getCompletionStatus());
 
+        projectName = updatedProject.getNameString();
+
         model.setProject(targetProject, updatedProject);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(generateSuccessMessage());
@@ -89,7 +93,7 @@ public class MarkTaskCommand extends Command {
      * Generates a command execution success message based on whether all the tasks were marked as completed.
      */
     private String generateSuccessMessage() {
-        return String.format(MESSAGE_TASKS_MARKED_SUCCESSFULLY, taskIndexes.size());
+        return String.format(MESSAGE_TASKS_MARKED_SUCCESSFULLY, taskIndexes.size(), projectName);
     }
 
     @Override

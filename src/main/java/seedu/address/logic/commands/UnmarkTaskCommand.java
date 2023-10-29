@@ -30,9 +30,11 @@ public class UnmarkTaskCommand extends Command {
             + "TASK_INDEXES must be one or more positive integers, separated by a space between each INDEX\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_PROJECT + "2 " + PREFIX_TASK + "1 2 4";
 
-    public static final String MESSAGE_TASKS_UNMARKED_SUCCESSFULLY = "%1$d task(s) marked as incomplete.";
+    public static final String MESSAGE_TASKS_UNMARKED_SUCCESSFULLY =
+            "%d task(s) marked as incomplete under the project: %s";
     private static final Logger logger = LogsCenter.getLogger(UnmarkTaskCommand.class);
     private final Index projectIndex;
+    private String projectName;
     private final List<Index> taskIndexes;
 
     /**
@@ -79,6 +81,8 @@ public class UnmarkTaskCommand extends Command {
                 lastShownTaskList, targetProject.getProjectPriority(),
                 targetProject.getDeadline(), targetProject.getCompletionStatus());
 
+        projectName = updatedProject.getNameString();
+
         model.setProject(targetProject, updatedProject);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(generateSuccessMessage());
@@ -88,7 +92,7 @@ public class UnmarkTaskCommand extends Command {
      * Generates a command execution success message based on whether all the tasks were marked as incomplete.
      */
     private String generateSuccessMessage() {
-        return String.format(MESSAGE_TASKS_UNMARKED_SUCCESSFULLY, taskIndexes.size());
+        return String.format(MESSAGE_TASKS_UNMARKED_SUCCESSFULLY, taskIndexes.size(), projectName);
     }
 
     @Override
