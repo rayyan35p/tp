@@ -12,6 +12,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.UniqueProjectList;
 
 /**
  * Adds a project to the TaskHub.
@@ -49,12 +50,7 @@ public class AddProjectCommand extends Command {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
             }
-            //changes project of employee
             Employee employeeToAdd = lastShownList.get(targetIndex.getZeroBased());
-            EditCommand.EditEmployeeDescriptor editEmployeeDescriptor = new EditCommand.EditEmployeeDescriptor();
-            editEmployeeDescriptor.setProject(toAdd);
-            new EditCommand(targetIndex, editEmployeeDescriptor).execute(model);
-
             toAdd.addEmployee(employeeToAdd);
         }
 

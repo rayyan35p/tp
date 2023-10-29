@@ -12,6 +12,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
+import seedu.address.model.project.Project;
 
 /**
  * Deletes a employee identified using it's displayed index from the TaskHub.
@@ -49,6 +50,7 @@ public class DeleteEmployeeCommand extends Command {
             if (employeeList.contains(employeeToDelete)) {
                 employeeList.remove(employeeToDelete);
             }
+
         });
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, Messages.format(employeeToDelete)));

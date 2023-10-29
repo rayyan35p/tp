@@ -27,10 +27,10 @@ public class TypicalEmployees {
 
     public static final Employee ALICE = new EmployeeBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withProject("")
+            .withPhone("94351253")
             .withTags("friends").build();
     public static final Employee BENSON = new EmployeeBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25").withProject("")
+            .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").build();
     public static final Employee CARL = new EmployeeBuilder().withName("Carl Kurz").withPhone("95352563")

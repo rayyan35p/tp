@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.project.Project;
+import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,19 +24,17 @@ public class Employee {
 
     // Data fields
     private final Address address;
-    private final Project project;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Employee(Name name, Phone phone, Email email, Address address, Project project, Set<Tag> tags) {
+    public Employee(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.project = project;
         this.tags.addAll(tags);
     }
 
@@ -56,9 +54,6 @@ public class Employee {
         return address;
     }
 
-    public Project getProject() {
-        return project;
-    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -107,7 +102,7 @@ public class Employee {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, project, tags);
+        return Objects.hash(name, phone, email, address, tags);
     }
 
     @Override
@@ -117,7 +112,6 @@ public class Employee {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
-                .add("project", project)
                 .add("tags", tags)
                 .toString();
     }

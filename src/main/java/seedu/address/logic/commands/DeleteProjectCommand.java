@@ -10,6 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.UniqueProjectList;
 
 /**
  * Deletes a project using its identified index from the TaskHub.
@@ -38,12 +39,6 @@ public class DeleteProjectCommand extends Command {
         }
         Project projectToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteProject(projectToDelete);
-
-        projectToDelete.getEmployees().asUnmodifiableObservableList().stream().forEach(employee -> {
-            model.setEmployee(employee, new Employee(employee.getName(), employee.getPhone(),
-                    employee.getEmail(), employee.getAddress(), new Project(""), employee.getTags()));
-        });
-
 
         return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, Messages.format(projectToDelete)));
     }
