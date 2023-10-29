@@ -13,7 +13,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.UniqueProjectList;
 
 /**
  * Assigns an existing project to a number of existing employees in the TaskHub.

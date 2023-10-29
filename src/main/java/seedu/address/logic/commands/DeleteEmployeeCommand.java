@@ -12,7 +12,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
-import seedu.address.model.project.Project;
 
 /**
  * Deletes a employee identified using it's displayed index from the TaskHub.

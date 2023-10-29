@@ -8,7 +8,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.tag.Tag;
 
 /**

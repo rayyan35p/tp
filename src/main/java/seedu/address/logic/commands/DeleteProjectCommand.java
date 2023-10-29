@@ -8,9 +8,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.UniqueProjectList;
 
 /**
  * Deletes a project using its identified index from the TaskHub.
