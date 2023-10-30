@@ -6,14 +6,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
-import seedu.address.model.employee.Address;
-import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.Name;
-import seedu.address.model.employee.Phone;
 
 /**
  * Represents a task which belongs to a certain project.
