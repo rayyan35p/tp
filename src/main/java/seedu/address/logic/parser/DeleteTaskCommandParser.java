@@ -27,7 +27,7 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
         // check for duplicates
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_PROJECT, PREFIX_TASK);
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PROJECT);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PROJECT, PREFIX_TASK);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT, PREFIX_TASK)
                 || !argMultimap.getPreamble().isEmpty()) {
