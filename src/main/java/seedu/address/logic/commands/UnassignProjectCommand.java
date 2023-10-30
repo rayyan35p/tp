@@ -32,10 +32,11 @@ public class UnassignProjectCommand extends Command {
 
     public static final String MESSAGE_UNASSIGN_PROJECT_SUCCESS = "Updated project : %1$s";
     public static final String MESSAGE_UNASSIGN_PROJECT_FAILURE = "The following employee is not in the specified "
-            + "project \n"
-            + "Employee: %1$s (Index: %2$s)\n"
+            + "project. \n"
+            + "Employee: %1$s (Index: %2$s) "
             + "Project: %3$s (Index: %4$s)\n"
-            + "Please check the project and employee index again.";
+            + "Please check the project and employee index again. "
+            + "Using the findP command to isolate the project and it's employees may be useful.";
 
     private final Index projectIndex;
     private final List<Index> employeeIndexes;

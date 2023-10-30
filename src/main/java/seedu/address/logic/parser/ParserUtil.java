@@ -31,6 +31,8 @@ import seedu.address.model.task.Task;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_DUPLICATE_INDEX = "Duplicate indexes are not allowed. \n"
+            + "Duplicate Index: %1$s";
 
     private static final Logger logger = LogsCenter.getLogger(ParserUtil.class);
 
@@ -63,8 +65,8 @@ public class ParserUtil {
 
         for (String index : trimmedIndexes) {
             if (uniqueStringSet.contains(index)) {
-                logger.warning("Duplicate indexes are not allowed. \n" + "Duplicate Index: " + index);
-                throw new ParseException("Duplicate indexes are not allowed.\n" + "Duplicate Index: " + index);
+                logger.warning(String.format(MESSAGE_DUPLICATE_INDEX, index));
+                throw new ParseException(String.format(MESSAGE_DUPLICATE_INDEX, index));
             } else {
                 uniqueStringSet.add(index);
                 indexList.add(parseIndex(index));
