@@ -296,6 +296,39 @@ Format: `priorityP INDEX priority/PRIORITY`
 Examples:
 * `listP` followed by `priorityP 2 priority/high` sets the 2nd project as high priority in TaskHub.
 
+
+### Mark a task as completed: `markT`
+
+Marks the specified task(s) of a specified project as completed in TaskHub.
+
+Format `markT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
+
+* Marks the tasks(s) at the specified `TASK_INDEX`(es), of the project at the specified `PROJECT_INDEX` as completed.
+* The project index refers to the index number shown in the displayed projects list.
+* The task index(es) refer to the index number(s) shown in the task list of the above specified project.
+* The index(es) **must be positive integers** 1, 2, 3,...
+
+Examples:
+* `listP` followed by `markT pr/1 t/1 3` marks the 1st and 3rd tasks of the 1st project as completed in TaskHub.
+* `findP Capstone` followed by `markT pr/2 t/2` marks the 2nd task in the 2nd project from the results of the `findP` command as completed.
+
+
+### Mark a task as incomplete: `unmarkT`
+
+Marks the specified task(s) of a specified project as incomplete in TaskHub.
+
+Format `unmarkT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
+
+* Marks the tasks(s) at the specified `TASK_INDEX`(es), of the project at the specified `PROJECT_INDEX` as incomplete.
+* The project index refers to the index number shown in the displayed projects list.
+* The task index(es) refer to the index number(s) shown in the task list of the above specified project.
+* The index(es) **must be positive integers** 1, 2, 3,...
+
+Examples:
+* `listP` followed by `unmarkT pr/1 t/1 3` marks the 1st and 3rd tasks of the 1st project as incomplete in TaskHub.
+* `findP Capstone` followed by `unmarkT pr/2 t/2` marks the 2nd task in the 2nd project from the results of the `findP` command as incomplete.
+
+
 ### Exiting the program : `exit`
 
 Exits the program.
