@@ -150,12 +150,8 @@ public class Project {
         StringBuilder employeeListString = new StringBuilder();
         int index = 1;
         for (Employee employee : employeeList) {
-            employeeListString.append(index + ". " + employee.getName() + " \n");
+            employeeListString.append(index + ". " + employee.getName() + "\n");
             index++;
-        }
-        if (employeeList.asUnmodifiableObservableList().size() != 0) {
-            employeeListString.delete(employeeListString.length() - 2,
-                    employeeListString.length());
         }
         return employeeListString.toString();
     }
