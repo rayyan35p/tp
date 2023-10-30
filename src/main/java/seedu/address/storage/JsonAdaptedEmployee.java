@@ -15,7 +15,6 @@ import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
-import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,7 +28,6 @@ class JsonAdaptedEmployee {
     private final String phone;
     private final String email;
     private final String address;
-    private final String project;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -38,13 +36,11 @@ class JsonAdaptedEmployee {
     @JsonCreator
     public JsonAdaptedEmployee(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                                @JsonProperty("email") String email, @JsonProperty("address") String address,
-                               @JsonProperty("project") String project,
                                @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.project = project;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -58,7 +54,6 @@ class JsonAdaptedEmployee {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        project = source.getProject().name;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -71,6 +66,7 @@ class JsonAdaptedEmployee {
      */
     public Employee toModelType() throws IllegalValueException {
         final List<Tag> employeeTags = new ArrayList<>();
+
         for (JsonAdaptedTag tag : tags) {
             employeeTags.add(tag.toModelType());
         }
@@ -107,13 +103,8 @@ class JsonAdaptedEmployee {
         }
         final Address modelAddress = new Address(address);
 
-        if (project == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Project.class.getSimpleName()));
-        }
-        final Project modelProject = new Project(project);
-
         final Set<Tag> modelTags = new HashSet<>(employeeTags);
-        return new Employee(modelName, modelPhone, modelEmail, modelAddress, modelProject, modelTags);
+        return new Employee(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
 }
