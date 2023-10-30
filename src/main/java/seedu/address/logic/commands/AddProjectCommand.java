@@ -49,12 +49,7 @@ public class AddProjectCommand extends Command {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
             }
-            //changes project of employee
             Employee employeeToAdd = lastShownList.get(targetIndex.getZeroBased());
-            EditCommand.EditEmployeeDescriptor editEmployeeDescriptor = new EditCommand.EditEmployeeDescriptor();
-            editEmployeeDescriptor.setProject(toAdd);
-            new EditCommand(targetIndex, editEmployeeDescriptor).execute(model);
-
             toAdd.addEmployee(employeeToAdd);
         }
 

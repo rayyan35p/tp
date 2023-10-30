@@ -8,7 +8,6 @@ import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
-import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,13 +20,11 @@ public class EmployeeBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_PROJECT = "";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
-    private Project project;
     private Set<Tag> tags;
 
     /**
@@ -38,7 +35,6 @@ public class EmployeeBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        project = new Project(DEFAULT_PROJECT);
         tags = new HashSet<>();
     }
 
@@ -50,7 +46,6 @@ public class EmployeeBuilder {
         phone = employeeToCopy.getPhone();
         email = employeeToCopy.getEmail();
         address = employeeToCopy.getAddress();
-        project = employeeToCopy.getProject();
         tags = new HashSet<>(employeeToCopy.getTags());
     }
 
@@ -94,16 +89,9 @@ public class EmployeeBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code Project} of the {@code Employee} that we are building.
-     */
-    public EmployeeBuilder withProject(String project) {
-        this.project = new Project(project);
-        return this;
-    }
 
     public Employee build() {
-        return new Employee(name, phone, email, address, project, tags);
+        return new Employee(name, phone, email, address, tags);
     }
 
 }
