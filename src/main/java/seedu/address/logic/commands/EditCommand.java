@@ -28,6 +28,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.employee.UniqueEmployeeList;
+import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -92,6 +93,8 @@ public class EditCommand extends Command {
             if (employeeList.contains(employeeToEdit)) {
                 employeeList.setEmployee(employeeToEdit, editedEmployee);
             }
+            model.setProject(project,new Project(project.getNameString(),employeeList, project.getTasks(), project.getProjectPriority(),
+                    project.getDeadline(),project.getCompletionStatus()));
         });
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(MESSAGE_EDIT_EMPLOYEE_SUCCESS, Messages.format(editedEmployee)));
