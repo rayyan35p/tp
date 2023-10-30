@@ -9,7 +9,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.project.exceptions.DuplicateProjectException;
+import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -98,10 +98,30 @@ public class TaskList implements Iterable<Task> {
         }
 
         if (!target.equals(editedTask) && contains(editedTask)) {
-            throw new DuplicateProjectException();
+            throw new DuplicateTaskException();
         }
 
         internalList.set(index, editedTask);
+    }
+
+    /**
+     * Replaces the task at {@code targetIndex} in the list with {@code editedTask}.
+     * {@code targetIndex} must be a valid index of the list.
+     * The project identity of {@code editedTask} must not be the same as another existing task in the list.
+     */
+    public void setTask(Index targetIndex, Task editedTask) {
+        requireAllNonNull(targetIndex, editedTask);
+
+        if (targetIndex.getZeroBased() == -1) {
+            throw new TaskNotFoundException();
+        }
+
+        Task targetTask = internalList.get(targetIndex.getZeroBased());
+        if (!targetTask.equals(editedTask) && contains(editedTask)) {
+            throw new DuplicateTaskException();
+        }
+
+        internalList.set(targetIndex.getZeroBased(), editedTask);
     }
 
     /**
