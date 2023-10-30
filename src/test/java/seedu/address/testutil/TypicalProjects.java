@@ -20,7 +20,7 @@ import seedu.address.model.project.ProjectPriority;
  * A utility class containing a list of {@code Project} objects to be used in tests.
  */
 public class TypicalProjects {
-    public static final Project ALPHA = new ProjectBuilder().build();
+    public static final Project ALPHA = new ProjectBuilder().withTasks(ALPHA_TASK).build();
     public static final Project BETA = new ProjectBuilder().withName("Beta").withEmployees(BENSON).withTasks(ALPHA_TASK)
             .withDeadline("10-12-2022").withCompletionStatus(false).build();
     public static final Project DELTA = new ProjectBuilder().withName("Delta").withEmployees(DANIEL, FIONA)

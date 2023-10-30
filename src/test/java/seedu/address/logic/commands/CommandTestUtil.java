@@ -52,7 +52,7 @@ public class CommandTestUtil {
 
     // Task valid fields
 
-    public static final String VALID_DEADLINE_TASK = "2023-11-11 2359";
+    public static final String VALID_DEADLINE_TASK = "11-11-2023 2359";
     public static final String VALID_NAME_TASK = "Read Book";
     public static final String VALID_PROJECT_INDEX_TASK = "1";
 
