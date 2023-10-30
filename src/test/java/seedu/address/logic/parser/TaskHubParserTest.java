@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
@@ -39,9 +40,11 @@ import seedu.address.logic.commands.ListEmployeeAndProjectCommand;
 import seedu.address.logic.commands.ListEmployeeCommand;
 import seedu.address.logic.commands.ListProjectCommand;
 import seedu.address.logic.commands.MarkProjectCommand;
+import seedu.address.logic.commands.MarkTaskCommand;
 import seedu.address.logic.commands.PriorityProjectCommand;
 import seedu.address.logic.commands.ProjectDeadlineCommand;
 import seedu.address.logic.commands.UnmarkProjectCommand;
+import seedu.address.logic.commands.UnmarkTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
@@ -197,6 +200,36 @@ public class TaskHubParserTest {
                 .parseCommand(PriorityProjectCommand.COMMAND_WORD + " 1" + " priority/low");
         PriorityProjectCommand expected = new PriorityProjectCommand(new ProjectPriority("low"),
                 ParserUtil.parseIndex("1"));
+        assertEquals(expected, command);
+    }
+
+    @Test
+    public void parseCommand_markTask() throws Exception {
+        MarkTaskCommand command = (MarkTaskCommand) parser.parseCommand(MarkTaskCommand.COMMAND_WORD + " "
+                + PREFIX_PROJECT + "1 "
+                + PREFIX_TASK + "1 2 3");
+        Index projectIndex = Index.fromOneBased(1);
+        List<Index> taskIndexes = new ArrayList<>();
+        taskIndexes.add(Index.fromOneBased(1));
+        taskIndexes.add(Index.fromOneBased(2));
+        taskIndexes.add(Index.fromOneBased(3));
+
+        MarkTaskCommand expected = new MarkTaskCommand(projectIndex, taskIndexes);
+        assertEquals(expected, command);
+    }
+
+    @Test
+    public void parseCommand_unmarkTask() throws Exception {
+        UnmarkTaskCommand command = (UnmarkTaskCommand) parser.parseCommand(UnmarkTaskCommand.COMMAND_WORD + " "
+                + PREFIX_PROJECT + "1 "
+                + PREFIX_TASK + "1 2 3");
+        Index projectIndex = Index.fromOneBased(1);
+        List<Index> taskIndexes = new ArrayList<>();
+        taskIndexes.add(Index.fromOneBased(1));
+        taskIndexes.add(Index.fromOneBased(2));
+        taskIndexes.add(Index.fromOneBased(3));
+
+        UnmarkTaskCommand expected = new UnmarkTaskCommand(projectIndex, taskIndexes);
         assertEquals(expected, command);
     }
 
