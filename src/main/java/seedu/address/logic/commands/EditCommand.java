@@ -93,8 +93,8 @@ public class EditCommand extends Command {
             if (employeeList.contains(employeeToEdit)) {
                 employeeList.setEmployee(employeeToEdit, editedEmployee);
             }
-            model.setProject(project,new Project(project.getNameString(),employeeList, project.getTasks(), project.getProjectPriority(),
-                    project.getDeadline(),project.getCompletionStatus()));
+            model.setProject(project,new Project(project.getNameString(),employeeList, project.getTasks(),
+                    project.getProjectPriority(), project.getDeadline(), project.getCompletionStatus()));
         });
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(MESSAGE_EDIT_EMPLOYEE_SUCCESS, Messages.format(editedEmployee)));

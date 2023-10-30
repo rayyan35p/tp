@@ -50,8 +50,8 @@ public class DeleteEmployeeCommand extends Command {
             if (employeeList.contains(employeeToDelete)) {
                 employeeList.remove(employeeToDelete);
             }
-            model.setProject(project,new Project(project.getNameString(),employeeList, project.getTasks(), project.getProjectPriority(),
-                    project.getDeadline(),project.getCompletionStatus()));
+            model.setProject(project,new Project(project.getNameString(),employeeList, project.getTasks(),
+                    project.getProjectPriority(), project.getDeadline(), project.getCompletionStatus()));
 
         });
 
