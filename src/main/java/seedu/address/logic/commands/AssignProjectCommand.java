@@ -30,7 +30,7 @@ public class AssignProjectCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_PROJECT + "1 "
             + PREFIX_EMPLOYEE + "2 3 1";
 
-    public static final String MESSAGE_ADD_PROJECT_SUCCESS = "Updated project : %1$s";
+    public static final String MESSAGE_ADD_PROJECT_SUCCESS = "Member(s) have been assigned!\n%1$s";
 
 
     private final Index projectIndex;

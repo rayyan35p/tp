@@ -63,11 +63,11 @@ public class Messages {
      */
     public static String format(Project project) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(project.name);
-        builder.append("; Completion Status: " + project.getCompletionStatus());
-        builder.append("; Deadline: " + project.getDeadline());
+        builder.append("Name: " + project.name);
+        builder.append("; Completed? " + (project.getCompletionStatus().isCompleted ? "Yes" : "No"));
+        builder.append("; Deadline: " + (project.getDeadline().value.isEmpty() ? "Not set" : project.getDeadline()));
         builder.append("; Priority: " + project.getProjectPriority().value + "\n");
-        builder.append("Employees: ");
+        builder.append("Members: ");
 
         List<Employee> employees = project.getEmployees().asUnmodifiableObservableList();
         if (!employees.isEmpty()) {

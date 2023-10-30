@@ -30,7 +30,7 @@ public class UnassignProjectCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_PROJECT + "1 "
             + PREFIX_EMPLOYEE + "2 3 1";
 
-    public static final String MESSAGE_UNASSIGN_PROJECT_SUCCESS = "Updated project : %1$s";
+    public static final String MESSAGE_UNASSIGN_PROJECT_SUCCESS = "Member(s) have been un-assigned!\n%1$s";
     public static final String MESSAGE_UNASSIGN_PROJECT_FAILURE = "The following employee is not in the specified "
             + "project. \n"
             + "Employee: %1$s (Index: %2$s) "
