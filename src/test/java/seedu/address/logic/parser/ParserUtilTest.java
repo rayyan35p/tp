@@ -52,8 +52,7 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_negativeInput_throwsParseException() {
         assertThrows(ParseException.class,
-                String.format(MESSAGE_INVALID_INDEX, "-1"),
-                () -> ParserUtil.parseIndex("-1"));
+                String.format(MESSAGE_INVALID_INDEX, "-1"), () -> ParserUtil.parseIndex("-1"));
     }
 
     @Test
