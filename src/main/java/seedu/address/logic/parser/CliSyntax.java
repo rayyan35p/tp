@@ -15,4 +15,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_EMPLOYEE = new Prefix("em/");
     public static final Prefix PREFIX_PRIORITY = new Prefix("priority/");
     public static final Prefix PREFIX_DEADLINE = new Prefix("d/");
+    public static final Prefix PREFIX_TASK = new Prefix("t/");
 }
