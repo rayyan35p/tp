@@ -40,6 +40,18 @@ public class TaskList implements Iterable<Task> {
             throw new TaskNotFoundException();
         }
     }
+    /**
+     * Removes the Task at index i from the list.
+     * The Task must exist in the list.
+     */
+    public void remove(Index i) {
+        requireNonNull(i);
+        try {
+            internalList.remove(i.getZeroBased());
+        } catch (UnsupportedOperationException | IndexOutOfBoundsException e) {
+            throw new TaskNotFoundException();
+        }
+    }
 
     public void setTasks(TaskList replacement) {
         requireNonNull(replacement);

@@ -9,16 +9,18 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.UnmarkTaskCommand;
+import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 
+
 /**
- * Parses input arguments and creates a new UnmarkTaskCommand object
+ * Parses input arguments and creates a new DeleteTaskCommand object
  */
-public class UnmarkTaskCommandParser implements Parser<UnmarkTaskCommand> {
+public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
+
     @Override
-    public UnmarkTaskCommand parse(String args) throws ParseException {
+    public DeleteTaskCommand parse(String args) throws ParseException {
         requireNonNull(args);
         assert args != null;
 
@@ -29,7 +31,7 @@ public class UnmarkTaskCommandParser implements Parser<UnmarkTaskCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT, PREFIX_TASK)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkTaskCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
         }
 
         try {
@@ -37,11 +39,12 @@ public class UnmarkTaskCommandParser implements Parser<UnmarkTaskCommand> {
             Index projectIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PROJECT).get());
             List<Index> taskIndexes = ParserUtil.parseIndexes(argMultimap.getValue(PREFIX_TASK).get());
             assert taskIndexes.size() > 0;
+            taskIndexes.sort((a, b) -> b.getZeroBased() - a.getZeroBased());
 
-            return new UnmarkTaskCommand(projectIndex, taskIndexes);
+            return new DeleteTaskCommand(projectIndex, taskIndexes);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkTaskCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE), pe);
         }
     }
 
