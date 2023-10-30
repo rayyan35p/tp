@@ -25,6 +25,8 @@ public class AssignTaskCommandParser implements Parser<AssignTaskCommand> {
                     AssignTaskCommand.MESSAGE_USAGE));
         }
 
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PROJECT, PREFIX_TASK, PREFIX_EMPLOYEE);
+
         Index projectIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PROJECT).get());
         Index taskIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TASK).get());
         Index employeeIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_EMPLOYEE).get());
