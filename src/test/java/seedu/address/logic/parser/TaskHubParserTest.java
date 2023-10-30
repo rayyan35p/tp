@@ -30,6 +30,7 @@ import seedu.address.logic.commands.AssignEmployeeCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteEmployeeCommand;
 import seedu.address.logic.commands.DeleteProjectCommand;
+import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditEmployeeDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -238,8 +239,23 @@ public class TaskHubParserTest {
         AddTaskCommand command = (AddTaskCommand) parser.parseCommand(AddTaskCommand.COMMAND_WORD + " "
                             + PREFIX_NAME + "ALPHA_TASK "
                             + PREFIX_PROJECT + "1 "
-                            + PREFIX_DEADLINE + "2023-11-11 2359");
+                            + PREFIX_DEADLINE + "11-11-2023 2359");
         AddTaskCommand expected = new AddTaskCommand(ALPHA_TASK, ParserUtil.parseIndex("1"));
+        assertEquals(expected, command);
+    }
+
+    @Test
+    public void parseCommand_deleteTask() throws Exception {
+        DeleteTaskCommand command = (DeleteTaskCommand) parser.parseCommand(DeleteTaskCommand.COMMAND_WORD + " "
+                + PREFIX_PROJECT + "1 "
+                + PREFIX_TASK + "1 2 3");
+        Index projectIndex = Index.fromOneBased(1);
+        List<Index> taskIndexes = new ArrayList<>();
+        taskIndexes.add(Index.fromOneBased(1));
+        taskIndexes.add(Index.fromOneBased(2));
+        taskIndexes.add(Index.fromOneBased(3));
+        taskIndexes.sort((a, b) -> b.getZeroBased() - a.getZeroBased());
+        DeleteTaskCommand expected = new DeleteTaskCommand(projectIndex, taskIndexes);
         assertEquals(expected, command);
     }
 

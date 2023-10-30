@@ -13,8 +13,8 @@ import seedu.address.model.task.Task;
  * A utility class containing a list of {@code task} objects to be used in tests.
  */
 public class TypicalTasks {
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-    public static final LocalDateTime DEFAULT_DEADLINE = LocalDateTime.parse("2023-11-11 2359", FORMATTER);
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+    public static final LocalDateTime DEFAULT_DEADLINE = LocalDateTime.parse("11-11-2023 2359", FORMATTER);
 
     public static final Task ALPHA_TASK = new TaskBuilder().build();
     public static final Task BETA_TASK = new TaskBuilder().withName("Beta")

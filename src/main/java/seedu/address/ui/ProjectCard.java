@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -10,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
 
 /**
  * An UI component that displays information of a {@code Project}.
@@ -78,9 +80,14 @@ public class ProjectCard extends UiPart<Region> {
             priority.setStyle("-fx-text-fill: red;");
         }
 
-        TaskListPanel taskListPanel = new TaskListPanel(project.getTasks().asUnmodifiableObservableList());
-        taskListPlaceholder.getChildren().add(taskListPanel.getRoot());
+        ObservableList<Task> taskObservableList = project.getTasks().asUnmodifiableObservableList();
+        TaskListPanel taskListPanel = new TaskListPanel(taskObservableList);
 
+        if (taskObservableList.isEmpty()) {
+            taskListPlaceholder.setVisible(false);
+        } else {
+            taskListPlaceholder.getChildren().add(taskListPanel.getRoot());
+        }
         // Set the deadline
         if (project.getDeadline().value.isEmpty()) {
             deadline.setText("No deadline set");
