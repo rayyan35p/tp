@@ -12,7 +12,7 @@ import seedu.address.model.task.Task;
  */
 public class TaskBuilder {
     public static final String DEFAULT_NAME = "ALPHA_TASK";
-    public static final String DEFAULT_DEADLINE = "2023-11-11 2359";
+    public static final String DEFAULT_DEADLINE = "11-11-2023 2359";
     public static final boolean DEFAULT_COMPLETION_STATUS = false;
 
     private String name;

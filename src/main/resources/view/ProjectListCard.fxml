@@ -26,15 +26,15 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+                <Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true"/>
             </HBox>
-            <Label fx:id="priority" text="\$first" />
-            <Label fx:id="projects" styleClass="cell_small_label" text="\$projects" />
+            <Label fx:id="priority" text="\$first" wrapText="true"/>
+            <Label fx:id="projects" styleClass="cell_small_label" text="\$projects" wrapText="true"/>
         </VBox>
         <HBox GridPane.columnIndex="1">
          <VBox>
             <children>
-                <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
+                <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" wrapText="true"/>
                 <HBox spacing="10">
                     <Label fx:id="completionStatusText" styleClass="cell_small_label" text="\$completionStatus" />
                     <CheckBox fx:id="completionStatus" />
