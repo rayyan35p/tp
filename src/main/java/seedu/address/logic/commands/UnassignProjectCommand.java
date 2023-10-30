@@ -14,6 +14,9 @@ import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
 
+/**
+ * Unassigns a project from an employee.
+ */
 public class UnassignProjectCommand extends Command {
 
     public static final String COMMAND_WORD = "unassignP";
@@ -37,6 +40,10 @@ public class UnassignProjectCommand extends Command {
     private final Index projectIndex;
     private final List<Index> employeeIndexes;
 
+    /**
+     * @param projectIndex index of the project in the filtered project list to update
+     * @param employeeIndexes indexes of the employees to be unassigned from the project
+     */
     public UnassignProjectCommand(Index projectIndex, List<Index> employeeIndexes) {
         requireAllNonNull(projectIndex, employeeIndexes);
 
