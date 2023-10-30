@@ -112,10 +112,6 @@ public class TaskList implements Iterable<Task> {
     public void setTask(Index targetIndex, Task editedTask) {
         requireAllNonNull(targetIndex, editedTask);
 
-        if (targetIndex.getZeroBased() == -1) {
-            throw new TaskNotFoundException();
-        }
-
         Task targetTask = internalList.get(targetIndex.getZeroBased());
         if (!targetTask.equals(editedTask) && contains(editedTask)) {
             throw new DuplicateTaskException();

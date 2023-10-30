@@ -81,6 +81,6 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(name, deadline, isDone);
+        return new Task(name, deadline, isDone, employee);
     }
 }

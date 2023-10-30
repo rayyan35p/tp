@@ -86,6 +86,21 @@ public class Task {
         this.employee = Collections.singletonList(employee);
     }
 
+    /**
+     * Constructs a Task with a pre-determined Done status and list of employees - for loading of tasks
+     * from taskhub.json.
+     * @param taskName The name of the task.
+     * @param employeeList The employees assigned to the task.
+     */
+    public Task(String taskName, LocalDateTime deadline, Boolean isDone, List<Employee> employeeList) {
+        requireNonNull(taskName);
+        requireNonNull(deadline);
+        name = taskName;
+        this.deadline = deadline;
+        this.isDone = isDone;
+        this.employee = employeeList;
+    }
+
 
     /**
      * Returns true if a given string is a valid project name.

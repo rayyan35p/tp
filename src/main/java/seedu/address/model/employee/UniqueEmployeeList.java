@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.address.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.address.model.employee.exceptions.EmployeeNotFoundException;
 
@@ -96,17 +95,6 @@ public class UniqueEmployeeList implements Iterable<Employee> {
         }
 
         internalList.setAll(employees);
-    }
-
-    /**
-     * Returns a copy of the internal list.
-     */
-    public List<Employee> getEmployeeListCopy() {
-        List<Employee> employeeListCopy = new FilteredList<>(internalList);
-        for (Employee e : internalList) {
-            employeeListCopy.add(e);
-        }
-        return employeeListCopy;
     }
 
     /**
