@@ -30,7 +30,8 @@ import seedu.address.model.task.Task;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Index provided was not a non-zero unsigned integer.\n"
+            + "This is not valid: %1$s";
     public static final String MESSAGE_DUPLICATE_INDEX = "Duplicate indexes are not allowed. \n"
             + "Duplicate Index: %1$s";
 
@@ -45,7 +46,8 @@ public class ParserUtil {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             logger.warning("Expected a non-zero unsigned integer but received: " + trimmedIndex + ".");
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(String.format(MESSAGE_INVALID_INDEX,
+                    trimmedIndex.isEmpty() ? "<empty>" : trimmedIndex));
         }
 
         assert Integer.parseInt(trimmedIndex) > 0;

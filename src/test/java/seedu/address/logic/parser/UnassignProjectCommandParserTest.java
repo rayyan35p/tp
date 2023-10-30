@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_EMPLOYEE;
@@ -46,13 +47,13 @@ public class UnassignProjectCommandParserTest {
     @Test
     public void parse_invalidIndexes_failure() {
         String args = " " + PREFIX_PROJECT + "abc " + PREFIX_EMPLOYEE + "2 3 4";
-        assertParseFailure(parser, args, ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, args, String.format(MESSAGE_INVALID_INDEX, "abc"));
     }
 
     @Test
     public void parse_noIndexes_failure() {
         String args = " " + PREFIX_PROJECT + "1 " + PREFIX_EMPLOYEE;
-        assertParseFailure(parser, args, ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, args, String.format(MESSAGE_INVALID_INDEX, "<empty>"));
     }
 
     @Test
