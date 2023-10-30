@@ -12,8 +12,17 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.UnassignProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new UnassignProjectCommand object
+ */
 public class UnassignProjectCommandParser implements Parser<UnassignProjectCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the UnassignProjectCommand
+     * and returns an UnassignProjectCommand object for execution.
+     *
+     * @throws ParseException
+     */
     public UnassignProjectCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
