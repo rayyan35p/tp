@@ -28,12 +28,12 @@ public class AddTaskCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "TASK_NAME\n"
             + PREFIX_PROJECT + "PROJECT_INDEX\n"
-            + PREFIX_DEADLINE + "TASK_DEADLINE{yyyy-MM-dd HHmm}\n\n"
+            + PREFIX_DEADLINE + "TASK_DEADLINE{dd-MM-yyyy HHmm}\n\n"
             + "Example: "
             + COMMAND_WORD + " "
-            + PREFIX_NAME + "name of task"
+            + PREFIX_NAME + "name of task "
             + PREFIX_PROJECT + "1 "
-            + PREFIX_DEADLINE + "2023-11-31 2359";
+            + PREFIX_DEADLINE + "11-11-2023 2359";
 
     private final Task task;
     private final Index projectIndex;

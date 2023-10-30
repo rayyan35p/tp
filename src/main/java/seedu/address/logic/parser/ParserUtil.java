@@ -165,7 +165,7 @@ public class ParserUtil {
         if (!Task.isValidDateTime(deadlineString)) {
             throw new ParseException(Task.MESSAGE_CONSTRAINTS);
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
         LocalDateTime parsedDateTime = LocalDateTime.parse(trimmedDeadlineString, formatter);
         return parsedDateTime;
     }

@@ -15,6 +15,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 public class TaskListTest {
@@ -36,7 +37,11 @@ public class TaskListTest {
 
     @Test
     public void remove_nullTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> taskList.remove(null));
+        assertThrows(NullPointerException.class, () -> taskList.remove((Task) null));
+    }
+    @Test
+    public void remove_nullTaskIndex_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> taskList.remove((Index) null));
     }
 
     @Test
