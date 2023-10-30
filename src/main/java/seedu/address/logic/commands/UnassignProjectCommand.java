@@ -81,10 +81,6 @@ public class UnassignProjectCommand extends Command {
 
         // Remove employees from project
         for (Index employeeIndex : employeeIndexes) {
-            if (employeeIndex.getZeroBased() >= lastShownEmployeeList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
-            }
-
             Employee employeeToRemove = lastShownEmployeeList.get(employeeIndex.getZeroBased());
             editedProject.removeEmployee(employeeToRemove);
         }

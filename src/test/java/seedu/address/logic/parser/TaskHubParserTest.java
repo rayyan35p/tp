@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EMPLOYEE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
 import static seedu.address.testutil.TypicalTasks.ALPHA_TASK;
 
@@ -41,6 +42,7 @@ import seedu.address.logic.commands.ListProjectCommand;
 import seedu.address.logic.commands.MarkProjectCommand;
 import seedu.address.logic.commands.PriorityProjectCommand;
 import seedu.address.logic.commands.ProjectDeadlineCommand;
+import seedu.address.logic.commands.UnassignProjectCommand;
 import seedu.address.logic.commands.UnmarkProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Employee;
@@ -141,8 +143,20 @@ public class TaskHubParserTest {
                 (AssignProjectCommand) parser.parseCommand(AssignProjectCommand.COMMAND_WORD + " "
                  + PREFIX_PROJECT + INDEX_FIRST_EMPLOYEE.getOneBased() + " " + PREFIX_EMPLOYEE
                         + INDEX_FIRST_EMPLOYEE.getOneBased());
-        assertEquals(new AssignProjectCommand(INDEX_FIRST_EMPLOYEE,
+        assertEquals(new AssignProjectCommand(INDEX_FIRST_PROJECT,
                                                 new ArrayList<>(Arrays.asList(INDEX_FIRST_EMPLOYEE))), command);
+    }
+
+    @Test
+    public void parseCommand_unassignEmployeeFromProject() throws Exception {
+        UnassignProjectCommand command =
+                (UnassignProjectCommand) parser.parseCommand(UnassignProjectCommand.COMMAND_WORD + " "
+                + PREFIX_PROJECT + INDEX_FIRST_PROJECT.getOneBased() + " "
+                + PREFIX_EMPLOYEE + INDEX_FIRST_EMPLOYEE.getOneBased() + " "
+                + INDEX_SECOND_EMPLOYEE.getOneBased());
+        assertEquals(new UnassignProjectCommand(INDEX_FIRST_PROJECT,
+                     new ArrayList<>(Arrays.asList(INDEX_FIRST_EMPLOYEE, INDEX_SECOND_EMPLOYEE))),
+                     command);
     }
 
     @Test
