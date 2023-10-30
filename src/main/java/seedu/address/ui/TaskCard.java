@@ -73,8 +73,13 @@ public class TaskCard extends UiPart<Region> {
         Image eIcon = new Image(getClass().getResourceAsStream("/images/employee_icon.png"));
         employeeIcon.setImage(eIcon);
 
-        // Set the employee TODO: replace with actual employee's name
-        employee.setText("$employee");
+        // Set the employee
+        // TODO: Make a new class for single-item list for the employee in a task
+        if (!task.getEmployee().isEmpty()) {
+            employee.setText(task.getEmployee().get(0).getName().toString());
+        } else {
+            employee.setText("No one assigned.");
+        }
 
         // Set the deadline icon
         Image dIcon = new Image(getClass().getResourceAsStream("/images/calendar_white.png"));
