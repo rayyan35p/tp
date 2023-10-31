@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 
 import java.util.List;
 
@@ -22,11 +21,10 @@ public class PriorityProjectCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a priority for a project in TaskHub."
             + "Parameters: "
-            + PREFIX_PRIORITY + "PRIORITY_LEVEL"
-            + PREFIX_PROJECT + "INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_PRIORITY + "high "
-            + PREFIX_PROJECT + "1";
+            + "INDEX (must be a positive integer) "
+            + PREFIX_PRIORITY + "PRIORITY_LEVEL\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_PRIORITY + "high";
 
 
     public static final String MESSAGE_SUCCESS = "Set priority level: %1$s";
