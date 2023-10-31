@@ -30,19 +30,15 @@ public class AssignEmployeeCommandParser implements Parser<AssignEmployeeCommand
 
         Index index;
         List<Index> employeeIndexes;
-        try {
-            if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT, PREFIX_EMPLOYEE)) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                                         AssignEmployeeCommand.MESSAGE_USAGE));
-            }
-            argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PROJECT);
-            argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EMPLOYEE);
-            index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PROJECT).get());
-            employeeIndexes = ParserUtil.parseIndexes(argMultimap.getValue(PREFIX_EMPLOYEE).get());
-        } catch (IllegalValueException ive) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT, PREFIX_EMPLOYEE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AssignEmployeeCommand.MESSAGE_USAGE), ive);
+                                     AssignEmployeeCommand.MESSAGE_USAGE));
         }
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PROJECT);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EMPLOYEE);
+        index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PROJECT).get());
+        employeeIndexes = ParserUtil.parseIndexes(argMultimap.getValue(PREFIX_EMPLOYEE).get());
+
 
         return new AssignEmployeeCommand(index, employeeIndexes);
     }
