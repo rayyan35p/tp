@@ -84,22 +84,6 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
-     * Replaces the task {@code target} in the list with {@code editedTask}.
-     * {@code target} must exist in the list.
-     * The project identity of {@code editedTask} must not be the same as another existing task in the list.
-     */
-    public void setTask(Task target, Task editedTask) {
-        requireAllNonNull(target, editedTask);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new TaskNotFoundException();
-        }
-
-        internalList.set(index, editedTask);
-    }
-
-    /**
      * Replaces the task at {@code targetIndex} in the list with {@code editedTask}.
      * {@code targetIndex} must be a valid index of the list.
      * The project identity of {@code editedTask} must not be the same as another existing task in the list.
