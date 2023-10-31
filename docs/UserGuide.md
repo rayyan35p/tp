@@ -339,7 +339,7 @@ Examples:
 * `findP Capstone` followed by `unmarkT pr/2 t/2` marks the 2nd task in the 2nd project from the results of the `findP` command as incomplete.
 
 
-### Sorting tasks by deadline and completion status: `sortT`
+### Sort tasks by deadline and completion status: `sortT`
 
 Sorts the tasks in each project by their deadline and completion status.
 
