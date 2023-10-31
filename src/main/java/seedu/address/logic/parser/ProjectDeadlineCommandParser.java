@@ -30,7 +30,6 @@ public class ProjectDeadlineCommandParser implements Parser<ProjectDeadlineComma
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ProjectDeadlineCommand.MESSAGE_USAGE));
         }
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DEADLINE);
 
         Index index;
         try {
