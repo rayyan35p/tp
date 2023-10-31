@@ -146,6 +146,14 @@ public class Project {
         tasks.remove(task);
     }
 
+    /**
+     * Sorts tasks in tasks list according to completion and deadline.
+     * Incomplete tasks will appear before complete tasks and tasks will be arranged in ascending deadline order.
+     */
+    public void sortTasksByDeadlineAndCompletion() {
+        tasks.sortTasksByDeadlineAndCompletion();
+    }
+
     public String getListOfEmployeeNames() {
         StringBuilder employeeListString = new StringBuilder();
         for (Employee employee : employeeList) {
