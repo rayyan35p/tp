@@ -35,6 +35,8 @@ public class AssignEmployeeCommandParser implements Parser<AssignEmployeeCommand
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                                          AssignEmployeeCommand.MESSAGE_USAGE));
             }
+            argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PROJECT);
+            argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EMPLOYEE);
             index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PROJECT).get());
             employeeIndexes = ParserUtil.parseIndexes(argMultimap.getValue(PREFIX_EMPLOYEE).get());
         } catch (IllegalValueException ive) {
