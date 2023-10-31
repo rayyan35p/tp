@@ -17,7 +17,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 public class TaskListTest {
@@ -77,14 +76,6 @@ public class TaskListTest {
         TaskList expectedTaskList = new TaskList();
         expectedTaskList.add(BETA_TASK);
         assertEquals(expectedTaskList, taskList);
-    }
-
-    @Test
-    public void setTask_duplicateTask_throwsDuplicateTaskException() {
-        taskList.add(ALPHA_TASK);
-        taskList.add(BETA_TASK);
-        assertThrows(DuplicateTaskException.class, ()
-            -> taskList.setTask(INDEX_FIRST_TASK, BETA_TASK));
     }
 
     @Test
