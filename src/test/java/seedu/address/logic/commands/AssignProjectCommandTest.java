@@ -20,17 +20,17 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.testutil.ProjectBuilder;
 
-public class AssignEmployeeCommandTest {
+public class AssignProjectCommandTest {
     private Model model = new ModelManager(getTypicalTaskHub(), new UserPrefs());
 
     @Test
     public void constructor_nullProjectIndex_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AssignEmployeeCommand(null, new ArrayList<>()));
+        assertThrows(NullPointerException.class, () -> new AssignProjectCommand(null, new ArrayList<>()));
     }
 
     @Test
     public void constructor_nullEmployeeIndexes_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AssignEmployeeCommand(Index.fromOneBased(1),
+        assertThrows(NullPointerException.class, () -> new AssignProjectCommand(Index.fromOneBased(1),
                                                                     null));
     }
     @Test
@@ -38,22 +38,22 @@ public class AssignEmployeeCommandTest {
 
         Model expectedModel = new ModelManager(getTypicalTaskHub(), new UserPrefs());
         expectedModel.setProject(ALPHA, new ProjectBuilder(ALPHA).withEmployees(ALICE, BENSON).build());
-        AssignEmployeeCommand assignEmployeeCommand =
-                new AssignEmployeeCommand(Index.fromOneBased(1),
+        AssignProjectCommand assignProjectCommand =
+                new AssignProjectCommand(Index.fromOneBased(1),
                         new ArrayList<>(Arrays.asList(Index.fromOneBased(2))));
-        String expectedMessage = String.format(AssignEmployeeCommand.MESSAGE_ADD_PROJECT_SUCCESS,
+        String expectedMessage = String.format(AssignProjectCommand.MESSAGE_ADD_PROJECT_SUCCESS,
                 Messages.format(expectedModel.getFilteredProjectList().get(0)));
-        assertCommandSuccess(assignEmployeeCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(assignProjectCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_employeeIndexOutOfBounds_throwsException() {
         Index outOfBoundsIndex = Index.fromOneBased(999);
-        AssignEmployeeCommand assignEmployeeCommand =
-                new AssignEmployeeCommand(Index.fromOneBased(1),
+        AssignProjectCommand assignProjectCommand =
+                new AssignProjectCommand(Index.fromOneBased(1),
                         new ArrayList<>(Arrays.asList(outOfBoundsIndex)));
         assertThrows(CommandException.class, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX, () ->
-                assignEmployeeCommand.execute(model));
+                assignProjectCommand.execute(model));
     }
 
 }

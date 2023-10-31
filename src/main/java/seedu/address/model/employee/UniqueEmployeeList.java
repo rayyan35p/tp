@@ -49,6 +49,20 @@ public class UniqueEmployeeList implements Iterable<Employee> {
     }
 
     /**
+     * Returns true if the list is empty.
+     */
+    public boolean isEmpty() {
+        return internalList.isEmpty();
+    }
+
+    /**
+     * Returns the size of the list.
+     */
+    public int size() {
+        return internalList.size();
+    }
+
+    /**
      * Replaces the employee {@code target} in the list with {@code editedEmployee}.
      * {@code target} must exist in the list.
      * The employee identity of {@code editedEmployee} must not be the same as another existing employee in the list.
