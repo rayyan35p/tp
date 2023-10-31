@@ -64,9 +64,7 @@ public class AddTaskCommand extends Command {
         // Add a task to the project with the selected index.
         projectToEdit.addTask(this.task);
 
-        Project editedProject = new Project(projectToEdit.getNameString(),
-                projectToEdit.getEmployees(), projectToEdit.getTasks(),
-                projectToEdit.getProjectPriority(), projectToEdit.getDeadline(), projectToEdit.getCompletionStatus());
+        Project editedProject = new Project(projectToEdit);
 
         // update model and filtered list for Ui update.
         model.setProject(projectToEdit, editedProject);

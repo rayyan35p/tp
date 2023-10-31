@@ -45,7 +45,7 @@ public class MarkTaskCommandTest {
 
         CommandResult commandResult = new MarkTaskCommand(projectIndex, taskIndexes).execute(modelStub);
         assertEquals(String.format(MESSAGE_TASKS_MARKED_SUCCESSFULLY, taskIndexes.size(),
-                        targetProject.getNameString()), commandResult.getFeedbackToUser());
+                        targetProject.getName()), commandResult.getFeedbackToUser());
     }
 
     @Test

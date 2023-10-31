@@ -41,7 +41,7 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
         if (argMultimap.getValue(PREFIX_EMPLOYEE).isPresent()) {
             employeeIndexes = ParserUtil.parseIndexes(argMultimap.getValue(PREFIX_EMPLOYEE).get());
         }
-        project = new Project(project.getNameString());
+        project = new Project(project.getName());
 
         return new AddProjectCommand(project, employeeIndexes);
     }

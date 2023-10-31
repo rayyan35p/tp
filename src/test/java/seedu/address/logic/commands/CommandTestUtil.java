@@ -168,7 +168,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredProjectList().size());
 
         Project project = model.getFilteredProjectList().get(targetIndex.getZeroBased());
-        final String[] splitName = project.getNameString().split("\\s+");
+        final String[] splitName = project.getName().toString().split("\\s+");
         model.updateFilteredProjectList(new ProjectNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredProjectList().size());
