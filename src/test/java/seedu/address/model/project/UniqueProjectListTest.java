@@ -68,7 +68,6 @@ public class UniqueProjectListTest {
     public void remove_projectDoesNotExist_throwsProjectNotFoundException() {
         assertThrows(ProjectNotFoundException.class, () -> uniqueProjectList.remove(ALPHA));
     }
-
     @Test
     public void remove_existingProject_removesProject() {
         uniqueProjectList.add(ALPHA);

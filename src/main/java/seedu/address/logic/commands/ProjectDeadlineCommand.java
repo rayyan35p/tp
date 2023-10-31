@@ -55,7 +55,8 @@ public class ProjectDeadlineCommand extends Command {
 
         Project projectToEdit = lastShownList.get(index.getZeroBased());
         Project editedProject = new Project(projectToEdit.getNameString(), projectToEdit.getEmployees(),
-                deadline);
+                projectToEdit.getTasks(),
+                projectToEdit.getProjectPriority(), deadline, projectToEdit.getCompletionStatus());
 
         model.setProject(projectToEdit, editedProject);
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);

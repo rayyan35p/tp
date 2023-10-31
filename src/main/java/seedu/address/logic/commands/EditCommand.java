@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EMPLOYEES;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -26,6 +27,7 @@ import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
+import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
 
@@ -86,6 +88,15 @@ public class EditCommand extends Command {
 
         model.setEmployee(employeeToEdit, editedEmployee);
         model.updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
+        model.getTaskHub().getProjectList().stream().forEach(project -> {
+            UniqueEmployeeList employeeList = project.getEmployees();
+            if (employeeList.contains(employeeToEdit)) {
+                employeeList.setEmployee(employeeToEdit, editedEmployee);
+            }
+            model.setProject(project, new Project(project.getNameString(), employeeList, project.getTasks(),
+                    project.getProjectPriority(), project.getDeadline(), project.getCompletionStatus()));
+        });
+        model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(MESSAGE_EDIT_EMPLOYEE_SUCCESS, Messages.format(editedEmployee)));
     }
 
@@ -101,10 +112,9 @@ public class EditCommand extends Command {
         Phone updatedPhone = editEmployeeDescriptor.getPhone().orElse(employeeToEdit.getPhone());
         Email updatedEmail = editEmployeeDescriptor.getEmail().orElse(employeeToEdit.getEmail());
         Address updatedAddress = editEmployeeDescriptor.getAddress().orElse(employeeToEdit.getAddress());
-        Project updatedProject = editEmployeeDescriptor.getProject().orElse(employeeToEdit.getProject());
         Set<Tag> updatedTags = editEmployeeDescriptor.getTags().orElse(employeeToEdit.getTags());
 
-        return new Employee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedProject, updatedTags);
+        return new Employee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -140,7 +150,6 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Project project;
         private Set<Tag> tags;
 
         public EditEmployeeDescriptor() {}
@@ -154,7 +163,6 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setProject(toCopy.project);
             setTags(toCopy.tags);
         }
 
@@ -195,14 +203,6 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
-        }
-
-        public void setProject(Project project) {
-            this.project = project;
-        }
-
-        public Optional<Project> getProject() {
-            return Optional.ofNullable(project);
         }
 
         /**

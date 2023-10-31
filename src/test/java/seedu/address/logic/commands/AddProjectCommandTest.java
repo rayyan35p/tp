@@ -28,6 +28,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TaskHub;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.ProjectBuilder;
 
 public class AddProjectCommandTest {
@@ -131,6 +132,10 @@ public class AddProjectCommandTest {
         public void addProject(Project project) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void addTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void setTaskHub(ReadOnlyTaskHub newData) {
@@ -161,6 +166,10 @@ public class AddProjectCommandTest {
         public void deleteProject(Project project) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void deleteTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void setEmployee(Employee target, Employee editedEmployee) {
@@ -174,7 +183,12 @@ public class AddProjectCommandTest {
 
         @Override
         public ObservableList<Project> getFilteredProjectList() {
-            return null;
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Task> getFilteredTaskList() {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -189,6 +203,10 @@ public class AddProjectCommandTest {
 
         @Override
         public void updateFilteredProjectList(Predicate<Project> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void updateFilteredTaskList(Predicate<Task> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

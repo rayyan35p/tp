@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 
 import java.util.List;
 
@@ -10,6 +11,8 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.UniqueEmployeeList;
+import seedu.address.model.project.Project;
 
 /**
  * Deletes a employee identified using it's displayed index from the TaskHub.
@@ -42,6 +45,17 @@ public class DeleteEmployeeCommand extends Command {
 
         Employee employeeToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteEmployee(employeeToDelete);
+        model.getTaskHub().getProjectList().stream().forEach(project -> {
+            UniqueEmployeeList employeeList = project.getEmployees();
+            if (employeeList.contains(employeeToDelete)) {
+                employeeList.remove(employeeToDelete);
+            }
+            model.setProject(project, new Project(project.getNameString(), employeeList, project.getTasks(),
+                    project.getProjectPriority(), project.getDeadline(), project.getCompletionStatus()));
+
+        });
+
+        model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, Messages.format(employeeToDelete)));
     }
 

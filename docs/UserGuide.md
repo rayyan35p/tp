@@ -175,9 +175,10 @@ Format: `clear`
 
 Adds a new project in TaskHub
 
-Format: `addP pr/PROJECT_NAME [em/EMPLOYEE_INDEX] ...`
+Format: `addP pr/PROJECT_NAME [em/EMPLOYEE_INDEXES] ...`
 
 * Adds a new project with the employees assigned to the project.
+* Each employee index __must be separated with a space.__
 * The employee must exist in the employees list. 
 
 Examples: 
@@ -211,6 +212,40 @@ Examples:
 * `findP presentation` returns `Presentation` <br>
   ![result for 'findP presentation'](images/findPpresentationresult.png)
 
+### Assign employee(s) to a project: `assignP`
+
+Assigns employee(s) to a project in TaskHub
+
+Format: `assignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES] ...`
+* The employee(s) will be assigned to the project
+* Each employee index __must be separated with a space.__
+* The project and employee index refers to the index number shown in the displayed project and employee list.
+
+Examples:
+* `assignP pr/Project1 em/1 2 3` will add employees 1, 2 and 3 to `Project1`
+
+### Un-assign employee(s) from a project: `unassignP`
+
+Un-assigns employee(s) from a project in TaskHub
+
+Format: `unassignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES] ...`
+
+* The employee(s) will be unassigned from the project
+* Each employee index __must be separated with a space.__
+* The project and employee index refers to the index number shown in the displayed project and employee list.
+
+### Delete a project: `deleteP`
+
+Deletes the specified project from TaskHub.
+
+Format: `deleteP INDEX`
+* Deletes the project at the specified `INDEX`.
+* The index refers to the index number shown in the displayed employees list.
+* The index __must be a positive integer__ 1, 2, 3,...
+
+Examples:
+* `listP` followed by `deleteP 2` deletes the 2nd project in TaskHub.
+
 ### Edit deadline of a project: `dl`
 
 Edit the deadline of a project in the projects list.
@@ -229,28 +264,33 @@ Examples:
 *  `dl 1 d/` removes the deadline of the 1st project.
 *  `findP Infinity` followed by `dl 1 d/25-11-2024` sets the deadline of the 1st project in the results of the `findP` command to be `25-11-2024`.
 
-### Assign employee(s) to a project: `assignE`
+### Mark a project as completed: `markP`
 
-Assigns employee(s) to a project in TaskHub
+Marks the specified project(s) as completed in TaskHub.
 
-Format: `assignE pr/PROJECT_NAME em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDEX]...`
-* The employee(s) will be assigned to the project.
-* The project name and employee names must exist in TaskHub.
+Format `markP INDEX [MORE_INDEXES]`
 
-Examples:
-* `assignE pr/Project1 em/1 2 3` will add employees 1, 2 and 3 to `Project1`
-
-### Delete a project: `deleteP`
-
-Deletes the specified project from TaskHub.
-
-Format: `deleteP INDEX`
-* Deletes the project at the specified `INDEX`.
-* The index refers to the index number shown in the displayed employees list.
-* The index __must be a positive integer__ 1, 2, 3,...
+* Marks the project(s) at the specified `INDEX`(es) as completed.
+* The index(es) refers to the index number shown in the displayed projects list.
+* The index(es) **must be a positive integers** 1, 2, 3,...
 
 Examples:
-* `listP` followed by `deleteP 2` deletes the 2nd project in TaskHub.
+* `listP` followed by `markP 1 3` marks the 1st and 3rd projects as completed in TaskHub.
+* `findP Capstone` followed by `markP 1` marks the 1st project in the results of the `findP` command as completed.
+
+### Unmark a project as completed: `unmarkP`
+
+Marks the specified project(s) as incomplete in TaskHub.
+
+Format `unmarkP INDEX [MORE_INDEXES]`
+
+* Marks the project(s) at the specified `INDEX`(es) as incomplete.
+* The index(es) refers to the index number shown in the displayed projects list.
+* The index(es) **must be a positive integers** 1, 2, 3,...
+
+Examples:
+* `listP` followed by `unmarkP 1 3` marks the 1st and 3rd projects as incomplete in TaskHub.
+* `findP Capstone` followed by `unmarkP 1` marks the 1st project in the results of the `findP` command as incomplete.
 
 ### Prioritise projects: `priorityP`
 
@@ -265,6 +305,39 @@ Format: `priorityP INDEX priority/PRIORITY`
 
 Examples:
 * `listP` followed by `priorityP 2 priority/high` sets the 2nd project as high priority in TaskHub.
+
+
+### Mark a task as completed: `markT`
+
+Marks the specified task(s) of a specified project as completed in TaskHub.
+
+Format `markT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
+
+* Marks the tasks(s) at the specified `TASK_INDEX`(es), of the project at the specified `PROJECT_INDEX` as completed.
+* The project index refers to the index number shown in the displayed projects list.
+* The task index(es) refer to the index number(s) shown in the task list of the above specified project.
+* The index(es) **must be positive integers** 1, 2, 3,...
+
+Examples:
+* `listP` followed by `markT pr/1 t/1 3` marks the 1st and 3rd tasks of the 1st project as completed in TaskHub.
+* `findP Capstone` followed by `markT pr/2 t/2` marks the 2nd task in the 2nd project from the results of the `findP` command as completed.
+
+
+### Mark a task as incomplete: `unmarkT`
+
+Marks the specified task(s) of a specified project as incomplete in TaskHub.
+
+Format `unmarkT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
+
+* Marks the tasks(s) at the specified `TASK_INDEX`(es), of the project at the specified `PROJECT_INDEX` as incomplete.
+* The project index refers to the index number shown in the displayed projects list.
+* The task index(es) refer to the index number(s) shown in the task list of the above specified project.
+* The index(es) **must be positive integers** 1, 2, 3,...
+
+Examples:
+* `listP` followed by `unmarkT pr/1 t/1 3` marks the 1st and 3rd tasks of the 1st project as incomplete in TaskHub.
+* `findP Capstone` followed by `unmarkT pr/2 t/2` marks the 2nd task in the 2nd project from the results of the `findP` command as incomplete.
+
 
 ### Exiting the program : `exit`
 
@@ -316,6 +389,8 @@ _Details coming soon ..._
 | **List All Projects**               | `listP`                                                                                                                                                                                          |
 | **Add Project**                     | `addP pr/PROJECT_NAME [em/EMPLOYEE_INDEX]…​` <br> e.g, `addP pr/CS2103T em/2 3 4 5`                                                                                                              |
 | **Edit Project Deadline**           | `dl INDEX d/DATE` <br> e.g., `dl 2 d/27-11-2023` <br>                                                                                                                                            |
+| **Mark Project(s) as complete**     | `markP INDEX [MORE_INDEXES]`<br> e.g., `markP 1 3`                                                                                                                                               |
+| **Mark Project(s) as incomplete**   | `unmarkP INDEX [MORE_INDEXES]`<br> e.g., `unmarkP 1 3`                                                                                                                                           |
 | **Assign Employee to Project**      | `assignE pr/PROJECT_INDEX em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDICES]…​` <br> e.g, `assignE pr/4 em/1 2 3`                                                                                      |
 | **Delete Project**                  | `deleteP INDEX`<br> e.g., `deleteP 3`                                                                                                                                                            |
 | **Find Project**                    | `findP KEYWORD [MORE_KEYWORDS]`<br> e.g., `findP Website Create`                                                                                                                                 |

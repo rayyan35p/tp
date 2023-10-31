@@ -15,11 +15,11 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
 
 /**
- * Assigns an existing project to a number of existing employee in the TaskHub.
+ * Assigns an existing project to a number of existing employees in the TaskHub.
  */
-public class AssignEmployeeCommand extends Command {
+public class AssignProjectCommand extends Command {
 
-    public static final String COMMAND_WORD = "assignE";
+    public static final String COMMAND_WORD = "assignP";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the project of the employees identified "
@@ -30,7 +30,7 @@ public class AssignEmployeeCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_PROJECT + "1 "
             + PREFIX_EMPLOYEE + "2 3 1";
 
-    public static final String MESSAGE_ADD_PROJECT_SUCCESS = "Updated project : %1$s";
+    public static final String MESSAGE_ADD_PROJECT_SUCCESS = "Member(s) have been assigned!\n%1$s";
 
 
     private final Index projectIndex;
@@ -40,7 +40,7 @@ public class AssignEmployeeCommand extends Command {
      * @param projectIndex index of the project in the filtered project list to update
      * @param employeeIndexes index of the employees in the filtered employee list to be added to the project
      */
-    public AssignEmployeeCommand(Index projectIndex, List<Index> employeeIndexes) {
+    public AssignProjectCommand(Index projectIndex, List<Index> employeeIndexes) {
         requireAllNonNull(projectIndex, employeeIndexes);
 
         this.projectIndex = projectIndex;
@@ -56,7 +56,8 @@ public class AssignEmployeeCommand extends Command {
         }
 
         Project projectToEdit = lastShownProjectList.get(projectIndex.getZeroBased());
-        Project editedProject = new Project(projectToEdit.name, projectToEdit.employeeList, projectToEdit.deadline);
+        Project editedProject = new Project(projectToEdit.name, projectToEdit.employeeList, projectToEdit.getTasks(),
+                projectToEdit.getProjectPriority(), projectToEdit.getDeadline(), projectToEdit.getCompletionStatus());
         for (Index employeeIndex : employeeIndexes) {
             if (employeeIndex.getZeroBased() >= lastShownEmployeeList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
@@ -89,11 +90,11 @@ public class AssignEmployeeCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AssignEmployeeCommand)) {
+        if (!(other instanceof AssignProjectCommand)) {
             return false;
         }
 
-        AssignEmployeeCommand e = (AssignEmployeeCommand) other;
+        AssignProjectCommand e = (AssignProjectCommand) other;
         return projectIndex.equals(e.projectIndex)
                 && employeeIndexes.equals(e.employeeIndexes);
     }

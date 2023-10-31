@@ -3,11 +3,15 @@ package seedu.address.ui;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
 
 /**
  * An UI component that displays information of a {@code Project}.
@@ -38,6 +42,12 @@ public class ProjectCard extends UiPart<Region> {
     private Label priority;
     @FXML
     private Label deadline;
+    @FXML
+    private StackPane taskListPlaceholder;
+    @FXML
+    private CheckBox completionStatus;
+    @FXML
+    private Label completionStatusText;
 
 
     /**
@@ -57,7 +67,7 @@ public class ProjectCard extends UiPart<Region> {
         String listOfEmployeesString =
                 project.getEmployees().asUnmodifiableObservableList().size() == 0
                 ? "No members yet."
-                : "Members: " + project.getListOfEmployeeNames();
+                : "Members:\n" + project.getListOfEmployeeNames();
         projects.setText(listOfEmployeesString);
 
         // Set the priority
@@ -70,6 +80,14 @@ public class ProjectCard extends UiPart<Region> {
             priority.setStyle("-fx-text-fill: red;");
         }
 
+        ObservableList<Task> taskObservableList = project.getTasks().asUnmodifiableObservableList();
+        TaskListPanel taskListPanel = new TaskListPanel(taskObservableList);
+
+        if (taskObservableList.isEmpty()) {
+            taskListPlaceholder.setVisible(false);
+        } else {
+            taskListPlaceholder.getChildren().add(taskListPanel.getRoot());
+        }
         // Set the deadline
         if (project.getDeadline().value.isEmpty()) {
             deadline.setText("No deadline set");
@@ -89,5 +107,11 @@ public class ProjectCard extends UiPart<Region> {
                 deadline.setStyle("-fx-text-fill: green;");
             }
         }
+
+        // Set the completion status
+        completionStatusText.setText("Completed?:");
+        completionStatus.setSelected(project.getCompletionStatus().isCompleted);
+        // Prevent user from interacting with the checkbox through GUI
+        completionStatus.setDisable(true);
     }
 }

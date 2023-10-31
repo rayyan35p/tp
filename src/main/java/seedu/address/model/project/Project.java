@@ -6,6 +6,8 @@ import java.util.Objects;
 
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 /**
  * Represents a Project in TaskHub.
@@ -16,15 +18,17 @@ public class Project {
     public static final String MESSAGE_CONSTRAINTS = "Projects can take any values, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String name;
-    public final Deadline deadline;
     public final UniqueEmployeeList employeeList;
+    private final TaskList tasks;
+    private final Deadline deadline;
     private final ProjectPriority projectPriority;
+    private final CompletionStatus completionStatus;
 
 
     /**
@@ -38,6 +42,8 @@ public class Project {
         this.projectPriority = new ProjectPriority("normal");
         this.deadline = new Deadline("");
         this.employeeList = new UniqueEmployeeList();
+        this.completionStatus = new CompletionStatus(false);
+        this.tasks = new TaskList();
     }
 
     /**
@@ -45,43 +51,44 @@ public class Project {
      *
      * @param project A valid Project.
      * @param employees A list of Employees that are in the project
-     */
-    public Project(String project, UniqueEmployeeList employees, Deadline deadline) {
-        requireNonNull(project);
-        this.name = project;
-        this.projectPriority = new ProjectPriority("normal");
-        this.employeeList = employees;
-        this.deadline = deadline;
-    }
-
-    /**
-     * Constructs a {@code Project}.
-     *
-     * @param project A valid Project.
-     * @param employees A list of Employees that are in the project
+     * @param tasks A list of Tasks that are in the project
      * @param priority A valid ProjectPriority for the project.
+     * @param deadline A valid Deadline for the project.
+     * @param completionStatus A valid CompletionStatus for the project.
      */
-    public Project(String project, UniqueEmployeeList employees, ProjectPriority priority) {
-        requireNonNull(project);
-        this.name = project;
-        this.projectPriority = priority;
-        this.deadline = new Deadline("");
-        this.employeeList = employees;
-    }
-
-    /**
-     * Constructs a {@code Project}.
-     *
-     * @param project A valid Project.
-     * @param employees A list of Employees that are in the project
-     * @param priority A valid ProjectPriority for the project.
-     */
-    public Project(String project, UniqueEmployeeList employees, ProjectPriority priority, Deadline deadline) {
+    public Project(String project,
+                   UniqueEmployeeList employees,
+                   TaskList tasks,
+                   ProjectPriority priority,
+                   Deadline deadline,
+                   CompletionStatus completionStatus) {
         requireNonNull(project);
         this.name = project;
         this.projectPriority = priority;
         this.employeeList = employees;
+        this.tasks = tasks;
         this.deadline = deadline;
+        this.completionStatus = completionStatus;
+    }
+
+    public String getNameString() {
+        return this.name;
+    }
+
+    public UniqueEmployeeList getEmployees() {
+        return employeeList;
+    }
+
+    public ProjectPriority getProjectPriority() {
+        return projectPriority;
+    }
+
+    public Deadline getDeadline() {
+        return deadline;
+    }
+
+    public CompletionStatus getCompletionStatus() {
+        return completionStatus;
     }
 
     /**
@@ -118,32 +125,35 @@ public class Project {
                 && otherProject.name.equals(this.name);
     }
 
-    public UniqueEmployeeList getEmployees() {
-        return employeeList;
+    public TaskList getTasks() {
+        return tasks;
     }
 
-    public ProjectPriority getProjectPriority() {
-        return projectPriority;
+    /**
+     * Adds a task to the project
+     * @param task The task to be added.
+     */
+    public void addTask(Task task) {
+        tasks.add(task);
+    }
+
+    /**
+     * Removes a task from the project
+     * @param task The task to be removed.
+     */
+
+    public void removeTask(Task task) {
+        tasks.remove(task);
     }
 
     public String getListOfEmployeeNames() {
         StringBuilder employeeListString = new StringBuilder();
+        int index = 1;
         for (Employee employee : employeeList) {
-            employeeListString.append(employee.getName() + ", ");
-        }
-        if (employeeList.asUnmodifiableObservableList().size() != 0) {
-            employeeListString.delete(employeeListString.length() - 2,
-                    employeeListString.length());
+            employeeListString.append(index + ". " + employee.getName() + "\n");
+            index++;
         }
         return employeeListString.toString();
-    }
-
-    public String getNameString() {
-        return this.name;
-    }
-
-    public Deadline getDeadline() {
-        return deadline;
     }
 
     @Override

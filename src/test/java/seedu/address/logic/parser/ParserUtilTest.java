@@ -5,14 +5,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PROJECT;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Address;
 import seedu.address.model.employee.Email;
@@ -45,9 +50,9 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+    public void parseIndex_negativeInput_throwsParseException() {
+        assertThrows(ParseException.class,
+                String.format(MESSAGE_INVALID_INDEX, "-1"), () -> ParserUtil.parseIndex("-1"));
     }
 
     @Test
@@ -57,6 +62,37 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_EMPLOYEE, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseIndexes_mixedValidAndInvalidIndexes_throwsParseException() {
+        // The first index is valid, but the second one is invalid
+        String mixedIndexes = "1 2 a";
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndexes(mixedIndexes));
+    }
+
+    @Test
+    public void parseIndexes_validIndexes_success() throws Exception {
+        String validIndexes = "1 2 3";
+        String validIndexesWithWhitespace = "  1 2 3  ";
+        List<Index> expectedIndexList = Arrays.asList(
+                INDEX_FIRST_PROJECT,
+                INDEX_SECOND_PROJECT,
+                INDEX_THIRD_PROJECT
+        );
+        assertEquals(expectedIndexList, ParserUtil.parseIndexes(validIndexes));
+        assertEquals(expectedIndexList, ParserUtil.parseIndexes(validIndexesWithWhitespace));
+    }
+
+    @Test
+    public void parseIndexes_allInvalidIndexes_throwsParseException() {
+        String allInvalidIndexes = "a b c";
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndexes(allInvalidIndexes));
+    }
+
+    @Test
+    public void parseIndexes_emptyIndex_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndexes(""));
     }
 
     @Test

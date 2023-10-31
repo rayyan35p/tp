@@ -44,11 +44,18 @@ public class CommandTestUtil {
     public static final String VALID_PROJECT_BOB = "Beta";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_PRIORITY_AMY = "high";
 
     // Project valid fields
     public static final String VALID_DEADLINE_PROJECT_AMY = "21/02/2021";
     public static final String VALID_DEADLINE_PROJECT_BOB = "15/11/2024";
+    public static final String VALID_PRIORITY_AMY = "high";
+
+    // Task valid fields
+
+    public static final String VALID_DEADLINE_TASK = "11-11-2023 2359";
+    public static final String VALID_NAME_TASK = "Read Book";
+    public static final String VALID_PROJECT_INDEX_TASK = "1";
+
 
     // Employee field descriptions
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
@@ -77,6 +84,12 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    // Task field descriptions
+    public static final String VALID_TASK_THREE_FIELDS = " " + PREFIX_NAME + VALID_NAME_TASK + " "
+                                                             + PREFIX_PROJECT + VALID_PROJECT_INDEX_TASK + " "
+                                                             + PREFIX_DEADLINE + VALID_DEADLINE_TASK + " ";
+
 
     public static final EditCommand.EditEmployeeDescriptor DESC_AMY;
     public static final EditCommand.EditEmployeeDescriptor DESC_BOB;

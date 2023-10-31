@@ -39,8 +39,11 @@ public class PriorityProjectCommandTest {
         PriorityProjectCommand projectPriorityCommand = new PriorityProjectCommand(new ProjectPriority("high"),
                 INDEX_FIRST_PROJECT);
         Project projectWithNewPriority = new Project(projectToSetPriority.name,
-                projectToSetPriority.employeeList,
-                new ProjectPriority("high"));
+                projectToSetPriority.getEmployees(),
+                projectToSetPriority.getTasks(),
+                new ProjectPriority("high"),
+                projectToSetPriority.getDeadline(),
+                projectToSetPriority.getCompletionStatus());
 
         String expectedMessage = String.format(PriorityProjectCommand.MESSAGE_SUCCESS,
                 Messages.format(projectWithNewPriority));
@@ -84,7 +87,7 @@ public class PriorityProjectCommandTest {
         // null -> returns false
         assertFalse(priorityProjectFirstCommand.equals(null));
 
-        // different employee -> returns false
+        // different priority -> returns false
         assertFalse(priorityProjectFirstCommand.equals(priorityProjectSecondCommand));
     }
 
