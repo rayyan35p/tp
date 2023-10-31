@@ -1,6 +1,6 @@
 package seedu.address.model.task;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -33,8 +33,7 @@ public class Task {
      * @param taskName The name of the task.
      */
     public Task(String taskName, LocalDateTime deadline) {
-        requireNonNull(taskName);
-        requireNonNull(deadline);
+        requireAllNonNull(taskName, deadline);
         name = taskName;
         this.deadline = deadline;
         this.isDone = false;
@@ -46,8 +45,7 @@ public class Task {
      * @param taskName The name of the task.
      */
     public Task(String taskName, LocalDateTime deadline, Boolean isDone) {
-        requireNonNull(taskName);
-        requireNonNull(deadline);
+        requireAllNonNull(taskName, deadline);
         name = taskName;
         this.deadline = deadline;
         this.isDone = isDone;
@@ -61,9 +59,7 @@ public class Task {
      * @param employee The employee that was assigned to the task.
      */
     public Task(String taskName, LocalDateTime deadline, Employee employee) {
-        requireNonNull(taskName);
-        requireNonNull(deadline);
-        requireNonNull(employee);
+        requireAllNonNull(taskName, deadline, employee);
         name = taskName;
         this.deadline = deadline;
         this.isDone = false;
@@ -77,9 +73,7 @@ public class Task {
      * @param employee The employee that was assigned to the task.
      */
     public Task(String taskName, LocalDateTime deadline, Boolean isDone, Employee employee) {
-        requireNonNull(taskName);
-        requireNonNull(deadline);
-        requireNonNull(employee);
+        requireAllNonNull(taskName, deadline, employee);
         name = taskName;
         this.deadline = deadline;
         this.isDone = isDone;
@@ -93,8 +87,7 @@ public class Task {
      * @param employeeList The employees assigned to the task.
      */
     public Task(String taskName, LocalDateTime deadline, Boolean isDone, List<Employee> employeeList) {
-        requireNonNull(taskName);
-        requireNonNull(deadline);
+        requireAllNonNull(taskName, deadline, isDone);
         name = taskName;
         this.deadline = deadline;
         this.isDone = isDone;

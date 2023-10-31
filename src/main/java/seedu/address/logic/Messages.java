@@ -27,6 +27,7 @@ public class Messages {
     public static final String MESSAGE_PROJECTS_LISTED_OVERVIEW = "%1$d project(s) and their employee(s) listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_NO_EMPLOYEE_TO_UNASSIGN = "There is no employee assigned yet!";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

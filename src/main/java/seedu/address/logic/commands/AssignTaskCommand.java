@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
 import java.util.List;
 
@@ -26,12 +26,12 @@ public class AssignTaskCommand extends Command {
     public static final String COMMAND_WORD = "assignT";
     public static final String MESSAGE_SUCCESS = "Assigned task: %1$s to employee, %2$s";
     public static final String MESSAGE_USAGE =
-            COMMAND_WORD + ": Assigns a task in a project to an employee in the project.\n"
+            COMMAND_WORD + ": Assigns an employee in a project to a task in the project..\n"
             + "Parameters: "
             + PREFIX_PROJECT + "PROJECT_INDEX "
-            + PREFIX_TAG + "TASK_INDEX "
+            + PREFIX_TASK + "TASK_INDEX "
             + PREFIX_EMPLOYEE + "EMPLOYEE_INDEX\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_PROJECT + "1 " + PREFIX_TAG + "2 " + PREFIX_EMPLOYEE + "3 ";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_PROJECT + "1 " + PREFIX_TASK + "2 " + PREFIX_EMPLOYEE + "3 ";
 
     private final Index projectIndex;
     private final Index taskIndex;
