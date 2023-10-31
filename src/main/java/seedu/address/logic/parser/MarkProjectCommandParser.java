@@ -19,14 +19,14 @@ public class MarkProjectCommandParser implements Parser<MarkProjectCommand> {
         requireNonNull(args);
         assert args != null;
 
-        try {
-            List<Index> indexes = ParserUtil.parseIndexes(args);
-            assert indexes.size() > 0;
-
-            return new MarkProjectCommand(indexes);
-        } catch (ParseException pe) {
+        if (args.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkProjectCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkProjectCommand.MESSAGE_USAGE));
         }
+
+        List<Index> indexes = ParserUtil.parseIndexes(args);
+        assert indexes.size() > 0;
+
+        return new MarkProjectCommand(indexes);
     }
 }

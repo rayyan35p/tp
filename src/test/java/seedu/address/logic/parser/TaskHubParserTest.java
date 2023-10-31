@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EMPLOYEE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
 import static seedu.address.testutil.TypicalTasks.ALPHA_TASK;
 
@@ -26,7 +27,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddEmployeeCommand;
 import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.commands.AddTaskCommand;
-import seedu.address.logic.commands.AssignEmployeeCommand;
+import seedu.address.logic.commands.AssignProjectCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteEmployeeCommand;
 import seedu.address.logic.commands.DeleteProjectCommand;
@@ -45,6 +46,7 @@ import seedu.address.logic.commands.MarkTaskCommand;
 import seedu.address.logic.commands.PriorityProjectCommand;
 import seedu.address.logic.commands.ProjectDeadlineCommand;
 import seedu.address.logic.commands.SortTaskCommand;
+import seedu.address.logic.commands.UnassignProjectCommand;
 import seedu.address.logic.commands.UnmarkProjectCommand;
 import seedu.address.logic.commands.UnmarkTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -142,12 +144,24 @@ public class TaskHubParserTest {
 
     @Test
     public void parseCommand_assignEmployeeToProject() throws Exception {
-        AssignEmployeeCommand command =
-                (AssignEmployeeCommand) parser.parseCommand(AssignEmployeeCommand.COMMAND_WORD + " "
+        AssignProjectCommand command =
+                (AssignProjectCommand) parser.parseCommand(AssignProjectCommand.COMMAND_WORD + " "
                  + PREFIX_PROJECT + INDEX_FIRST_EMPLOYEE.getOneBased() + " " + PREFIX_EMPLOYEE
                         + INDEX_FIRST_EMPLOYEE.getOneBased());
-        assertEquals(new AssignEmployeeCommand(INDEX_FIRST_EMPLOYEE,
+        assertEquals(new AssignProjectCommand(INDEX_FIRST_PROJECT,
                                                 new ArrayList<>(Arrays.asList(INDEX_FIRST_EMPLOYEE))), command);
+    }
+
+    @Test
+    public void parseCommand_unassignEmployeeFromProject() throws Exception {
+        UnassignProjectCommand command =
+                (UnassignProjectCommand) parser.parseCommand(UnassignProjectCommand.COMMAND_WORD + " "
+                + PREFIX_PROJECT + INDEX_FIRST_PROJECT.getOneBased() + " "
+                + PREFIX_EMPLOYEE + INDEX_FIRST_EMPLOYEE.getOneBased() + " "
+                + INDEX_SECOND_EMPLOYEE.getOneBased());
+        assertEquals(new UnassignProjectCommand(INDEX_FIRST_PROJECT,
+                     new ArrayList<>(Arrays.asList(INDEX_FIRST_EMPLOYEE, INDEX_SECOND_EMPLOYEE))),
+                     command);
     }
 
     @Test

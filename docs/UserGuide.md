@@ -212,17 +212,27 @@ Examples:
 * `findP presentation` returns `Presentation` <br>
   ![result for 'findP presentation'](images/findPpresentationresult.png)
 
-### Assign employee(s) to a project: `assignE`
+### Assign employee(s) to a project: `assignP`
 
 Assigns employee(s) to a project in TaskHub
 
-Format: `assignE pr/PROJECT_INDEX em/EMPLOYEE_INDEX OTHER_EMPLOYEE_INDEXES...`
+Format: `assignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES] ...`
 * The employee(s) will be assigned to the project
 * Each employee index __must be separated with a space.__
-* The project and employee index refers to the index number shown in the displayed project and employees list.
+* The project and employee index refers to the index number shown in the displayed project and employee list.
 
 Examples:
-* `assignE pr/Project1 em/1 2 3` will add employees 1, 2 and 3 to `Project1`
+* `assignP pr/Project1 em/1 2 3` will add employees 1, 2 and 3 to `Project1`
+
+### Un-assign employee(s) from a project: `unassignP`
+
+Un-assigns employee(s) from a project in TaskHub
+
+Format: `unassignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES] ...`
+
+* The employee(s) will be unassigned from the project
+* Each employee index __must be separated with a space.__
+* The project and employee index refers to the index number shown in the displayed project and employee list.
 
 ### Delete a project: `deleteP`
 
