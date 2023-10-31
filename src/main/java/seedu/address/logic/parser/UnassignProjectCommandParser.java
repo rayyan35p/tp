@@ -32,6 +32,7 @@ public class UnassignProjectCommandParser implements Parser<UnassignProjectComma
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                                      UnassignProjectCommand.MESSAGE_USAGE));
         }
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PROJECT, PREFIX_EMPLOYEE);
 
         Index projectIndex;
         List<Index> employeeIndexes;
