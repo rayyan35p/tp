@@ -1,9 +1,12 @@
 package seedu.address.model.task;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import seedu.address.model.employee.Employee;
 
@@ -13,8 +16,8 @@ import seedu.address.model.employee.Employee;
 public class Task {
 
     public static final String MESSAGE_CONSTRAINTS = "You must enter a name for a task!\n"
-            + "You must also enter a deadline, which should be in the format: yyyy-mm-dd HHmm\n "
-            + "e.g., addT n/name pr/1 d/2023-11-11 2359";
+            + "You must also enter a deadline, which should be in the format: dd-mm-yyyy HHmm\n "
+            + "e.g., addT n/name pr/1 d/11-11-2023 2359";
 
     /**
      * The first character must not be a whitespace,
@@ -22,19 +25,19 @@ public class Task {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
     private final String name;
-    private boolean isDone;
-    private Employee employee;
     private final LocalDateTime deadline;
+    private boolean isDone;
+    private List<Employee> employee;
     /**
      * Constructs a {@code Task}
      * @param taskName The name of the task.
      */
     public Task(String taskName, LocalDateTime deadline) {
-        requireNonNull(taskName);
-        requireNonNull(deadline);
+        requireAllNonNull(taskName, deadline);
         name = taskName;
         this.deadline = deadline;
         this.isDone = false;
+        this.employee = new ArrayList<>();
     }
 
     /**
@@ -42,12 +45,55 @@ public class Task {
      * @param taskName The name of the task.
      */
     public Task(String taskName, LocalDateTime deadline, Boolean isDone) {
-        requireNonNull(taskName);
-        requireNonNull(deadline);
+        requireAllNonNull(taskName, deadline, isDone);
         name = taskName;
         this.deadline = deadline;
         this.isDone = isDone;
+        this.employee = new ArrayList<>();
     }
+
+    /**
+     * Constructs a Task with an assigned employee.
+     * - for loading of tasks from taskhub.json
+     * @param taskName The name of the task.
+     * @param employee The employee that was assigned to the task.
+     */
+    public Task(String taskName, LocalDateTime deadline, Employee employee) {
+        requireAllNonNull(taskName, deadline, employee);
+        name = taskName;
+        this.deadline = deadline;
+        this.isDone = false;
+        this.employee = Collections.singletonList(employee);
+    }
+
+    /**
+     * Constructs a Task with a pre-determined Done status and assigned employee
+     * - for loading of tasks from taskhub.json.
+     * @param taskName The name of the task.
+     * @param employee The employee that was assigned to the task.
+     */
+    public Task(String taskName, LocalDateTime deadline, Boolean isDone, Employee employee) {
+        requireAllNonNull(taskName, deadline, isDone, employee);
+        name = taskName;
+        this.deadline = deadline;
+        this.isDone = isDone;
+        this.employee = Collections.singletonList(employee);
+    }
+
+    /**
+     * Constructs a Task with a pre-determined Done status and list of employees - for loading of tasks
+     * from taskhub.json.
+     * @param taskName The name of the task.
+     * @param employeeList The employees assigned to the task.
+     */
+    public Task(String taskName, LocalDateTime deadline, Boolean isDone, List<Employee> employeeList) {
+        requireAllNonNull(taskName, deadline, isDone);
+        name = taskName;
+        this.deadline = deadline;
+        this.isDone = isDone;
+        this.employee = employeeList;
+    }
+
 
     /**
      * Returns true if a given string is a valid project name.
@@ -55,14 +101,6 @@ public class Task {
     public static boolean isValidTask(String testString) {
         return testString.matches(VALIDATION_REGEX);
     }
-
-    /**
-     * Assigns an employee to the task.
-     */
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
 
     /**
      * Tells us if a task is done.
@@ -86,7 +124,7 @@ public class Task {
         this.isDone = false;
     }
 
-    public Employee getEmployee() {
+    public List<Employee> getEmployee() {
         return this.employee;
     }
 
@@ -103,17 +141,17 @@ public class Task {
         return completionString + " | "
                                     + this.name + " | "
                                         + this.employee + " | "
-                                            + DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm").format(this.deadline);
+                                            + DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm").format(this.deadline);
     }
 
     /**
-     * Determines if a string is of the format "yyyy-MM-dd HHmm" i.e., a valid LocalDateTime object.
+     * Determines if a string is of the format "dd-MM-yyyy HHmm" i.e., a valid LocalDateTime object.
      *
      * @param input The string to be examined.
      * @return A boolean value which tells us if the string represents a LocalDate.
      */
     public static boolean isValidDateTime(String input) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
         try {
             LocalDateTime.parse(input, dtf);
             return true; // Parsing success: Valid date/time

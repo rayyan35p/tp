@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalTasks.ALPHA_TASK;
 import static seedu.address.testutil.TypicalTasks.BETA_TASK;
 import static seedu.address.testutil.TypicalTasks.CHARLIE_TASK;
@@ -15,6 +16,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 public class TaskListTest {
@@ -36,7 +38,11 @@ public class TaskListTest {
 
     @Test
     public void remove_nullTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> taskList.remove(null));
+        assertThrows(NullPointerException.class, () -> taskList.remove((Task) null));
+    }
+    @Test
+    public void remove_nullTaskIndex_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> taskList.remove((Index) null));
     }
 
     @Test
@@ -69,6 +75,15 @@ public class TaskListTest {
         taskList.setTasks(tasks);
         TaskList expectedTaskList = new TaskList();
         expectedTaskList.add(BETA_TASK);
+        assertEquals(expectedTaskList, taskList);
+    }
+
+    @Test
+    public void setTask_validInput_taskReplaced() {
+        TaskList expectedTaskList = new TaskList();
+        expectedTaskList.add(BETA_TASK);
+        taskList.add(ALPHA_TASK);
+        taskList.setTask(INDEX_FIRST_TASK, BETA_TASK);
         assertEquals(expectedTaskList, taskList);
     }
 

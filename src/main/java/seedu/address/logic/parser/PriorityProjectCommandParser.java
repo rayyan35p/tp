@@ -35,7 +35,7 @@ public class PriorityProjectCommandParser implements Parser<PriorityProjectComma
         try {
             projectIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            throw new ParseException(String.format(ive.getMessage(),
                     PriorityProjectCommand.MESSAGE_USAGE), ive);
         }
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PRIORITY);

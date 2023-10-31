@@ -1,7 +1,6 @@
 package seedu.address.model.task;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalTasks.ALPHA_TASK;
 import static seedu.address.testutil.TypicalTasks.BETA_TASK;
 
@@ -9,11 +8,6 @@ import org.junit.jupiter.api.Test;
 
 
 public class TaskTest {
-    @Test
-    public void setEmployeeTest() {
-        ALPHA_TASK.setEmployee(ALICE);
-        assertTrue(ALPHA_TASK.getEmployee().equals(ALICE));
-    }
 
     @Test
     public void markAsDoneTest() {

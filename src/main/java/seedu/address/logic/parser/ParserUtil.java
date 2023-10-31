@@ -30,7 +30,10 @@ import seedu.address.model.task.Task;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Index provided was not a non-zero unsigned integer.\n"
+            + "This is not valid: %1$s";
+    public static final String MESSAGE_DUPLICATE_INDEX = "Duplicate indexes are not allowed. \n"
+            + "Duplicate Index: %1$s";
 
     private static final Logger logger = LogsCenter.getLogger(ParserUtil.class);
 
@@ -43,7 +46,8 @@ public class ParserUtil {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             logger.warning("Expected a non-zero unsigned integer but received: " + trimmedIndex + ".");
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(String.format(MESSAGE_INVALID_INDEX,
+                    trimmedIndex.isEmpty() ? "<empty>" : trimmedIndex));
         }
 
         assert Integer.parseInt(trimmedIndex) > 0;
@@ -59,8 +63,16 @@ public class ParserUtil {
     public static List<Index> parseIndexes(String oneBasedIndexes) throws ParseException {
         String[] trimmedIndexes = oneBasedIndexes.trim().split(" ");
         List<Index> indexList = new ArrayList<>();
+        Set<String> uniqueStringSet = new HashSet<>();
+
         for (String index : trimmedIndexes) {
-            indexList.add(parseIndex(index));
+            if (uniqueStringSet.contains(index)) {
+                logger.warning(String.format(MESSAGE_DUPLICATE_INDEX, index));
+                throw new ParseException(String.format(MESSAGE_DUPLICATE_INDEX, index));
+            } else {
+                uniqueStringSet.add(index);
+                indexList.add(parseIndex(index));
+            }
         }
 
         assert indexList != null;
@@ -155,7 +167,7 @@ public class ParserUtil {
         if (!Task.isValidDateTime(deadlineString)) {
             throw new ParseException(Task.MESSAGE_CONSTRAINTS);
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
         LocalDateTime parsedDateTime = LocalDateTime.parse(trimmedDeadlineString, formatter);
         return parsedDateTime;
     }

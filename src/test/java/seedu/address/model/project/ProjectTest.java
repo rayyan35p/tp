@@ -78,7 +78,7 @@ public class ProjectTest {
         Project project = new Project("some project");
         project.addEmployee(ALICE);
         project.addEmployee(BOB);
-        String expected = "Alice Pauline, Bob Choo";
+        String expected = "1. Alice Pauline\n2. Bob Choo\n";
 
         assertTrue(project.getListOfEmployeeNames().equals(expected));
     }
