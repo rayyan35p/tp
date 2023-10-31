@@ -53,6 +53,10 @@ public class MarkTaskCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         List<Project> lastShownProjectList = model.getFilteredProjectList();
 
+        if (lastShownProjectList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_NO_PROJECT_TO_MARK_UNMARK_TASK);
+        }
+
         // Check if project index is valid first
         if (projectIndex.getZeroBased() >= lastShownProjectList.size()
             || projectIndex.getZeroBased() < 0) {

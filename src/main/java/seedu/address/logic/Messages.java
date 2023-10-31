@@ -23,6 +23,8 @@ public class Messages {
     public static final String MESSAGE_NO_PROJECT_TO_ADD_TASK = "You don't have any projects to add tasks to.\n "
             + "Try creating a project with addP!";
     public static final String MESSAGE_NO_PROJECT_TO_DELETE_TASK = "You don't have any projects to delete tasks from.";
+    public static final String MESSAGE_NO_PROJECT_TO_MARK_UNMARK_TASK =
+            "You don't have any projects to mark tasks as completed/incomplete in.";
     public static final String MESSAGE_EMPLOYEES_LISTED_OVERVIEW = "%1$d employee(s) and their project(s) listed!";
     public static final String MESSAGE_PROJECTS_LISTED_OVERVIEW = "%1$d project(s) and their employee(s) listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
