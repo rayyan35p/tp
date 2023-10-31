@@ -91,8 +91,8 @@ public class CommandTestUtil {
                                                              + PREFIX_DEADLINE + VALID_DEADLINE_TASK + " ";
 
 
-    public static final EditCommand.EditEmployeeDescriptor DESC_AMY;
-    public static final EditCommand.EditEmployeeDescriptor DESC_BOB;
+    public static final EditEmployeeCommand.EditEmployeeDescriptor DESC_AMY;
+    public static final EditEmployeeCommand.EditEmployeeDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditEmployeeDescriptorBuilder().withName(VALID_NAME_AMY)
