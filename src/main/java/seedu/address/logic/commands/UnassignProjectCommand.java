@@ -36,7 +36,7 @@ public class UnassignProjectCommand extends Command {
             + "Employee: %1$s (Index: %2$s) "
             + "Project: %3$s (Index: %4$s)\n"
             + "Please check the project and employee index again. "
-            + "Using the findP command to isolate the project and it's employees may be useful.";
+            + "Using the findP command to isolate the project and its employees may be useful.";
 
     private final Index projectIndex;
     private final List<Index> employeeIndexes;
@@ -65,7 +65,7 @@ public class UnassignProjectCommand extends Command {
         Project editedProject = new Project(projectToEdit.name, projectToEdit.employeeList, projectToEdit.getTasks(),
                 projectToEdit.getProjectPriority(), projectToEdit.getDeadline(), projectToEdit.getCompletionStatus());
 
-        // Check if all employees are in the project
+        // Check if all specified employees are in the project
         for (Index employeeIndex : employeeIndexes) {
             if (employeeIndex.getZeroBased() >= lastShownEmployeeList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
@@ -79,7 +79,7 @@ public class UnassignProjectCommand extends Command {
             }
         }
 
-        // Remove employees from project
+        // Remove specified employees from project
         for (Index employeeIndex : employeeIndexes) {
             Employee employeeToRemove = lastShownEmployeeList.get(employeeIndex.getZeroBased());
             editedProject.removeEmployee(employeeToRemove);
