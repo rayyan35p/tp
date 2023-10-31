@@ -67,7 +67,7 @@ public class ProjectCard extends UiPart<Region> {
         String listOfEmployeesString =
                 project.getEmployees().asUnmodifiableObservableList().size() == 0
                 ? "No members yet."
-                : "Members: " + project.getListOfEmployeeNames();
+                : "Members:\n" + project.getListOfEmployeeNames();
         projects.setText(listOfEmployeesString);
 
         // Set the priority

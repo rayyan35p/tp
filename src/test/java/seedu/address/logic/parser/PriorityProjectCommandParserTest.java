@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.PROJECT_PRIORITY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_AMY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
@@ -27,18 +26,15 @@ public class PriorityProjectCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, PriorityProjectCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                PriorityProjectCommand.MESSAGE_USAGE));
 
         // missing priority prefix
-        assertParseFailure(parser, VALID_PRIORITY_AMY + " "
-                + PREFIX_PROJECT + INDEX_FIRST_PROJECT.getOneBased(), expectedMessage);
-
-        // missing project prefix
-        assertParseFailure(parser, PROJECT_PRIORITY_AMY + " "
-                + INDEX_FIRST_PROJECT.getOneBased(), expectedMessage);
+        assertParseFailure(parser, INDEX_FIRST_PROJECT.getOneBased() + " "
+                + VALID_PRIORITY_AMY + " ", expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_PRIORITY_AMY + " "
-                + INDEX_FIRST_PROJECT.getOneBased(), expectedMessage);
+        assertParseFailure(parser, INDEX_FIRST_PROJECT.getOneBased() + " "
+                + VALID_PRIORITY_AMY + " ", expectedMessage);
     }
 }

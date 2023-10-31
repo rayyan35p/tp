@@ -1,9 +1,12 @@
 package seedu.address.testutil;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.employee.Employee;
 import seedu.address.model.task.Task;
 
 /**
@@ -14,10 +17,12 @@ public class TaskBuilder {
     public static final String DEFAULT_NAME = "ALPHA_TASK";
     public static final String DEFAULT_DEADLINE = "11-11-2023 2359";
     public static final boolean DEFAULT_COMPLETION_STATUS = false;
+    public static final List<Employee> DEFAULT_EMPLOYEE = new ArrayList<>();
 
     private String name;
     private LocalDateTime deadline;
     private boolean isDone;
+    private List<Employee> employee;
 
     /**
      * Instantiates a {@code task} with the default details
@@ -30,6 +35,7 @@ public class TaskBuilder {
             System.out.print("This should not print");
         }
         isDone = DEFAULT_COMPLETION_STATUS;
+        employee = DEFAULT_EMPLOYEE;
     }
 
     /**
@@ -39,6 +45,7 @@ public class TaskBuilder {
         name = toCopy.getName();
         deadline = toCopy.getDeadline();
         isDone = toCopy.isDone();
+        employee = toCopy.getEmployee();
     }
 
     /**
@@ -65,7 +72,15 @@ public class TaskBuilder {
         return this;
     }
 
+    /**
+     * Sets the assigned employee of the {@code task} we are building.
+     */
+    public TaskBuilder withEmployee(List<Employee> employee) {
+        this.employee = employee;
+        return this;
+    }
+
     public Task build() {
-        return new Task(name, deadline, isDone);
+        return new Task(name, deadline, isDone, employee);
     }
 }
