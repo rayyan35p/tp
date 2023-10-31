@@ -45,7 +45,7 @@ public class Task {
      * @param taskName The name of the task.
      */
     public Task(String taskName, LocalDateTime deadline, Boolean isDone) {
-        requireAllNonNull(taskName, deadline);
+        requireAllNonNull(taskName, deadline, isDone);
         name = taskName;
         this.deadline = deadline;
         this.isDone = isDone;
@@ -73,7 +73,7 @@ public class Task {
      * @param employee The employee that was assigned to the task.
      */
     public Task(String taskName, LocalDateTime deadline, Boolean isDone, Employee employee) {
-        requireAllNonNull(taskName, deadline, employee);
+        requireAllNonNull(taskName, deadline, isDone, employee);
         name = taskName;
         this.deadline = deadline;
         this.isDone = isDone;
