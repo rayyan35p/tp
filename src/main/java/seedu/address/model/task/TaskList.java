@@ -9,7 +9,6 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -97,10 +96,6 @@ public class TaskList implements Iterable<Task> {
             throw new TaskNotFoundException();
         }
 
-        if (!target.equals(editedTask) && contains(editedTask)) {
-            throw new DuplicateTaskException();
-        }
-
         internalList.set(index, editedTask);
     }
 
@@ -113,9 +108,6 @@ public class TaskList implements Iterable<Task> {
         requireAllNonNull(targetIndex, editedTask);
 
         Task targetTask = internalList.get(targetIndex.getZeroBased());
-        if (!targetTask.equals(editedTask) && contains(editedTask)) {
-            throw new DuplicateTaskException();
-        }
 
         internalList.set(targetIndex.getZeroBased(), editedTask);
     }
