@@ -33,8 +33,7 @@ public class AssignProjectCommandParser implements Parser<AssignProjectCommand> 
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AssignProjectCommand.MESSAGE_USAGE));
         }
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PROJECT);
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EMPLOYEE);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PROJECT, PREFIX_EMPLOYEE);
         index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PROJECT).get());
         employeeIndexes = ParserUtil.parseIndexes(argMultimap.getValue(PREFIX_EMPLOYEE).get());
 
