@@ -10,20 +10,20 @@ import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.commands.AssignEmployeeCommand;
+import seedu.address.logic.commands.AssignProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new AssignEmployeeCommand object
+ * Parses input arguments and creates a new AssignProjectCommand object
  */
-public class AssignEmployeeCommandParser implements Parser<AssignEmployeeCommand> {
+public class AssignProjectCommandParser implements Parser<AssignProjectCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the {@code AssignEmployeeCommand}
-     * and returns a {@code AssignEmployeeCommand} object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code AssignProjectCommand}
+     * and returns a {@code AssignProjectCommand} object for execution.
      *
      * @throws ParseException if the user input does not conform to the expected format.
      */
-    public AssignEmployeeCommand parse(String args) throws ParseException {
+    public AssignProjectCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_PROJECT, PREFIX_EMPLOYEE);
@@ -33,16 +33,16 @@ public class AssignEmployeeCommandParser implements Parser<AssignEmployeeCommand
         try {
             if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT, PREFIX_EMPLOYEE)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                                         AssignEmployeeCommand.MESSAGE_USAGE));
+                                         AssignProjectCommand.MESSAGE_USAGE));
             }
             index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PROJECT).get());
             employeeIndexes = ParserUtil.parseIndexes(argMultimap.getValue(PREFIX_EMPLOYEE).get());
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AssignEmployeeCommand.MESSAGE_USAGE), ive);
+                    AssignProjectCommand.MESSAGE_USAGE), ive);
         }
 
-        return new AssignEmployeeCommand(index, employeeIndexes);
+        return new AssignProjectCommand(index, employeeIndexes);
     }
 
     /**

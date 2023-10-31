@@ -11,8 +11,8 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddEmployeeCommand;
 import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.commands.AddTaskCommand;
-import seedu.address.logic.commands.AssignEmployeeCommand;
 import seedu.address.logic.commands.AssignTaskCommand;
+import seedu.address.logic.commands.AssignProjectCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteEmployeeCommand;
@@ -31,6 +31,7 @@ import seedu.address.logic.commands.MarkTaskCommand;
 import seedu.address.logic.commands.PriorityProjectCommand;
 import seedu.address.logic.commands.ProjectDeadlineCommand;
 import seedu.address.logic.commands.UnassignTaskCommand;
+import seedu.address.logic.commands.UnassignProjectCommand;
 import seedu.address.logic.commands.UnmarkProjectCommand;
 import seedu.address.logic.commands.UnmarkTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -79,8 +80,11 @@ public class TaskHubParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
-        case AssignEmployeeCommand.COMMAND_WORD:
-            return new AssignEmployeeCommandParser().parse(arguments);
+        case AssignProjectCommand.COMMAND_WORD:
+            return new AssignProjectCommandParser().parse(arguments);
+
+        case UnassignProjectCommand.COMMAND_WORD:
+            return new UnassignProjectCommandParser().parse(arguments);
 
         case DeleteEmployeeCommand.COMMAND_WORD:
             return new DeleteEmployeeCommandParser().parse(arguments);

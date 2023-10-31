@@ -6,6 +6,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.MarkProjectCommand;
 import seedu.address.logic.commands.UnmarkProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -19,14 +20,14 @@ public class UnmarkProjectCommandParser implements Parser<UnmarkProjectCommand> 
         requireNonNull(args);
         assert args != null;
 
-        try {
-            List<Index> indexes = ParserUtil.parseIndexes(args);
-            assert indexes.size() > 0;
-
-            return new UnmarkProjectCommand(indexes);
-        } catch (ParseException pe) {
+        if (args.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkProjectCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkProjectCommand.MESSAGE_USAGE));
         }
+
+        List<Index> indexes = ParserUtil.parseIndexes(args);
+        assert indexes.size() > 0;
+
+        return new UnmarkProjectCommand(indexes);
     }
 }
