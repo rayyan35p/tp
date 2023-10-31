@@ -32,18 +32,13 @@ public class MarkTaskCommandParser implements Parser<MarkTaskCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkTaskCommand.MESSAGE_USAGE));
         }
+        // get project and task indexes
+        Index projectIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PROJECT).get());
+        List<Index> taskIndexes = ParserUtil.parseIndexes(argMultimap.getValue(PREFIX_TASK).get());
+        assert taskIndexes.size() > 0;
 
-        try {
-            // get project and task indexes
-            Index projectIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PROJECT).get());
-            List<Index> taskIndexes = ParserUtil.parseIndexes(argMultimap.getValue(PREFIX_TASK).get());
-            assert taskIndexes.size() > 0;
+        return new MarkTaskCommand(projectIndex, taskIndexes);
 
-            return new MarkTaskCommand(projectIndex, taskIndexes);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkTaskCommand.MESSAGE_USAGE), pe);
-        }
     }
 
     /**
