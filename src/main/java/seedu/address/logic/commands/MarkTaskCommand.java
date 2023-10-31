@@ -74,7 +74,7 @@ public class MarkTaskCommand extends Command {
 
             Task taskToUpdate = lastShownTaskList.getTask(taskIndex);
             Task updatedTask = new Task(taskToUpdate.getName(), taskToUpdate.getDeadline(), true);
-            lastShownTaskList.setTask(taskToUpdate, updatedTask);
+            lastShownTaskList.setTask(taskIndex, updatedTask);
         }
 
         // Create new project with updated tasks
