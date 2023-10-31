@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,6 @@ public class UnmarkProjectCommandParserTest {
     @Test
     public void parse_invalidIndex_failure() {
         String userInput = "a";
-        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                UnmarkProjectCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_INDEX, userInput));
     }
 }
