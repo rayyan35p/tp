@@ -87,7 +87,7 @@ public class PriorityProjectCommandTest {
         // null -> returns false
         assertFalse(priorityProjectFirstCommand.equals(null));
 
-        // different employee -> returns false
+        // different priority -> returns false
         assertFalse(priorityProjectFirstCommand.equals(priorityProjectSecondCommand));
     }
 
