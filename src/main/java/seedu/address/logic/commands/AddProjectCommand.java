@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 
 import java.util.List;
@@ -21,9 +22,9 @@ public class AddProjectCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a project to the TaskHub. "
             + "Parameters: "
-            + PREFIX_PROJECT + "PROJECT_NAME\n"
+            + PREFIX_NAME + "PROJECT_NAME\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_PROJECT + "Rebuild Taskxhub";
+            + PREFIX_NAME + "Rebuild Taskxhub";
 
 
     public static final String MESSAGE_SUCCESS = "New project added: %1$s";
