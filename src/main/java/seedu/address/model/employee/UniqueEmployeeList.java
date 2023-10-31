@@ -112,6 +112,14 @@ public class UniqueEmployeeList implements Iterable<Employee> {
     }
 
     /**
+     * Returns the size of the internalList.
+     * @return The size of the internalList.
+     */
+    public int getSize() {
+        return internalList.size();
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Employee> asUnmodifiableObservableList() {

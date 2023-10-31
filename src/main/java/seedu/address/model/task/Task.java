@@ -1,9 +1,12 @@
 package seedu.address.model.task;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import seedu.address.model.employee.Employee;
 
@@ -22,19 +25,19 @@ public class Task {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
     private final String name;
-    private boolean isDone;
-    private Employee employee;
     private final LocalDateTime deadline;
+    private boolean isDone;
+    private List<Employee> employee;
     /**
      * Constructs a {@code Task}
      * @param taskName The name of the task.
      */
     public Task(String taskName, LocalDateTime deadline) {
-        requireNonNull(taskName);
-        requireNonNull(deadline);
+        requireAllNonNull(taskName, deadline);
         name = taskName;
         this.deadline = deadline;
         this.isDone = false;
+        this.employee = new ArrayList<>();
     }
 
     /**
@@ -42,12 +45,55 @@ public class Task {
      * @param taskName The name of the task.
      */
     public Task(String taskName, LocalDateTime deadline, Boolean isDone) {
-        requireNonNull(taskName);
-        requireNonNull(deadline);
+        requireAllNonNull(taskName, deadline, isDone);
         name = taskName;
         this.deadline = deadline;
         this.isDone = isDone;
+        this.employee = new ArrayList<>();
     }
+
+    /**
+     * Constructs a Task with an assigned employee.
+     * - for loading of tasks from taskhub.json
+     * @param taskName The name of the task.
+     * @param employee The employee that was assigned to the task.
+     */
+    public Task(String taskName, LocalDateTime deadline, Employee employee) {
+        requireAllNonNull(taskName, deadline, employee);
+        name = taskName;
+        this.deadline = deadline;
+        this.isDone = false;
+        this.employee = Collections.singletonList(employee);
+    }
+
+    /**
+     * Constructs a Task with a pre-determined Done status and assigned employee
+     * - for loading of tasks from taskhub.json.
+     * @param taskName The name of the task.
+     * @param employee The employee that was assigned to the task.
+     */
+    public Task(String taskName, LocalDateTime deadline, Boolean isDone, Employee employee) {
+        requireAllNonNull(taskName, deadline, isDone, employee);
+        name = taskName;
+        this.deadline = deadline;
+        this.isDone = isDone;
+        this.employee = Collections.singletonList(employee);
+    }
+
+    /**
+     * Constructs a Task with a pre-determined Done status and list of employees - for loading of tasks
+     * from taskhub.json.
+     * @param taskName The name of the task.
+     * @param employeeList The employees assigned to the task.
+     */
+    public Task(String taskName, LocalDateTime deadline, Boolean isDone, List<Employee> employeeList) {
+        requireAllNonNull(taskName, deadline, isDone);
+        name = taskName;
+        this.deadline = deadline;
+        this.isDone = isDone;
+        this.employee = employeeList;
+    }
+
 
     /**
      * Returns true if a given string is a valid project name.
@@ -55,14 +101,6 @@ public class Task {
     public static boolean isValidTask(String testString) {
         return testString.matches(VALIDATION_REGEX);
     }
-
-    /**
-     * Assigns an employee to the task.
-     */
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
 
     /**
      * Tells us if a task is done.
@@ -86,7 +124,7 @@ public class Task {
         this.isDone = false;
     }
 
-    public Employee getEmployee() {
+    public List<Employee> getEmployee() {
         return this.employee;
     }
 
