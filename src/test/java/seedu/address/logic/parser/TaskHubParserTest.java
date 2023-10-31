@@ -44,6 +44,7 @@ import seedu.address.logic.commands.MarkProjectCommand;
 import seedu.address.logic.commands.MarkTaskCommand;
 import seedu.address.logic.commands.PriorityProjectCommand;
 import seedu.address.logic.commands.ProjectDeadlineCommand;
+import seedu.address.logic.commands.SortTaskCommand;
 import seedu.address.logic.commands.UnmarkProjectCommand;
 import seedu.address.logic.commands.UnmarkTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -202,6 +203,12 @@ public class TaskHubParserTest {
         PriorityProjectCommand expected = new PriorityProjectCommand(new ProjectPriority("low"),
                 ParserUtil.parseIndex("1"));
         assertEquals(expected, command);
+    }
+
+    @Test
+    public void parseCommand_sortTask() throws Exception {
+        assertTrue(parser.parseCommand(SortTaskCommand.COMMAND_WORD) instanceof SortTaskCommand);
+        assertTrue(parser.parseCommand(SortTaskCommand.COMMAND_WORD + " 3") instanceof SortTaskCommand);
     }
 
     @Test
