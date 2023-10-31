@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalEmployees.GEORGE;
 import static seedu.address.testutil.TypicalTasks.ALPHA_TASK;
 import static seedu.address.testutil.TypicalTasks.BETA_TASK;
 import static seedu.address.testutil.TypicalTasks.CHARLIE_TASK;
+import static seedu.address.testutil.TypicalTasks.DELTA_TASK;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,6 +45,11 @@ public class TypicalProjects {
             .withPriority(new ProjectPriority("low"))
             .build();
 
+    public static final Project ASSIGNED_TASKS_PROJECT = new ProjectBuilder()
+            .withName("Project with assigned task")
+            .withTasks(ALPHA_TASK, DELTA_TASK)
+            .build();
+
     private TypicalProjects() {} // prevents instantiation
 
     /**
@@ -54,6 +60,8 @@ public class TypicalProjects {
     }
 
     public static List<Project> getTypicalProjects() {
-        return new ArrayList<>(Arrays.asList(ALPHA, BETA, DELTA, GAMMA, HIGH_PRIORITY_PROJECT, LOW_PRIORITY_PROJECT));
+        return new ArrayList<>(Arrays.asList(ALPHA, BETA, DELTA, GAMMA,
+                HIGH_PRIORITY_PROJECT, LOW_PRIORITY_PROJECT,
+                ASSIGNED_TASKS_PROJECT));
     }
 }

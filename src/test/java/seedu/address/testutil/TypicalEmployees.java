@@ -65,14 +65,14 @@ public class TypicalEmployees {
      * Returns an {@code TaskHub} with all the typical employees.
      */
     public static TaskHub getTypicalTaskHub() {
-        TaskHub ab = new TaskHub();
+        TaskHub taskhub = new TaskHub();
         for (Employee employee : getTypicalEmployees()) {
-            ab.addEmployee(employee);
+            taskhub.addEmployee(employee);
         }
         for (Project project : getTypicalProjects()) {
-            ab.addProject(project);
+            taskhub.addProject(project);
         }
-        return ab;
+        return taskhub;
     }
 
     public static List<Employee> getTypicalEmployees() {
