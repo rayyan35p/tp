@@ -26,6 +26,7 @@ import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditEmployeeDescriptorBuilder;
+import seedu.address.testutil.EditProjectDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -41,14 +42,14 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_PROJECT_AMY = "Alpha";
-    public static final String VALID_PROJECT_BOB = "Beta";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
     // Project valid fields
-    public static final String VALID_DEADLINE_PROJECT_AMY = "21/02/2021";
-    public static final String VALID_DEADLINE_PROJECT_BOB = "15/11/2024";
+    public static final String VALID_PROJECT_AMY = "Alpha";
+    public static final String VALID_PROJECT_BOB = "Beta";
+    public static final String VALID_DEADLINE_PROJECT_AMY = "21-02-2021";
+    public static final String VALID_DEADLINE_PROJECT_BOB = "15-11-2024";
     public static final String VALID_PRIORITY_AMY = "high";
 
     // Task valid fields
@@ -70,19 +71,25 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-    public static final String PROJECT_DESC_AMY = " " + PREFIX_NAME + VALID_PROJECT_AMY;
-    public static final String PROJECT_DESC_BOB = " " + PREFIX_NAME + VALID_PROJECT_BOB;
-    public static final String PROJECT_PRIORITY_AMY = " " + PREFIX_PRIORITY + VALID_PRIORITY_AMY;
 
     // Project field descriptions
-    public static final String DEADLINE_PROJECT_DESC_AMY = " " + PREFIX_DEADLINE + VALID_DEADLINE_PROJECT_AMY;
-    public static final String DEADLINE_PROJECT_DESC_BOB = " " + PREFIX_DEADLINE + VALID_DEADLINE_PROJECT_BOB;
+    public static final String PROJECT_DESC_AMY = " " + PREFIX_NAME + VALID_PROJECT_AMY;
+    public static final String PROJECT_DESC_BOB = " " + PREFIX_NAME + VALID_PROJECT_BOB;
+    public static final String PROJECT_PRIORITY_DESC_AMY = " " + PREFIX_PRIORITY + VALID_PRIORITY_AMY;
+    public static final String PROJECT_DEADLINE_DESC_AMY = " " + PREFIX_DEADLINE + VALID_DEADLINE_PROJECT_AMY;
+    public static final String PROJECT_DEADLINE_DESC_BOB = " " + PREFIX_DEADLINE + VALID_DEADLINE_PROJECT_BOB;
 
+    // Invalid Employee field descriptions
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    // Invalid Project field descriptions
+    public static final String INVALID_PROJECT_NAME_DESC = " " + PREFIX_NAME + "Alpha&"; // '&' not allowed in names
+    public static final String INVALID_PROJECT_DEADLINE_DESC = " " + PREFIX_DEADLINE + "11-11-2023 2359"; // '2359'
+    public static final String INVALID_PROJECT_PRIORITY_DESC = " " + PREFIX_PRIORITY + "high!"; // '!' not allowed
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -94,8 +101,10 @@ public class CommandTestUtil {
                                                                 + PREFIX_EMPLOYEE + VALID_EMPLOYEE_INDEX_TASK + " ";
 
 
-    public static final EditCommand.EditEmployeeDescriptor DESC_AMY;
-    public static final EditCommand.EditEmployeeDescriptor DESC_BOB;
+    public static final EditEmployeeCommand.EditEmployeeDescriptor DESC_AMY;
+    public static final EditEmployeeCommand.EditEmployeeDescriptor DESC_BOB;
+    public static final EditProjectCommand.EditProjectDescriptor DESC_PROJECT_AMY;
+    public static final EditProjectCommand.EditProjectDescriptor DESC_PROJECT_BOB;
 
     static {
         DESC_AMY = new EditEmployeeDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -104,6 +113,10 @@ public class CommandTestUtil {
         DESC_BOB = new EditEmployeeDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_PROJECT_AMY = new EditProjectDescriptorBuilder().withName(VALID_PROJECT_AMY)
+                .withDeadline(VALID_DEADLINE_PROJECT_AMY).withPriority(VALID_PRIORITY_AMY).build();
+        DESC_PROJECT_BOB = new EditProjectDescriptorBuilder().withName(VALID_PROJECT_BOB)
+                .withDeadline(VALID_DEADLINE_PROJECT_BOB).withPriority(VALID_PRIORITY_AMY).build();
     }
 
     /**

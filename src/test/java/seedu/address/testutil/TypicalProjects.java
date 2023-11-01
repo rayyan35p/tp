@@ -15,7 +15,6 @@ import java.util.List;
 
 import seedu.address.model.TaskHub;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectPriority;
 
 /**
  * A utility class containing a list of {@code Project} objects to be used in tests.
@@ -36,13 +35,13 @@ public class TypicalProjects {
     public static final Project HIGH_PRIORITY_PROJECT = new ProjectBuilder()
             .withName("High Priority Project")
             .withTasks(ALPHA_TASK, BETA_TASK, CHARLIE_TASK)
-            .withPriority(new ProjectPriority("high"))
+            .withPriority("high")
             .build();
 
     public static final Project LOW_PRIORITY_PROJECT = new ProjectBuilder()
             .withName("Low Priority Project")
             .withTasks(ALPHA_TASK, BETA_TASK, CHARLIE_TASK)
-            .withPriority(new ProjectPriority("low"))
+            .withPriority("low")
             .build();
 
     public static final Project ASSIGNED_TASKS_PROJECT = new ProjectBuilder()

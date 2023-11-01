@@ -34,8 +34,9 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EMPLOYEE, PREFIX_NAME);
         Project project = ParserUtil.parseProject(argMultimap.getValue(PREFIX_NAME).get());
+
         List<Index> employeeIndexes = new ArrayList<>();
 
         if (argMultimap.getValue(PREFIX_EMPLOYEE).isPresent()) {

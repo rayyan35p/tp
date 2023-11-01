@@ -22,15 +22,15 @@ public class ProjectTest {
     @Test
     public void isValidProject() {
         // null project
-        assertThrows(NullPointerException.class, () -> Project.isValidProject(null));
+        assertThrows(NullPointerException.class, () -> Project.isValidProjectName(null));
 
         // invalid projects
-        assertFalse(Project.isValidProject("")); // empty string
-        assertFalse(Project.isValidProject(" ")); // spaces only
+        assertFalse(Project.isValidProjectName("")); // empty string
+        assertFalse(Project.isValidProjectName(" ")); // spaces only
 
         // valid projects
-        assertTrue(Project.isValidProject("likes to study"));
-        assertTrue(Project.isValidProject("-")); // one character
+        assertTrue(Project.isValidProjectName("likes to study"));
+        assertTrue(Project.isValidProjectName("9")); // one character
     }
 
     @Test

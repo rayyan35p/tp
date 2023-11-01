@@ -99,7 +99,7 @@ public class JsonAdaptedProject {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!Project.isValidProject(name)) {
+        if (!Project.isValidProjectName(name)) {
             throw new IllegalValueException(Project.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);

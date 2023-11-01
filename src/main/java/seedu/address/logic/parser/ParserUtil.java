@@ -134,8 +134,9 @@ public class ParserUtil {
     public static Project parseProject(String project) throws ParseException {
         requireNonNull(project);
         String trimmedProject = project.trim();
-        if (!Project.isValidProject(trimmedProject)) {
-            throw new ParseException(Project.MESSAGE_CONSTRAINTS);
+        // Fully qualified name used for clarity as Employee model has a Name class as well
+        if (!seedu.address.model.project.Name.isValidName(trimmedProject)) {
+            throw new ParseException(seedu.address.model.project.Name.MESSAGE_CONSTRAINTS);
         }
         return new Project(trimmedProject);
     }
