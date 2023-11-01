@@ -21,7 +21,7 @@ import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectPriority;
+import seedu.address.model.project.Priority;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
@@ -216,17 +216,17 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a String priority into a ProjectPriority. Leading and trailing whitespaces will be trimmed.
+     * Parses a String priority into a Priority. Leading and trailing whitespaces will be trimmed.
      * All characters will also be set to lowercase.
      * @throws ParseException if the given priority is invalid.
      */
-    public static ProjectPriority parseProjectPriority(String priority) throws ParseException {
+    public static Priority parsePriority(String priority) throws ParseException {
         requireNonNull(priority);
         String formattedPriority = priority.trim().toLowerCase();
-        if (!ProjectPriority.isValidPriority(formattedPriority)) {
-            throw new ParseException(ProjectPriority.MESSAGE_CONSTRAINTS);
+        if (!Priority.isValidPriority(formattedPriority)) {
+            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
         }
-        return new ProjectPriority(formattedPriority);
+        return new Priority(formattedPriority);
     }
     /**
      * Parses a {@code String deadline} into a {@code Deadline}.

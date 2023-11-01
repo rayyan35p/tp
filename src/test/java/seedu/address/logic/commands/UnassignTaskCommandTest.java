@@ -60,7 +60,7 @@ public class UnassignTaskCommandTest {
         Project projectWithAssignedTask = new Project(projectToEdit.getName(),
                 projectToEdit.getEmployees(),
                 editedTaskList,
-                projectToEdit.getProjectPriority(),
+                projectToEdit.getPriority(),
                 projectToEdit.getDeadline(),
                 projectToEdit.getCompletionStatus());
 

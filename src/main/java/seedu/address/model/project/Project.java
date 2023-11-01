@@ -21,7 +21,7 @@ public class Project {
     private final UniqueEmployeeList employeeList;
     private final TaskList tasks;
     private final Deadline deadline;
-    private final ProjectPriority projectPriority;
+    private final Priority priority;
     private final CompletionStatus completionStatus;
 
 
@@ -33,7 +33,7 @@ public class Project {
     public Project(String name) {
         requireNonNull(name);
         this.name = new Name(name);
-        this.projectPriority = new ProjectPriority("normal");
+        this.priority = new Priority("normal");
         this.deadline = new Deadline("");
         this.employeeList = new UniqueEmployeeList();
         this.completionStatus = new CompletionStatus(false);
@@ -48,7 +48,7 @@ public class Project {
     public Project(Name name) {
         requireNonNull(name);
         this.name = name;
-        this.projectPriority = new ProjectPriority("normal");
+        this.priority = new Priority("normal");
         this.deadline = new Deadline("");
         this.employeeList = new UniqueEmployeeList();
         this.completionStatus = new CompletionStatus(false);
@@ -63,7 +63,7 @@ public class Project {
     public Project(Project project) {
         requireNonNull(project);
         this.name = project.getName();
-        this.projectPriority = project.getProjectPriority();
+        this.priority = project.getPriority();
         this.deadline = project.getDeadline();
         this.employeeList = project.getEmployees();
         this.completionStatus = project.getCompletionStatus();
@@ -76,19 +76,19 @@ public class Project {
      * @param name A valid name.
      * @param employees A list of Employees that are in the project
      * @param tasks A list of Tasks that are in the project
-     * @param priority A valid ProjectPriority for the project.
+     * @param priority A valid Priority for the project.
      * @param deadline A valid Deadline for the project.
      * @param completionStatus A valid CompletionStatus for the project.
      */
     public Project(Name name,
                    UniqueEmployeeList employees,
                    TaskList tasks,
-                   ProjectPriority priority,
+                   Priority priority,
                    Deadline deadline,
                    CompletionStatus completionStatus) {
         requireNonNull(name);
         this.name = name;
-        this.projectPriority = priority;
+        this.priority = priority;
         this.employeeList = employees;
         this.tasks = tasks;
         this.deadline = deadline;
@@ -103,8 +103,8 @@ public class Project {
         return employeeList;
     }
 
-    public ProjectPriority getProjectPriority() {
-        return projectPriority;
+    public Priority getPriority() {
+        return priority;
     }
 
     public Deadline getDeadline() {

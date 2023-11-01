@@ -18,7 +18,7 @@ import seedu.address.model.project.Project;
 /**
  * Adds a deadline to an existing project in TaskHub.
  */
-public class ProjectDeadlineCommand extends Command {
+public class DeadlineProjectCommand extends Command {
 
     public static final String COMMAND_WORD = "dl";
 
@@ -33,7 +33,7 @@ public class ProjectDeadlineCommand extends Command {
     public static final String MESSAGE_ADD_DEADLINE_SUCCESS = "Added deadline: %1$s to %2$s project(s)";
     public static final String MESSAGE_DELETE_DEADLINE_SUCCESS = "Removed deadline for %1$s project(s)";
 
-    private static final Logger logger = LogsCenter.getLogger(ProjectDeadlineCommand.class);
+    private static final Logger logger = LogsCenter.getLogger(DeadlineProjectCommand.class);
 
     private final List<Index> projectIndexes;
     private final Deadline deadline;
@@ -42,7 +42,7 @@ public class ProjectDeadlineCommand extends Command {
      * @param projectIndexes of the project in the filtered project list to edit the deadline
      * @param deadline to be updated to
      */
-    public ProjectDeadlineCommand(List<Index> projectIndexes, Deadline deadline) {
+    public DeadlineProjectCommand(List<Index> projectIndexes, Deadline deadline) {
         requireAllNonNull(projectIndexes, deadline);
 
         this.projectIndexes = projectIndexes;
@@ -66,7 +66,7 @@ public class ProjectDeadlineCommand extends Command {
             Project projectToEdit = lastShownProjectList.get(projectIndex.getZeroBased());
             Project editedProject = new Project(projectToEdit.getName(), projectToEdit.getEmployees(),
                     projectToEdit.getTasks(),
-                    projectToEdit.getProjectPriority(), deadline, projectToEdit.getCompletionStatus());
+                    projectToEdit.getPriority(), deadline, projectToEdit.getCompletionStatus());
             model.setProject(projectToEdit, editedProject);
         }
 
@@ -93,12 +93,12 @@ public class ProjectDeadlineCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ProjectDeadlineCommand)) {
+        if (!(other instanceof DeadlineProjectCommand)) {
             return false;
         }
 
         // state check
-        ProjectDeadlineCommand e = (ProjectDeadlineCommand) other;
+        DeadlineProjectCommand e = (DeadlineProjectCommand) other;
         return projectIndexes.equals(e.projectIndexes)
                 && deadline.equals(e.deadline);
     }

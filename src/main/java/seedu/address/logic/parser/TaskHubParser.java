@@ -30,7 +30,7 @@ import seedu.address.logic.commands.ListProjectCommand;
 import seedu.address.logic.commands.MarkProjectCommand;
 import seedu.address.logic.commands.MarkTaskCommand;
 import seedu.address.logic.commands.PriorityProjectCommand;
-import seedu.address.logic.commands.ProjectDeadlineCommand;
+import seedu.address.logic.commands.DeadlineProjectCommand;
 import seedu.address.logic.commands.SortTaskCommand;
 import seedu.address.logic.commands.UnassignProjectCommand;
 import seedu.address.logic.commands.UnassignTaskCommand;
@@ -130,8 +130,8 @@ public class TaskHubParser {
         case PriorityProjectCommand.COMMAND_WORD:
             return new PriorityProjectCommandParser().parse(arguments);
 
-        case ProjectDeadlineCommand.COMMAND_WORD:
-            return new ProjectDeadlineCommandParser().parse(arguments);
+        case DeadlineProjectCommand.COMMAND_WORD:
+            return new DeadlineProjectCommandParser().parse(arguments);
 
         case MarkProjectCommand.COMMAND_WORD:
             return new MarkProjectCommandParser().parse(arguments);

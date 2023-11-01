@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.employee.Name;
 import seedu.address.model.project.Deadline;
+import seedu.address.model.project.Priority;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectPriority;
 
 public class JsonAdaptedProjectTest {
     public static final String INVALID_NAME = "     ";
@@ -63,7 +63,7 @@ public class JsonAdaptedProjectTest {
         JsonAdaptedProject project =
                 new JsonAdaptedProject(VALID_NAME, VALID_EMPLOYEES, VALID_TASKS, INVALID_PRIORITY, VALID_DEADLINE,
                         VALID_COMPLETION_STATUS);
-        String expectedMessage = ProjectPriority.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Priority.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }
 
@@ -72,7 +72,7 @@ public class JsonAdaptedProjectTest {
         JsonAdaptedProject project =
                 new JsonAdaptedProject(VALID_NAME, VALID_EMPLOYEES, VALID_TASKS, null, VALID_DEADLINE,
                         VALID_COMPLETION_STATUS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ProjectPriority.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Priority.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }
 

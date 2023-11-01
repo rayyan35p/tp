@@ -8,8 +8,8 @@ import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.CompletionStatus;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Name;
+import seedu.address.model.project.Priority;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectPriority;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 
@@ -27,7 +27,7 @@ public class ProjectBuilder {
     private UniqueEmployeeList employeeList;
     private TaskList taskList;
     private Deadline deadline;
-    private ProjectPriority projectPriority;
+    private Priority priority;
     private CompletionStatus completionStatus;
 
     /**
@@ -39,7 +39,7 @@ public class ProjectBuilder {
         employeeList.add(ALICE);
         taskList = new TaskList();
         taskList.add(ALPHA_TASK);
-        projectPriority = new ProjectPriority(DEFAULT_PRIORITY);
+        priority = new Priority(DEFAULT_PRIORITY);
         deadline = new Deadline(DEFAULT_DEADLINE);
         completionStatus = new CompletionStatus(DEFAULT_COMPLETION_STATUS);
     }
@@ -51,7 +51,7 @@ public class ProjectBuilder {
         projectName = toCopy.getName();
         employeeList = toCopy.getEmployees();
         taskList = toCopy.getTasks();
-        projectPriority = toCopy.getProjectPriority();
+        priority = toCopy.getPriority();
         deadline = toCopy.getDeadline();
         completionStatus = toCopy.getCompletionStatus();
     }
@@ -90,7 +90,7 @@ public class ProjectBuilder {
      * Sets the priority of the {@code Project} we are building.
      */
     public ProjectBuilder withPriority(String priority) {
-        this.projectPriority = new ProjectPriority(priority);
+        this.priority = new Priority(priority);
         return this;
     }
 
@@ -111,6 +111,6 @@ public class ProjectBuilder {
     }
 
     public Project build() {
-        return new Project(projectName, employeeList, taskList, projectPriority, deadline, completionStatus);
+        return new Project(projectName, employeeList, taskList, priority, deadline, completionStatus);
     }
 }

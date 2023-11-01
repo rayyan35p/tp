@@ -29,6 +29,7 @@ import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.AssignProjectCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeadlineProjectCommand;
 import seedu.address.logic.commands.DeleteEmployeeCommand;
 import seedu.address.logic.commands.DeleteProjectCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
@@ -44,7 +45,6 @@ import seedu.address.logic.commands.ListProjectCommand;
 import seedu.address.logic.commands.MarkProjectCommand;
 import seedu.address.logic.commands.MarkTaskCommand;
 import seedu.address.logic.commands.PriorityProjectCommand;
-import seedu.address.logic.commands.ProjectDeadlineCommand;
 import seedu.address.logic.commands.SortTaskCommand;
 import seedu.address.logic.commands.UnassignProjectCommand;
 import seedu.address.logic.commands.UnmarkProjectCommand;
@@ -53,9 +53,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
 import seedu.address.model.project.Deadline;
+import seedu.address.model.project.Priority;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
-import seedu.address.model.project.ProjectPriority;
 import seedu.address.testutil.EditEmployeeDescriptorBuilder;
 import seedu.address.testutil.EmployeeBuilder;
 import seedu.address.testutil.EmployeeUtil;
@@ -165,12 +165,12 @@ public class TaskHubParserTest {
     }
 
     @Test
-    public void parseCommand_projectDeadline() throws Exception {
+    public void parseCommand_deadlineProject() throws Exception {
         final Deadline deadline = new Deadline("12-10-2022");
-        ProjectDeadlineCommand command =
-                (ProjectDeadlineCommand) parser.parseCommand(ProjectDeadlineCommand.COMMAND_WORD + " "
+        DeadlineProjectCommand command =
+                (DeadlineProjectCommand) parser.parseCommand(DeadlineProjectCommand.COMMAND_WORD + " "
                  + INDEX_FIRST_PROJECT.getOneBased() + " " + PREFIX_DEADLINE + deadline.value);
-        assertEquals(new ProjectDeadlineCommand(List.of(INDEX_FIRST_PROJECT), deadline), command);
+        assertEquals(new DeadlineProjectCommand(List.of(INDEX_FIRST_PROJECT), deadline), command);
     }
 
     @Test
@@ -213,8 +213,8 @@ public class TaskHubParserTest {
     @Test
     public void parseCommand_priorityProject() throws Exception {
         PriorityProjectCommand command = (PriorityProjectCommand) parser
-                .parseCommand(PriorityProjectCommand.COMMAND_WORD + " 1" + " priority/low");
-        PriorityProjectCommand expected = new PriorityProjectCommand(new ProjectPriority("low"),
+                .parseCommand(PriorityProjectCommand.COMMAND_WORD + " 1" + " p/low");
+        PriorityProjectCommand expected = new PriorityProjectCommand(new Priority("low"),
                 List.of(ParserUtil.parseIndex("1")));
         assertEquals(expected, command);
     }

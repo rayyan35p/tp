@@ -11,14 +11,14 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.ProjectDeadlineCommand;
+import seedu.address.logic.commands.DeadlineProjectCommand;
 import seedu.address.model.project.Deadline;
 
-public class ProjectDeadlineCommandParserTest {
+public class DeadlineProjectCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ProjectDeadlineCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeadlineProjectCommand.MESSAGE_USAGE);
 
-    private ProjectDeadlineCommandParser parser = new ProjectDeadlineCommandParser();
+    private DeadlineProjectCommandParser parser = new DeadlineProjectCommandParser();
     private final String validDeadline = "21-02-2023";
 
 
@@ -26,7 +26,7 @@ public class ProjectDeadlineCommandParserTest {
     public void parse_validArgs_success() {
         Index targetIndex = INDEX_FIRST_PROJECT;
         String userInput = targetIndex.getOneBased() + " " + PREFIX_DEADLINE + validDeadline;
-        ProjectDeadlineCommand expectedCommand = new ProjectDeadlineCommand(List.of(INDEX_FIRST_PROJECT),
+        DeadlineProjectCommand expectedCommand = new DeadlineProjectCommand(List.of(INDEX_FIRST_PROJECT),
                 new Deadline(validDeadline));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -34,7 +34,7 @@ public class ProjectDeadlineCommandParserTest {
     @Test
     public void parse_missingDeadlineDate_success() {
         String userInput = INDEX_FIRST_PROJECT.getOneBased() + " " + PREFIX_DEADLINE + "";
-        ProjectDeadlineCommand expectedCommand = new ProjectDeadlineCommand(List.of(INDEX_FIRST_PROJECT),
+        DeadlineProjectCommand expectedCommand = new DeadlineProjectCommand(List.of(INDEX_FIRST_PROJECT),
                 new Deadline(""));
         assertParseSuccess(parser, userInput, expectedCommand);
     }

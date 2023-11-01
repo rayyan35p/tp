@@ -63,7 +63,7 @@ public class UnassignProjectCommand extends Command {
 
         Project projectToEdit = lastShownProjectList.get(projectIndex.getZeroBased());
         Project editedProject = new Project(projectToEdit.getName(), projectToEdit.getEmployees(),
-                projectToEdit.getTasks(), projectToEdit.getProjectPriority(), projectToEdit.getDeadline(),
+                projectToEdit.getTasks(), projectToEdit.getPriority(), projectToEdit.getDeadline(),
                 projectToEdit.getCompletionStatus());
 
         // Check if all specified employees are in the project

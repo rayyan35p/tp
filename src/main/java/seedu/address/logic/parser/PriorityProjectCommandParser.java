@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.PriorityProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.ProjectPriority;
+import seedu.address.model.project.Priority;
 
 /**
  * Parses input arguments and creates a new PriorityProjectCommand object.
@@ -33,7 +33,7 @@ public class PriorityProjectCommandParser implements Parser<PriorityProjectComma
                     PriorityProjectCommand.MESSAGE_USAGE));
         }
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PRIORITY);
-        ProjectPriority priority = ParserUtil.parseProjectPriority(argMultimap.getValue(PREFIX_PRIORITY).get());
+        Priority priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
 
         List<Index> projectIndexes;
         projectIndexes = ParserUtil.parseIndexes(argMultimap.getPreamble());

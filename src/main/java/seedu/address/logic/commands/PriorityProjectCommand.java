@@ -12,8 +12,8 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.project.Priority;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectPriority;
 
 /**
  * Sets a priority for a project in TaskHub.
@@ -34,13 +34,13 @@ public class PriorityProjectCommand extends Command {
 
     private static final Logger logger = LogsCenter.getLogger(PriorityProjectCommand.class);
 
-    private final ProjectPriority toSet;
+    private final Priority toSet;
     private final List<Index> projectIndexes;
 
     /**
      * Creates a PriorityProjectCommand to set the priority of the specified Project.
      */
-    public PriorityProjectCommand(ProjectPriority priority, List<Index> projectIndexes) {
+    public PriorityProjectCommand(Priority priority, List<Index> projectIndexes) {
         requireNonNull(priority);
         requireNonNull(projectIndexes);
         this.toSet = priority;
@@ -71,7 +71,7 @@ public class PriorityProjectCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, toSet, projectIndexes.size()));
     }
 
-    private static Project createProjectWithNewPriority(Project projectToSetPriority, ProjectPriority priority) {
+    private static Project createProjectWithNewPriority(Project projectToSetPriority, Priority priority) {
         assert projectToSetPriority != null;
         return new Project(projectToSetPriority.getName(),
                 projectToSetPriority.getEmployees(),

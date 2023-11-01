@@ -19,8 +19,8 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.project.Priority;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectPriority;
 
 public class PriorityProjectCommandTest {
     private Model model = new ModelManager(getTypicalTaskHub(), new UserPrefs());
@@ -39,12 +39,12 @@ public class PriorityProjectCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Project projectToSetPriority = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
-        PriorityProjectCommand projectPriorityCommand = new PriorityProjectCommand(new ProjectPriority("high"),
+        PriorityProjectCommand projectPriorityCommand = new PriorityProjectCommand(new Priority("high"),
                 List.of(INDEX_FIRST_PROJECT));
         Project projectWithNewPriority = new Project(projectToSetPriority.getName(),
                 projectToSetPriority.getEmployees(),
                 projectToSetPriority.getTasks(),
-                new ProjectPriority("high"),
+                new Priority("high"),
                 projectToSetPriority.getDeadline(),
                 projectToSetPriority.getCompletionStatus());
 
@@ -61,18 +61,18 @@ public class PriorityProjectCommandTest {
     public void execute_multipleValidIndexUnfilteredList_success() {
         Project projectToSetPriority = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         Project projectToSetPriority2 = model.getFilteredProjectList().get(INDEX_SECOND_PROJECT.getZeroBased());
-        PriorityProjectCommand projectPriorityCommand = new PriorityProjectCommand(new ProjectPriority("high"),
+        PriorityProjectCommand projectPriorityCommand = new PriorityProjectCommand(new Priority("high"),
                 List.of(INDEX_FIRST_PROJECT, INDEX_SECOND_PROJECT));
         Project projectWithNewPriority = new Project(projectToSetPriority.getName(),
                 projectToSetPriority.getEmployees(),
                 projectToSetPriority.getTasks(),
-                new ProjectPriority("high"),
+                new Priority("high"),
                 projectToSetPriority.getDeadline(),
                 projectToSetPriority.getCompletionStatus());
         Project projectWithNewPriority2 = new Project(projectToSetPriority2.getName(),
                 projectToSetPriority2.getEmployees(),
                 projectToSetPriority2.getTasks(),
-                new ProjectPriority("high"),
+                new Priority("high"),
                 projectToSetPriority2.getDeadline(),
                 projectToSetPriority2.getCompletionStatus());
 
@@ -90,7 +90,7 @@ public class PriorityProjectCommandTest {
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredProjectList().size() + 1);
         PriorityProjectCommand projectPriorityCommand = new PriorityProjectCommand(
-                new ProjectPriority("high"), List.of(outOfBoundIndex));
+                new Priority("high"), List.of(outOfBoundIndex));
 
         assertCommandFailure(projectPriorityCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
     }
@@ -98,10 +98,10 @@ public class PriorityProjectCommandTest {
     @Test
     public void equalsTest() {
         PriorityProjectCommand priorityProjectFirstCommand = new PriorityProjectCommand(
-                new ProjectPriority("high"),
+                new Priority("high"),
                 List.of(INDEX_FIRST_PROJECT));
         PriorityProjectCommand priorityProjectSecondCommand = new PriorityProjectCommand(
-                new ProjectPriority("low"),
+                new Priority("low"),
                 List.of(INDEX_SECOND_PROJECT));
 
         // same object -> returns true
@@ -109,7 +109,7 @@ public class PriorityProjectCommandTest {
 
         // same values -> returns true
         PriorityProjectCommand priorityProjectFirstCommandCopy = new PriorityProjectCommand(
-                new ProjectPriority("high"),
+                new Priority("high"),
                 List.of(INDEX_FIRST_PROJECT));
         assertTrue(priorityProjectFirstCommand.equals(priorityProjectFirstCommandCopy));
 
@@ -127,7 +127,7 @@ public class PriorityProjectCommandTest {
     public void toStringMethod() {
         Index targetIndex = Index.fromOneBased(1);
         PriorityProjectCommand projectPriorityEmployeeCommand = new PriorityProjectCommand(
-                new ProjectPriority("high"),
+                new Priority("high"),
                 List.of(targetIndex));
         String expected = PriorityProjectCommand.class.getCanonicalName() + "{toSet=high, targetIndex="
                 + List.of(targetIndex) + "}";
