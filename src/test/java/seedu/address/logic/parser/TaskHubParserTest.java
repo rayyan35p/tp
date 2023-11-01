@@ -32,8 +32,8 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteEmployeeCommand;
 import seedu.address.logic.commands.DeleteProjectCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditEmployeeDescriptor;
+import seedu.address.logic.commands.EditEmployeeCommand;
+import seedu.address.logic.commands.EditEmployeeCommand.EditEmployeeDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindEmployeeCommand;
 import seedu.address.logic.commands.FindProjectCommand;
@@ -89,9 +89,9 @@ public class TaskHubParserTest {
     public void parseCommand_editEmployee() throws Exception {
         Employee employee = new EmployeeBuilder().build();
         EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(employee).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+        EditEmployeeCommand command = (EditEmployeeCommand) parser.parseCommand(EditEmployeeCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_EMPLOYEE.getOneBased() + " " + EmployeeUtil.getEditEmployeeDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_EMPLOYEE, descriptor), command);
+        assertEquals(new EditEmployeeCommand(INDEX_FIRST_EMPLOYEE, descriptor), command);
     }
 
     @Test
