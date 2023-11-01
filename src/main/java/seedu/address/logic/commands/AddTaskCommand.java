@@ -31,7 +31,7 @@ public class AddTaskCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "TASK_NAME\n"
             + PREFIX_PROJECT + "PROJECT_INDEX\n"
-            + PREFIX_EMPLOYEE + "EMPLOYEE_INDEX\n"
+            + "[" + PREFIX_EMPLOYEE + "EMPLOYEE_INDEX] (optional)\n"
             + PREFIX_DEADLINE + "TASK_DEADLINE{dd-MM-yyyy HHmm}\n\n"
             + "Example: "
             + COMMAND_WORD + " "

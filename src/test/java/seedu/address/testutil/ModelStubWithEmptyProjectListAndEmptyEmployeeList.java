@@ -14,7 +14,7 @@ import seedu.address.model.task.Task;
 
 
 /**
- * A model stub with an empty project list.
+ * A model stub with an empty project and empty employee list.
  */
 public class ModelStubWithEmptyProjectListAndEmptyEmployeeList extends ModelStub {
     @Override
