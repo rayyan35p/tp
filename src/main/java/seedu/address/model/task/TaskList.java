@@ -13,7 +13,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
- * A list of Tasks that enforces uniqueness between its elements and does not allow nulls.
+ * A list of Tasks that does not allow nulls.
  * (inspired from UniqueEmployeeList.java)
  */
 public class TaskList implements Iterable<Task> {
@@ -82,22 +82,6 @@ public class TaskList implements Iterable<Task> {
      */
     public Task getTask(Index index) {
         return internalList.get(index.getZeroBased());
-    }
-
-    /**
-     * Replaces the task {@code target} in the list with {@code editedTask}.
-     * {@code target} must exist in the list.
-     * The project identity of {@code editedTask} must not be the same as another existing task in the list.
-     */
-    public void setTask(Task target, Task editedTask) {
-        requireAllNonNull(target, editedTask);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new TaskNotFoundException();
-        }
-
-        internalList.set(index, editedTask);
     }
 
     /**
