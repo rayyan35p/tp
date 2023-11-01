@@ -77,7 +77,14 @@ public class HelpWindow extends UiPart<Stage> {
         Map<String, String> taskCommands = new HashMap<>();
         Map<String, String> assignCommands = new HashMap<>();
 
-        assignCommands.put()
+        assignCommands.put("assignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES]…\u200b",
+                "- Assigns employee(s) to a project in TaskHub");
+        assignCommands.put("unassignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES]…\u200b",
+                "- Un-assigns employee(s) from a project in TaskHub");
+        assignCommands.put("assignT pr/PROJECT_INDEX t/TASK_INDEX em/EMPLOYEE_INDEX",
+                "- Assigns a specified employee in a specified project to a specified task in that project.");
+        assignCommands.put("unassignT pr/PROJECT_INDEX t/TASK_INDEX",
+                "- Un-assigns the currently assigned employee from the specified task in the specified project.");
 
         generalCommands.put("help",
                 "- Get help pop-up to display.");
@@ -96,19 +103,24 @@ public class HelpWindow extends UiPart<Stage> {
                 "- Finds employees whose names contain any of the given keywords.");
         employeeCommands.put("deleteE INDEX",
                 "- Deletes the specified employee from the employees list.");
-        employeeCommands.put("assignE pr/PROJECT_INDEX em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDICES]…\u200B",
-                "- Assigns employee(s) to a project in TaskHub.");
 
         projectCommands.put("listP",
                 "- Shows a list of all projects in TaskHub.");
         projectCommands.put("addP pr/PROJECT_NAME [em/EMPLOYEE_INDEX]…\u200B",
                 "- Adds a new project with the employees assigned to the project.");
+        projectCommands.put("findP KEYWORD [MORE_KEYWORDS]",
+                "- Finds projects whose names contain any of the given keywords. \n" +
+                "Additionally, it shows only the employees that are under these projects.");
         projectCommands.put("deleteP INDEX",
                 "- Deletes the specified project from TaskHub.");
         projectCommands.put("dl INDEX d/DATE",
-                "Edit the deadline of a project in the projects list.");
+                "- Edit the deadline of a project in the projects list.");
         projectCommands.put("priorityP INDEX priority/PRIORITY",
-                "Sets a priority for a specified project in TaskHub.");
+                "- Sets a priority for a specified project in TaskHub.");
+        projectCommands.put("markP INDEX [MORE_INDEXES]",
+                "- Marks the specified project(s) as completed in TaskHub.");
+        projectCommands.put("unmarkP INDEX [MORE_INDEXES]",
+                "- Marks the specified project(s) as incomplete in TaskHub.");
 
         taskCommands.put("addT pr/PROJECT_INDEX [em/EMPLOYEE_INDEX] n/TASK_NAME d/DEADLINE(dd-MM-yyyy HHmm)",
                 "- Adds a new task to the specified project in TaskHub and assigns it to the specified employee (" +
@@ -123,6 +135,7 @@ public class HelpWindow extends UiPart<Stage> {
                 "- Sorts the tasks in each project by their deadline and completion status.");
 
         addToVBox("General Commands", generalCommands);
+        addToVBox("Assign Commands", assignCommands);
         addToVBox("Employee Commands", employeeCommands);
         addToVBox("Project Commands", projectCommands);
         addToVBox("Task Commands", taskCommands);

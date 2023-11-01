@@ -375,9 +375,9 @@ Examples:
 * `listP` followed by `assignT pr/1 t/1 em/2` assigns the first task in the first project to the second employee in the project.
 * `findP Capstone` followed by `assignT pr/2 t/2 em/2` assigns the second task, in the second project from the results of `findP`, to the second employee in the project.
 
-### Unassign an employee from a task: `assignT`
+### Unassign an employee from a task: `unassignT`
 
-Unassigns the currently assigned employee from the specified task in the specified project.
+Un-assigns the currently assigned employee from the specified task in the specified project.
 
 Format `unassignT pr/PROJECT_INDEX t/TASK_INDEX`
 

@@ -15,7 +15,7 @@
 
 
 
-<fx:root minHeight="0" minWidth="0" resizable="true" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="0" minWidth="0" resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
@@ -24,7 +24,7 @@
       <stylesheets>
         <URL value="@HelpWindow.css" />
       </stylesheets>
-      <ScrollPane vvalue="0.0" hbarPolicy="NEVER" prefHeight="600.0" prefWidth="525" fx:id="scrollPane">
+      <ScrollPane vvalue="0.0" hbarPolicy="NEVER" prefHeight="600.0" prefWidth="600" fx:id="scrollPane">
         <VBox fx:id="container" alignment="CENTER" spacing="10">
           <Label fx:id="helpLabel" text="TaskHub Quick Guide:" />
           <Separator /> <!-- Add a separator after the label -->
