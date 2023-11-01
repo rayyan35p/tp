@@ -215,7 +215,7 @@ public class TaskHubParserTest {
         PriorityProjectCommand command = (PriorityProjectCommand) parser
                 .parseCommand(PriorityProjectCommand.COMMAND_WORD + " 1" + " priority/low");
         PriorityProjectCommand expected = new PriorityProjectCommand(new ProjectPriority("low"),
-                ParserUtil.parseIndex("1"));
+                List.of(ParserUtil.parseIndex("1")));
         assertEquals(expected, command);
     }
 

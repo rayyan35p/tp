@@ -7,6 +7,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -21,7 +23,7 @@ public class PriorityProjectCommandParserTest {
         Index targetIndex = INDEX_FIRST_PROJECT;
         String userInput = INDEX_FIRST_PROJECT.getOneBased() + PROJECT_PRIORITY_DESC_AMY;
         assertParseSuccess(parser, userInput,
-                new PriorityProjectCommand(priority, targetIndex));
+                new PriorityProjectCommand(priority, List.of(targetIndex)));
     }
 
     @Test
