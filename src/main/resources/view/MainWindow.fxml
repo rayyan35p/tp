@@ -26,23 +26,25 @@
       </stylesheets>
 
       <VBox>
-            <HBox  >
-               <children>
-              <MenuBar fx:id="menuBar" prefHeight="6.0" prefWidth="690.0" HBox.hgrow="ALWAYS">
-                <Menu mnemonicParsing="false" text="File">
+        <StackPane>
+          <children>
+            <MenuBar fx:id="menuBar" prefHeight="35.0" minHeight="35.0" prefWidth="690.0" HBox.hgrow="ALWAYS">
+              <Menu mnemonicParsing="false" text="File">
+                <items>
                   <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-                </Menu>
-              </MenuBar>
-                  <ImageView fitHeight="35.0" fitWidth="143.0" pickOnBounds="true">
-                     <image>
-                        <Image url="@../images/task_hub_logo.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
+                </items>
+              </Menu>
+              <Menu mnemonicParsing="false" text="Help">
+                <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+              </Menu>
+            </MenuBar>
+            <ImageView fitHeight="35.0" fitWidth="143.0" pickOnBounds="false">
+              <image>
+                <Image url="@../images/task_hub_logo.png" />
+              </image>
+            </ImageView>
+          </children>
+        </StackPane>
 
         <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
