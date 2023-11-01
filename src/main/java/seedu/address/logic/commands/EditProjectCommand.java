@@ -46,6 +46,7 @@ public class EditProjectCommand extends Command {
     public final EditProjectDescriptor editProjectDescriptor;
 
     /**
+     * Creates an EditProjectCommand to edit the specified {@code Project}
      * @param index of the project in the filtered project list to edit
      * @param editProjectDescriptor details to edit the project with
      */
