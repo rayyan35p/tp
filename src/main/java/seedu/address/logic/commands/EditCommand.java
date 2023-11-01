@@ -30,6 +30,8 @@ import seedu.address.model.employee.Phone;
 import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 /**
  * Edits the details of an existing employee in the TaskHub.
@@ -93,7 +95,19 @@ public class EditCommand extends Command {
             if (employeeList.contains(employeeToEdit)) {
                 employeeList.setEmployee(employeeToEdit, editedEmployee);
             }
-            model.setProject(project, new Project(project.getNameString(), employeeList, project.getTasks(),
+            TaskList editedTaskList = new TaskList();
+            editedTaskList.setTasks(project.getTasks());
+            for (Task task : editedTaskList) {
+                if (task.getEmployee().isEmpty()) {
+                    continue;
+                }
+                Employee employeeAssigned = task.getEmployee().get(0);
+                if (employeeAssigned.equals(employeeToEdit)) {
+                    Task editedTask = new Task(task.getName(), task.getDeadline(), task.isDone(), editedEmployee);
+                    editedTaskList.setTask(task, editedTask);
+                }
+            }
+            model.setProject(project, new Project(project.getNameString(), employeeList, editedTaskList,
                     project.getProjectPriority(), project.getDeadline(), project.getCompletionStatus()));
         });
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
