@@ -179,11 +179,29 @@ Format: `addP n/PROJECT_NAME [em/EMPLOYEE_INDEXES] ...`
 
 * Adds a new project with the employees assigned to the project.
 * Each employee index __must be separated with a space.__
-* The employee must exist in the employees list. 
+* The employee must exist in the employees list.
+* There is no deadline by default.
+* The priority is `normal` by default.
+* The status is `not completed` by default.
 
 Examples: 
 * `addP n/Project1 em/1` will add `Project1` to the projects list with the employee index 1 assigned to the project.
 * `addP n/Project2` will add an empty `Project2` to the projects list.
+
+### Editing a project : `editP`
+
+Edits an existing project in the TaskHub.
+
+Format: `editP INDEX [n/NAME] [p/PRIORITY] [d/DEADLINE]`
+
+* Edits the project at the specified `INDEX`. The index refers to the index number shown in the displayed project list. The index must be a positive integer 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* You can remove the deadline of the project by typing `d/` without specifying any deadline after it.
+
+Examples:
+* `editP 1 n/Market Analysis p/low` Edits the name and priority of the 1st project to `Market Analysis` and `low` respectively.
+* `editP 2 p/high d/` Edits the priority and deadline of the 2nd project to `high` and removes the deadline.
 
 ### Listing all projects: `listP`
 
@@ -233,6 +251,7 @@ Format: `unassignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES] ..
 * The employee(s) will be unassigned from the project
 * Each employee index __must be separated with a space.__
 * The project and employee index refers to the index number shown in the displayed project and employee list.
+* If the employee is assigned to a task within the project, the employee will be unassigned from the task as well.
 
 ### Delete a project: `deleteP`
 
@@ -250,18 +269,20 @@ Examples:
 
 Edit the deadline of a project in the projects list.
 
-Format: `dl INDEX d/DATE`
+Format: `dl INDEX [MORE_INDEXES] d/[DEADLINE]`
 
-* Edits the deadline of the project at the specified `INDEX`.
-* The index refers to the index number shown in the displayed projects list.
-* The index **must be a positive integer** 1, 2, 3, …
-* The date must be in the `dd-MM-yyyy` format.
+* Edits the deadline of the project(s) at the specified `INDEX(ES)`.
+* The index(es) refers to the index number shown in the displayed projects list.
+* The index(es) **must be a positive integer** 1, 2, 3, …
+* DATE refers to the date of the deadline.
+* The `d/` prefix is required, but the `DEADLINE` is optional.
+* If a date is provided, it must be in the `dd-MM-yyyy` format.
 * Existing deadline will be updated to the new deadline.
-* You can remove the deadline by typing `d/` without specifying any date after it.
+* To remove the deadline of a project, leave the `DEADLINE` blank.
 
 Examples:
 *  `dl 2 d/18-01-2022` sets the deadline of the 2nd project to be `18-01-2022`.
-*  `dl 1 d/` removes the deadline of the 1st project.
+*  `dl 1 2 d/` removes the deadline of the 1st and 2nd projects.
 *  `findP Infinity` followed by `dl 1 d/25-11-2024` sets the deadline of the 1st project in the results of the `findP` command to be `25-11-2024`.
 
 ### Mark a project as completed: `markP`
@@ -270,7 +291,7 @@ Marks the specified project(s) as completed in TaskHub.
 
 Format `markP INDEX [MORE_INDEXES]`
 
-* Marks the project(s) at the specified `INDEX`(es) as completed.
+* Marks the project(s) at the specified `INDEX(ES)` as completed.
 * The index(es) refers to the index number shown in the displayed projects list.
 * The index(es) **must be a positive integers** 1, 2, 3,...
 
@@ -284,7 +305,7 @@ Marks the specified project(s) as incomplete in TaskHub.
 
 Format `unmarkP INDEX [MORE_INDEXES]`
 
-* Marks the project(s) at the specified `INDEX`(es) as incomplete.
+* Marks the project(s) at the specified `INDEX(ES)` as incomplete.
 * The index(es) refers to the index number shown in the displayed projects list.
 * The index(es) **must be a positive integers** 1, 2, 3,...
 
@@ -296,15 +317,15 @@ Examples:
 
 Sets a priority for a specified project in TaskHub.
 
-Format: `priorityP INDEX priority/PRIORITY`
-* Sets the project to the specified `PRIORITY`.
+Format: `priorityP INDEX [MORE_INDEXES] p/PRIORITY`
+* Sets the priority of the project(s) to the specified `INDEX(ES)`.
 * The index refers to the index number shown in the displayed projects list.
 * The index __must be a positive integer__ 1, 2, 3,...
 * The `PRIORITY` must be one of the following: `low`, `normal`, `high`.
 * All projects are set to normal priority by default.
 
 Examples:
-* `listP` followed by `priorityP 2 priority/high` sets the 2nd project as high priority in TaskHub.
+* `listP` followed by `priorityP 1 2 p/high` sets the 1st and 2nd projects as high priority in TaskHub.
 
 ### Add a new task to a project: `addT`
 
