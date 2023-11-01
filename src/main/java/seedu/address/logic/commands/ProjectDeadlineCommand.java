@@ -22,11 +22,11 @@ public class ProjectDeadlineCommand extends Command {
 
     public static final String COMMAND_WORD = "dl";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the deadline of a project identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the deadline of the project(s) identified "
             + "by the index number used in the last project listing. "
             + "Existing deadline will be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_DEADLINE + "[DATE]\n"
+            + "Parameters: INDEX (must be a positive integer) [MORE_INDEXES] "
+            + PREFIX_DEADLINE + "DATE\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DEADLINE + "21-02-2021";
 
@@ -61,6 +61,7 @@ public class ProjectDeadlineCommand extends Command {
             }
         }
 
+        // Update the deadline for each project
         for (Index projectIndex : projectIndexes) {
             Project projectToEdit = lastShownProjectList.get(projectIndex.getZeroBased());
             Project editedProject = new Project(projectToEdit.getName(), projectToEdit.getEmployees(),
