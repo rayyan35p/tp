@@ -38,7 +38,6 @@ public class MarkTaskCommandParser implements Parser<MarkTaskCommand> {
         assert taskIndexes.size() > 0;
 
         return new MarkTaskCommand(projectIndex, taskIndexes);
-
     }
 
     /**

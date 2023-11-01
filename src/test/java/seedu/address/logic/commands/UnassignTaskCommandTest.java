@@ -57,7 +57,7 @@ public class UnassignTaskCommandTest {
         editedTaskList.setTasks(projectToEdit.getTasks().asUnmodifiableObservableList());
         editedTaskList.setTask(INDEX_ASSIGNED_TASK, taskAfterUnassigning);
 
-        Project projectWithAssignedTask = new Project(projectToEdit.name,
+        Project projectWithAssignedTask = new Project(projectToEdit.getName(),
                 projectToEdit.getEmployees(),
                 editedTaskList,
                 projectToEdit.getProjectPriority(),

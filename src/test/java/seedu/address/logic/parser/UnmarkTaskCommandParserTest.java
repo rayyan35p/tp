@@ -33,7 +33,7 @@ public class UnmarkTaskCommandParserTest {
     @Test
     public void parse_invalidProjectAndValidTaskIndexes_failure() {
         String userInput = " pr/0 t/1 2";
-        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_INDEX));
+        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_INDEX, "0"));
     }
 
     @Test

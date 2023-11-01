@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
- * A list of Tasks that enforces uniqueness between its elements and does not allow nulls.
+ * A list of Tasks that does not allow nulls.
  * (inspired from UniqueEmployeeList.java)
  */
 public class TaskList implements Iterable<Task> {
@@ -84,22 +85,6 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
-     * Replaces the task {@code target} in the list with {@code editedTask}.
-     * {@code target} must exist in the list.
-     * The project identity of {@code editedTask} must not be the same as another existing task in the list.
-     */
-    public void setTask(Task target, Task editedTask) {
-        requireAllNonNull(target, editedTask);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new TaskNotFoundException();
-        }
-
-        internalList.set(index, editedTask);
-    }
-
-    /**
      * Replaces the task at {@code targetIndex} in the list with {@code editedTask}.
      * {@code targetIndex} must be a valid index of the list.
      * The project identity of {@code editedTask} must not be the same as another existing task in the list.
@@ -110,6 +95,16 @@ public class TaskList implements Iterable<Task> {
         Task targetTask = internalList.get(targetIndex.getZeroBased());
 
         internalList.set(targetIndex.getZeroBased(), editedTask);
+    }
+
+    /**
+     * Sorts tasks in internalList according to completion and deadline.
+     * Incomplete tasks will appear before complete tasks and tasks will be arranged in ascending deadline order.
+     */
+    public void sortTasksByDeadlineAndCompletion() {
+        Comparator<Task> customComparator = Comparator.comparing(Task::isDone)
+                .thenComparing(Task::getDeadline);
+        FXCollections.sort(internalList, customComparator);
     }
 
     /**

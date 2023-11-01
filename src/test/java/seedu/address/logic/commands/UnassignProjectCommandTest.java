@@ -69,7 +69,7 @@ public class UnassignProjectCommandTest {
 
         // Verify that the employees have been removed from the project in the model
         Project projectInModel = expectedModel.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
-        assertTrue(projectInModel.employeeList.isEmpty());
+        assertTrue(projectInModel.getEmployees().isEmpty());
     }
 
     @Test
@@ -99,14 +99,14 @@ public class UnassignProjectCommandTest {
 
         String expectedFailureMessage = String.format(UnassignProjectCommand.MESSAGE_UNASSIGN_PROJECT_FAILURE,
                 ALICE.getName(), INDEX_FIRST_EMPLOYEE.getOneBased(),
-                projectToUnassign.getNameString(), INDEX_FIRST_PROJECT.getOneBased());
+                projectToUnassign.getName(), INDEX_FIRST_PROJECT.getOneBased());
 
         // Alice is already unassigned from project, so command should fail
         assertCommandFailure(unassignProjectCommand, model, expectedFailureMessage);
 
         // Verify that Alice has been removed and Benson is still in the project
         Project projectInModel = expectedModel.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
-        assertTrue(projectInModel.employeeList.contains(BENSON));
+        assertTrue(projectInModel.getEmployees().contains(BENSON));
     }
 
     @Test
