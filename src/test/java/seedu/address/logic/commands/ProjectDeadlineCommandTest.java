@@ -29,7 +29,7 @@ import seedu.address.testutil.ProjectBuilder;
  */
 public class ProjectDeadlineCommandTest {
 
-    private static final String DEADLINE_STUB = "21/02/2023";
+    private static final String DEADLINE_STUB = "21-02-2023";
 
     private Model model = new ModelManager(getTypicalTaskHub(), new UserPrefs());
 
