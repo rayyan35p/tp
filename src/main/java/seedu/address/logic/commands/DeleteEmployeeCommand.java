@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 
 import java.util.List;
@@ -13,6 +14,8 @@ import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 /**
  * Deletes a employee identified using it's displayed index from the TaskHub.
@@ -50,13 +53,38 @@ public class DeleteEmployeeCommand extends Command {
             if (employeeList.contains(employeeToDelete)) {
                 employeeList.remove(employeeToDelete);
             }
-            model.setProject(project, new Project(project.getName(), employeeList, project.getTasks(),
+            TaskList editedTaskList = editTaskList(project, employeeToDelete);
+            model.setProject(project, new Project(project.getName(), employeeList, editedTaskList,
                     project.getProjectPriority(), project.getDeadline(), project.getCompletionStatus()));
 
         });
 
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, Messages.format(employeeToDelete)));
+    }
+
+    /**
+     * Creates and returns a TaskList with tasks updated with the employee to be deleted, removed from assigned tasks.
+     */
+    private TaskList editTaskList(Project projectToEdit, Employee employeeToDelete) {
+        requireAllNonNull(projectToEdit, employeeToDelete);
+        TaskList editedTaskList = new TaskList();
+        editedTaskList.setTasks(projectToEdit.getTasks());
+        int i = 0;
+        for (Task task : editedTaskList) {
+            if (task.getEmployee().isEmpty()) {
+                i++;
+                continue;
+            }
+            assert task.getEmployee() != null;
+            Employee employeeAssigned = task.getEmployee().get(0);
+            if (employeeAssigned.equals(employeeToDelete)) {
+                Task editedTask = new Task(task.getName(), task.getDeadline(), task.isDone());
+                editedTaskList.setTask(Index.fromZeroBased(i), editedTask);
+            }
+            i++;
+        }
+        return editedTaskList;
     }
 
     @Override

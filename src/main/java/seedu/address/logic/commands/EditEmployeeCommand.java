@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -30,6 +31,8 @@ import seedu.address.model.employee.Phone;
 import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 /**
  * Edits the details of an existing employee in the TaskHub.
@@ -94,7 +97,8 @@ public class EditEmployeeCommand extends Command {
             if (employeeList.contains(employeeToEdit)) {
                 employeeList.setEmployee(employeeToEdit, editedEmployee);
             }
-            model.setProject(project, new Project(project.getName(), employeeList, project.getTasks(),
+            TaskList editedTaskList = editTaskList(project, employeeToEdit, editedEmployee);
+            model.setProject(project, new Project(project.getName(), employeeList, editedTaskList,
                     project.getProjectPriority(), project.getDeadline(), project.getCompletionStatus()));
         });
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
@@ -116,6 +120,30 @@ public class EditEmployeeCommand extends Command {
         Set<Tag> updatedTags = editEmployeeDescriptor.getTags().orElse(employeeToEdit.getTags());
 
         return new Employee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+    }
+
+    /**
+     * Creates and returns a TaskList with tasks updated with the details of the edited employee.
+     */
+    private TaskList editTaskList(Project projectToEdit, Employee employeeToEdit, Employee editedEmployee) {
+        requireAllNonNull(projectToEdit, employeeToEdit, editedEmployee);
+        TaskList editedTaskList = new TaskList();
+        editedTaskList.setTasks(projectToEdit.getTasks());
+        int i = 0;
+        for (Task task : editedTaskList) {
+            if (task.getEmployee().isEmpty()) {
+                i++;
+                continue;
+            }
+            assert task.getEmployee() != null;
+            Employee employeeAssigned = task.getEmployee().get(0);
+            if (employeeAssigned.equals(employeeToEdit)) {
+                Task editedTask = new Task(task.getName(), task.getDeadline(), task.isDone(), editedEmployee);
+                editedTaskList.setTask(Index.fromZeroBased(i), editedTask);
+            }
+            i++;
+        }
+        return editedTaskList;
     }
 
     @Override

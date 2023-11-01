@@ -13,6 +13,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 /**
  * Unassigns a project from an employee.
@@ -62,9 +64,6 @@ public class UnassignProjectCommand extends Command {
         }
 
         Project projectToEdit = lastShownProjectList.get(projectIndex.getZeroBased());
-        Project editedProject = new Project(projectToEdit.getName(), projectToEdit.getEmployees(),
-                projectToEdit.getTasks(), projectToEdit.getProjectPriority(), projectToEdit.getDeadline(),
-                projectToEdit.getCompletionStatus());
 
         // Check if all specified employees are in the project
         for (Index employeeIndex : employeeIndexes) {
@@ -73,12 +72,19 @@ public class UnassignProjectCommand extends Command {
             }
 
             Employee employeeToRemove = lastShownEmployeeList.get(employeeIndex.getZeroBased());
-            if (!editedProject.getEmployees().contains(employeeToRemove)) {
+            if (!projectToEdit.getEmployees().contains(employeeToRemove)) {
                 throw new CommandException(String.format(MESSAGE_UNASSIGN_PROJECT_FAILURE,
                         employeeToRemove.getName(), employeeIndex.getOneBased(),
                         projectToEdit.getName(), projectIndex.getOneBased()));
             }
         }
+
+        // Remove specified employees from assigned tasks
+        TaskList editedTaskList = editTaskList(projectToEdit, employeeIndexes, lastShownEmployeeList);
+
+        Project editedProject = new Project(projectToEdit.getName(), projectToEdit.getEmployees(),
+                editedTaskList, projectToEdit.getProjectPriority(), projectToEdit.getDeadline(),
+                projectToEdit.getCompletionStatus());
 
         // Remove specified employees from project
         for (Index employeeIndex : employeeIndexes) {
@@ -94,6 +100,35 @@ public class UnassignProjectCommand extends Command {
 
     private String generateSuccessMessage(Project projectToEdit) {
         return String.format(MESSAGE_UNASSIGN_PROJECT_SUCCESS, Messages.format(projectToEdit));
+    }
+
+    /**
+     * Creates and returns a TaskList with tasks updated with the
+     * employee to be unassigned, also removed from assigned tasks.
+     */
+    private TaskList editTaskList(Project projectToEdit, List<Index> employeeIndexes, List<Employee> employeeList) {
+        requireAllNonNull(projectToEdit, employeeIndexes, employeeList);
+        TaskList editedTaskList = new TaskList();
+        editedTaskList.setTasks(projectToEdit.getTasks());
+
+        for (Index employeeIndex : employeeIndexes) {
+            Employee employeeToRemove = employeeList.get(employeeIndex.getZeroBased());
+            int i = 0;
+            for (Task task : editedTaskList) {
+                if (task.getEmployee().isEmpty()) {
+                    i++;
+                    continue;
+                }
+                assert task.getEmployee() != null;
+                Employee employeeAssigned = task.getEmployee().get(0);
+                if (employeeAssigned.equals(employeeToRemove)) {
+                    Task editedTask = new Task(task.getName(), task.getDeadline(), task.isDone());
+                    editedTaskList.setTask(Index.fromZeroBased(i), editedTask);
+                }
+                i++;
+            }
+        }
+        return editedTaskList;
     }
 
     @Override
