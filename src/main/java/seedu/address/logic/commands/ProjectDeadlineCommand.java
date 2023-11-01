@@ -5,7 +5,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -28,50 +30,57 @@ public class ProjectDeadlineCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DEADLINE + "21-02-2021";
 
-    public static final String MESSAGE_ADD_DEADLINE_SUCCESS = "Added deadline: %1$s to project: %2$s";
-    public static final String MESSAGE_DELETE_DEADLINE_SUCCESS = "Removed deadline from project: %1$s";
+    public static final String MESSAGE_ADD_DEADLINE_SUCCESS = "Added deadline: %1$s to %2$s project(s)";
+    public static final String MESSAGE_DELETE_DEADLINE_SUCCESS = "Removed deadline for %1$s project(s)";
 
-    private final Index index;
+    private static final Logger logger = LogsCenter.getLogger(ProjectDeadlineCommand.class);
+
+    private final List<Index> projectIndexes;
     private final Deadline deadline;
 
     /**
-     * @param index of the project in the filtered project list to edit the deadline
-     * @param deadline of the project to be updated to
+     * @param projectIndexes of the project in the filtered project list to edit the deadline
+     * @param deadline to be updated to
      */
-    public ProjectDeadlineCommand(Index index, Deadline deadline) {
-        requireAllNonNull(index, deadline);
+    public ProjectDeadlineCommand(List<Index> projectIndexes, Deadline deadline) {
+        requireAllNonNull(projectIndexes, deadline);
 
-        this.index = index;
+        this.projectIndexes = projectIndexes;
         this.deadline = deadline;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Project> lastShownList = model.getFilteredProjectList();
+        List<Project> lastShownProjectList = model.getFilteredProjectList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+        // Check if all indexes are valid first
+        for (Index projectIndex : projectIndexes) {
+            if (projectIndex.getZeroBased() >= lastShownProjectList.size()) {
+                logger.warning("Invalid project index: " + projectIndex.getOneBased());
+                throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+            }
         }
 
-        Project projectToEdit = lastShownList.get(index.getZeroBased());
-        Project editedProject = new Project(projectToEdit.getName(), projectToEdit.getEmployees(),
-                projectToEdit.getTasks(),
-                projectToEdit.getProjectPriority(), deadline, projectToEdit.getCompletionStatus());
+        for (Index projectIndex : projectIndexes) {
+            Project projectToEdit = lastShownProjectList.get(projectIndex.getZeroBased());
+            Project editedProject = new Project(projectToEdit.getName(), projectToEdit.getEmployees(),
+                    projectToEdit.getTasks(),
+                    projectToEdit.getProjectPriority(), deadline, projectToEdit.getCompletionStatus());
+            model.setProject(projectToEdit, editedProject);
+        }
 
-        model.setProject(projectToEdit, editedProject);
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
-
-        return new CommandResult(generateSuccessMessage(editedProject));
+        return new CommandResult(generateSuccessMessage());
     }
 
     /**
      * Generates a command execution success message based on whether the deadline is added to or removed from
      * {@code projectToEdit}.
      */
-    private String generateSuccessMessage(Project projectToEdit) {
+    private String generateSuccessMessage() {
         String message = !deadline.value.isEmpty()
-                ? String.format(MESSAGE_ADD_DEADLINE_SUCCESS, this.deadline.toString(), projectToEdit)
-                : String.format(MESSAGE_DELETE_DEADLINE_SUCCESS, projectToEdit);
+                ? String.format(MESSAGE_ADD_DEADLINE_SUCCESS, this.deadline.toString(), projectIndexes.size())
+                : String.format(MESSAGE_DELETE_DEADLINE_SUCCESS, projectIndexes.size());
         return message;
     }
 
@@ -89,7 +98,7 @@ public class ProjectDeadlineCommand extends Command {
 
         // state check
         ProjectDeadlineCommand e = (ProjectDeadlineCommand) other;
-        return index.equals(e.index)
+        return projectIndexes.equals(e.projectIndexes)
                 && deadline.equals(e.deadline);
     }
 }

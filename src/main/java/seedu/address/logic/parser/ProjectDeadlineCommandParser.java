@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
@@ -31,17 +32,12 @@ public class ProjectDeadlineCommandParser implements Parser<ProjectDeadlineComma
                     ProjectDeadlineCommand.MESSAGE_USAGE));
         }
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DEADLINE);
-
-        Index index;
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    ProjectDeadlineCommand.MESSAGE_USAGE), ive);
-        }
         Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());;
 
-        return new ProjectDeadlineCommand(index, deadline);
+        List<Index> projectIndexes;
+        projectIndexes = ParserUtil.parseIndexes(argMultimap.getPreamble());
+
+        return new ProjectDeadlineCommand(projectIndexes, deadline);
     }
 
     /**

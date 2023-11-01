@@ -170,7 +170,7 @@ public class TaskHubParserTest {
         ProjectDeadlineCommand command =
                 (ProjectDeadlineCommand) parser.parseCommand(ProjectDeadlineCommand.COMMAND_WORD + " "
                  + INDEX_FIRST_PROJECT.getOneBased() + " " + PREFIX_DEADLINE + deadline.value);
-        assertEquals(new ProjectDeadlineCommand(INDEX_FIRST_PROJECT, deadline), command);
+        assertEquals(new ProjectDeadlineCommand(List.of(INDEX_FIRST_PROJECT), deadline), command);
     }
 
     @Test
