@@ -17,14 +17,8 @@ public class Project {
 
     public static final String MESSAGE_CONSTRAINTS = "Projects can take any values, and it should not be blank";
 
-    /*
-     * The first character must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
-
-    public final String name;
-    public final UniqueEmployeeList employeeList;
+    private final Name name;
+    private final UniqueEmployeeList employeeList;
     private final TaskList tasks;
     private final Deadline deadline;
     private final ProjectPriority projectPriority;
@@ -34,11 +28,11 @@ public class Project {
     /**
      * Constructs a {@code Project}.
      *
-     * @param project A valid Project.
+     * @param name A valid name.
      */
-    public Project(String project) {
-        requireNonNull(project);
-        this.name = project;
+    public Project(String name) {
+        requireNonNull(name);
+        this.name = new Name(name);
         this.projectPriority = new ProjectPriority("normal");
         this.deadline = new Deadline("");
         this.employeeList = new UniqueEmployeeList();
@@ -49,21 +43,51 @@ public class Project {
     /**
      * Constructs a {@code Project}.
      *
-     * @param project A valid Project.
+     * @param name A valid name.
+     */
+    public Project(Name name) {
+        requireNonNull(name);
+        this.name = name;
+        this.projectPriority = new ProjectPriority("normal");
+        this.deadline = new Deadline("");
+        this.employeeList = new UniqueEmployeeList();
+        this.completionStatus = new CompletionStatus(false);
+        this.tasks = new TaskList();
+    }
+
+    /**
+     * Constructs a {@code Project}.
+     *
+     * @param project A valid project.
+     */
+    public Project(Project project) {
+        requireNonNull(project);
+        this.name = project.getName();
+        this.projectPriority = project.getProjectPriority();
+        this.deadline = project.getDeadline();
+        this.employeeList = project.getEmployees();
+        this.completionStatus = project.getCompletionStatus();
+        this.tasks = project.getTasks();
+    }
+
+    /**
+     * Constructs a {@code Project}.
+     *
+     * @param name A valid name.
      * @param employees A list of Employees that are in the project
      * @param tasks A list of Tasks that are in the project
      * @param priority A valid ProjectPriority for the project.
      * @param deadline A valid Deadline for the project.
      * @param completionStatus A valid CompletionStatus for the project.
      */
-    public Project(String project,
+    public Project(Name name,
                    UniqueEmployeeList employees,
                    TaskList tasks,
                    ProjectPriority priority,
                    Deadline deadline,
                    CompletionStatus completionStatus) {
-        requireNonNull(project);
-        this.name = project;
+        requireNonNull(name);
+        this.name = name;
         this.projectPriority = priority;
         this.employeeList = employees;
         this.tasks = tasks;
@@ -71,8 +95,8 @@ public class Project {
         this.completionStatus = completionStatus;
     }
 
-    public String getNameString() {
-        return this.name;
+    public Name getName() {
+        return name;
     }
 
     public UniqueEmployeeList getEmployees() {
@@ -94,8 +118,13 @@ public class Project {
     /**
      * Returns true if a given string is a valid project name.
      */
-    public static boolean isValidProject(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidProjectName(String test) {
+        try {
+            new Name(test);
+            return true;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     /**
@@ -146,6 +175,14 @@ public class Project {
         tasks.remove(task);
     }
 
+    /**
+     * Sorts tasks in tasks list according to completion and deadline.
+     * Incomplete tasks will appear before complete tasks and tasks will be arranged in ascending deadline order.
+     */
+    public void sortTasksByDeadlineAndCompletion() {
+        tasks.sortTasksByDeadlineAndCompletion();
+    }
+
     public String getListOfEmployeeNames() {
         StringBuilder employeeListString = new StringBuilder();
         int index = 1;
@@ -158,7 +195,7 @@ public class Project {
 
     @Override
     public String toString() {
-        return name;
+        return name.toString();
     }
 
     @Override

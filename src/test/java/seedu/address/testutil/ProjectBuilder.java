@@ -7,6 +7,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.CompletionStatus;
 import seedu.address.model.project.Deadline;
+import seedu.address.model.project.Name;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectPriority;
 import seedu.address.model.task.Task;
@@ -22,7 +23,7 @@ public class ProjectBuilder {
     public static final String DEFAULT_DEADLINE = "";
     public static final boolean DEFAULT_COMPLETION_STATUS = false;
 
-    private String projectName;
+    private Name projectName;
     private UniqueEmployeeList employeeList;
     private TaskList taskList;
     private Deadline deadline;
@@ -33,7 +34,7 @@ public class ProjectBuilder {
      * Instantiates a {@code Project} with the default details
      */
     public ProjectBuilder() {
-        projectName = DEFAULT_NAME;
+        projectName = new Name(DEFAULT_NAME);
         employeeList = new UniqueEmployeeList();
         employeeList.add(ALICE);
         taskList = new TaskList();
@@ -47,7 +48,7 @@ public class ProjectBuilder {
      * Initializes the ProjectBuilder with details of {@code toCopy}
      */
     public ProjectBuilder(Project toCopy) {
-        projectName = toCopy.name;
+        projectName = toCopy.getName();
         employeeList = toCopy.getEmployees();
         taskList = toCopy.getTasks();
         projectPriority = toCopy.getProjectPriority();
@@ -59,7 +60,7 @@ public class ProjectBuilder {
      * Sets the name of the {@code Project} we are building.
      */
     public ProjectBuilder withName(String name) {
-        this.projectName = name;
+        this.projectName = new Name(name);
         return this;
     }
 
@@ -88,8 +89,8 @@ public class ProjectBuilder {
     /**
      * Sets the priority of the {@code Project} we are building.
      */
-    public ProjectBuilder withPriority(ProjectPriority priority) {
-        this.projectPriority = priority;
+    public ProjectBuilder withPriority(String priority) {
+        this.projectPriority = new ProjectPriority(priority);
         return this;
     }
 

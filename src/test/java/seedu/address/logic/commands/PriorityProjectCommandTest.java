@@ -38,7 +38,7 @@ public class PriorityProjectCommandTest {
         Project projectToSetPriority = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         PriorityProjectCommand projectPriorityCommand = new PriorityProjectCommand(new ProjectPriority("high"),
                 INDEX_FIRST_PROJECT);
-        Project projectWithNewPriority = new Project(projectToSetPriority.name,
+        Project projectWithNewPriority = new Project(projectToSetPriority.getName(),
                 projectToSetPriority.getEmployees(),
                 projectToSetPriority.getTasks(),
                 new ProjectPriority("high"),

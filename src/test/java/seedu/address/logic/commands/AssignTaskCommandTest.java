@@ -70,7 +70,7 @@ public class AssignTaskCommandTest {
         editedTaskList.setTasks(projectToAssignTasks.getTasks().asUnmodifiableObservableList());
         editedTaskList.setTask(INDEX_FIRST_TASK, taskAfterAssigning);
 
-        Project projectWithAssignedTask = new Project(projectToAssignTasks.name,
+        Project projectWithAssignedTask = new Project(projectToAssignTasks.getName(),
                 projectToAssignTasks.getEmployees(),
                 editedTaskList,
                 projectToAssignTasks.getProjectPriority(),

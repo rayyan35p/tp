@@ -38,7 +38,7 @@ public class DeleteTaskCommandTest {
         taskIndexes.add(taskIndex);
         CommandResult commandResult = new DeleteTaskCommand(projectIndex, taskIndexes).execute(modelStub);
         assertEquals(String.format(DeleteTaskCommand.MESSAGE_TASKS_DELETED_SUCCESSFULLY,
-                                   taskIndexes.size(), ALPHA.getNameString()),
+                                   taskIndexes.size(), ALPHA.getName()),
                     commandResult.getFeedbackToUser());
     }
     @Test

@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,15 +33,14 @@ public class MarkTaskCommandParserTest {
     @Test
     public void parse_validProjectAndInvalidTaskIndexes_failure() {
         String userInput = " pr/1 t/0 2";
-        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                MarkTaskCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_INDEX, "0"));
     }
 
     @Test
     public void parse_invalidProjectAndValidTaskIndexes_failure() {
         String userInput = " pr/0 t/1 2";
-        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                MarkTaskCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_INDEX, "0"));
     }
 
     @Test

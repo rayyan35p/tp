@@ -18,6 +18,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.ModelStubWithEmptyProjectList;
+import seedu.address.testutil.ModelStubWithEmptyProjectListAndEmptyEmployeeList;
 import seedu.address.testutil.ModelStubWithProjectAndEmployee;
 import seedu.address.testutil.TaskBuilder;
 public class AddTaskCommandTest {
@@ -27,7 +28,7 @@ public class AddTaskCommandTest {
     }
 
     @Test
-    public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_taskWithoutAssigneeAcceptedByModel_addSuccessful() throws Exception {
         ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(ALPHA, ALICE);
         Task validTask = new TaskBuilder().build();
         Index index = ParserUtil.parseIndex("1");
@@ -36,6 +37,19 @@ public class AddTaskCommandTest {
         assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, index.getOneBased(),
                 Messages.format(validTask)),
                 commandResult.getFeedbackToUser());
+    }
+    @Test
+    public void execute_taskWithAssigneeAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(ALPHA, ALICE);
+        Task validTask = new TaskBuilder().build();
+        Index projectIndex = ParserUtil.parseIndex("1");
+        Index employeeIndex = ParserUtil.parseIndex("1");
+        CommandResult commandResult = new AddTaskCommand(validTask,
+                                                         projectIndex,
+                                                         employeeIndex).execute(modelStub);
+        assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, projectIndex.getOneBased(),
+                                    Messages.format(validTask)),
+                     commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -48,6 +62,18 @@ public class AddTaskCommandTest {
         assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX, () ->
                 addTaskCommand.execute(modelStub));
     }
+    @Test
+    public void execute_addTaskWithInvalidEmployeeIndex_throwsCommandException() throws Exception {
+        ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(ALPHA, ALICE);
+        Task validTask = new TaskBuilder().build();
+        Index projectIndex = ParserUtil.parseIndex("1");
+        Index employeeIndex = ParserUtil.parseIndex("5");
+        AddTaskCommand addTaskCommand = new AddTaskCommand(validTask,
+                                                           projectIndex,
+                                                           employeeIndex);
+        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX, () ->
+                addTaskCommand.execute(modelStub));
+    }
 
     @Test
     public void execute_addTaskToEmptyProjectList_throwsCommandException() throws Exception {
@@ -57,6 +83,19 @@ public class AddTaskCommandTest {
         AddTaskCommand addTaskCommand = new AddTaskCommand(validTask,
                                                            index);
         assertThrows(CommandException.class, Messages.MESSAGE_NO_PROJECT_TO_ADD_TASK, () ->
+                addTaskCommand.execute(modelStub));
+    }
+    @Test
+    public void execute_addTaskToEmptyEmployeeList_throwsCommandException() throws Exception {
+        ModelStubWithEmptyProjectListAndEmptyEmployeeList modelStub;
+        modelStub = new ModelStubWithEmptyProjectListAndEmptyEmployeeList();
+        Task validTask = new TaskBuilder().build();
+        Index projectIndex = ParserUtil.parseIndex("1");
+        Index employeeIndex = ParserUtil.parseIndex("1");
+        AddTaskCommand addTaskCommand = new AddTaskCommand(validTask,
+                                                           projectIndex,
+                                                           employeeIndex);
+        assertThrows(CommandException.class, Messages.MESSAGE_NO_EMPLOYEE_TO_ASSIGN, () ->
                 addTaskCommand.execute(modelStub));
     }
     @Test

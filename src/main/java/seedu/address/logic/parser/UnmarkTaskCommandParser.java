@@ -32,17 +32,13 @@ public class UnmarkTaskCommandParser implements Parser<UnmarkTaskCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkTaskCommand.MESSAGE_USAGE));
         }
 
-        try {
-            // get project and task indexes
-            Index projectIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PROJECT).get());
-            List<Index> taskIndexes = ParserUtil.parseIndexes(argMultimap.getValue(PREFIX_TASK).get());
-            assert taskIndexes.size() > 0;
 
-            return new UnmarkTaskCommand(projectIndex, taskIndexes);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkTaskCommand.MESSAGE_USAGE), pe);
-        }
+        // get project and task indexes
+        Index projectIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PROJECT).get());
+        List<Index> taskIndexes = ParserUtil.parseIndexes(argMultimap.getValue(PREFIX_TASK).get());
+        assert taskIndexes.size() > 0;
+
+        return new UnmarkTaskCommand(projectIndex, taskIndexes);
     }
 
     /**

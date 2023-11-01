@@ -32,8 +32,8 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteEmployeeCommand;
 import seedu.address.logic.commands.DeleteProjectCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditEmployeeDescriptor;
+import seedu.address.logic.commands.EditEmployeeCommand;
+import seedu.address.logic.commands.EditEmployeeCommand.EditEmployeeDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindEmployeeCommand;
 import seedu.address.logic.commands.FindProjectCommand;
@@ -45,6 +45,7 @@ import seedu.address.logic.commands.MarkProjectCommand;
 import seedu.address.logic.commands.MarkTaskCommand;
 import seedu.address.logic.commands.PriorityProjectCommand;
 import seedu.address.logic.commands.ProjectDeadlineCommand;
+import seedu.address.logic.commands.SortTaskCommand;
 import seedu.address.logic.commands.UnassignProjectCommand;
 import seedu.address.logic.commands.UnmarkProjectCommand;
 import seedu.address.logic.commands.UnmarkTaskCommand;
@@ -88,9 +89,9 @@ public class TaskHubParserTest {
     public void parseCommand_editEmployee() throws Exception {
         Employee employee = new EmployeeBuilder().build();
         EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(employee).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+        EditEmployeeCommand command = (EditEmployeeCommand) parser.parseCommand(EditEmployeeCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_EMPLOYEE.getOneBased() + " " + EmployeeUtil.getEditEmployeeDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_EMPLOYEE, descriptor), command);
+        assertEquals(new EditEmployeeCommand(INDEX_FIRST_EMPLOYEE, descriptor), command);
     }
 
     @Test
@@ -197,7 +198,7 @@ public class TaskHubParserTest {
     @Test
     public void parseCommand_addProject() throws Exception {
         AddProjectCommand command = (AddProjectCommand) parser.parseCommand(AddProjectCommand.COMMAND_WORD + " "
-                            + PREFIX_PROJECT + "Alpha");
+                            + PREFIX_NAME + "Alpha");
         AddProjectCommand expected = new AddProjectCommand(new Project("Alpha"), new ArrayList<>());
         assertEquals(expected, command);
     }
@@ -216,6 +217,12 @@ public class TaskHubParserTest {
         PriorityProjectCommand expected = new PriorityProjectCommand(new ProjectPriority("low"),
                 ParserUtil.parseIndex("1"));
         assertEquals(expected, command);
+    }
+
+    @Test
+    public void parseCommand_sortTask() throws Exception {
+        assertTrue(parser.parseCommand(SortTaskCommand.COMMAND_WORD) instanceof SortTaskCommand);
+        assertTrue(parser.parseCommand(SortTaskCommand.COMMAND_WORD + " 3") instanceof SortTaskCommand);
     }
 
     @Test

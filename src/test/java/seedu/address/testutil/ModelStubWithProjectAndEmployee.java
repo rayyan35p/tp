@@ -66,4 +66,25 @@ public class ModelStubWithProjectAndEmployee extends ModelStub {
     public void addTask(Task task) {
         this.project.addTask(task);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof ModelStubWithProjectAndEmployee)) {
+            return false;
+        }
+        ModelStubWithProjectAndEmployee model = (ModelStubWithProjectAndEmployee) other;
+        return this.project.equals(model.project) && this.employee.equals(model.employee);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder res = new StringBuilder();
+        project.getTasks().forEach(x -> {
+            res.append(x.toString() + ", ");
+        });
+        return res.toString();
+    }
 }
