@@ -360,6 +360,34 @@ Examples:
 * `listP` followed by `unmarkT pr/1 t/1 3` marks the 1st and 3rd tasks of the 1st project as incomplete in TaskHub.
 * `findP Capstone` followed by `unmarkT pr/2 t/2` marks the 2nd task in the 2nd project from the results of the `findP` command as incomplete.
 
+### Assign an employee to a task: `assignT`
+
+Assigns a specified employee in a specified project to a specified task in that project.
+
+Format `assignT pr/PROJECT_INDEX t/TASK_INDEX em/EMPLOYEE_INDEX`
+
+* The project index refers to the index number shown in the displayed projects list.
+* The task index refers to the index number shown in the last list of the above specified project.
+* The employee index refers to the index number of the employee **in the project list**.
+* The index(es) **must be positive integers** 1, 2, 3,...
+
+Examples:
+* `listP` followed by `assignT pr/1 t/1 em/2` assigns the first task in the first project to the second employee in the project.
+* `findP Capstone` followed by `assignT pr/2 t/2 em/2` assigns the second task, in the second project from the results of `findP`, to the second employee in the project.
+
+### Unassign an employee from a task: `assignT`
+
+Unassigns the currently assigned employee from the specified task in the specified project.
+
+Format `unassignT pr/PROJECT_INDEX t/TASK_INDEX`
+
+* The project index refers to the index number shown in the displayed projects list.
+* The task index refers to the index number shown in the last list of the above specified project.
+* The index(es) **must be positive integers** 1, 2, 3,...
+
+Examples:
+* `listP` followed by `unassignT pr/1 t/1` unassigns the first task in the first project from the currently assigned employee.
+* `findP Capstone` followed by `unassignT pr/2 t/2` unassigns the second task, in the second project from the results of `findP`, from the currently assigned employee.
 
 ### Sort tasks by deadline and completion status: `sortT`
 
@@ -422,7 +450,7 @@ _Details coming soon ..._
 | **List All Projects**                            | `listP`                                                                                                                                                                                          |
 | **Add Project**                                  | `addP pr/PROJECT_NAME [em/EMPLOYEE_INDEX]…​` <br> e.g, `addP pr/CS2103T em/2 3 4 5`                                                                                                              |
 | **Edit Project Deadline**                        | `dl INDEX d/DATE` <br> e.g., `dl 2 d/27-11-2023` <br>                                                                                                                                            |
-|  **Prioritise projects**           | `priorityP INDEX priority/PRIORITY` <br> e.g., priorityP 2 priority/high <br>                                                                                                                    |
+| **Prioritise projects**                          | `priorityP INDEX priority/PRIORITY` <br> e.g., priorityP 2 priority/high <br>                                                                                                                    |
 | **Mark Project(s) as complete**                  | `markP INDEX [MORE_INDEXES]`<br> e.g., `markP 1 3`                                                                                                                                               |
 | **Mark Project(s) as incomplete**                | `unmarkP INDEX [MORE_INDEXES]`<br> e.g., `unmarkP 1 3`                                                                                                                                           |
 | **Assign Employee to Project**                   | `assignE pr/PROJECT_INDEX em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDICES]…​` <br> e.g, `assignE pr/4 em/1 2 3`                                                                                      |
@@ -431,6 +459,8 @@ _Details coming soon ..._
 | **List All Employees And Projects**              | `list`                                                                                                                                                                                           |
 | **Add Task**                                     | `addT pr/PROJECT_INDEX [em/EMPLOYEE_INDEX] n/TASK_NAME d/DEADLINE(dd-MM-yyyy HHmm)`<br> e.g., `addT pr/1 em/1 n/Read docs d/11-11-2023 2359`                                                     |
 | **Delete Task**                                  | `deleteT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]` <br> e.g., `deleteT pr/1 t/1 5 3`                                                                                                    |
-| **Mark Task(s) As Complete**                     | `markT`<br> e.g., `markT pr/1 t/1 3`                                                                                                                                                             |
-| **Mark Task(s) As Incomplete**                   | `unmarkT`<br> e.g., `unmarkT pr/1 t/1 3`                                                                                                                                                         |
+| **Mark Task(s) As Complete**                     | `markT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`<br> e.g., `markT pr/1 t/1 3`                                                                                                           |
+| **Mark Task(s) As Incomplete**                   | `unmarkT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`<br> e.g., `unmarkT pr/1 t/1 3`                                                                                                       |
+ | **Assign Employee to Task**                      | `assignT` <br> e.g., `assignT p/1 t/1 em/3`                                                                                                                                                      |
+| **Unassign Employee from Task**                  | `unassignT` <br> e.g., `unassignT p/1 t/1`                                                                                                                                                       |
 | **Sort Tasks By Deadline And Completion Status** | `sortT`                                                                                                                                                                                          |
