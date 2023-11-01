@@ -54,7 +54,7 @@ public class ProjectDeadlineCommand extends Command {
         }
 
         Project projectToEdit = lastShownList.get(index.getZeroBased());
-        Project editedProject = new Project(projectToEdit.getNameString(), projectToEdit.getEmployees(),
+        Project editedProject = new Project(projectToEdit.getName(), projectToEdit.getEmployees(),
                 projectToEdit.getTasks(),
                 projectToEdit.getProjectPriority(), deadline, projectToEdit.getCompletionStatus());
 

@@ -62,8 +62,9 @@ public class UnassignProjectCommand extends Command {
         }
 
         Project projectToEdit = lastShownProjectList.get(projectIndex.getZeroBased());
-        Project editedProject = new Project(projectToEdit.name, projectToEdit.employeeList, projectToEdit.getTasks(),
-                projectToEdit.getProjectPriority(), projectToEdit.getDeadline(), projectToEdit.getCompletionStatus());
+        Project editedProject = new Project(projectToEdit.getName(), projectToEdit.getEmployees(),
+                projectToEdit.getTasks(), projectToEdit.getProjectPriority(), projectToEdit.getDeadline(),
+                projectToEdit.getCompletionStatus());
 
         // Check if all specified employees are in the project
         for (Index employeeIndex : employeeIndexes) {
@@ -72,10 +73,10 @@ public class UnassignProjectCommand extends Command {
             }
 
             Employee employeeToRemove = lastShownEmployeeList.get(employeeIndex.getZeroBased());
-            if (!editedProject.employeeList.contains(employeeToRemove)) {
+            if (!editedProject.getEmployees().contains(employeeToRemove)) {
                 throw new CommandException(String.format(MESSAGE_UNASSIGN_PROJECT_FAILURE,
                         employeeToRemove.getName(), employeeIndex.getOneBased(),
-                        projectToEdit.name, projectIndex.getOneBased()));
+                        projectToEdit.getName(), projectIndex.getOneBased()));
             }
         }
 

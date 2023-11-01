@@ -56,15 +56,14 @@ public class AssignProjectCommand extends Command {
         }
 
         Project projectToEdit = lastShownProjectList.get(projectIndex.getZeroBased());
-        Project editedProject = new Project(projectToEdit.name, projectToEdit.employeeList, projectToEdit.getTasks(),
-                projectToEdit.getProjectPriority(), projectToEdit.getDeadline(), projectToEdit.getCompletionStatus());
+        Project editedProject = new Project(projectToEdit);
         for (Index employeeIndex : employeeIndexes) {
             if (employeeIndex.getZeroBased() >= lastShownEmployeeList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
             }
             Employee employeeToAdd = lastShownEmployeeList.get(employeeIndex.getZeroBased());
-            if (!editedProject.employeeList.contains(employeeToAdd)) {
-                editedProject.employeeList.add(employeeToAdd);
+            if (!editedProject.getEmployees().contains(employeeToAdd)) {
+                editedProject.getEmployees().add(employeeToAdd);
             }
         }
 

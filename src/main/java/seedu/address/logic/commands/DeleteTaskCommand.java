@@ -78,11 +78,11 @@ public class DeleteTaskCommand extends Command {
         }
 
         // Create new project with updated tasks
-        Project updatedProject = new Project(targetProject.getNameString(), targetProject.getEmployees(),
+        Project updatedProject = new Project(targetProject.getName(), targetProject.getEmployees(),
                 lastShownTaskList, targetProject.getProjectPriority(),
                 targetProject.getDeadline(), targetProject.getCompletionStatus());
 
-        projectName = updatedProject.getNameString();
+        projectName = updatedProject.getName().toString();
 
         model.setProject(targetProject, updatedProject);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);

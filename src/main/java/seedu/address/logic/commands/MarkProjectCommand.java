@@ -60,7 +60,7 @@ public class MarkProjectCommand extends Command {
             assert projectIndex.getZeroBased() < lastShownProjectList.size();
 
             Project projectToMark = lastShownProjectList.get(projectIndex.getZeroBased());
-            Project markedProject = new Project(projectToMark.name, projectToMark.employeeList,
+            Project markedProject = new Project(projectToMark.getName(), projectToMark.getEmployees(),
                     projectToMark.getTasks(),
                     projectToMark.getProjectPriority(), projectToMark.getDeadline(), new CompletionStatus(true));
             model.setProject(projectToMark, markedProject);

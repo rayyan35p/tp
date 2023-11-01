@@ -175,15 +175,15 @@ Format: `clear`
 
 Adds a new project in TaskHub
 
-Format: `addP pr/PROJECT_NAME [em/EMPLOYEE_INDEXES] ...`
+Format: `addP n/PROJECT_NAME [em/EMPLOYEE_INDEXES] ...`
 
 * Adds a new project with the employees assigned to the project.
 * Each employee index __must be separated with a space.__
 * The employee must exist in the employees list. 
 
 Examples: 
-* `addP pr/Project1 em/1` will add `Project1` to the projects list with the employee index 1 assigned to the project.
-* `addP pr/Project2` will add an empty `Project2` to the projects list.
+* `addP n/Project1 em/1` will add `Project1` to the projects list with the employee index 1 assigned to the project.
+* `addP n/Project2` will add an empty `Project2` to the projects list.
 
 ### Listing all projects: `listP`
 

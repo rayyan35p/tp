@@ -61,7 +61,7 @@ public class ProjectCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
 
         // Set the name
-        name.setText(project.getNameString());
+        name.setText(project.getName().toString());
 
         // Set the list of employees
         String listOfEmployeesString =

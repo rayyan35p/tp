@@ -23,8 +23,8 @@ public class Project {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String name;
-    public final UniqueEmployeeList employeeList;
+    private final Name name;
+    private final UniqueEmployeeList employeeList;
     private final TaskList tasks;
     private final Deadline deadline;
     private final ProjectPriority projectPriority;
@@ -34,11 +34,11 @@ public class Project {
     /**
      * Constructs a {@code Project}.
      *
-     * @param project A valid Project.
+     * @param name A valid name.
      */
-    public Project(String project) {
-        requireNonNull(project);
-        this.name = project;
+    public Project(String name) {
+        requireNonNull(name);
+        this.name = new Name(name);
         this.projectPriority = new ProjectPriority("normal");
         this.deadline = new Deadline("");
         this.employeeList = new UniqueEmployeeList();
@@ -49,21 +49,51 @@ public class Project {
     /**
      * Constructs a {@code Project}.
      *
-     * @param project A valid Project.
+     * @param name A valid name.
+     */
+    public Project(Name name) {
+        requireNonNull(name);
+        this.name = name;
+        this.projectPriority = new ProjectPriority("normal");
+        this.deadline = new Deadline("");
+        this.employeeList = new UniqueEmployeeList();
+        this.completionStatus = new CompletionStatus(false);
+        this.tasks = new TaskList();
+    }
+
+    /**
+     * Constructs a {@code Project}.
+     *
+     * @param project A valid project.
+     */
+    public Project(Project project) {
+        requireNonNull(project);
+        this.name = project.getName();
+        this.projectPriority = project.getProjectPriority();
+        this.deadline = project.getDeadline();
+        this.employeeList = project.getEmployees();
+        this.completionStatus = project.getCompletionStatus();
+        this.tasks = project.getTasks();
+    }
+
+    /**
+     * Constructs a {@code Project}.
+     *
+     * @param name A valid name.
      * @param employees A list of Employees that are in the project
      * @param tasks A list of Tasks that are in the project
      * @param priority A valid ProjectPriority for the project.
      * @param deadline A valid Deadline for the project.
      * @param completionStatus A valid CompletionStatus for the project.
      */
-    public Project(String project,
+    public Project(Name name,
                    UniqueEmployeeList employees,
                    TaskList tasks,
                    ProjectPriority priority,
                    Deadline deadline,
                    CompletionStatus completionStatus) {
-        requireNonNull(project);
-        this.name = project;
+        requireNonNull(name);
+        this.name = name;
         this.projectPriority = priority;
         this.employeeList = employees;
         this.tasks = tasks;
@@ -71,8 +101,8 @@ public class Project {
         this.completionStatus = completionStatus;
     }
 
-    public String getNameString() {
-        return this.name;
+    public Name getName() {
+        return name;
     }
 
     public UniqueEmployeeList getEmployees() {
@@ -166,7 +196,7 @@ public class Project {
 
     @Override
     public String toString() {
-        return name;
+        return name.toString();
     }
 
     @Override
