@@ -17,12 +17,6 @@ public class Project {
 
     public static final String MESSAGE_CONSTRAINTS = "Projects can take any values, and it should not be blank";
 
-    /*
-     * The first character must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
-
     private final Name name;
     private final UniqueEmployeeList employeeList;
     private final TaskList tasks;
@@ -124,8 +118,13 @@ public class Project {
     /**
      * Returns true if a given string is a valid project name.
      */
-    public static boolean isValidProject(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidProjectName (String test) {
+        try {
+            Name name = new Name(test);
+            return true;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     /**

@@ -19,6 +19,7 @@ import seedu.address.logic.commands.DeleteEmployeeCommand;
 import seedu.address.logic.commands.DeleteProjectCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditEmployeeCommand;
+import seedu.address.logic.commands.EditProjectCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindEmployeeCommand;
 import seedu.address.logic.commands.FindProjectCommand;
@@ -80,6 +81,9 @@ public class TaskHubParser {
 
         case EditEmployeeCommand.COMMAND_WORD:
             return new EditEmployeeCommandParser().parse(arguments);
+
+        case EditProjectCommand.COMMAND_WORD:
+            return new EditProjectCommandParser().parse(arguments);
 
         case AssignProjectCommand.COMMAND_WORD:
             return new AssignProjectCommandParser().parse(arguments);
