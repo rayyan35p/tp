@@ -307,7 +307,7 @@ Examples:
 * `listP` followed by `priorityP 2 priority/high` sets the 2nd project as high priority in TaskHub.
 
 
-### Mark a task as completed: `markT`
+### Mark task(s) as completed: `markT`
 
 Marks the specified task(s) of a specified project as completed in TaskHub.
 
@@ -323,7 +323,7 @@ Examples:
 * `findP Capstone` followed by `markT pr/2 t/2` marks the 2nd task in the 2nd project from the results of the `findP` command as completed.
 
 
-### Mark a task as incomplete: `unmarkT`
+### Mark task(s) as incomplete: `unmarkT`
 
 Marks the specified task(s) of a specified project as incomplete in TaskHub.
 
@@ -337,6 +337,17 @@ Format `unmarkT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
 Examples:
 * `listP` followed by `unmarkT pr/1 t/1 3` marks the 1st and 3rd tasks of the 1st project as incomplete in TaskHub.
 * `findP Capstone` followed by `unmarkT pr/2 t/2` marks the 2nd task in the 2nd project from the results of the `findP` command as incomplete.
+
+
+### Sort tasks by deadline and completion status: `sortT`
+
+Sorts the tasks in each project by their deadline and completion status.
+
+Format: `sortT`
+
+* The sorting of tasks is done within each project i.e tasks from different projects are not compared.
+* Incomplete tasks will be placed before completed ones and tasks with an earlier deadline will be placed before those with a later one.
+* Completion status takes precedence over deadline i.e. an incomplete task with a later deadline will be placed before a completed task with an earlier deadline.
 
 
 ### Exiting the program : `exit`
@@ -378,23 +389,24 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                              | Format, Examples                                                                                                                                                                                 |
-|-------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **List All Employees**              | `listE`                                                                                                                                                                                          |
-| **Clear**                           | `clear`                                                                                                                                                                                          |
-| **Help**                            | `help`                                                                                                                                                                                           |
-| **Add Employee**                    | `addE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ r/REMARK` <br> e.g., `addE n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague r/a good friend` |
-| **Delete Employee**                 | `deleteE INDEX`<br> e.g., `deleteE 3`                                                                                                                                                            |
-| **Find Employee**                   | `findE KEYWORD [MORE_KEYWORDS]`<br> e.g., `findE James Jake`                                                                                                                                     |
-| **List All Projects**               | `listP`                                                                                                                                                                                          |
-| **Add Project**                     | `addP pr/PROJECT_NAME [em/EMPLOYEE_INDEX]…​` <br> e.g, `addP pr/CS2103T em/2 3 4 5`                                                                                                              |
-| **Edit Project Deadline**           | `dl INDEX d/DATE` <br> e.g., `dl 2 d/27-11-2023` <br>                                                                                                                                            |
+| Action                                           | Format, Examples                                                                                                                                                                                 |
+|--------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **List All Employees**                           | `listE`                                                                                                                                                                                          |
+| **Clear**                                        | `clear`                                                                                                                                                                                          |
+| **Help**                                         | `help`                                                                                                                                                                                           |
+| **Add Employee**                                 | `addE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ r/REMARK` <br> e.g., `addE n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague r/a good friend` |
+| **Delete Employee**                              | `deleteE INDEX`<br> e.g., `deleteE 3`                                                                                                                                                            |
+| **Find Employee**                                | `findE KEYWORD [MORE_KEYWORDS]`<br> e.g., `findE James Jake`                                                                                                                                     |
+| **List All Projects**                            | `listP`                                                                                                                                                                                          |
+| **Add Project**                                  | `addP pr/PROJECT_NAME [em/EMPLOYEE_INDEX]…​` <br> e.g, `addP pr/CS2103T em/2 3 4 5`                                                                                                              |
+| **Edit Project Deadline**                        | `dl INDEX d/DATE` <br> e.g., `dl 2 d/27-11-2023` <br>                                                                                                                                            |
 |  **Prioritise projects**           | `priorityP INDEX priority/PRIORITY` <br> e.g., priorityP 2 priority/high <br>                                                                                                                    |
-| **Mark Project(s) as complete**     | `markP INDEX [MORE_INDEXES]`<br> e.g., `markP 1 3`                                                                                                                                               |
-| **Mark Project(s) as incomplete**   | `unmarkP INDEX [MORE_INDEXES]`<br> e.g., `unmarkP 1 3`                                                                                                                                           |
-| **Assign Employee to Project**      | `assignE pr/PROJECT_INDEX em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDICES]…​` <br> e.g, `assignE pr/4 em/1 2 3`                                                                                      |
-| **Delete Project**                  | `deleteP INDEX`<br> e.g., `deleteP 3`                                                                                                                                                            |
-| **Find Project**                    | `findP KEYWORD [MORE_KEYWORDS]`<br> e.g., `findP Website Create`                                                                                                                                 |
-| **List All Employees And Projects** | `list`                                                                                                                                                                                           |
-
-
+| **Mark Project(s) as complete**                  | `markP INDEX [MORE_INDEXES]`<br> e.g., `markP 1 3`                                                                                                                                               |
+| **Mark Project(s) as incomplete**                | `unmarkP INDEX [MORE_INDEXES]`<br> e.g., `unmarkP 1 3`                                                                                                                                           |
+| **Assign Employee to Project**                   | `assignE pr/PROJECT_INDEX em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDICES]…​` <br> e.g, `assignE pr/4 em/1 2 3`                                                                                      |
+| **Delete Project**                               | `deleteP INDEX`<br> e.g., `deleteP 3`                                                                                                                                                            |
+| **Find Project**                                 | `findP KEYWORD [MORE_KEYWORDS]`<br> e.g., `findP Website Create`                                                                                                                                 |
+| **List All Employees And Projects**              | `list`                                                                                                                                                                                           |
+| **Mark Task(s) As Complete**                     | `markT`<br> e.g., `markT pr/1 t/1 3`                                                                                                                                                             |
+| **Mark Task(s) As Incomplete**                   | `unmarkT`<br> e.g., `unmarkT pr/1 t/1 3`                                                                                                                                                         |
+| **Sort Tasks By Deadline And Completion Status** | `sortT`                                                                                                                                                                                          |

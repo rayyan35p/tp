@@ -19,6 +19,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.EmployeeBuilder;
+import seedu.address.testutil.ModelStubWithEmptyProjectList;
 import seedu.address.testutil.ModelStubWithProjectAndEmployee;
 import seedu.address.testutil.ProjectBuilder;
 import seedu.address.testutil.TaskBuilder;
@@ -81,6 +82,20 @@ public class MarkTaskCommandTest {
         assertThrows(CommandException.class, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX, () ->
                 markTaskCommand.execute(modelStub));
     }
+
+    @Test
+    public void execute_emptyProjectList_throwsCommandException() {
+        Index projectIndex = Index.fromOneBased(1);
+        Index taskIndex = Index.fromOneBased(5);
+        List<Index> taskIndexes = List.of(taskIndex);
+
+        ModelStubWithEmptyProjectList modelStub = new ModelStubWithEmptyProjectList();
+
+        MarkTaskCommand markTaskCommand = new MarkTaskCommand(projectIndex, taskIndexes);
+        assertThrows(CommandException.class, Messages.MESSAGE_NO_PROJECT_TO_MARK_UNMARK_TASK, () ->
+                markTaskCommand.execute(modelStub));
+    }
+
 
     @Test
     public void equals() {
