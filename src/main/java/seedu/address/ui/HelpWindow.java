@@ -123,8 +123,8 @@ public class HelpWindow extends UiPart<Stage> {
                 "- Marks the specified project(s) as incomplete in TaskHub.");
 
         taskCommands.put("addT pr/PROJECT_INDEX [em/EMPLOYEE_INDEX] n/TASK_NAME d/DEADLINE(dd-MM-yyyy HHmm)",
-                "- Adds a new task to the specified project in TaskHub and assigns it to the specified employee (" +
-                        "if there is any).");
+                "- Adds a new task to the specified project in TaskHub and assigns it to the specified employee ("
+                + "if there is any).");
         taskCommands.put("deleteT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]",
                 "- Deletes the specified task(s) from the specified project in TaskHub");
         taskCommands.put("markT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]",
