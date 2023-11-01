@@ -34,18 +34,13 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
         }
 
-        try {
-            // get project and task indexes
-            Index projectIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PROJECT).get());
-            List<Index> taskIndexes = ParserUtil.parseIndexes(argMultimap.getValue(PREFIX_TASK).get());
-            assert taskIndexes.size() > 0;
-            taskIndexes.sort((a, b) -> b.getZeroBased() - a.getZeroBased());
+        // get project and task indexes
+        Index projectIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PROJECT).get());
+        List<Index> taskIndexes = ParserUtil.parseIndexes(argMultimap.getValue(PREFIX_TASK).get());
+        assert taskIndexes.size() > 0;
+        taskIndexes.sort((a, b) -> b.getZeroBased() - a.getZeroBased());
 
-            return new DeleteTaskCommand(projectIndex, taskIndexes);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE), pe);
-        }
+        return new DeleteTaskCommand(projectIndex, taskIndexes);
     }
 
     /**

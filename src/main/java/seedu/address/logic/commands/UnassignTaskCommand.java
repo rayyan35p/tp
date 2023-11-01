@@ -73,7 +73,7 @@ public class UnassignTaskCommand extends Command {
         TaskList editedTaskList = new TaskList();
         editedTaskList.setTasks(projectTaskListToEdit.asUnmodifiableObservableList());
         editedTaskList.setTask(taskIndex, editedTask);
-        Project editedProject = new Project(projectToEdit.getNameString(),
+        Project editedProject = new Project(projectToEdit.getName(),
                 projectToEdit.getEmployees(),
                 editedTaskList,
                 projectToEdit.getProjectPriority(),

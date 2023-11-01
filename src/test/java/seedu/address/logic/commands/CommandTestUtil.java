@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
@@ -55,6 +56,7 @@ public class CommandTestUtil {
     public static final String VALID_DEADLINE_TASK = "11-11-2023 2359";
     public static final String VALID_NAME_TASK = "Read Book";
     public static final String VALID_PROJECT_INDEX_TASK = "1";
+    public static final String VALID_EMPLOYEE_INDEX_TASK = "1";
 
 
     // Employee field descriptions
@@ -68,8 +70,8 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-    public static final String PROJECT_DESC_AMY = " " + PREFIX_PROJECT + VALID_PROJECT_AMY;
-    public static final String PROJECT_DESC_BOB = " " + PREFIX_PROJECT + VALID_PROJECT_BOB;
+    public static final String PROJECT_DESC_AMY = " " + PREFIX_NAME + VALID_PROJECT_AMY;
+    public static final String PROJECT_DESC_BOB = " " + PREFIX_NAME + VALID_PROJECT_BOB;
     public static final String PROJECT_PRIORITY_AMY = " " + PREFIX_PRIORITY + VALID_PRIORITY_AMY;
 
     // Project field descriptions
@@ -86,9 +88,10 @@ public class CommandTestUtil {
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     // Task field descriptions
-    public static final String VALID_TASK_THREE_FIELDS = " " + PREFIX_NAME + VALID_NAME_TASK + " "
+    public static final String VALID_TASK_ALL_FIELDS = " " + PREFIX_NAME + VALID_NAME_TASK + " "
                                                              + PREFIX_PROJECT + VALID_PROJECT_INDEX_TASK + " "
-                                                             + PREFIX_DEADLINE + VALID_DEADLINE_TASK + " ";
+                                                             + PREFIX_DEADLINE + VALID_DEADLINE_TASK + " "
+                                                                + PREFIX_EMPLOYEE + VALID_EMPLOYEE_INDEX_TASK + " ";
 
 
     public static final EditEmployeeCommand.EditEmployeeDescriptor DESC_AMY;
@@ -168,7 +171,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredProjectList().size());
 
         Project project = model.getFilteredProjectList().get(targetIndex.getZeroBased());
-        final String[] splitName = project.getNameString().split("\\s+");
+        final String[] splitName = project.getName().toString().split("\\s+");
         model.updateFilteredProjectList(new ProjectNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredProjectList().size());

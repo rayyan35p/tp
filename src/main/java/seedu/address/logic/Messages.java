@@ -24,11 +24,15 @@ public class Messages {
     public static final String MESSAGE_NO_PROJECT_TO_ADD_TASK = "You don't have any projects to add tasks to.\n "
             + "Try creating a project with addP!";
     public static final String MESSAGE_NO_PROJECT_TO_DELETE_TASK = "You don't have any projects to delete tasks from.";
+    public static final String MESSAGE_NO_PROJECT_TO_MARK_UNMARK_TASK =
+            "You don't have any projects to mark tasks as completed/incomplete in.";
     public static final String MESSAGE_EMPLOYEES_LISTED_OVERVIEW = "%1$d employee(s) and their project(s) listed!";
     public static final String MESSAGE_PROJECTS_LISTED_OVERVIEW = "%1$d project(s) and their employee(s) listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_NO_EMPLOYEE_TO_UNASSIGN = "There is no employee assigned yet!";
+    public static final String MESSAGE_NO_EMPLOYEE_TO_ASSIGN = "There is no employee that you can assign! "
+            + "Try adding an employee with addE first.";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -64,7 +68,7 @@ public class Messages {
      */
     public static String format(Project project) {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Name: " + project.name);
+        builder.append("Name: " + project.getName());
         builder.append("; Completed? " + (project.getCompletionStatus().isCompleted ? "Yes" : "No"));
         builder.append("; Deadline: " + (project.getDeadline().value.isEmpty() ? "Not set" : project.getDeadline()));
         builder.append("; Priority: " + project.getProjectPriority().value + "\n");
@@ -88,13 +92,17 @@ public class Messages {
      */
     public static String format(Task task) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(task.getName());
+        builder.append("Description: " + task.getName());
 
         // Format the deadline
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mma");
         String formattedDeadline = task.getDeadline().format(formatter);
 
         builder.append("; Deadline: " + formattedDeadline);
+        // TODO: replace with ifPresent check
+        if (task.getEmployee().size() > 0) {
+            builder.append("; Assignee: " + task.getEmployee().get(0).getName());
+        }
         return builder.toString();
     }
 
