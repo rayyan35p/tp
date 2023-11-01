@@ -1,18 +1,26 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditProjectCommand;
-import seedu.address.logic.commands.EditProjectCommand.EditProjectDescriptor;
-import seedu.address.logic.parser.exceptions.ParseException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditProjectCommand;
+import seedu.address.logic.commands.EditProjectCommand.EditProjectDescriptor;
+import seedu.address.logic.parser.exceptions.ParseException;
+
+/**
+ * Parses input arguments and creates a new EditProjectCommand object
+ */
 public class EditProjectCommandParser implements Parser<EditProjectCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the EditProjectCommand
+     * and returns an EditProjectCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public EditProjectCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRIORITY, PREFIX_DEADLINE);

@@ -1,26 +1,28 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.project.CompletionStatus;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Name;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectPriority;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-
+/**
+ * Edits the details of an existing project in the TaskHub.
+ */
 public class EditProjectCommand extends Command {
 
     public static final String COMMAND_WORD = "editP";
@@ -43,6 +45,10 @@ public class EditProjectCommand extends Command {
     public final Index index;
     public final EditProjectDescriptor editProjectDescriptor;
 
+    /**
+     * @param index of the project in the filtered project list to edit
+     * @param editProjectDescriptor details to edit the project with
+     */
     public EditProjectCommand(Index index, EditProjectDescriptor editProjectDescriptor) {
         requireNonNull(index);
         requireNonNull(editProjectDescriptor);
@@ -76,13 +82,15 @@ public class EditProjectCommand extends Command {
         assert projectToEdit != null;
 
         Name updatedName = editProjectDescriptor.getName().orElse(projectToEdit.getName());
-        ProjectPriority updatedPriority = editProjectDescriptor.getPriority().orElse(projectToEdit.getProjectPriority());
+        ProjectPriority updatedPriority = editProjectDescriptor.getPriority()
+                .orElse(projectToEdit.getProjectPriority());
         Deadline updatedDeadline = editProjectDescriptor.getDeadline().orElse(projectToEdit.getDeadline());
 
         return new Project(updatedName, projectToEdit.getEmployees(), projectToEdit.getTasks(), updatedPriority,
                 updatedDeadline, projectToEdit.getCompletionStatus());
     }
 
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -105,6 +113,10 @@ public class EditProjectCommand extends Command {
                 .toString();
     }
 
+    /**
+     * Stores the details to edit the project with. Each non-empty field value will replace the
+     * corresponding field value of the project.
+     */
     public static class EditProjectDescriptor {
         private Name name;
         private ProjectPriority priority;
@@ -112,12 +124,19 @@ public class EditProjectCommand extends Command {
 
         public EditProjectDescriptor() {}
 
+        /**
+         * Copy constructor.
+         * A defensive copy of {@code tags} is used internally.
+         */
         public EditProjectDescriptor(EditProjectDescriptor toCopy) {
             setName(toCopy.name);
             setPriority(toCopy.priority);
             setDeadline(toCopy.deadline);
         }
 
+        /**
+         * Returns true if at least one field is edited.
+         */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, priority, deadline);
         }

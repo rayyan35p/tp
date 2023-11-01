@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROJECT_DEADLINE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROJECT_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROJECT_PRIORITY_DESC;

@@ -7,6 +7,9 @@ import seedu.address.model.project.Name;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectPriority;
 
+/**
+ * A utility class to help with building EditProjectDescriptor objects.
+ */
 public class EditProjectDescriptorBuilder {
 
     private EditProjectDescriptor descriptor;

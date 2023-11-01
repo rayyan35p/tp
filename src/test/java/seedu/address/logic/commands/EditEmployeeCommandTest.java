@@ -74,7 +74,8 @@ public class EditEmployeeCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(INDEX_FIRST_EMPLOYEE, new EditEmployeeDescriptor());
+        EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(INDEX_FIRST_EMPLOYEE,
+                new EditEmployeeDescriptor());
         Employee editedEmployee = model.getFilteredEmployeeList().get(INDEX_FIRST_EMPLOYEE.getZeroBased());
 
         String expectedMessage = String.format(EditEmployeeCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS,

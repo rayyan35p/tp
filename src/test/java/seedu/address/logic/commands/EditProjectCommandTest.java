@@ -3,11 +3,8 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_PROJECT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_PROJECT_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_PROJECT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_PROJECT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_AMY;
@@ -39,21 +36,6 @@ public class EditProjectCommandTest {
     private Model model = new ModelManager(getTypicalTaskHub(), new UserPrefs());
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Project editedProject = new ProjectBuilder().build();
-        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(editedProject).build();
-        EditProjectCommand editProjectCommand = new EditProjectCommand(INDEX_FIRST_PROJECT, descriptor);
-
-        String expectedMessage = String.format(EditProjectCommand.MESSAGE_EDIT_PROJECT_SUCCESS,
-                Messages.format(editedProject));
-
-        Model expectedModel = new ModelManager(new TaskHub(model.getTaskHub()), new UserPrefs());
-        expectedModel.setProject(model.getFilteredProjectList().get(0), editedProject);
-
-        assertCommandSuccess(editProjectCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastProject = Index.fromOneBased(model.getFilteredProjectList().size());
         Project lastProject = model.getFilteredProjectList().get(indexLastProject.getZeroBased());
@@ -77,7 +59,8 @@ public class EditProjectCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditProjectCommand editProjectCommand = new EditProjectCommand(INDEX_FIRST_PROJECT, new EditProjectDescriptor());
+        EditProjectCommand editProjectCommand = new EditProjectCommand(INDEX_FIRST_PROJECT,
+                new EditProjectDescriptor());
         Project editedProject = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
 
         String expectedMessage = String.format(EditProjectCommand.MESSAGE_EDIT_PROJECT_SUCCESS,

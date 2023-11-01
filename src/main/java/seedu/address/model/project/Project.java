@@ -118,9 +118,9 @@ public class Project {
     /**
      * Returns true if a given string is a valid project name.
      */
-    public static boolean isValidProjectName (String test) {
+    public static boolean isValidProjectName(String test) {
         try {
-            Name name = new Name(test);
+            new Name(test);
             return true;
         } catch (IllegalArgumentException e) {
             return false;
