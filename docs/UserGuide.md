@@ -306,6 +306,28 @@ Format: `priorityP INDEX priority/PRIORITY`
 Examples:
 * `listP` followed by `priorityP 2 priority/high` sets the 2nd project as high priority in TaskHub.
 
+### Add a new task to a project: `addT`
+
+Adds a new task to the specified project in TaskHub and assigns it to the (optionally) specified employee.
+
+Format `addT pr/PROJECT_INDEX [em/EMPLOYEE_INDEX] n/TASK_NAME d/DEADLINE(dd-MM-yyyy HHmm) `
+
+* Adds a new task to the project at the specified `PROJECT_INDEX`.
+* The employee index field is optional - the task will be assigned to the employee at `EMPLOYEE_INDEX` if specified,
+* otherwise it will have no assignee, and `assignT` can be used after that to assign it to an employee.
+* The index(es) **must be positive integers** 1, 2, 3,...
+* The deadline must be in the format `dd-MM-yyyy HHmm`. For example, `11-10-2023 2359` refers to 11th October 2023, 11.59pm.
+
+### Delete a task from a project: `deleteT`
+
+Deletes the specified task(s) from the specified project in TaskHub
+
+Format `deleteT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
+
+* Deletes the tasks at the specified `TASK_INDEX`(es), from the project at the specified `PROJECT_INDEX`.
+* The project index refers to the index number shown in the displayed projects list.
+* The task index(es) refer to the index number(s) shown in the task list of the above specified project.
+* The index(es) **must be positive integers** 1, 2, 3,...
 
 ### Mark task(s) as completed: `markT`
 
