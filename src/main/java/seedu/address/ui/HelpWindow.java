@@ -74,6 +74,10 @@ public class HelpWindow extends UiPart<Stage> {
         Map<String, String> generalCommands = new HashMap<>();
         Map<String, String> employeeCommands = new HashMap<>();
         Map<String, String> projectCommands = new HashMap<>();
+        Map<String, String> taskCommands = new HashMap<>();
+        Map<String, String> assignCommands = new HashMap<>();
+
+        assignCommands.put()
 
         generalCommands.put("help",
                 "- Get help pop-up to display.");
@@ -101,10 +105,27 @@ public class HelpWindow extends UiPart<Stage> {
                 "- Adds a new project with the employees assigned to the project.");
         projectCommands.put("deleteP INDEX",
                 "- Deletes the specified project from TaskHub.");
+        projectCommands.put("dl INDEX d/DATE",
+                "Edit the deadline of a project in the projects list.");
+        projectCommands.put("priorityP INDEX priority/PRIORITY",
+                "Sets a priority for a specified project in TaskHub.");
+
+        taskCommands.put("addT pr/PROJECT_INDEX [em/EMPLOYEE_INDEX] n/TASK_NAME d/DEADLINE(dd-MM-yyyy HHmm)",
+                "- Adds a new task to the specified project in TaskHub and assigns it to the specified employee (" +
+                        "if there is any).");
+        taskCommands.put("deleteT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]",
+                "- Deletes the specified task(s) from the specified project in TaskHub");
+        taskCommands.put("markT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]",
+                "- Marks the specified task(s) of a specified project as completed in TaskHub.");
+        taskCommands.put("unmarkT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]",
+                "- Marks the specified task(s) of a specified project as incomplete in TaskHub.");
+        taskCommands.put("sortT",
+                "- Sorts the tasks in each project by their deadline and completion status.");
 
         addToVBox("General Commands", generalCommands);
         addToVBox("Employee Commands", employeeCommands);
         addToVBox("Project Commands", projectCommands);
+        addToVBox("Task Commands", taskCommands);
     }
 
     private void addToVBox(String header, Map<String, String> commands) {
