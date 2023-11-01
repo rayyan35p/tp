@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -110,6 +111,16 @@ public class TaskList implements Iterable<Task> {
         Task targetTask = internalList.get(targetIndex.getZeroBased());
 
         internalList.set(targetIndex.getZeroBased(), editedTask);
+    }
+
+    /**
+     * Sorts tasks in internalList according to completion and deadline.
+     * Incomplete tasks will appear before complete tasks and tasks will be arranged in ascending deadline order.
+     */
+    public void sortTasksByDeadlineAndCompletion() {
+        Comparator<Task> customComparator = Comparator.comparing(Task::isDone)
+                .thenComparing(Task::getDeadline);
+        FXCollections.sort(internalList, customComparator);
     }
 
     /**
