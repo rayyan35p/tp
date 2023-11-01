@@ -122,7 +122,7 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a TaskList with tasks updated with the details of the editedEmployee.
+     * Creates and returns a TaskList with tasks updated with the details of the edited employee.
      */
     private TaskList editTaskList(Project projectToEdit, Employee employeeToEdit, Employee editedEmployee) {
         requireAllNonNull(projectToEdit, employeeToEdit, editedEmployee);

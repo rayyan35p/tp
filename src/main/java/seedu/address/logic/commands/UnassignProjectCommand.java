@@ -103,7 +103,8 @@ public class UnassignProjectCommand extends Command {
     }
 
     /**
-     * Creates and returns a TaskList with tasks updated with the details of the editedEmployee.
+     * Creates and returns a TaskList with tasks updated with the
+     * employee to be unassigned, also removed from assigned tasks.
      */
     private TaskList editTaskList(Project projectToEdit, List<Index> employeeIndexes, List<Employee> employeeList) {
         requireAllNonNull(projectToEdit, employeeIndexes, employeeList);
