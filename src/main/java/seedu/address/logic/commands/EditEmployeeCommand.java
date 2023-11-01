@@ -34,9 +34,9 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing employee in the TaskHub.
  */
-public class EditCommand extends Command {
+public class EditEmployeeCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "editE";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the employee identified "
             + "by the index number used in the displayed employee list. "
@@ -59,10 +59,11 @@ public class EditCommand extends Command {
     private final EditEmployeeDescriptor editEmployeeDescriptor;
 
     /**
+     * Creates an EditEmployeeCommand to edit the specified {@code Employee}
      * @param index of the employee in the filtered employee list to edit
      * @param editEmployeeDescriptor details to edit the employee with
      */
-    public EditCommand(Index index, EditEmployeeDescriptor editEmployeeDescriptor) {
+    public EditEmployeeCommand(Index index, EditEmployeeDescriptor editEmployeeDescriptor) {
         requireNonNull(index);
         requireNonNull(editEmployeeDescriptor);
 
@@ -124,13 +125,13 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditEmployeeCommand)) {
             return false;
         }
 
-        EditCommand otherEditCommand = (EditCommand) other;
-        return index.equals(otherEditCommand.index)
-                && editEmployeeDescriptor.equals(otherEditCommand.editEmployeeDescriptor);
+        EditEmployeeCommand otherEditEmployeeCommand = (EditEmployeeCommand) other;
+        return index.equals(otherEditEmployeeCommand.index)
+                && editEmployeeDescriptor.equals(otherEditEmployeeCommand.editEmployeeDescriptor);
     }
 
     @Override
