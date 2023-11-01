@@ -60,7 +60,7 @@ public class PriorityProjectCommand extends Command {
 
     private static Project createProjectWithNewPriority(Project projectToSetPriority, ProjectPriority priority) {
         assert projectToSetPriority != null;
-        return new Project(projectToSetPriority.getNameString(),
+        return new Project(projectToSetPriority.getName(),
                 projectToSetPriority.getEmployees(),
                 projectToSetPriority.getTasks(), priority,
                 projectToSetPriority.getDeadline(),
