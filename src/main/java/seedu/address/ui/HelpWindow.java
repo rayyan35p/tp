@@ -109,8 +109,8 @@ public class HelpWindow extends UiPart<Stage> {
         projectCommands.put("addP pr/PROJECT_NAME [em/EMPLOYEE_INDEX]…\u200B",
                 "- Adds a new project with the employees assigned to the project.");
         projectCommands.put("findP KEYWORD [MORE_KEYWORDS]",
-                "- Finds projects whose names contain any of the given keywords. \n" +
-                "Additionally, it shows only the employees that are under these projects.");
+                "- Finds projects whose names contain any of the given keywords. \n"
+                + "Additionally, it shows only the employees that are under these projects.");
         projectCommands.put("deleteP INDEX",
                 "- Deletes the specified project from TaskHub.");
         projectCommands.put("dl INDEX d/DATE",

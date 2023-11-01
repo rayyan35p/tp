@@ -24,14 +24,14 @@
       <stylesheets>
         <URL value="@HelpWindow.css" />
       </stylesheets>
-      <ScrollPane vvalue="0.0" hbarPolicy="NEVER" prefHeight="600.0" prefWidth="600" fx:id="scrollPane">
+      <ScrollPane vvalue="0.0" hbarPolicy="NEVER" prefHeight="600.0" prefWidth="600" fx:id="scrollPane" >
         <VBox fx:id="container" alignment="CENTER" spacing="10">
           <Label fx:id="helpLabel" text="TaskHub Quick Guide:" />
           <Separator /> <!-- Add a separator after the label -->
           <VBox fx:id="vBox" spacing="10">
             <!-- All commands are populated here in HelpWindow.java -->
           </VBox>
-          <HBox alignment="CENTER" fx:id="helpMessageContainer">
+          <HBox alignment="CENTER" fx:id="helpMessageContainer" HBox.hgrow="ALWAYS">
             <children>
               <Hyperlink fx:id="helpMessage" text="Refer to the user guide" onAction="#openUserGuide" />
             </children>
