@@ -53,6 +53,10 @@ public class MarkTaskCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         List<Project> lastShownProjectList = model.getFilteredProjectList();
 
+        if (lastShownProjectList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_NO_PROJECT_TO_MARK_UNMARK_TASK);
+        }
+
         // Check if project index is valid first
         if (projectIndex.getZeroBased() >= lastShownProjectList.size()
             || projectIndex.getZeroBased() < 0) {
@@ -74,7 +78,7 @@ public class MarkTaskCommand extends Command {
 
             Task taskToUpdate = lastShownTaskList.getTask(taskIndex);
             Task updatedTask = new Task(taskToUpdate.getName(), taskToUpdate.getDeadline(), true);
-            lastShownTaskList.setTask(taskToUpdate, updatedTask);
+            lastShownTaskList.setTask(taskIndex, updatedTask);
         }
 
         // Create new project with updated tasks
