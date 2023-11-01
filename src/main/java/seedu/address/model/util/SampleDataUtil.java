@@ -29,23 +29,23 @@ public class SampleDataUtil {
     // Employees
     public static final Employee EMPLOYEE_ALEX = new Employee(new Name("Alex Yeoh"), new Phone("87438807"),
             new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),
-            getTagSet("friends"));
+            getTagSet("Team1", "Manager"));
     public static final Employee EMPLOYEE_BERNICE = new Employee(new Name("Bernice Yu"), new Phone("99272758"),
             new Email("berniceyu@example.com"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-            getTagSet("colleagues", "friends"));
+            getTagSet("Team1", "Junior"));
     public static final Employee EMPLOYEE_CHARLOTTE = new Employee(new Name("Charlotte Oliveiro"),
             new Phone("93210283"),
             new Email("charlotte@example.com"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-            getTagSet("neighbours"));
+            getTagSet("Team2", "Manager"));
     public static final Employee EMPLOYEE_DAVID = new Employee(new Name("David Li"), new Phone("91031282"),
             new Email("lidavid@example.com"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-            getTagSet("family"));
+            getTagSet("Team2", "Junior"));
     public static final Employee EMPLOYEE_IRFAN = new Employee(new Name("Irfan Ibrahim"), new Phone("92492021"),
             new Email("irfan@example.com"), new Address("Blk 47 Tampines Street 20, #17-35"),
-            getTagSet("classmates"));
+            getTagSet("Team3", "Manager"));
     public static final Employee EMPLOYEE_ROY = new Employee(new Name("Roy Balakrishnan"), new Phone("92624417"),
             new Email("royb@example.com"), new Address("Blk 45 Aljunied Street 85, #11-31"),
-            getTagSet("colleagues"));
+            getTagSet("Team3", "Junior"));
 
     // Employee Lists to be used in Projects
     private static final UniqueEmployeeList employeeListA = new UniqueEmployeeList();
