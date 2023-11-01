@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.PROJECT_PRIORITY_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PROJECT_PRIORITY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_AMY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -19,7 +19,7 @@ public class PriorityProjectCommandParserTest {
     public void parse_allFieldsPresent_success() {
         ProjectPriority priority = new ProjectPriority("high");
         Index targetIndex = INDEX_FIRST_PROJECT;
-        String userInput = INDEX_FIRST_PROJECT.getOneBased() + PROJECT_PRIORITY_AMY;
+        String userInput = INDEX_FIRST_PROJECT.getOneBased() + PROJECT_PRIORITY_DESC_AMY;
         assertParseSuccess(parser, userInput,
                 new PriorityProjectCommand(priority, targetIndex));
     }

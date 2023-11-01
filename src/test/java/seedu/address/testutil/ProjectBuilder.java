@@ -89,8 +89,8 @@ public class ProjectBuilder {
     /**
      * Sets the priority of the {@code Project} we are building.
      */
-    public ProjectBuilder withPriority(ProjectPriority priority) {
-        this.projectPriority = priority;
+    public ProjectBuilder withPriority(String priority) {
+        this.projectPriority = new ProjectPriority(priority);
         return this;
     }
 
