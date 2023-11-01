@@ -31,6 +31,8 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_NO_EMPLOYEE_TO_UNASSIGN = "There is no employee assigned yet!";
+    public static final String MESSAGE_NO_EMPLOYEE_TO_ASSIGN = "There is no employee that you can assign! "
+            + "Try adding an employee with addE first.";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -90,13 +92,17 @@ public class Messages {
      */
     public static String format(Task task) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(task.getName());
+        builder.append("Description: " + task.getName());
 
         // Format the deadline
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mma");
         String formattedDeadline = task.getDeadline().format(formatter);
 
         builder.append("; Deadline: " + formattedDeadline);
+        // TODO: replace with ifPresent check
+        if (task.getEmployee().size() > 0) {
+            builder.append("; Assignee: " + task.getEmployee().get(0).getName());
+        }
         return builder.toString();
     }
 
