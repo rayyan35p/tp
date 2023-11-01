@@ -127,6 +127,9 @@ public class Task {
     public List<Employee> getEmployee() {
         return this.employee;
     }
+    public void setEmployee(Employee employee) {
+        this.employee.add(employee);
+    }
 
     public String getName() {
         return this.name;
