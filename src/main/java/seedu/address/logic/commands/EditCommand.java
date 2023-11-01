@@ -97,17 +97,20 @@ public class EditCommand extends Command {
             }
             TaskList editedTaskList = new TaskList();
             editedTaskList.setTasks(project.getTasks());
+            int i = 0;
             for (Task task : editedTaskList) {
                 if (task.getEmployee().isEmpty()) {
+                    i++;
                     continue;
                 }
                 Employee employeeAssigned = task.getEmployee().get(0);
                 if (employeeAssigned.equals(employeeToEdit)) {
                     Task editedTask = new Task(task.getName(), task.getDeadline(), task.isDone(), editedEmployee);
-                    editedTaskList.setTask(task, editedTask);
+                    editedTaskList.setTask(Index.fromZeroBased(i), editedTask);
                 }
+                i++;
             }
-            model.setProject(project, new Project(project.getNameString(), employeeList, editedTaskList,
+            model.setProject(project, new Project(project.getName(), employeeList, editedTaskList,
                     project.getProjectPriority(), project.getDeadline(), project.getCompletionStatus()));
         });
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);

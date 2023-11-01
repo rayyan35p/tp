@@ -16,7 +16,7 @@ public class ProjectTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Project(null));
+        assertThrows(NullPointerException.class, () -> new Project((String) null));
     }
 
     @Test
@@ -41,7 +41,7 @@ public class ProjectTest {
         assertTrue(project.equals(project));
 
         // same values -> returns true
-        Project projectCopy = new Project(project.name);
+        Project projectCopy = new Project(project.getName());
         assertTrue(project.equals(projectCopy));
 
         // different types -> returns false
@@ -60,7 +60,7 @@ public class ProjectTest {
         Project project = new Project("some project");
         project.addEmployee(ALICE);
         project.addEmployee(BOB);
-        assertTrue(project.employeeList.contains(ALICE) && project.employeeList.contains(BOB));
+        assertTrue(project.getEmployees().contains(ALICE) && project.getEmployees().contains(BOB));
     }
 
     @Test
@@ -68,9 +68,9 @@ public class ProjectTest {
         Project project = new Project("some project");
         project.addEmployee(ALICE);
         project.addEmployee(BOB);
-        assertTrue(project.employeeList.contains(ALICE) && project.employeeList.contains(BOB));
+        assertTrue(project.getEmployees().contains(ALICE) && project.getEmployees().contains(BOB));
         project.removeEmployee(ALICE);
-        assertTrue(!project.employeeList.contains(ALICE) && project.employeeList.contains(BOB));
+        assertTrue(!project.getEmployees().contains(ALICE) && project.getEmployees().contains(BOB));
     }
 
     @Test

@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 
@@ -28,19 +29,25 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
      */
     public AddTaskCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PROJECT, PREFIX_DEADLINE);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PROJECT, PREFIX_EMPLOYEE, PREFIX_DEADLINE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PROJECT, PREFIX_DEADLINE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_DEADLINE, PREFIX_PROJECT);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_DEADLINE, PREFIX_PROJECT, PREFIX_EMPLOYEE);
         Index projectIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PROJECT).get());
         Task task = ParserUtil.parseTask(argMultimap.getValue(PREFIX_NAME).get(),
                                          argMultimap.getValue(PREFIX_DEADLINE).get());
-
-        return new AddTaskCommand(task, projectIndex);
+        AddTaskCommand command;
+        if (arePrefixesPresent(argMultimap, PREFIX_EMPLOYEE)) {
+            Index employeeIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_EMPLOYEE).get());
+            command = new AddTaskCommand(task, projectIndex, employeeIndex);
+        } else {
+            command = new AddTaskCommand(task, projectIndex);
+        }
+        return command;
     }
 
     /**
