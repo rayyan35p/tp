@@ -21,7 +21,7 @@ public class JsonAdaptedProjectTest {
     public static final String INVALID_DEADLINE = "32/13/2024";
     public static final String INVALID_PRIORITY = "    ";
 
-    public static final String VALID_NAME = ALPHA.name;
+    public static final String VALID_NAME = ALPHA.getName().toString();
     public static final List<JsonAdaptedEmployee> VALID_EMPLOYEES = ALPHA.getEmployees().asUnmodifiableObservableList()
             .stream()
             .map(JsonAdaptedEmployee::new)

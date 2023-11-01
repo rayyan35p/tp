@@ -198,7 +198,7 @@ public class TaskHubParserTest {
     @Test
     public void parseCommand_addProject() throws Exception {
         AddProjectCommand command = (AddProjectCommand) parser.parseCommand(AddProjectCommand.COMMAND_WORD + " "
-                            + PREFIX_PROJECT + "Alpha");
+                            + PREFIX_NAME + "Alpha");
         AddProjectCommand expected = new AddProjectCommand(new Project("Alpha"), new ArrayList<>());
         assertEquals(expected, command);
     }
