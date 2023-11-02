@@ -77,7 +77,8 @@ public class MarkTaskCommand extends Command {
             }
 
             Task taskToUpdate = lastShownTaskList.getTask(taskIndex);
-            Task updatedTask = new Task(taskToUpdate.getName(), taskToUpdate.getDeadline(), true);
+            Task updatedTask = new Task(taskToUpdate.getName(), taskToUpdate.getDeadline(),
+                    true, taskToUpdate.getEmployee());
             lastShownTaskList.setTask(taskIndex, updatedTask);
         }
 
