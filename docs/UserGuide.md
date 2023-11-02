@@ -10,7 +10,7 @@ TaskHub is a **desktop app for managing contacts, optimized for use via a Comman
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+# Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -39,7 +39,7 @@ TaskHub is a **desktop app for managing contacts, optimized for use via a Comman
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -63,14 +63,20 @@ TaskHub is a **desktop app for managing contacts, optimized for use via a Comman
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-### Viewing help : `help`
 
-#### GUI Help: 
+<br>
+
+## General Commands
+
+### View help : `help`
+
+
+#### GUI Help:
 Upon clicking help on the top of the GUI as shown below,
 
-![circled_help_gui](images/circledHelpGUI.png)
+![circled_help_gui](images/circledHelpGui.png)
 
-a help window pops up with a list of all the possible commands
+a help window pops up with a list of all the possible commands:
 
 ![help window](images/HelpWindow.png)
 
@@ -78,20 +84,40 @@ and at the bottom of the window, is a link to our user guide.
 
 ![ug_link](images/HelpWindowUgLink.png)
 
+
 #### CLI Help
 Alternatively, enter a `help` command into TaskHub to quickly display the same help window without having to click on help.
 
 Format: `help`
 
 
-### Listing all employees and projects: `list`
+### List all employees and projects: `list`
 
 Shows a list of all employees and projects in TaskHub.
 
 Format: `list`
 
 
-### Adding an employee: `addE`
+### Clear all entries : `clear`
+
+Clears all entries from TaskHub.
+
+Format: `clear`
+
+
+### Exit the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+
+<br>
+
+## Employee Commands
+
+
+### Add an employee: `addE`
 
 Adds an employee to the employees list.
 
@@ -105,16 +131,8 @@ Examples:
 * `addE n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `addE n/Betsy Crowe t/Junior e/betsycrowe@example.com a/Brick street p/91234567 t/Employee`
 
-### Listing all employees : `listE`
 
-Shows a list of all employees in TaskHub.
-
-![list example](images/liste.png)
-
-Format: `listE`
-
-
-### Editing an employee : `editE`
+### Edit an employee : `editE`
 
 Edits an existing employee in the TaskHub.
 
@@ -125,13 +143,38 @@ Format: `editE INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the employee will be removed i.e adding of tags is not cumulative.
 * You can remove all the employee’s tags by typing `t/` without
-    specifying any tags after it.
+  specifying any tags after it.
 
 Examples:
 *  `editE 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st employee to be `91234567` and `johndoe@example.com` respectively.
 *  `editE 2 n/Betsy Crower t/` Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
 
-### Locating employees by name: `findE`
+
+### Delete an employee : `deleteE`
+
+Deletes the specified employee from the employees list.
+
+Format: `deleteE INDEX`
+
+* Deletes the employee at the specified `INDEX`.
+* The index refers to the index number shown in the displayed employees list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listE` followed by `deleteE 2` deletes the 2nd employee in the employees list.
+* `findE Betsy` followed by `deleteE 1` deletes the 1st employee in the results of the `findE` command.
+
+
+### List all employees : `listE`
+
+Shows a list of all employees in TaskHub.
+
+![list example](images/listE.png)
+
+Format: `listE`
+
+
+### Locate employees by name: `findE`
 
 Finds employees whose names contain any of the given keywords.
 Additionally, it shows only the projects that these employees are under.
@@ -152,27 +195,13 @@ Examples:
 
   ![result for 'findE David'](images/findE.png)
 
-### Deleting an employee : `deleteE`
 
-Deletes the specified employee from the employees list.
+<br>
 
-Format: `deleteE INDEX`
+## Project Commands
 
-* Deletes the employee at the specified `INDEX`.
-* The index refers to the index number shown in the displayed employees list.
-* The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
-* `listE` followed by `deleteE 2` deletes the 2nd employee in the employees list.
-* `findE Betsy` followed by `deleteE 1` deletes the 1st employee in the results of the `findE` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from TaskHub.
-
-Format: `clear`
-
-### Adding a new project : `addP`
+### Add a new project : `addP`
 
 Adds a new project in TaskHub
 
@@ -189,15 +218,8 @@ Examples:
 * `addP n/Project1 em/1` will add `Project1` to the projects list with the employee index 1 assigned to the project.
 * `addP n/Project2` will add an empty `Project2` to the projects list.
 
-### Listing all projects: `listP`
 
-Shows a list of all projects in TaskHub.
-
-![list example](images/listp.png)
-
-Format: `listP`
-
-### Editing a project : `editP`
+### Edit a project : `editP`
 
 Edits an existing project in the TaskHub.
 
@@ -212,7 +234,96 @@ Examples:
 * `editP 1 n/Market Analysis p/low` Edits the name and priority of the 1st project to `Market Analysis` and `low` respectively.
 * `editP 2 p/high d/` Edits the priority and deadline of the 2nd project to `high` and removes the deadline.
 
-### Locating projects by name: `findP`
+
+### Delete a project: `deleteP`
+
+Deletes the specified project from TaskHub.
+
+Format: `deleteP INDEX`
+* Deletes the project at the specified `INDEX`.
+* The index refers to the index number shown in the displayed employees list.
+* The index __must be a positive integer__ 1, 2, 3,...
+
+Examples:
+* `listP` followed by `deleteP 2` deletes the 2nd project in TaskHub.
+
+
+### Mark project(s) as completed: `markP`
+
+Marks the specified project(s) as completed in TaskHub.
+
+Format `markP INDEX [MORE_INDEXES]`
+
+* Marks the project(s) at the specified `INDEX(ES)` as completed.
+* The index(es) refers to the index number shown in the displayed projects list.
+* The index(es) **must be a positive integers** 1, 2, 3,...
+
+Examples:
+* `listP` followed by `markP 1 3` marks the 1st and 3rd projects as completed in TaskHub.
+* `findP Capstone` followed by `markP 1` marks the 1st project in the results of the `findP` command as completed.
+
+
+### Mark project(s) as incomplete: `unmarkP`
+
+Marks the specified project(s) as incomplete in TaskHub.
+
+Format `unmarkP INDEX [MORE_INDEXES]`
+
+* Marks the project(s) at the specified `INDEX(ES)` as incomplete.
+* The index(es) refers to the index number shown in the displayed projects list.
+* The index(es) **must be a positive integers** 1, 2, 3,...
+
+Examples:
+* `listP` followed by `unmarkP 1 3` marks the 1st and 3rd projects as incomplete in TaskHub.
+* `findP Capstone` followed by `unmarkP 1` marks the 1st project in the results of the `findP` command as incomplete.
+
+
+### Edit deadline of a project: `dlP`
+
+Edits the deadline of the specified project(s) in the projects list.
+
+Format: `dlP INDEX [MORE_INDEXES] d/[DEADLINE]`
+
+* Edits the deadline of the project(s) at the specified `INDEX(ES)`.
+* The index(es) refers to the index number shown in the displayed projects list.
+* The index(es) **must be a positive integer** 1, 2, 3, …
+* DATE refers to the date of the deadline.
+* The `d/` prefix is required, but the `DEADLINE` is optional.
+* If a date is provided, it must be in the `dd-MM-yyyy` format.
+* Existing deadline will be updated to the new deadline.
+* To remove the deadline of a project, leave the `DEADLINE` blank.
+
+Examples:
+*  `dl 2 d/18-01-2022` sets the deadline of the 2nd project to be `18-01-2022`.
+*  `dl 1 2 d/` removes the deadline of the 1st and 2nd projects.
+*  `findP Infinity` followed by `dl 1 d/25-11-2024` sets the deadline of the 1st project in the results of the `findP` command to be `25-11-2024`.
+
+
+### Prioritise projects: `priorityP`
+
+Sets a priority for the specified project(s) in TaskHub.
+
+Format: `priorityP INDEX [MORE_INDEXES] p/PRIORITY`
+* Sets the priority of the project(s) at the specified `INDEX(ES)`.
+* The index refers to the index number shown in the displayed projects list.
+* The index __must be a positive integer__ 1, 2, 3,...
+* The `PRIORITY` must be one of the following: `low`, `normal`, `high`.
+* All projects are set to normal priority by default.
+
+Examples:
+* `listP` followed by `priorityP 1 2 p/high` sets the 1st and 2nd projects as high priority in TaskHub.
+
+
+### List all projects: `listP`
+
+Shows a list of all projects in TaskHub.
+
+![list example](images/listP.png)
+
+Format: `listP`
+
+
+### Locate projects by name: `findP`
 
 Finds projects whose names contain any of the given keywords.
 Additionally, it shows only the employees that are under these projects.
@@ -231,102 +342,11 @@ Examples:
 * `findP market` returns `Market Expansion` <br>
   ![result for 'findP market'](images/findP.png)
 
-### Assign employee(s) to a project: `assignP`
 
-Assigns employee(s) to a project in TaskHub
+<br>
 
-Format: `assignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES] ...`
-* The employee(s) will be assigned to the project
-* Each employee index __must be separated with a space.__
-* The project and employee index refers to the index number shown in the displayed project and employee list.
+## Task Commands
 
-Examples:
-* `assignP pr/Project1 em/1 2 3` will add employees 1, 2 and 3 to `Project1`
-
-### Un-assign employee(s) from a project: `unassignP`
-
-Un-assigns employee(s) from a project in TaskHub
-
-Format: `unassignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES] ...`
-
-* The employee(s) will be unassigned from the project
-* Each employee index __must be separated with a space.__
-* The project and employee index refers to the index number shown in the displayed project and employee list.
-* If the employee is assigned to a task within the project, the employee will be unassigned from the task as well.
-
-### Delete a project: `deleteP`
-
-Deletes the specified project from TaskHub.
-
-Format: `deleteP INDEX`
-* Deletes the project at the specified `INDEX`.
-* The index refers to the index number shown in the displayed employees list.
-* The index __must be a positive integer__ 1, 2, 3,...
-
-Examples:
-* `listP` followed by `deleteP 2` deletes the 2nd project in TaskHub.
-
-### Edit deadline of a project: `dlP`
-
-Edit the deadline of the specified project(s) in the projects list.
-
-Format: `dlP INDEX [MORE_INDEXES] d/[DEADLINE]`
-
-* Edits the deadline of the project(s) at the specified `INDEX(ES)`.
-* The index(es) refers to the index number shown in the displayed projects list.
-* The index(es) **must be a positive integer** 1, 2, 3, …
-* DATE refers to the date of the deadline.
-* The `d/` prefix is required, but the `DEADLINE` is optional.
-* If a date is provided, it must be in the `dd-MM-yyyy` format.
-* Existing deadline will be updated to the new deadline.
-* To remove the deadline of a project, leave the `DEADLINE` blank.
-
-Examples:
-*  `dl 2 d/18-01-2022` sets the deadline of the 2nd project to be `18-01-2022`.
-*  `dl 1 2 d/` removes the deadline of the 1st and 2nd projects.
-*  `findP Infinity` followed by `dl 1 d/25-11-2024` sets the deadline of the 1st project in the results of the `findP` command to be `25-11-2024`.
-
-### Mark a project as completed: `markP`
-
-Marks the specified project(s) as completed in TaskHub.
-
-Format `markP INDEX [MORE_INDEXES]`
-
-* Marks the project(s) at the specified `INDEX(ES)` as completed.
-* The index(es) refers to the index number shown in the displayed projects list.
-* The index(es) **must be a positive integers** 1, 2, 3,...
-
-Examples:
-* `listP` followed by `markP 1 3` marks the 1st and 3rd projects as completed in TaskHub.
-* `findP Capstone` followed by `markP 1` marks the 1st project in the results of the `findP` command as completed.
-
-### Unmark a project as completed: `unmarkP`
-
-Marks the specified project(s) as incomplete in TaskHub.
-
-Format `unmarkP INDEX [MORE_INDEXES]`
-
-* Marks the project(s) at the specified `INDEX(ES)` as incomplete.
-* The index(es) refers to the index number shown in the displayed projects list.
-* The index(es) **must be a positive integers** 1, 2, 3,...
-
-Examples:
-* `listP` followed by `unmarkP 1 3` marks the 1st and 3rd projects as incomplete in TaskHub.
-* `findP Capstone` followed by `unmarkP 1` marks the 1st project in the results of the `findP` command as incomplete.
-
-### Prioritise projects: `priorityP`
-
-Sets a priority for the specified project(s) in TaskHub.
-
-Format: `priorityP INDEX [MORE_INDEXES] p/PRIORITY`
-* Sets the priority of the project(s) at the specified `INDEX(ES)`.
-* The index refers to the index number shown in the displayed projects list.
-* The index __must be a positive integer__ 1, 2, 3,...
-* The `PRIORITY` must be one of the following: `low`, `normal`, `high`.
-* All projects are set to normal priority by default.
-
-Examples:
-* `listP` followed by `priorityP 1 2 p/high` sets the 1st and 2nd projects as high priority in TaskHub.
 
 ### Add a new task to a project: `addT`
 
@@ -350,6 +370,7 @@ Format `deleteT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
 * The project index refers to the index number shown in the displayed projects list.
 * The task index(es) refer to the index number(s) shown in the task list of the above specified project.
 * The index(es) **must be positive integers** 1, 2, 3,...
+
 
 ### Mark task(s) as completed: `markT`
 
@@ -382,6 +403,48 @@ Examples:
 * `listP` followed by `unmarkT pr/1 t/1 3` marks the 1st and 3rd tasks of the 1st project as incomplete in TaskHub.
 * `findP Capstone` followed by `unmarkT pr/2 t/2` marks the 2nd task in the 2nd project from the results of the `findP` command as incomplete.
 
+
+### Sort tasks by deadline and completion status: `sortT`
+
+Sorts the tasks in each project by their deadline and completion status.
+
+Format: `sortT`
+
+* The sorting of tasks is done within each project i.e tasks from different projects are not compared.
+* Incomplete tasks will be placed before completed ones and tasks with an earlier deadline will be placed before those with a later one.
+* Completion status takes precedence over deadline i.e. an incomplete task with a later deadline will be placed before a completed task with an earlier deadline.
+
+
+<br>
+
+## Assignment Commands
+
+
+### Assign employee(s) to a project: `assignP`
+
+Assigns employee(s) to a project in TaskHub
+
+Format: `assignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES] ...`
+* The employee(s) will be assigned to the project
+* Each employee index __must be separated with a space.__
+* The project and employee index refers to the index number shown in the displayed project and employee list.
+
+Examples:
+* `assignP pr/Project1 em/1 2 3` will add employees 1, 2 and 3 to `Project1`
+
+
+### Un-assign employee(s) from a project: `unassignP`
+
+Un-assigns employee(s) from a project in TaskHub
+
+Format: `unassignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES] ...`
+
+* The employee(s) will be unassigned from the project
+* Each employee index __must be separated with a space.__
+* The project and employee index refers to the index number shown in the displayed project and employee list.
+* If the employee is assigned to a task within the project, the employee will be unassigned from the task as well.
+
+
 ### Assign an employee to a task: `assignT`
 
 Assigns a specified employee in a specified project to a specified task in that project.
@@ -397,7 +460,8 @@ Examples:
 * `listP` followed by `assignT pr/1 t/1 em/2` assigns the first task in the first project to the second employee in the project.
 * `findP Capstone` followed by `assignT pr/2 t/2 em/2` assigns the second task, in the second project from the results of `findP`, to the second employee in the project.
 
-### Unassign an employee from a task: `unassignT`
+
+### Un-assign an employee from a task: `unassignT`
 
 Un-assigns the currently assigned employee from the specified task in the specified project.
 
@@ -411,38 +475,22 @@ Examples:
 * `listP` followed by `unassignT pr/1 t/1` unassigns the first task in the first project from the currently assigned employee.
 * `findP Capstone` followed by `unassignT pr/2 t/2` unassigns the second task, in the second project from the results of `findP`, from the currently assigned employee.
 
-### Sort tasks by deadline and completion status: `sortT`
 
-Sorts the tasks in each project by their deadline and completion status.
+<br>
 
-Format: `sortT`
+## Data Storage
 
-* The sorting of tasks is done within each project i.e tasks from different projects are not compared.
-* Incomplete tasks will be placed before completed ones and tasks with an earlier deadline will be placed before those with a later one.
-* Completion status takes precedence over deadline i.e. an incomplete task with a later deadline will be placed before a completed task with an earlier deadline.
-
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
+### Save the data
 
 TaskHub's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+### Edit the data file
 
 TaskHub data are saved automatically as a JSON file `[JAR file location]/data/taskhub.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TaskHub will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
