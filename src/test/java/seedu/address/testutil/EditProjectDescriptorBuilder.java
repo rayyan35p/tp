@@ -4,8 +4,8 @@ import seedu.address.logic.commands.EditProjectCommand;
 import seedu.address.logic.commands.EditProjectCommand.EditProjectDescriptor;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Name;
+import seedu.address.model.project.Priority;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectPriority;
 
 /**
  * A utility class to help with building EditProjectDescriptor objects.
@@ -28,7 +28,7 @@ public class EditProjectDescriptorBuilder {
     public EditProjectDescriptorBuilder(Project project) {
         descriptor = new EditProjectCommand.EditProjectDescriptor();
         descriptor.setName(project.getName());
-        descriptor.setPriority(project.getProjectPriority());
+        descriptor.setPriority(project.getPriority());
         descriptor.setDeadline(project.getDeadline());
     }
 
@@ -41,10 +41,10 @@ public class EditProjectDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code ProjectPriority} of the {@code EditProjectDescriptor} that we are building.
+     * Sets the {@code Priority} of the {@code EditProjectDescriptor} that we are building.
      */
     public EditProjectDescriptorBuilder withPriority(String priority) {
-        descriptor.setPriority(new ProjectPriority(priority));
+        descriptor.setPriority(new Priority(priority));
         return this;
     }
 
