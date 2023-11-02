@@ -16,7 +16,7 @@ import seedu.address.model.task.Task;
  */
 public class TaskListPanel extends UiPart<Region> {
 
-    private static final String FXML = "taskListPanel.fxml";
+    private static final String FXML = "TaskListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TaskListPanel.class);
 
     @FXML
