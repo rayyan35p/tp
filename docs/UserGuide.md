@@ -299,9 +299,9 @@ Format: `dlP INDEX [MORE_INDEXES] d/[DEADLINE]`
 * To remove the deadline of a project, leave the `DEADLINE` blank.
 
 Examples:
-*  `dl 2 d/18-01-2022` sets the deadline of the 2nd project to be `18-01-2022`.
-*  `dl 1 2 d/` removes the deadline of the 1st and 2nd projects.
-*  `findP Infinity` followed by `dl 1 d/25-11-2024` sets the deadline of the 1st project in the results of the `findP` command to be `25-11-2024`.
+*  `dlP 2 d/18-01-2022` sets the deadline of the 2nd project to be `18-01-2022`.
+*  `dlP 1 2 d/` removes the deadline of the 1st and 2nd projects.
+*  `findP Infinity` followed by `dlP 1 d/25-11-2024` sets the deadline of the 1st project in the results of the `findP` command to be `25-11-2024`.
 
 
 ### Prioritise projects: `priorityP`
