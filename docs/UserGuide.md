@@ -231,7 +231,9 @@ Format: `editP INDEX [n/NAME] [p/PRIORITY] [d/DEADLINE]`
 * Edits the project at the specified `INDEX`. The index refers to the index number shown in the displayed project list. The index must be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* If a date is provided, it must be in the `dd-MM-yyyy` format.
 * You can remove the deadline of the project by typing `d/` without specifying any deadline after it.
+* You can also provide a date e.g. `d/01-01-2024`, in which case the provided deadline will overwrite the current deadline (if any).
 
 Examples:
 * `editP 1 n/Market Analysis p/low` Edits the name and priority of the 1st project to `Market Analysis` and `low` respectively.
