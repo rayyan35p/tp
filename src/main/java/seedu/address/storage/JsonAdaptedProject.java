@@ -13,8 +13,8 @@ import seedu.address.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.address.model.project.CompletionStatus;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Name;
+import seedu.address.model.project.Priority;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectPriority;
 import seedu.address.model.task.TaskList;
 
 /**
@@ -64,7 +64,7 @@ public class JsonAdaptedProject {
         tasks.addAll(source.getTasks().asUnmodifiableObservableList().stream()
                 .map(JsonAdaptedTask::new)
                 .collect(Collectors.toList()));
-        priority = source.getProjectPriority().toString();
+        priority = source.getPriority().toString();
         deadline = source.getDeadline().toString();
         completionStatus = source.getCompletionStatus().isCompleted;
     }
@@ -106,12 +106,12 @@ public class JsonAdaptedProject {
 
         if (priority == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ProjectPriority.class.getSimpleName()));
+                    Priority.class.getSimpleName()));
         }
-        if (!ProjectPriority.isValidPriority(priority)) {
-            throw new IllegalValueException(ProjectPriority.MESSAGE_CONSTRAINTS);
+        if (!Priority.isValidPriority(priority)) {
+            throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
         }
-        final ProjectPriority modelPriority = new ProjectPriority(priority);
+        final Priority modelPriority = new Priority(priority);
 
         if (deadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

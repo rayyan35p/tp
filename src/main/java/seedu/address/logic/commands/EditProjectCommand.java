@@ -17,8 +17,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Name;
+import seedu.address.model.project.Priority;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectPriority;
 
 /**
  * Edits the details of an existing project in the TaskHub.
@@ -83,8 +83,8 @@ public class EditProjectCommand extends Command {
         assert projectToEdit != null;
 
         Name updatedName = editProjectDescriptor.getName().orElse(projectToEdit.getName());
-        ProjectPriority updatedPriority = editProjectDescriptor.getPriority()
-                .orElse(projectToEdit.getProjectPriority());
+        Priority updatedPriority = editProjectDescriptor.getPriority()
+                .orElse(projectToEdit.getPriority());
         Deadline updatedDeadline = editProjectDescriptor.getDeadline().orElse(projectToEdit.getDeadline());
 
         return new Project(updatedName, projectToEdit.getEmployees(), projectToEdit.getTasks(), updatedPriority,
@@ -120,7 +120,7 @@ public class EditProjectCommand extends Command {
      */
     public static class EditProjectDescriptor {
         private Name name;
-        private ProjectPriority priority;
+        private Priority priority;
         private Deadline deadline;
 
         public EditProjectDescriptor() {}
@@ -150,11 +150,11 @@ public class EditProjectCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPriority(ProjectPriority priority) {
+        public void setPriority(Priority priority) {
             this.priority = priority;
         }
 
-        public Optional<ProjectPriority> getPriority() {
+        public Optional<Priority> getPriority() {
             return Optional.ofNullable(priority);
         }
 

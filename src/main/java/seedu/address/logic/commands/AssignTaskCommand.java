@@ -83,7 +83,7 @@ public class AssignTaskCommand extends Command {
         Project editedProject = new Project(projectToEdit.getName(),
                 projectToEdit.getEmployees(),
                 editedTaskList,
-                projectToEdit.getProjectPriority(),
+                projectToEdit.getPriority(),
                 projectToEdit.getDeadline(),
                 projectToEdit.getCompletionStatus());
         model.setProject(projectToEdit, editedProject);

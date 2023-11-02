@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Project's priority in TaskHub.
  * Guarantees: immutable; is valid as declared in {@link #isValidPriority(String)}
  */
-public class ProjectPriority {
+public class Priority {
     private enum Level {
         LOW,
         NORMAL,
@@ -19,11 +19,11 @@ public class ProjectPriority {
     public final Level value;
 
     /**
-     * Constructs a {@code ProjectPriority}.
+     * Constructs a {@code Priority}.
      *
      * @param priority A valid priority.
      */
-    public ProjectPriority(String priority) {
+    public Priority(String priority) {
         requireNonNull(priority);
         checkArgument(isValidPriority(priority), MESSAGE_CONSTRAINTS);
         this.value = toLevel(priority.toLowerCase().trim());
@@ -69,11 +69,11 @@ public class ProjectPriority {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ProjectPriority)) {
+        if (!(other instanceof Priority)) {
             return false;
         }
 
-        ProjectPriority otherPriority = (ProjectPriority) other;
+        Priority otherPriority = (Priority) other;
         return value.equals(otherPriority.value);
     }
 
