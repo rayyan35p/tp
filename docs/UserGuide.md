@@ -70,16 +70,16 @@ Upon clicking help from the GUI as shown below,
 
 ![circled_help_gui](images/circledHelpGUI.png)
 
-a message is displayed, with the link to our user guide. 
+a help window pops up with a list of all the possible commands
 
-![help message](images/helpMessage.png)
+![help window](images/HelpWindow.png)
+
+and at the bottom of the window is a link to our user guide.
+
+![ug_link](images/HelpWindowUgLink.png)
 
 #### CLI Help
-Alternatively, quickly enter a `help` command into TaskHub to display the pop-up shown below.
-(TODO replace screenshot).
-
-
-<img src="https://i.imgur.com/WNVqICQ.png" alt="help_popup" height="300"/>
+Alternatively, quickly enter a `help` command into TaskHub to display the same help window without having to click on help.
 
 Format: `help`
 
@@ -148,8 +148,8 @@ Format: `findE KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `findE John` returns `john` and `John Doe`
 * `findE alex david` returns `Alex Yeoh`, `David Li`
-* `findE james` returns `James` <br>
-  ![result for 'findE james'](images/findEjamesresult.png)
+* `findE david` returns `David Li` <br>
+  ![result for 'findE David'](images/findE.png)
 
 ### Deleting an employee : `deleteE`
 
@@ -209,8 +209,8 @@ Format: `findP KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `findP website model` returns `Create Website`, `Build Model`
-* `findP presentation` returns `Presentation` <br>
-  ![result for 'findP presentation'](images/findPpresentationresult.png)
+* `findP market` returns `Market Expansion` <br>
+  ![result for 'findP market'](images/findP.png)
 
 ### Assign employee(s) to a project: `assignP`
 
