@@ -11,6 +11,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
 import static seedu.address.testutil.TypicalProjects.getTypicalTaskHub;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -23,11 +25,11 @@ import seedu.address.model.project.Project;
 import seedu.address.testutil.ProjectBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ProjectDeadlineCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for DeadlineProjectCommand.
  */
-public class ProjectDeadlineCommandTest {
+public class DeadlineProjectCommandTest {
 
-    private static final String DEADLINE_STUB = "21/02/2023";
+    private static final String DEADLINE_STUB = "21-02-2023";
 
     private Model model = new ModelManager(getTypicalTaskHub(), new UserPrefs());
 
@@ -37,16 +39,38 @@ public class ProjectDeadlineCommandTest {
         Project editedProject = new ProjectBuilder(firstProject)
                 .withDeadline(DEADLINE_STUB).build();
 
-        ProjectDeadlineCommand projectDeadlineCommand = new ProjectDeadlineCommand(INDEX_FIRST_PROJECT,
+        DeadlineProjectCommand deadlineProjectCommand = new DeadlineProjectCommand(List.of(INDEX_FIRST_PROJECT),
                 new Deadline(editedProject.getDeadline().value));
 
-        String expectedMessage = String.format(ProjectDeadlineCommand.MESSAGE_ADD_DEADLINE_SUCCESS,
-                editedProject.getDeadline(), editedProject);
+        String expectedMessage = String.format(DeadlineProjectCommand.MESSAGE_ADD_DEADLINE_SUCCESS,
+                editedProject.getDeadline(), 1);
 
         Model expectedModel = new ModelManager(model.getTaskHub(), new UserPrefs());
         expectedModel.setProject(firstProject, editedProject);
 
-        assertCommandSuccess(projectDeadlineCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deadlineProjectCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_addDeadlineMultipleProjects_success() {
+        Project firstProject = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+        Project secondProject = model.getFilteredProjectList().get(INDEX_SECOND_PROJECT.getZeroBased());
+        Project editedFirstProject = new ProjectBuilder(firstProject)
+                .withDeadline(DEADLINE_STUB).build();
+        Project editedSecondProject = new ProjectBuilder(secondProject)
+                .withDeadline(DEADLINE_STUB).build();
+
+        DeadlineProjectCommand deadlineProjectCommand = new DeadlineProjectCommand(List.of(INDEX_FIRST_PROJECT,
+                INDEX_SECOND_PROJECT), new Deadline(editedFirstProject.getDeadline().value));
+
+        String expectedMessage = String.format(DeadlineProjectCommand.MESSAGE_ADD_DEADLINE_SUCCESS,
+                editedFirstProject.getDeadline(), 2);
+
+        Model expectedModel = new ModelManager(model.getTaskHub(), new UserPrefs());
+        expectedModel.setProject(firstProject, editedFirstProject);
+        expectedModel.setProject(secondProject, editedSecondProject);
+
+        assertCommandSuccess(deadlineProjectCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -54,15 +78,15 @@ public class ProjectDeadlineCommandTest {
         Project firstProject = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         Project editedProject = new ProjectBuilder(firstProject).withDeadline("").build();
 
-        ProjectDeadlineCommand projectDeadlineCommand = new ProjectDeadlineCommand(INDEX_FIRST_PROJECT,
+        DeadlineProjectCommand deadlineProjectCommand = new DeadlineProjectCommand(List.of(INDEX_FIRST_PROJECT),
                 new Deadline(editedProject.getDeadline().toString()));
 
-        String expectedMessage = String.format(ProjectDeadlineCommand.MESSAGE_DELETE_DEADLINE_SUCCESS, editedProject);
+        String expectedMessage = String.format(DeadlineProjectCommand.MESSAGE_DELETE_DEADLINE_SUCCESS, 1);
 
         Model expectedModel = new ModelManager(model.getTaskHub(), new UserPrefs());
         expectedModel.setProject(firstProject, editedProject);
 
-        assertCommandSuccess(projectDeadlineCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deadlineProjectCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -73,25 +97,25 @@ public class ProjectDeadlineCommandTest {
         Project editedProject = new ProjectBuilder(model.getFilteredProjectList()
                 .get(INDEX_FIRST_PROJECT.getZeroBased())).withDeadline(DEADLINE_STUB).build();
 
-        ProjectDeadlineCommand projectDeadlineCommand = new ProjectDeadlineCommand(INDEX_FIRST_PROJECT,
+        DeadlineProjectCommand deadlineProjectCommand = new DeadlineProjectCommand(List.of(INDEX_FIRST_PROJECT),
                 new Deadline(editedProject.getDeadline().value));
 
-        String expectedMessage = String.format(ProjectDeadlineCommand.MESSAGE_ADD_DEADLINE_SUCCESS,
-                editedProject.getDeadline(), editedProject);
+        String expectedMessage = String.format(DeadlineProjectCommand.MESSAGE_ADD_DEADLINE_SUCCESS,
+                editedProject.getDeadline(), 1);
 
         Model expectedModel = new ModelManager(model.getTaskHub(), new UserPrefs());
         expectedModel.setProject(firstProject, editedProject);
 
-        assertCommandSuccess(projectDeadlineCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deadlineProjectCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidProjectIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredProjectList().size() + 1);
-        ProjectDeadlineCommand projectDeadlineCommand = new ProjectDeadlineCommand(outOfBoundIndex,
+        DeadlineProjectCommand deadlineProjectCommand = new DeadlineProjectCommand(List.of(outOfBoundIndex),
                 new Deadline(VALID_DEADLINE_PROJECT_BOB));
 
-        assertCommandFailure(projectDeadlineCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+        assertCommandFailure(deadlineProjectCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
     }
 
     /**
@@ -105,19 +129,19 @@ public class ProjectDeadlineCommandTest {
         // ensures that outOfBoundIndex is still in bounds of TaskHub list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getTaskHub().getProjectList().size());
 
-        ProjectDeadlineCommand projectDeadlineCommand = new ProjectDeadlineCommand(outOfBoundIndex,
+        DeadlineProjectCommand deadlineProjectCommand = new DeadlineProjectCommand(List.of(outOfBoundIndex),
                 new Deadline(VALID_DEADLINE_PROJECT_BOB));
 
-        assertCommandFailure(projectDeadlineCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+        assertCommandFailure(deadlineProjectCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final ProjectDeadlineCommand standardCommand = new ProjectDeadlineCommand(INDEX_FIRST_PROJECT,
+        final DeadlineProjectCommand standardCommand = new DeadlineProjectCommand(List.of(INDEX_FIRST_PROJECT),
                 new Deadline(VALID_DEADLINE_PROJECT_AMY));
 
         // same values -> returns true
-        ProjectDeadlineCommand commandWithSameValues = new ProjectDeadlineCommand(INDEX_FIRST_PROJECT,
+        DeadlineProjectCommand commandWithSameValues = new DeadlineProjectCommand(List.of(INDEX_FIRST_PROJECT),
                 new Deadline(VALID_DEADLINE_PROJECT_AMY));
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -131,11 +155,11 @@ public class ProjectDeadlineCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new ProjectDeadlineCommand(INDEX_SECOND_PROJECT,
+        assertFalse(standardCommand.equals(new DeadlineProjectCommand(List.of(INDEX_SECOND_PROJECT),
                 new Deadline(VALID_DEADLINE_PROJECT_AMY))));
 
         // different deadline -> returns false
-        assertFalse(standardCommand.equals(new ProjectDeadlineCommand(INDEX_FIRST_PROJECT,
+        assertFalse(standardCommand.equals(new DeadlineProjectCommand(List.of(INDEX_FIRST_PROJECT),
                 new Deadline(VALID_DEADLINE_PROJECT_BOB))));
     }
 }
