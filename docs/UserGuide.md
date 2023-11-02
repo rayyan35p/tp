@@ -188,6 +188,14 @@ Examples:
 * `addP n/Project1 em/1` will add `Project1` to the projects list with the employee index 1 assigned to the project.
 * `addP n/Project2` will add an empty `Project2` to the projects list.
 
+### Listing all projects: `listP`
+
+Shows a list of all projects in TaskHub.
+
+![list example](images/listp.png)
+
+Format: `listP`
+
 ### Editing a project : `editP`
 
 Edits an existing project in the TaskHub.
@@ -202,14 +210,6 @@ Format: `editP INDEX [n/NAME] [p/PRIORITY] [d/DEADLINE]`
 Examples:
 * `editP 1 n/Market Analysis p/low` Edits the name and priority of the 1st project to `Market Analysis` and `low` respectively.
 * `editP 2 p/high d/` Edits the priority and deadline of the 2nd project to `high` and removes the deadline.
-
-### Listing all projects: `listP`
-
-Shows a list of all projects in TaskHub.
-
-![list example](images/listp.png)
-
-Format: `listP`
 
 ### Locating projects by name: `findP`
 
@@ -265,11 +265,11 @@ Format: `deleteP INDEX`
 Examples:
 * `listP` followed by `deleteP 2` deletes the 2nd project in TaskHub.
 
-### Edit deadline of a project: `dl`
+### Edit deadline of a project: `dlP`
 
-Edit the deadline of a project in the projects list.
+Edit the deadline of the specified project(s) in the projects list.
 
-Format: `dl INDEX [MORE_INDEXES] d/[DEADLINE]`
+Format: `dlP INDEX [MORE_INDEXES] d/[DEADLINE]`
 
 * Edits the deadline of the project(s) at the specified `INDEX(ES)`.
 * The index(es) refers to the index number shown in the displayed projects list.
@@ -315,10 +315,10 @@ Examples:
 
 ### Prioritise projects: `priorityP`
 
-Sets a priority for a specified project in TaskHub.
+Sets a priority for the specified project(s) in TaskHub.
 
 Format: `priorityP INDEX [MORE_INDEXES] p/PRIORITY`
-* Sets the priority of the project(s) to the specified `INDEX(ES)`.
+* Sets the priority of the project(s) at the specified `INDEX(ES)`.
 * The index refers to the index number shown in the displayed projects list.
 * The index __must be a positive integer__ 1, 2, 3,...
 * The `PRIORITY` must be one of the following: `low`, `normal`, `high`.
@@ -470,11 +470,13 @@ _Details coming soon ..._
 | **Find Employee**                                | `findE KEYWORD [MORE_KEYWORDS]`<br> e.g., `findE James Jake`                                                                                                                                     |
 | **List All Projects**                            | `listP`                                                                                                                                                                                          |
 | **Add Project**                                  | `addP pr/PROJECT_NAME [em/EMPLOYEE_INDEX]…​` <br> e.g, `addP pr/CS2103T em/2 3 4 5`                                                                                                              |
-| **Edit Project Deadline**                        | `dl INDEX d/DATE` <br> e.g., `dl 2 d/27-11-2023` <br>                                                                                                                                            |
-| **Prioritise projects**                          | `priorityP INDEX priority/PRIORITY` <br> e.g., priorityP 2 priority/high <br>                                                                                                                    |
+| **Edit Project**                                 | `editP INDEX [n/NAME] [p/PRIORITY] [d/DEADLINE]`                                                                                                                                                 |
+| **Prioritise projects**                          | `priorityP INDEX [MORE_INDEXES] p/PRIORITY` <br> e.g., priorityP 1 2 p/high <br>                                                                                                                 |
+| **Edit Project Deadlines**                       | `dlP INDEX [MORE_INDEXES] d/[DEADLINE]` <br> e.g., `dl 1 2 d/27-11-2023` <br>                                                                                                                    |
 | **Mark Project(s) as complete**                  | `markP INDEX [MORE_INDEXES]`<br> e.g., `markP 1 3`                                                                                                                                               |
 | **Mark Project(s) as incomplete**                | `unmarkP INDEX [MORE_INDEXES]`<br> e.g., `unmarkP 1 3`                                                                                                                                           |
-| **Assign Employee to Project**                   | `assignE pr/PROJECT_INDEX em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDICES]…​` <br> e.g, `assignE pr/4 em/1 2 3`                                                                                      |
+| **Assign Employee to Project**                   | `assignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDEXES]…​` <br> e.g, `assignP pr/4 em/1 2 3`                                                                                      |
+| **Un-assign Employee from Task**                 | `unassignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [em/MORE_EMPLoYEE_INDEXES]` <br> e.g, `unassignP pr/2 em/1 3`                                                                                      |
 | **Delete Project**                               | `deleteP INDEX`<br> e.g., `deleteP 3`                                                                                                                                                            |
 | **Find Project**                                 | `findP KEYWORD [MORE_KEYWORDS]`<br> e.g., `findP Website Create`                                                                                                                                 |
 | **List All Employees And Projects**              | `list`                                                                                                                                                                                           |
@@ -483,5 +485,5 @@ _Details coming soon ..._
 | **Mark Task(s) As Complete**                     | `markT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`<br> e.g., `markT pr/1 t/1 3`                                                                                                           |
 | **Mark Task(s) As Incomplete**                   | `unmarkT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`<br> e.g., `unmarkT pr/1 t/1 3`                                                                                                       |
  | **Assign Employee to Task**                      | `assignT` <br> e.g., `assignT p/1 t/1 em/3`                                                                                                                                                      |
-| **Unassign Employee from Task**                  | `unassignT` <br> e.g., `unassignT p/1 t/1`                                                                                                                                                       |
+| **Un-assign Employee from Task**                 | `unassignT` <br> e.g., `unassignT p/1 t/1`                                                                                                                                                       |
 | **Sort Tasks By Deadline And Completion Status** | `sortT`                                                                                                                                                                                          |

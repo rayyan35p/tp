@@ -20,13 +20,13 @@ import seedu.address.model.project.Project;
  */
 public class DeadlineProjectCommand extends Command {
 
-    public static final String COMMAND_WORD = "dl";
+    public static final String COMMAND_WORD = "dlP";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the deadline of the project(s) identified "
             + "by the index number used in the last project listing. "
             + "Existing deadline will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) [MORE_INDEXES] "
-            + PREFIX_DEADLINE + "DATE\n"
+            + PREFIX_DEADLINE + "DEADLINE\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DEADLINE + "21-02-2021";
 
