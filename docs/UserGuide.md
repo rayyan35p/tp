@@ -14,7 +14,7 @@ TaskHub is a **desktop app for managing contacts, optimized for use via a Comman
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `taskhub.jar` from [here](https://github.com/se-edu/addressbook-level3/releases). (TODO: update link with github release. this link is still AB3 for now)
+1. Download the latest `taskhub.jar` from [here](https://github.com/AY2324S1-CS2103T-T08-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your TaskHub.
 
@@ -66,7 +66,7 @@ TaskHub is a **desktop app for managing contacts, optimized for use via a Comman
 ### Viewing help : `help`
 
 #### GUI Help: 
-Upon clicking help from the GUI as shown below,
+Upon clicking help on the top of the GUI as shown below,
 
 ![circled_help_gui](images/circledHelpGUI.png)
 
@@ -74,12 +74,12 @@ a help window pops up with a list of all the possible commands
 
 ![help window](images/HelpWindow.png)
 
-and at the bottom of the window is a link to our user guide.
+and at the bottom of the window, is a link to our user guide.
 
 ![ug_link](images/HelpWindowUgLink.png)
 
 #### CLI Help
-Alternatively, quickly enter a `help` command into TaskHub to display the same help window without having to click on help.
+Alternatively, enter a `help` command into TaskHub to quickly display the same help window without having to click on help.
 
 Format: `help`
 
@@ -148,7 +148,8 @@ Format: `findE KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `findE John` returns `john` and `John Doe`
 * `findE alex david` returns `Alex Yeoh`, `David Li`
-* `findE david` returns `David Li` <br>
+* `findE david` returns `David Li` <br> 
+
   ![result for 'findE David'](images/findE.png)
 
 ### Deleting an employee : `deleteE`
