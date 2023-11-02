@@ -1,7 +1,6 @@
 package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
@@ -87,7 +86,7 @@ public class Project {
                    Priority priority,
                    Deadline deadline,
                    CompletionStatus completionStatus) {
-        requireAllNonNull(name, employees, tasks, priority, deadline, completionStatus);
+        requireNonNull(name);
         this.name = name;
         this.priority = priority;
         this.employeeList = employees;
