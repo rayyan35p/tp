@@ -79,7 +79,7 @@ public class DeleteTaskCommand extends Command {
 
         // Create new project with updated tasks
         Project updatedProject = new Project(targetProject.getName(), targetProject.getEmployees(),
-                lastShownTaskList, targetProject.getProjectPriority(),
+                lastShownTaskList, targetProject.getPriority(),
                 targetProject.getDeadline(), targetProject.getCompletionStatus());
 
         projectName = updatedProject.getName().toString();

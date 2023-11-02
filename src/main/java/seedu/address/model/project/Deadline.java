@@ -1,6 +1,7 @@
 package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -31,6 +32,7 @@ public class Deadline {
      */
     public Deadline(String deadline) {
         requireNonNull(deadline);
+        checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
         value = deadline;
     }
 

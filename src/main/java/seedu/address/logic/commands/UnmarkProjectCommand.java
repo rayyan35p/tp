@@ -61,7 +61,7 @@ public class UnmarkProjectCommand extends Command {
 
             Project projectToUnmark = lastShownProjectList.get(projectIndex.getZeroBased());
             Project unmarkedProject = new Project(projectToUnmark.getName(), projectToUnmark.getEmployees(),
-                    projectToUnmark.getTasks(), projectToUnmark.getProjectPriority(), projectToUnmark.getDeadline(),
+                    projectToUnmark.getTasks(), projectToUnmark.getPriority(), projectToUnmark.getDeadline(),
                     new CompletionStatus(false));
             model.setProject(projectToUnmark, unmarkedProject);
         }

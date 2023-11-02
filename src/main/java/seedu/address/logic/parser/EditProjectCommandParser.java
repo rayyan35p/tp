@@ -42,7 +42,7 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
             editProjectDescriptor.setName(ParserUtil.parseProject(argMultimap.getValue(PREFIX_NAME).get()).getName());
         }
         if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
-            editProjectDescriptor.setPriority(ParserUtil.parseProjectPriority(argMultimap
+            editProjectDescriptor.setPriority(ParserUtil.parsePriority(argMultimap
                     .getValue(PREFIX_PRIORITY).get()));
         }
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {

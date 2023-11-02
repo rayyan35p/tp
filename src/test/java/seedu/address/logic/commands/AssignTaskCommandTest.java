@@ -73,7 +73,7 @@ public class AssignTaskCommandTest {
         Project projectWithAssignedTask = new Project(projectToAssignTasks.getName(),
                 projectToAssignTasks.getEmployees(),
                 editedTaskList,
-                projectToAssignTasks.getProjectPriority(),
+                projectToAssignTasks.getPriority(),
                 projectToAssignTasks.getDeadline(),
                 projectToAssignTasks.getCompletionStatus());
 
