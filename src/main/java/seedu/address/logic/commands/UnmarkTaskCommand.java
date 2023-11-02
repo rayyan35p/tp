@@ -76,7 +76,8 @@ public class UnmarkTaskCommand extends Command {
             }
 
             Task taskToUpdate = lastShownTaskList.getTask(taskIndex);
-            Task updatedTask = new Task(taskToUpdate.getName(), taskToUpdate.getDeadline(), false);
+            Task updatedTask = new Task(taskToUpdate.getName(), taskToUpdate.getDeadline(),
+                    false, taskToUpdate.getEmployee());
             lastShownTaskList.setTask(taskIndex, updatedTask);
         }
 
