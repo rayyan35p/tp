@@ -83,7 +83,7 @@ public class UnassignProjectCommand extends Command {
         TaskList editedTaskList = editTaskList(projectToEdit, employeeIndexes, lastShownEmployeeList);
 
         Project editedProject = new Project(projectToEdit.getName(), projectToEdit.getEmployees(),
-                editedTaskList, projectToEdit.getProjectPriority(), projectToEdit.getDeadline(),
+                editedTaskList, projectToEdit.getPriority(), projectToEdit.getDeadline(),
                 projectToEdit.getCompletionStatus());
 
         // Remove specified employees from project

@@ -28,7 +28,7 @@ import seedu.address.logic.commands.EditProjectCommand;
 import seedu.address.logic.commands.EditProjectCommand.EditProjectDescriptor;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Name;
-import seedu.address.model.project.ProjectPriority;
+import seedu.address.model.project.Priority;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
 
 public class EditProjectCommandParserTest {
@@ -71,14 +71,14 @@ public class EditProjectCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_PROJECT_NAME_DESC, Name.MESSAGE_CONSTRAINTS);
 
         // invalid priority
-        assertParseFailure(parser, "1" + INVALID_PROJECT_PRIORITY_DESC, ProjectPriority.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_PROJECT_PRIORITY_DESC, Priority.MESSAGE_CONSTRAINTS);
 
         // invalid deadline
         assertParseFailure(parser, "1" + INVALID_PROJECT_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_PROJECT_PRIORITY_DESC + VALID_PROJECT_AMY
-                        + VALID_DEADLINE_PROJECT_AMY, ProjectPriority.MESSAGE_CONSTRAINTS);
+                        + VALID_DEADLINE_PROJECT_AMY, Priority.MESSAGE_CONSTRAINTS);
     }
 
     @Test

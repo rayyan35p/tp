@@ -53,9 +53,10 @@ public class DeleteEmployeeCommand extends Command {
             if (employeeList.contains(employeeToDelete)) {
                 employeeList.remove(employeeToDelete);
             }
+
             TaskList editedTaskList = editTaskList(project, employeeToDelete);
             model.setProject(project, new Project(project.getName(), employeeList, editedTaskList,
-                    project.getProjectPriority(), project.getDeadline(), project.getCompletionStatus()));
+                    project.getPriority(), project.getDeadline(), project.getCompletionStatus()));
 
         });
 
