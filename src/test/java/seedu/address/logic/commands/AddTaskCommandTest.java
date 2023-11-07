@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalProjects.ALPHA;
+import static seedu.address.testutil.TypicalProjects.ECHO;
 import static seedu.address.testutil.TypicalTasks.ALPHA_TASK;
 import static seedu.address.testutil.TypicalTasks.BETA_TASK;
 
@@ -18,7 +19,6 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.ModelStubWithEmptyProjectList;
-import seedu.address.testutil.ModelStubWithEmptyProjectListAndEmptyEmployeeList;
 import seedu.address.testutil.ModelStubWithProjectAndEmployee;
 import seedu.address.testutil.TaskBuilder;
 public class AddTaskCommandTest {
@@ -86,9 +86,9 @@ public class AddTaskCommandTest {
                 addTaskCommand.execute(modelStub));
     }
     @Test
-    public void execute_addTaskToEmptyEmployeeList_throwsCommandException() throws Exception {
-        ModelStubWithEmptyProjectListAndEmptyEmployeeList modelStub;
-        modelStub = new ModelStubWithEmptyProjectListAndEmptyEmployeeList();
+    public void execute_addTaskWithAssigneeButProjectHasNoEmployees_throwsCommandException() throws Exception {
+        ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(ECHO, ALICE);
+
         Task validTask = new TaskBuilder().build();
         Index projectIndex = ParserUtil.parseIndex("1");
         Index employeeIndex = ParserUtil.parseIndex("1");

@@ -26,6 +26,9 @@ public class TypicalProjects {
     public static final Project DELTA = new ProjectBuilder().withName("Delta").withEmployees(DANIEL, FIONA)
             .withTasks(ALPHA_TASK, BETA_TASK)
             .withDeadline("24-11-2024").withCompletionStatus(true).build();
+    public static final Project ECHO = new ProjectBuilder().withName("Echo").withEmployees()
+            .withTasks(ALPHA_TASK, BETA_TASK)
+            .withDeadline("20-10-2024").withCompletionStatus(false).build();
 
     //Manually added
     public static final Project GAMMA = new ProjectBuilder().withName("Gamma").withEmployees(GEORGE)

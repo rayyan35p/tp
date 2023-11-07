@@ -72,20 +72,7 @@ public class AddTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        // if an employee was specified, add him to the task
-        // we can only do this here in the execute method where we have access to the model.
-        if (this.employeeIndex.isPresent()) {
-            List<Employee> lastShownEmployeeList = model.getFilteredEmployeeList();
-            // throw exceptions if employee list empty or invalid index
-            if (lastShownEmployeeList.size() == 0) {
-                throw new CommandException(Messages.MESSAGE_NO_EMPLOYEE_TO_ASSIGN);
-            } else if (this.employeeIndex.get().getZeroBased() >= lastShownEmployeeList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
-            }
-            Employee assignee = model.getFilteredEmployeeList().get(employeeIndex.get().getZeroBased());
-            this.task.setEmployee(assignee);
-        }
-
+        // get the relevant project first
         List<Project> lastShownProjectList = model.getFilteredProjectList();
         if (lastShownProjectList.size() == 0) {
             throw new CommandException(Messages.MESSAGE_NO_PROJECT_TO_ADD_TASK);
@@ -93,6 +80,19 @@ public class AddTaskCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
         Project projectToEdit = lastShownProjectList.get(projectIndex.getZeroBased());
+
+        // if an employee was specified, add him to the task
+        if (this.employeeIndex.isPresent()) {
+            List<Employee> projectEmployees = projectToEdit.getEmployees().asUnmodifiableObservableList();
+            // throw exceptions if there are no project employees or invalid index
+            if (projectEmployees.size() == 0) {
+                throw new CommandException(Messages.MESSAGE_NO_EMPLOYEE_TO_ASSIGN);
+            } else if (this.employeeIndex.get().getZeroBased() >= projectEmployees.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+            }
+            Employee assignee = projectEmployees.get(employeeIndex.get().getZeroBased());
+            this.task.setEmployee(assignee);
+        }
 
         // Add a task to the project with the selected index.
         projectToEdit.addTask(this.task);
