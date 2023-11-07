@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalEmployees.ALICE;
+import static seedu.address.testutil.TypicalEmployees.AMY;
 import static seedu.address.testutil.TypicalEmployees.BENSON;
 import static seedu.address.testutil.TypicalEmployees.DANIEL;
 import static seedu.address.testutil.TypicalEmployees.FIONA;
@@ -46,6 +48,7 @@ public class TypicalProjects {
 
     public static final Project ASSIGNED_TASKS_PROJECT = new ProjectBuilder()
             .withName("Project with assigned task")
+            .withEmployees(ALICE)
             .withTasks(ALPHA_TASK, DELTA_TASK)
             .build();
 
