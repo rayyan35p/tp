@@ -95,7 +95,7 @@ public class Messages {
         builder.append("Description: " + task.getName());
 
         // Format the deadline
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mma");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM uuuu, hh:mma");
         String formattedDeadline = task.getDeadline().format(formatter);
 
         builder.append("; Deadline: " + formattedDeadline);
