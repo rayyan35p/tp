@@ -66,8 +66,8 @@ class JsonSerializableTaskHub {
             if (taskHub.hasProject(project)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PROJECT);
             }
-            for (Employee maybeEmployee : project.getEmployees()) {
-                if (!taskHub.strictlyHasEmployee(maybeEmployee)) {
+            for(Employee maybeEmployee : project.getEmployees()) {
+                if(!taskHub.strictlyHasEmployee(maybeEmployee)) {
                     throw new IllegalValueException(MESSAGE_NONEXISTENT_EMPLOYEE);
                 }
             }
