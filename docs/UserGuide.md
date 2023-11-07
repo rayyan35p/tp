@@ -365,6 +365,11 @@ Format `addT pr/PROJECT_INDEX [em/EMPLOYEE_INDEX] n/TASK_NAME d/DEADLINE(dd-MM-y
 * The index(es) **must be positive integers** 1, 2, 3,...
 * The deadline must be in the format `dd-MM-yyyy HHmm`. For example, `11-10-2023 2359` refers to 11th October 2023, 11.59pm.
 
+Examples:
+* `listP` followed by `addT pr/1 n/Website d/11-10-2023 2359` adds a task named `Website` with deadline `11-10-2023 2359` to the 1st project.
+* `findP Capstone` followed by `addT pr/1 n/Website d/11-10-2023 2359` adds a task named `Website` with deadline `11-10-2023 2359` to the 1st project from the result of the `findP` command.
+
+
 ### Delete a task from a project: `deleteT`
 
 Deletes the specified task(s) from the specified project in TaskHub
@@ -375,6 +380,10 @@ Format `deleteT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
 * The project index refers to the index number shown in the displayed projects list.
 * The task index(es) refer to the index number(s) shown in the task list of the above specified project.
 * The index(es) **must be positive integers** 1, 2, 3,...
+
+Examples:
+* `listP` followed by `deleteT pr/1 t/1 3` deletes the 1st and 3rd tasks of the 1st project from TaskHub.
+* `findP Capstone` followed by `deleteT pr/2 t/2` deletes the 2nd task in the 2nd project from the results of the `findP` command.
 
 
 ### Mark task(s) as completed: `markT`
@@ -435,7 +444,8 @@ Format: `assignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES] ...`
 * The project and employee index refers to the index number shown in the displayed project and employee list.
 
 Examples:
-* `assignP pr/Project1 em/1 2 3` will add employees 1, 2 and 3 to `Project1`
+* `list` followed by `assignP pr/2 em/1 3` will assign the 1st and 3rd employees to the 2nd project.
+* `findP Capstone` followed by `assignP pr/1 em/1` will assign the 1st employee to the 1st project from the results of the `findP` command.
 
 
 ### Un-assign employee(s) from a project: `unassignP`
@@ -448,6 +458,10 @@ Format: `unassignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES] ..
 * Each employee index __must be separated with a space.__
 * The project and employee index refers to the index number shown in the displayed project and employee list.
 * If the employee is assigned to a task within the project, the employee will be unassigned from the task as well.
+
+Examples:
+* `list` followed by `unassignP pr/2 em/1 3` will un-assign the 1st and 3rd employees from the 2nd project.
+* `findP Capstone` followed by `unassignP pr/1 em/1` un-assigns the 1st employee from the 1st project from the results of the `findP` command.
 
 
 ### Assign an employee to a task: `assignT`
@@ -477,8 +491,8 @@ Format `unassignT pr/PROJECT_INDEX t/TASK_INDEX`
 * The index(es) **must be positive integers** 1, 2, 3,...
 
 Examples:
-* `listP` followed by `unassignT pr/1 t/1` unassigns the first task in the first project from the currently assigned employee.
-* `findP Capstone` followed by `unassignT pr/2 t/2` unassigns the second task, in the second project from the results of `findP`, from the currently assigned employee.
+* `listP` followed by `unassignT pr/1 t/1` un-assigns the first task in the first project from the currently assigned employee.
+* `findP Capstone` followed by `unassignT pr/2 t/2` un-assigns the second task, in the second project from the results of `findP`, from the currently assigned employee.
 
 
 <br>
