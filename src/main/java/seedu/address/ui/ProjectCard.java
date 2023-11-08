@@ -95,7 +95,7 @@ public class ProjectCard extends UiPart<Region> {
             LocalDate currentDateTime = LocalDate.now(); // Get the current date
             LocalDate deadlineDate = project.getDeadline().getLocalDate(); // Get project deadline
 
-            String formattedDeadline = deadlineDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            String formattedDeadline = deadlineDate.format(DateTimeFormatter.ofPattern("dd-MM-uuuu"));
             deadline.setText("Deadline: " + formattedDeadline);
 
             // Compare project deadline with current date
