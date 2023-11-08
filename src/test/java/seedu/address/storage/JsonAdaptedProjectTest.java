@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedProject.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalProjects.ALPHA;
+import static seedu.address.testutil.TypicalProjects.ALPHA_FACTORY;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,23 +21,23 @@ public class JsonAdaptedProjectTest {
     public static final String INVALID_DEADLINE = "32/13/2024";
     public static final String INVALID_PRIORITY = "    ";
 
-    public static final String VALID_NAME = ALPHA.getName().toString();
-    public static final List<JsonAdaptedEmployee> VALID_EMPLOYEES = ALPHA.getEmployees().asUnmodifiableObservableList()
+    public static final String VALID_NAME = ALPHA_FACTORY().getName().toString();
+    public static final List<JsonAdaptedEmployee> VALID_EMPLOYEES = ALPHA_FACTORY().getEmployees().asUnmodifiableObservableList()
             .stream()
             .map(JsonAdaptedEmployee::new)
             .collect(Collectors.toList());
-    public static final List<JsonAdaptedTask> VALID_TASKS = ALPHA.getTasks().asUnmodifiableObservableList()
+    public static final List<JsonAdaptedTask> VALID_TASKS = ALPHA_FACTORY().getTasks().asUnmodifiableObservableList()
             .stream()
             .map(JsonAdaptedTask::new)
             .collect(Collectors.toList());
-    public static final String VALID_DEADLINE = ALPHA.getDeadline().toString();
+    public static final String VALID_DEADLINE = ALPHA_FACTORY().getDeadline().toString();
     public static final String VALID_PRIORITY = "normal";
-    public static final boolean VALID_COMPLETION_STATUS = ALPHA.getCompletionStatus().isCompleted;
+    public static final boolean VALID_COMPLETION_STATUS = ALPHA_FACTORY().getCompletionStatus().isCompleted;
 
     @Test
     public void toModelType_validProjectDetails_returnsProject() throws Exception {
-        JsonAdaptedProject project = new JsonAdaptedProject(ALPHA);
-        assertEquals(ALPHA, project.toModelType());
+        JsonAdaptedProject project = new JsonAdaptedProject(ALPHA_FACTORY());
+        assertEquals(ALPHA_FACTORY(), project.toModelType());
     }
 
     @Test

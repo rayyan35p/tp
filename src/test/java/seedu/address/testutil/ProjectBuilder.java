@@ -38,7 +38,6 @@ public class ProjectBuilder {
         employeeList = new UniqueEmployeeList();
         employeeList.add(ALICE);
         taskList = new TaskList();
-        taskList.add(ALPHA_TASK);
         priority = new Priority(DEFAULT_PRIORITY);
         deadline = new Deadline(DEFAULT_DEADLINE);
         completionStatus = new CompletionStatus(DEFAULT_COMPLETION_STATUS);

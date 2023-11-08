@@ -21,35 +21,48 @@ import seedu.address.model.project.Project;
  * A utility class containing a list of {@code Project} objects to be used in tests.
  */
 public class TypicalProjects {
-    public static final Project ALPHA = new ProjectBuilder().withTasks(ALPHA_TASK).build();
-    public static final Project BETA = new ProjectBuilder().withName("Beta").withEmployees(BENSON).withTasks(ALPHA_TASK)
-            .withDeadline("10-12-2022").withCompletionStatus(false).build();
-    public static final Project DELTA = new ProjectBuilder().withName("Delta").withEmployees(DANIEL, FIONA)
-            .withTasks(ALPHA_TASK, BETA_TASK)
-            .withDeadline("24-11-2024").withCompletionStatus(true).build();
+    public static Project ALPHA_FACTORY() {
+        return new ProjectBuilder().withTasks(ALPHA_TASK).withEmployees(ALICE).build();
+    }
+    public static Project BETA_FACTORY() {
+        return new ProjectBuilder().withName("Beta").withEmployees(BENSON).withTasks(ALPHA_TASK)
+                .withDeadline("10-12-2022").withCompletionStatus(false).build();
+    }
+    public static Project DELTA_FACTORY() {
+        return  new ProjectBuilder().withName("Delta").withEmployees(DANIEL, FIONA)
+                .withTasks(ALPHA_TASK, BETA_TASK)
+                .withDeadline("24-11-2024").withCompletionStatus(true).build();
 
+    }
     //Manually added
-    public static final Project GAMMA = new ProjectBuilder().withName("Gamma").withEmployees(GEORGE)
-            .withTasks(ALPHA_TASK, BETA_TASK, CHARLIE_TASK)
-            .withDeadline("08-07-2023").build();
+    public static final Project GAMMA_FACTORY() {
+        return new ProjectBuilder().withName("Gamma").withEmployees(GEORGE)
+                .withTasks(ALPHA_TASK, BETA_TASK, CHARLIE_TASK)
+                .withDeadline("08-07-2023").build();
+    }
 
-    public static final Project HIGH_PRIORITY_PROJECT = new ProjectBuilder()
-            .withName("High Priority Project")
-            .withTasks(ALPHA_TASK, BETA_TASK, CHARLIE_TASK)
-            .withPriority("high")
-            .build();
+    private static Project HIGH_PRIORITY_PROJECT_FACTORY() {
+        return new  ProjectBuilder()
+                .withName("High Priority Project")
+                .withTasks(ALPHA_TASK, BETA_TASK, CHARLIE_TASK)
+                .withPriority("high")
+                .build();
+    }
+    private static Project LOW_PRIORITY_PROJECT_FACTORY() {
+        return  new ProjectBuilder()
+                .withName("Low Priority Project")
+                .withTasks(ALPHA_TASK, BETA_TASK, CHARLIE_TASK)
+                .withPriority("low")
+                .build();
+    }
 
-    public static final Project LOW_PRIORITY_PROJECT = new ProjectBuilder()
-            .withName("Low Priority Project")
-            .withTasks(ALPHA_TASK, BETA_TASK, CHARLIE_TASK)
-            .withPriority("low")
-            .build();
-
-    public static final Project ASSIGNED_TASKS_PROJECT = new ProjectBuilder()
-            .withName("Project with assigned task")
-            .withEmployees(ALICE)
-            .withTasks(ALPHA_TASK, DELTA_TASK)
-            .build();
+    private static Project ASSIGNED_TASKS_PROJECT_FACTORY() {
+        return new ProjectBuilder()
+                .withName("Project with assigned task")
+                .withEmployees(ALICE)
+                .withTasks(ALPHA_TASK, DELTA_TASK)
+                .build();
+    }
 
     private TypicalProjects() {} // prevents instantiation
 
@@ -61,8 +74,10 @@ public class TypicalProjects {
     }
 
     public static List<Project> getTypicalProjects() {
-        return new ArrayList<>(Arrays.asList(ALPHA, BETA, DELTA, GAMMA,
-                HIGH_PRIORITY_PROJECT, LOW_PRIORITY_PROJECT,
-                ASSIGNED_TASKS_PROJECT));
+        return new ArrayList<>(Arrays.asList(ALPHA_FACTORY(), BETA_FACTORY(), DELTA_FACTORY(), GAMMA_FACTORY(),
+                HIGH_PRIORITY_PROJECT_FACTORY(), LOW_PRIORITY_PROJECT_FACTORY(),
+                ASSIGNED_TASKS_PROJECT_FACTORY()));
     }
+
+
 }
