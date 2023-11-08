@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
-import static seedu.address.testutil.TypicalProjects.ALPHA_FACTORY;
+import static seedu.address.testutil.TypicalProjects.alphaFactory;
 import static seedu.address.testutil.TypicalTasks.ALPHA_TASK;
 import static seedu.address.testutil.TypicalTasks.BETA_TASK;
 
@@ -30,7 +30,7 @@ public class AddTaskCommandTest {
 
     @Test
     public void execute_taskWithoutAssigneeAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(ALPHA_FACTORY(), ALICE);
+        ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(alphaFactory(), ALICE);
         Task validTask = new TaskBuilder().build();
         Index index = ParserUtil.parseIndex("1");
         CommandResult commandResult = new AddTaskCommand(validTask,
@@ -41,7 +41,7 @@ public class AddTaskCommandTest {
     }
     @Test
     public void execute_taskWithAssigneeAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(ALPHA_FACTORY(), ALICE);
+        ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(alphaFactory(), ALICE);
         Task validTask = new TaskBuilder().build();
         Index projectIndex = ParserUtil.parseIndex("1");
         Index employeeIndex = ParserUtil.parseIndex("1");
@@ -55,7 +55,7 @@ public class AddTaskCommandTest {
 
     @Test
     public void execute_addTaskToInvalidProjectIndex_throwsCommandException() throws Exception {
-        ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(ALPHA_FACTORY(), ALICE);
+        ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(alphaFactory(), ALICE);
         Task validTask = new TaskBuilder().build();
         Index index = ParserUtil.parseIndex("2");
         AddTaskCommand addTaskCommand = new AddTaskCommand(validTask,

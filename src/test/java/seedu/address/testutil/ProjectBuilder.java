@@ -1,7 +1,6 @@
 package seedu.address.testutil;
 
 import static seedu.address.testutil.TypicalEmployees.ALICE;
-import static seedu.address.testutil.TypicalTasks.ALPHA_TASK;
 
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;

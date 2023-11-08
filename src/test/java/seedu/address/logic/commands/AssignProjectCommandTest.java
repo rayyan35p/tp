@@ -5,7 +5,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.BENSON;
 import static seedu.address.testutil.TypicalEmployees.getTypicalTaskHub;
-import static seedu.address.testutil.TypicalProjects.ALPHA_FACTORY;
+import static seedu.address.testutil.TypicalProjects.alphaFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,7 +37,9 @@ public class AssignProjectCommandTest {
     public void execute_validInputs_success() {
 
         Model expectedModel = new ModelManager(getTypicalTaskHub(), new UserPrefs());
-        expectedModel.setProject(ALPHA_FACTORY(), new ProjectBuilder(ALPHA_FACTORY()).withEmployees(ALICE, BENSON).build());
+        expectedModel.setProject(alphaFactory(), new ProjectBuilder(alphaFactory())
+                                                                    .withEmployees(ALICE, BENSON)
+                                                                    .build());
         AssignProjectCommand assignProjectCommand =
                 new AssignProjectCommand(Index.fromOneBased(1),
                         new ArrayList<>(Arrays.asList(Index.fromOneBased(2))));

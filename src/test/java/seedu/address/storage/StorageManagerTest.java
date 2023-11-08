@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.getTypicalTaskHub;
-import static seedu.address.testutil.TypicalProjects.ALPHA_FACTORY;
+import static seedu.address.testutil.TypicalProjects.alphaFactory;
 
 import java.nio.file.Path;
 
@@ -57,8 +57,8 @@ public class StorageManagerTest {
          * More extensive testing of UserPref saving/reading is done in {@link JsonTaskHubStorageTest} class.
          */
         TaskHub original = getTypicalTaskHub();
-        if (!ALPHA_FACTORY().getEmployees().contains(ALICE)) {
-            ALPHA_FACTORY().addEmployee(ALICE);
+        if (!alphaFactory().getEmployees().contains(ALICE)) {
+            alphaFactory().addEmployee(ALICE);
         }
         storageManager.saveTaskHub(original);
         ReadOnlyTaskHub retrieved = storageManager.readTaskHub().get();

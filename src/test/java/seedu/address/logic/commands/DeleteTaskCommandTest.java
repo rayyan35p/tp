@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
-import static seedu.address.testutil.TypicalProjects.ALPHA_FACTORY;
+import static seedu.address.testutil.TypicalProjects.alphaFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,14 +31,14 @@ public class DeleteTaskCommandTest {
     @Test
     public void execute_deleteTaskOne_successful() throws Exception {
         // ALPHA contains ALPHA_TASK
-        ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(ALPHA_FACTORY(), ALICE);
+        ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(alphaFactory(), ALICE);
         Index projectIndex = ParserUtil.parseIndex("1");
         Index taskIndex = ParserUtil.parseIndex("1");
         List<Index> taskIndexes = new ArrayList<>();
         taskIndexes.add(taskIndex);
         CommandResult commandResult = new DeleteTaskCommand(projectIndex, taskIndexes).execute(modelStub);
         assertEquals(String.format(DeleteTaskCommand.MESSAGE_TASKS_DELETED_SUCCESSFULLY,
-                                   taskIndexes.size(), ALPHA_FACTORY().getName()),
+                                   taskIndexes.size(), alphaFactory().getName()),
                     commandResult.getFeedbackToUser());
     }
     @Test
@@ -57,7 +57,7 @@ public class DeleteTaskCommandTest {
 
     @Test
     public void execute_deleteTaskInvalidProjectIndex_throwsCommandException() throws Exception {
-        ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(ALPHA_FACTORY(), ALICE);
+        ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(alphaFactory(), ALICE);
         Index projectIndex = ParserUtil.parseIndex("50");
         Index taskIndex = ParserUtil.parseIndex("1");
         List<Index> taskIndexes = new ArrayList<>();
@@ -70,7 +70,7 @@ public class DeleteTaskCommandTest {
 
     @Test
     public void execute_deleteTaskInvalidTaskIndex_throwsCommandException() throws Exception {
-        ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(ALPHA_FACTORY(), ALICE);
+        ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(alphaFactory(), ALICE);
         Index projectIndex = ParserUtil.parseIndex("1");
         Index taskIndex = ParserUtil.parseIndex("50");
         List<Index> taskIndexes = new ArrayList<>();
