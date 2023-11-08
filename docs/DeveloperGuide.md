@@ -159,11 +159,22 @@ The `Employee` component stores an employee's data which comprises:
 
 The `Project` component stores a project's data which comprises:
 
-* a `name` (stored as a String), `Deadline`, `UniqueEmployeeList`, `ProjectPriority` and `CompletionStatus`.
+* a `Name`, `Deadline`, `UniqueEmployeeList`, `TaskList`, `ProjectPriority` and `CompletionStatus`.
 * The `Deadline` is optional.
 * The `UniqueEmployeeList` contains only the `Employee`s under the said `Project`.
+* The `TaskList` contains the `Task`s which have been added to the `Project`.
 
 ***Note: For the Model, Employee and Project components, lower-level details (e.g. most class attributes and methods) have been omitted for visual clarity.
+
+### Task component
+**API** : [`Task.java`](https://github.com/AY2324S1-CS2103T-T08-3/tp/blob/master/src/main/java/seedu/address/model/task/Task.java)
+
+<img src="images/TaskClassDiagram.png" width="450" />
+
+The `Task` component stores a task's data which comprises:
+
+* a `name`, `deadline`, `employee`, and `isDone` field.
+* The `Employee` is optional - a Task may be assigned to an `Employee` within the `Project` or not.
 
 
 ### Storage component
