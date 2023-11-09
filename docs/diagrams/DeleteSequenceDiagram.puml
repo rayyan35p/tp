@@ -5,8 +5,8 @@ skinparam ArrowFontStyle plain
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":TaskHubParser" as TaskHubParser LOGIC_COLOR
-participant ":DeleteEmployeeComandParser" as DeleteEmployeeComandParser LOGIC_COLOR
-participant "d:DeleteEmployeeComand" as DeleteEmployeeComand LOGIC_COLOR
+participant ":DeleteEmployeeCommandParser" as DeleteEmployeeCommandParser LOGIC_COLOR
+participant "d:DeleteEmployeeCommand" as DeleteEmployeeCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -20,50 +20,50 @@ activate LogicManager
 LogicManager -> TaskHubParser : parseCommand("deleteE 1")
 activate TaskHubParser
 
-create DeleteEmployeeComandParser
-TaskHubParser -> DeleteEmployeeComandParser
-activate DeleteEmployeeComandParser
+create DeleteEmployeeCommandParser
+TaskHubParser -> DeleteEmployeeCommandParser
+activate DeleteEmployeeCommandParser
 
-DeleteEmployeeComandParser --> TaskHubParser
-deactivate DeleteEmployeeComandParser
+DeleteEmployeeCommandParser --> TaskHubParser
+deactivate DeleteEmployeeCommandParser
 
-TaskHubParser -> DeleteEmployeeComandParser : parse("1")
-activate DeleteEmployeeComandParser
+TaskHubParser -> DeleteEmployeeCommandParser : parse("1")
+activate DeleteEmployeeCommandParser
 
-create DeleteEmployeeComand
-DeleteEmployeeComandParser -> DeleteEmployeeComand
-activate DeleteEmployeeComand
+create DeleteEmployeeCommand
+DeleteEmployeeCommandParser -> DeleteEmployeeCommand
+activate DeleteEmployeeCommand
 
-DeleteEmployeeComand --> DeleteEmployeeComandParser : d
-deactivate DeleteEmployeeComand
+DeleteEmployeeCommand --> DeleteEmployeeCommandParser : d
+deactivate DeleteEmployeeCommand
 
-DeleteEmployeeComandParser --> TaskHubParser : d
-deactivate DeleteEmployeeComandParser
+DeleteEmployeeCommandParser --> TaskHubParser : d
+deactivate DeleteEmployeeCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteEmployeeComandParser -[hidden]-> TaskHubParser
-destroy DeleteEmployeeComandParser
+DeleteEmployeeCommandParser -[hidden]-> TaskHubParser
+destroy DeleteEmployeeCommandParser
 
 TaskHubParser --> LogicManager : d
 deactivate TaskHubParser
 
-LogicManager -> DeleteEmployeeComand : execute()
-activate DeleteEmployeeComand
+LogicManager -> DeleteEmployeeCommand : execute()
+activate DeleteEmployeeCommand
 
-DeleteEmployeeComand -> Model : deleteEmployee(1)
+DeleteEmployeeCommand -> Model : deleteEmployee(1)
 activate Model
 
-Model --> DeleteEmployeeComand
+Model --> DeleteEmployeeCommand
 deactivate Model
 
 create CommandResult
-DeleteEmployeeComand -> CommandResult
+DeleteEmployeeCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteEmployeeComand
+CommandResult --> DeleteEmployeeCommand
 deactivate CommandResult
 
-DeleteEmployeeComand --> LogicManager : result
-deactivate DeleteEmployeeComand
+DeleteEmployeeCommand --> LogicManager : result
+deactivate DeleteEmployeeCommand
 
 [<--LogicManager
 deactivate LogicManager
