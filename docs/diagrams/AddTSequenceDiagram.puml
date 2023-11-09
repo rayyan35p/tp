@@ -1,0 +1,86 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskHubParser" as TaskHubParser LOGIC_COLOR
+participant ":AddTaskCommandParser" as AddTaskCommandParser LOGIC_COLOR
+participant "c:AddTaskCommand" as AddTaskCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute("addT n/todo pr/1 em/1 d/11-11-2023 2359")
+activate LogicManager
+
+LogicManager -> TaskHubParser : parseCommand("addT n/todo pr/1 em/1 d/11-11-2023 2359")
+activate TaskHubParser
+
+create AddTaskCommandParser
+TaskHubParser -> AddTaskCommandParser:
+activate AddTaskCommandParser
+AddTaskCommandParser --> TaskHubParser
+
+deactivate AddTaskCommandParser
+
+
+
+TaskHubParser -> AddTaskCommandParser: parse(arguments)
+activate AddTaskCommandParser
+
+create AddTaskCommand
+AddTaskCommandParser -> AddTaskCommand
+activate AddTaskCommand
+
+AddTaskCommand --> AddTaskCommandParser: c
+deactivate AddTaskCommand
+
+AddTaskCommandParser --> TaskHubParser: c
+
+deactivate AddTaskCommandParser
+destroy AddTaskCommandParser
+
+TaskHubParser --> LogicManager : c
+deactivate TaskHubParser
+
+LogicManager -> AddTaskCommand : execute()
+activate AddTaskCommand
+
+opt employeeIndex.isPresent()
+AddTaskCommand -> Model : getFilteredEmployeeList()
+activate Model
+Model --> AddTaskCommand
+deactivate Model
+end
+
+AddTaskCommand -> Model : getFilteredProjectList()
+activate Model
+Model --> AddTaskCommand
+deactivate Model
+
+AddTaskCommand -> Model: setProject(projectToEdit, editedProject)
+activate Model
+Model --> AddTaskCommand
+deactivate Model
+
+
+AddTaskCommand -> Model : updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS)
+activate Model
+Model --> AddTaskCommand
+deactivate Model
+
+create CommandResult
+AddTaskCommand -> CommandResult
+activate CommandResult
+CommandResult --> AddTaskCommand
+deactivate CommandResult
+
+AddTaskCommand --> LogicManager : result
+destroy AddTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

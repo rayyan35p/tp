@@ -202,43 +202,30 @@ This section describes some noteworthy details on how certain features are imple
 In the `initialize()` method of the `HelpWindow` class, commands are organized into different categories using HashMaps. Here's an explanation:
 
 ```java
-// Initializes HashMaps to store commands for different sections
-Map<String, String> generalCommands = new HashMap<>();
-Map<String, String> employeeCommands = new HashMap<>();
-Map<String, String> projectCommands = new HashMap<>();
-
-// Adds general commands with their descriptions to the generalCommands HashMap
-generalCommands.put("help", "- Get help pop-up to display.");
-generalCommands.put("clear", "- Clears all entries from TaskHub.");
-generalCommands.put("exit", "- Exits the program.");
-
-// Adds employee-related commands with their descriptions to the employeeCommands HashMap
-employeeCommands.put("addE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…\u200B",
-        "- Adds an employee to the employees list.");
-// ... (other employee commands)
-
-// Adds project-related commands with their descriptions to the projectCommands HashMap
-projectCommands.put("listP", "- Shows a list of all projects in TaskHub.");
-// ... (other project commands)
+// Initializes LinkedHashMaps to store commands for different sections
+Map<String, String> generalCommands = new LinkedHashMap<>();
+Map<String, String> employeeCommands = new LinkedHashMap<>();
+Map<String, String> projectCommands = new LinkedHashMap<>();
+Map<String, String> taskCommands = new LinkedHashMap<>();
+Map<String, String> assignmentCommands = new LinkedHashMap<>();
 ```
-
-In this code snippet, each HashMap (`generalCommands`, `employeeCommands`, and `projectCommands`) is used to store commands related to a specific section of the application. The keys in the HashMap represent the commands themselves, while the corresponding values provide a description of what each command does.
+The command formats with short descriptions accompanying them are then inserted into each `LinkedHashMap` accordingly.
+The keys in the LinkedHashMap represent the command formats, while the corresponding values provide a description of what each command does.
 
 ```java
 // Adds sections and their respective commands to the VBox layout
 addToVBox("General Commands", generalCommands);
 addToVBox("Employee Commands", employeeCommands);
 addToVBox("Project Commands", projectCommands);
+addToVBox("Task Commands", taskCommands);
+addToVBox("Assignment Commands", assignmentCommands);
 ```
 
-The `addToVBox()` method takes a section header (like "General Commands") and a corresponding HashMap of commands. It then formats and adds these commands to the `VBox` layout of the help window. Inline code formatting (using backticks) could be applied as follows:
-
-```java
-String command = "addE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…\u200B";
-String description = "- Adds an employee to the employees list.";
-```
+The `addToVBox()` method takes a section header (like "General Commands") and a corresponding HashMap of commands. It then formats and adds these commands to the `VBox` layout of the help window.
 
 This code structure efficiently organizes commands into distinct sections, making it easier for users to locate and understand the functionalities provided by each command. It also promotes code readability and maintainability for developers working on the application.
+
+An alternative imeplementation of `HelpWindow` could be to store each command format and description in a centralized database, and retrieve the data from there to be displayed in the HelpWindow, rather than to have to modify the code in `HelpWindow` separately when there is a change in the formats/descriptions.
 
 
 ### Add Project feature
@@ -338,6 +325,28 @@ Step 5. During the execution of the `MarkProjectCommand`, a new `Project` object
 Step 6. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`.
 
 A similar sequence of events will occur when executing the `unmarkP` command, except that the `isCompleted` attribute of each `Project` will be set to `false` instead of `true`.
+
+### Add Task feature
+![AddTSequenceDiagram](images/AddTSequenceDiagram.png)
+
+
+When creating a new task using the `addT` command, the `TaskList` of the specified `Project` is updated, and the `Project` is hence updated too.
+
+Given below is an example usage scenario and the internal changes that happen at each step.
+
+Step 1. The user launches the application. All employees and projects will be shown to the user.
+
+Step 2. The user executes `addT n/todo pr/1 em/1 d/11-11-2023 2359` to add a new `Task` called `todo` to the first currently listed `Project`, assigned to the first `Employee` within that `Project`. `LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to an `AddTaskCommandParser`.
+
+Step 3. `TaskHubParser` will call `AddTaskCommandParser#parse(arguments)` to produce a `AddTaskCommand` to be executed by the `LogicManager`.
+
+Step 4. `LogicManager` calls `AddTaskCommand#execute(model)` to produce a `CommandResult `to be logged.
+
+Step 5. During the execution of the `AddTaskCommand`, a new `Project` copy is created, with an updated `TaskList` that contains the newly created `Task`.
+If an `employeeIndex` was specified by the command (in this case it was), then `Model::getFilteredEmployeeList` is called to assign the new `Task` to the specified  `Employee`. 
+Then, the `Model#setProject` and `Model#updateFilteredProjectList` is called, to trigger a `Ui` update, as the specified `Project` has been updated with an updated `TaskList`.
+
+Step 6. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`.
 
 ### \[Proposed\] Undo/redo feature
 
