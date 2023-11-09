@@ -57,6 +57,9 @@ TaskHub is a **desktop app for managing contacts, optimized for use via a Comman
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
+* All commands that can take in multiple index should have its indexes separated by **single** spaces.<br>
+e.g. if the command specifies `INDEX [MORE_INDEXES]`, it should be entered as `1 2 3` instead of `1  2  3`.
+
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -388,6 +391,8 @@ Assigns a specified employee in a specified project to a specified task in that 
 
 Format `assignT pr/PROJECT_INDEX t/TASK_INDEX em/EMPLOYEE_INDEX`
 
+* In this version of TaskHub, only a single employee can be assigned to a task at a time.
+* Assigning a task that has already been assigned to another employee will overwrite that employee.
 * The project index refers to the index number shown in the displayed projects list.
 * The task index refers to the index number shown in the last list of the above specified project.
 * The employee index refers to the index number of the employee **in the project list**.
@@ -485,6 +490,6 @@ _Details coming soon ..._
 | **Delete Task**                                  | `deleteT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]` <br> e.g., `deleteT pr/1 t/1 5 3`                                                                                                    |
 | **Mark Task(s) As Complete**                     | `markT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`<br> e.g., `markT pr/1 t/1 3`                                                                                                           |
 | **Mark Task(s) As Incomplete**                   | `unmarkT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`<br> e.g., `unmarkT pr/1 t/1 3`                                                                                                       |
- | **Assign Employee to Task**                      | `assignT` <br> e.g., `assignT p/1 t/1 em/3`                                                                                                                                                      |
-| **Un-assign Employee from Task**                 | `unassignT` <br> e.g., `unassignT p/1 t/1`                                                                                                                                                       |
+ | **Assign Employee to Task**                      | `assignT pr/PROJECT_INDEX t/TASK_INDEX em/EMPLOYEE_INDEX` <br> e.g., `assignT pr/1 t/1 em/3`                                                                                                     |
+| **Un-assign Employee from Task**                 | `unassignT pr/PROJECT_INDEX t/TASK_INDEX` <br> e.g., `unassignT pr/1 t/1`                                                                                                                        |
 | **Sort Tasks By Deadline And Completion Status** | `sortT`                                                                                                                                                                                          |
