@@ -30,10 +30,20 @@ public class UniqueEmployeeList implements Iterable<Employee> {
 
     /**
      * Returns true if the list contains an equivalent employee as the given argument.
+     * (uses a weaker notion of equality)
      */
     public boolean contains(Employee toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameEmployee);
+    }
+
+    /**
+     * Returns true if the list contains the same employee as the given argument.
+     * (uses a stronger notion of equality)
+     */
+    public boolean strictlyContains(Employee toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
