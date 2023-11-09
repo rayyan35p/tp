@@ -93,8 +93,8 @@ public class JsonAdaptedProject {
         try {
             for (JsonAdaptedTask task : tasks) {
                 Task modeledTask = task.toModelType();
-                for(Employee assignedEmployee : modeledTask.getEmployee()) {
-                    if(!employeeList.strictlyContains(assignedEmployee)) {
+                for (Employee assignedEmployee : modeledTask.getEmployee()) {
+                    if (!employeeList.strictlyContains(assignedEmployee)) {
                         throw new IllegalValueException(MESSAGE_NOT_ASSIGNED_EMPLOYEE);
                     }
                 }

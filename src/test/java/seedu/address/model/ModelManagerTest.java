@@ -7,7 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EMPLOYEES;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.BENSON;
-import static seedu.address.testutil.TypicalProjects.ALPHA;
+import static seedu.address.testutil.TypicalProjects.alphaFactory;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -90,7 +90,7 @@ public class ModelManagerTest {
 
     @Test
     public void hasProject_projectNotInTaskHub_returnsFalse() {
-        assertFalse(modelManager.hasProject(ALPHA));
+        assertFalse(modelManager.hasProject(alphaFactory()));
     }
 
     @Test
@@ -101,8 +101,8 @@ public class ModelManagerTest {
 
     @Test
     public void hasProject_projectInTaskHub_returnsTrue() {
-        modelManager.addProject(ALPHA);
-        assertTrue(modelManager.hasProject(ALPHA));
+        modelManager.addProject(alphaFactory());
+        assertTrue(modelManager.hasProject(alphaFactory()));
     }
 
     @Test
