@@ -24,7 +24,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TaskHub;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
-import seedu.address.model.task.Task;
 import seedu.address.testutil.EmployeeBuilder;
 
 public class AddEmployeeCommandTest {
@@ -130,10 +129,6 @@ public class AddEmployeeCommandTest {
         public void addProject(Project project) {
             throw new AssertionError("This method should not be called.");
         }
-        @Override
-        public void addTask(Task task) {
-            throw new AssertionError("This method should not be called.");
-        }
 
         @Override
         public void setTaskHub(ReadOnlyTaskHub newData) {
@@ -165,11 +160,6 @@ public class AddEmployeeCommandTest {
             throw new AssertionError("This method should not be called.");
         }
         @Override
-        public void deleteTask(Task task) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setEmployee(Employee target, Employee editedEmployee) {
             throw new AssertionError("This method should not be called.");
         }
@@ -185,11 +175,6 @@ public class AddEmployeeCommandTest {
         }
 
         @Override
-        public ObservableList<Task> getFilteredTaskList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -201,10 +186,6 @@ public class AddEmployeeCommandTest {
 
         @Override
         public void updateFilteredProjectList(Predicate<Project> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-        @Override
-        public void updateFilteredTaskList(Predicate<Task> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

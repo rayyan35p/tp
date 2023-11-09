@@ -156,12 +156,5 @@ public class TaskHubTest {
         public ObservableList<Project> getProjectList() {
             return projects;
         }
-
-        @Override
-        public ObservableList<Task> getTaskList() {
-            return tasks;
-        }
-
     }
-
 }
