@@ -367,6 +367,7 @@ Format `addT pr/PROJECT_INDEX [em/EMPLOYEE_INDEX] n/TASK_NAME d/DEADLINE(dd-MM-y
 * otherwise it will have no assignee, and `assignT` can be used after that to assign it to an employee.
 * The index(es) **must be positive integers** 1, 2, 3,...
 * The deadline must be in the format `dd-MM-yyyy HHmm`. For example, `11-10-2023 2359` refers to 11th October 2023, 11.59pm.
+* It is possible for the deadline of the task to be after the deadline of the project. There are currently no warnings for such an input so please be careful while inputting your deadline dates.
 
 Examples:
 * `listP` followed by `addT pr/1 n/Website d/11-10-2023 2359` adds a task named `Website` with deadline `11-10-2023 2359` to the 1st project.
