@@ -93,11 +93,7 @@ public class JsonAdaptedProject {
         try {
             for (JsonAdaptedTask task : tasks) {
                 Task modeledTask = task.toModelType();
-                for (Employee assignedEmployee : modeledTask.getEmployee()) {
-                    if (!employeeList.strictlyContains(assignedEmployee)) {
-                        throw new IllegalValueException(MESSAGE_NOT_ASSIGNED_EMPLOYEE);
-                    }
-                }
+                checkEmployees(modeledTask.getEmployee(), employeeList);
                 taskList.add(modeledTask);
             }
         } catch (DuplicateEmployeeException e) {
@@ -138,5 +134,14 @@ public class JsonAdaptedProject {
         final CompletionStatus modelCompletionStatus = new CompletionStatus(this.completionStatus);
 
         return new Project(modelName, employeeList, taskList, modelPriority, modelDeadline, modelCompletionStatus);
+    }
+
+    private void checkEmployees(List<Employee> employees,
+                                UniqueEmployeeList employeeList) throws IllegalValueException {
+        for (Employee assignedEmployee : employees) {
+            if (!employeeList.strictlyContains(assignedEmployee)) {
+                throw new IllegalValueException(MESSAGE_NOT_ASSIGNED_EMPLOYEE);
+            }
+        }
     }
 }

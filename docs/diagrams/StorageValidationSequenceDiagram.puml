@@ -1,0 +1,68 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+
+box Storage STORAGE_COLOR_T1
+participant ":JsonTaskHubStorage" as JsonTaskHubStorage STORAGE_COLOR
+participant ":JsonSerializableTaskHub" as JsonSerializableTaskHub STORAGE_COLOR
+participant ":JsonAdaptedEmployee" as JsonAdaptedEmployee STORAGE_COLOR
+participant ":JsonAdaptedProject" as JsonAdaptedProject STORAGE_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant "em:Employee" as Employee MODEL_COLOR
+participant "pr:Project" as Project MODEL_COLOR
+participant "m:Model" as Model MODEL_COLOR
+end box
+[->JsonTaskHubStorage : readTaskHub()
+activate JsonTaskHubStorage
+JsonTaskHubStorage --> JsonSerializableTaskHub :toModelType()
+
+activate JsonSerializableTaskHub
+create Model
+JsonSerializableTaskHub-->Model
+
+loop for each JsonAdaptedEmployee
+JsonSerializableTaskHub --> JsonAdaptedEmployee :toModelType()
+activate JsonAdaptedEmployee
+create Employee
+JsonAdaptedEmployee-->Employee
+
+activate Employee
+Employee --> JsonAdaptedEmployee
+deactivate Employee
+
+JsonAdaptedEmployee --> JsonSerializableTaskHub : em
+deactivate JsonAdaptedEmployee
+JsonSerializableTaskHub --> Model : addEmployee(em)
+activate Model
+Model-->JsonSerializableTaskHub
+deactivate Model
+
+end
+
+loop for each JsonAdaptedProject
+JsonSerializableTaskHub --> JsonAdaptedProject : toModelType()
+activate JsonAdaptedProject
+create Project
+JsonAdaptedProject --> Project
+
+activate Project
+Project --> JsonAdaptedProject
+deactivate Project
+
+JsonAdaptedProject --> JsonSerializableTaskHub : em
+deactivate JsonAdaptedProject
+JsonSerializableTaskHub --> Model : addProject(pr)
+activate Model
+Model-->JsonSerializableTaskHub
+deactivate Model
+end
+JsonSerializableTaskHub --> JsonTaskHubStorage : m
+deactivate JsonSerializableTaskHub
+
+[<-JsonTaskHubStorage
+deactivate JsonTaskHubStorage
+@enduml
