@@ -94,6 +94,14 @@ public class TaskHub implements ReadOnlyTaskHub {
     }
 
     /**
+     * Returns true if a employee with all the same fields as {@code employee} exists in the TaskHub.
+     */
+    public boolean strictlyHasEmployee(Employee employee) {
+        requireNonNull(employee);
+        return employees.strictlyContains(employee);
+    }
+
+    /**
      * Adds a employee to the TaskHub.
      * The employee must not already exist in the TaskHub.
      */
