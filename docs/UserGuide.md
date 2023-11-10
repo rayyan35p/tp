@@ -17,7 +17,6 @@ title: User Guide
 * [Features](#features)
   * [General Commands](#general-commands)
     * [View help: `help`](#view-help--help)
-      * [CLI Help](#cli-help)
     * [List all employees and projects: `list`](#list-all-employees-and-projects--list)
     * [Clear all entries: `clear`](#clear-all-entries--clear)
     * [Exit the program: `exit`](#exit-the-program--exit)
