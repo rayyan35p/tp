@@ -36,7 +36,7 @@ public class EditProjectCommand extends Command {
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PRIORITY + "HIGH "
-            + PREFIX_DEADLINE + "2020-12-31";
+            + PREFIX_DEADLINE + "28-02-2022";
 
     public static final String MESSAGE_EDIT_PROJECT_SUCCESS = "Edited Project: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

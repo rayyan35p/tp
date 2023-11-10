@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.AddProjectCommand.MESSAGE_DUPLICATE_PROJECT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
-import static seedu.address.testutil.TypicalProjects.ALPHA;
-import static seedu.address.testutil.TypicalProjects.BETA;
+import static seedu.address.testutil.TypicalProjects.alphaFactory;
+import static seedu.address.testutil.TypicalProjects.betaFactory;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -62,14 +62,14 @@ public class AddProjectCommandTest {
 
     @Test
     public void equals() {
-        AddProjectCommand addAlphaCommand = new AddProjectCommand(ALPHA, new ArrayList<>());
-        AddProjectCommand addBetaCommand = new AddProjectCommand(BETA, new ArrayList<>());
+        AddProjectCommand addAlphaCommand = new AddProjectCommand(alphaFactory(), new ArrayList<>());
+        AddProjectCommand addBetaCommand = new AddProjectCommand(betaFactory(), new ArrayList<>());
 
         // same object -> returns true
         assertTrue(addAlphaCommand.equals(addAlphaCommand));
 
         // same values -> returns true
-        AddProjectCommand addAlphaCommandCopy = new AddProjectCommand(ALPHA, new ArrayList<>());
+        AddProjectCommand addAlphaCommandCopy = new AddProjectCommand(alphaFactory(), new ArrayList<>());
         assertTrue(addAlphaCommand.equals(addAlphaCommandCopy));
 
         // different types -> returns false
@@ -84,8 +84,8 @@ public class AddProjectCommandTest {
 
     @Test
     public void toStringMethod() {
-        AddProjectCommand addProjectCommand = new AddProjectCommand(ALPHA, new ArrayList<>());
-        String expected = AddProjectCommand.class.getCanonicalName() + "{toAdd=" + ALPHA + "}";
+        AddProjectCommand addProjectCommand = new AddProjectCommand(alphaFactory(), new ArrayList<>());
+        String expected = AddProjectCommand.class.getCanonicalName() + "{toAdd=" + alphaFactory() + "}";
         assertEquals(expected, addProjectCommand.toString());
     }
 

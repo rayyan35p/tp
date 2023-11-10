@@ -17,7 +17,6 @@ public class TaskBuilder {
     public static final String DEFAULT_NAME = "ALPHA_TASK";
     public static final String DEFAULT_DEADLINE = "11-11-2023 2359";
     public static final boolean DEFAULT_COMPLETION_STATUS = false;
-    public static final List<Employee> DEFAULT_EMPLOYEE = new ArrayList<>();
 
     private String name;
     private LocalDateTime deadline;
@@ -35,7 +34,7 @@ public class TaskBuilder {
             System.out.print("This should not print");
         }
         isDone = DEFAULT_COMPLETION_STATUS;
-        employee = DEFAULT_EMPLOYEE;
+        employee = new ArrayList<>();
     }
 
     /**

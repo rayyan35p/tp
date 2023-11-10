@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.address.model.project.CompletionStatus;
@@ -15,6 +16,7 @@ import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Name;
 import seedu.address.model.project.Priority;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 
 /**
@@ -23,6 +25,7 @@ import seedu.address.model.task.TaskList;
 
 public class JsonAdaptedProject {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Project's %s field is missing!";
+    public static final String MESSAGE_NOT_ASSIGNED_EMPLOYEE = "Employee(s) assigned to task not found in project!";
     private final String name;
     private final List<JsonAdaptedEmployee> employees = new ArrayList<>();
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
@@ -89,7 +92,13 @@ public class JsonAdaptedProject {
         final TaskList taskList = new TaskList();
         try {
             for (JsonAdaptedTask task : tasks) {
-                taskList.add(task.toModelType());
+                Task modeledTask = task.toModelType();
+                for (Employee assignedEmployee : modeledTask.getEmployee()) {
+                    if (!employeeList.strictlyContains(assignedEmployee)) {
+                        throw new IllegalValueException(MESSAGE_NOT_ASSIGNED_EMPLOYEE);
+                    }
+                }
+                taskList.add(modeledTask);
             }
         } catch (DuplicateEmployeeException e) {
             throw new IllegalValueException(e.getMessage());
