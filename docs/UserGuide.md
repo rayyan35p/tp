@@ -86,8 +86,8 @@ TaskHub's UI consists of 4 main parts that you will be using for your project ma
 * The menu bar is where you can exit TaskHub or even open the help window with a simple click of your mouse!
 * While commands to exit TaskHub or open the help window can be entered as a command, this is a beginner-friendly alternative for newer users who might not be so familiar with the commands.
 
-#### GUI Help:
-Upon clicking help on the top of the GUI as shown below,
+#### Help:
+Upon clicking help on the menu bar as shown below,
 
 ![circled_help_gui](images/circledHelpGui.png)
 
