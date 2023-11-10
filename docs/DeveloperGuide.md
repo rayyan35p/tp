@@ -433,19 +433,35 @@ The task has a deadline past the project deadline! Check again if the details ar
 
 Step 3. If the user intended to add a task with that deadline, then he/she would continue but if it was not intended, they would be alerted to the issue and be able to delete the task.
 
-#### Design considerations:
-
 ### \[Proposed\] Multiple employees assigned to each task
 
 #### Proposed Implementation
 
-#### Design considerations:
+In this version of TaskHub, only 1 employee can be assigned at a time to each task.
+
+Tasks in a project can be worked on by multiple people at a time, so it would be more appropriate to expand the task to take on more than 1 employee.
+
+The current implementation of tasks is already using a `List` that has been restricted to hold only one `Employee`.
+
+`List` was chosen as the data type for storing assigned `Employees` in preparation for a future iteration where more employees could be held in each task.
+
+Thus, expanding `Task` to take more than one employee would simply involve allowing the list to take more than 1 `Employee`.
+
+However, this was not done in the current implementation due to the already complex nature of the `assignT` command which has to modify multiple instances of objects stored in the model.
 
 ### \[Proposed\] Allowing multiple spaces between indexes
 
 #### Proposed Implementation
 
-#### Design considerations:
+TaskHub is not currently able to handle multiple spaces between indexes.
+
+In order to deal with multiple spaces, the following solution can be used (taken from [this StackOverflow discussion](https://stackoverflow.com/questions/2932392/java-how-to-replace-2-or-more-spaces-with-single-space-in-string-and-delete-lead))
+
+```Java
+String after = before.trim().replaceAll(" +", " ");
+```
+
+This will allow indexes with multiple spaces between indexes to be handled automatically instead of the user having to find where they may have put the additional space(s).
 
 --------------------------------------------------------------------------------------------------------------------
 
