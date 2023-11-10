@@ -19,6 +19,8 @@ Class "<<interface>>\nTaskHubStorage" as TaskHubStorage
 Class JsonTaskHubStorage
 Class JsonSerializableTaskHub
 Class JsonAdaptedEmployee
+Class JsonAdaptedProject
+Class JsonAdaptedTask
 Class JsonAdaptedTag
 }
 
@@ -38,6 +40,10 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonTaskHubStorage .up.|> TaskHubStorage
 JsonTaskHubStorage ..> JsonSerializableTaskHub
 JsonSerializableTaskHub --> "*" JsonAdaptedEmployee
+JsonSerializableTaskHub --> "*" JsonAdaptedProject
+JsonAdaptedProject --> "*" JsonAdaptedTask
+JsonAdaptedProject --> "*" JsonAdaptedEmployee
+JsonAdaptedTask -right-> "0..1" JsonAdaptedEmployee
 JsonAdaptedEmployee --> "*" JsonAdaptedTag
 
 @enduml
