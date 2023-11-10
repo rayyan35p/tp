@@ -404,6 +404,49 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Deadline validation between Tasks and Projects
+
+#### Proposed Implementation
+
+Currently, when a user enters a deadline for a task for a given project, any possible date can be entered including deadlines past the deadline of the project itself.
+
+We recognise that there is always a probability that tasks still can be added beyond a project's deadline, so we will not prevent users from doing so, but this scenario is not common.
+
+Beyond the possibility of users keying in a task deadline that is past the project deadline on purpose, there is also the issue that it may be accidental.
+
+Due to the aforementioned reasons, we believe the project deadlines and task deadlines should be validated.
+
+To be more specific, when tasks that have deadlines past the project deadline are added, there should be a warning indicating that a task with a deadline past the project deadline was added.
+
+Users can potentially override this warning with a marker such as `-f`, similar to forcing commands in other command-line interpreters like Command Prompt.
+
+Given below is an example usage scenario and how the validation mechanism behaves at each step.
+
+Step 1. The user executes `addT` to add a task to a project with a deadline past the project deadline.
+
+Step 2. The task is added as per normal in the storage, but a warning is also displayed in the `ResultDisplay`
+
+```
+New task added to project 1, Description: Task In a Project; Deadline: 13 Nov 2023, 11:59PM
+The task has a deadline past the project deadline! Check again if the details are correct and edit if needed!
+```
+
+Step 3. If the user intended to add a task with that deadline, then he/she would continue but if it was not intended, they would be alerted to the issue and be able to delete the task.
+
+#### Design considerations:
+
+### \[Proposed\] Multiple employees assigned to each task
+
+#### Proposed Implementation
+
+#### Design considerations:
+
+### \[Proposed\] Allowing multiple spaces between indexes
+
+#### Proposed Implementation
+
+#### Design considerations:
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -453,7 +496,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | completely new user                 | have sample data              | practice some commands before trying the App                             |
 | `* *`    | user                                | purge all data                | get rid of sample/experimental data and add in my actual data            |
 | `*`      | user with many projects in TaskHub  | sort projects by date         | tell which project deadlines are coming soon                             |
-| `*`      | user with many employees in Taskhub | sort employees by name          | locate a employee easily                                                   |
+| `*`      | user with many employees in Taskhub | sort employees by name        | locate a employee easily                                                 |
 | `*`      | new user                            | get autocomplete suggestions  | write commands without referring to usage instructions often             |
 
 *{More to be added}*
@@ -576,16 +619,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
 ### Deleting a employee
 
@@ -593,16 +636,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No employee is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -610,4 +653,4 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
