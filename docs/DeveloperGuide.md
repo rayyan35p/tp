@@ -233,7 +233,7 @@ Given below is an example usage scenario and the internal changes that happen at
 
 Step 1. The user launches the application. All employees and projects will be shown to the user.
 
-Step 2. The user executes `addP pr/Project1 em/1` to add a new `Project` called `Project1` with the 1st `Employee` on the list as a member. `LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to an `AddProjectCommandParser`.
+Step 2. The user executes `addP n/Project1 em/1 2 3` to add a new `Project` called `Project1` with the 1<sup>st</sup>, 2<sup>nd</sup> and 3<sup>rd</sup> `Employee` on the list as a member. `LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to an `AddProjectCommandParser`.
 
 Step 3. `TaskHubParser` will call `AddProjectCommandParser#parse(arguments)` to produce a `AddProjectCommand` to be executed by the `LogicManager`.
 

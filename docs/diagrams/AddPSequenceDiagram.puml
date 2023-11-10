@@ -12,10 +12,10 @@ box Model MODEL_COLOR_T1
 participant "toAdd:Project" as Project MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
 end box
-[-> LogicManager : execute("addP pr/Project1 em/1")
+[-> LogicManager : execute("addP n/Project1 em/1 2 3")
 activate LogicManager
 
-LogicManager -> TaskHubParser : parseCommand("addP pr/Project1 em/1")
+LogicManager -> TaskHubParser : parseCommand("addP n/Project1 em/1 2 3")
 activate TaskHubParser
 
 create AddProjectCommand
