@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents a Project's deadline in TaskHub.
@@ -16,12 +17,13 @@ public class Deadline {
             "Project deadline should be \n"
                     + "1. an empty string (to remove deadline); or \n"
                     + "2. a valid date in the dd-MM-yyyy format. Example: 17-02-2009";
-    public static final String DATE_FORMAT = "dd-MM-yyyy";
-    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_FORMAT);
+    public static final String DATE_FORMAT = "dd-MM-uuuu";
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_FORMAT)
+            .withResolverStyle(ResolverStyle.STRICT);
 
 
     /**
-     * Either dd-MM-yyyy or empty string
+     * Either dd-MM-uuuu or empty string
      */
     public final String value;
 

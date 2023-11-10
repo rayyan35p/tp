@@ -14,15 +14,15 @@ TaskHub is a **desktop app for managing contacts, optimized for use via a Comman
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `taskhub.jar` from [here](https://github.com/AY2324S1-CS2103T-T08-3/tp/releases).
+2. Download the latest `taskhub.jar` from [here](https://github.com/AY2324S1-CS2103T-T08-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your TaskHub.
+3. Copy the file to the folder you want to use as the _home folder_ for your TaskHub.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar taskhub.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar taskhub.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `listE` : Lists all employees.
@@ -35,7 +35,7 @@ TaskHub is a **desktop app for managing contacts, optimized for use via a Comman
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -49,13 +49,16 @@ TaskHub is a **desktop app for managing contacts, optimized for use via a Comman
   e.g. in `addE n/NAME`, `NAME` is a parameter which can be used as `addE n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+
+* All commands that can take in multiple index should have its indexes separated by **single** spaces.<br>
+e.g. if the command specifies `INDEX [MORE_INDEXES]`, it should be entered as `1 2 3` instead of `1  2  3`.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `listE`, `listP`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -144,7 +147,7 @@ Format: `editE INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed employee list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the employee will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the employee will be removed i.e. adding of tags is not cumulative.
 * You can remove all the employee’s tags by typing `t/` without
   specifying any tags after it.
 
@@ -184,7 +187,7 @@ Additionally, it shows only the projects that these employees are under.
 
 Format: `findE KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -330,12 +333,12 @@ Format: `listP`
 
 ### Locate projects by name: `findP`
 
-Finds projects whose names contain any of the given keywords.
+Find projects whose names contain any of the given keywords.
 Additionally, it shows only the employees that are under these projects.
 
 Format: `findP KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `website` will match `Website`
+* The search is case-insensitive. e.g. `website` will match `Website`
 * The order of the keywords does not matter. e.g. `Create Website` will match `Website Create`
 * Only the name is searched.
 * Only full words will be matched e.g. `Website` will not match `Websites`
@@ -364,6 +367,7 @@ Format `addT pr/PROJECT_INDEX [em/EMPLOYEE_INDEX] n/TASK_NAME d/DEADLINE(dd-MM-y
 * otherwise it will have no assignee, and `assignT` can be used after that to assign it to an employee.
 * The index(es) **must be positive integers** 1, 2, 3,...
 * The deadline must be in the format `dd-MM-yyyy HHmm`. For example, `11-10-2023 2359` refers to 11th October 2023, 11.59pm.
+* It is possible for the deadline of the task to be after the deadline of the project. There are currently no warnings for such an input so please be careful while inputting your deadline dates.
 
 Examples:
 * `listP` followed by `addT pr/1 n/Website d/11-10-2023 2359` adds a task named `Website` with deadline `11-10-2023 2359` to the 1st project.
@@ -424,7 +428,7 @@ Sorts the tasks in each project by their deadline and completion status.
 
 Format: `sortT`
 
-* The sorting of tasks is done within each project i.e tasks from different projects are not compared.
+* The sorting of tasks is done within each project i.e. tasks from different projects are not compared.
 * Incomplete tasks will be placed before completed ones and tasks with an earlier deadline will be placed before those with a later one.
 * Completion status takes precedence over deadline i.e. an incomplete task with a later deadline will be placed before a completed task with an earlier deadline.
 
@@ -470,6 +474,8 @@ Assigns a specified employee in a specified project to a specified task in that 
 
 Format `assignT pr/PROJECT_INDEX t/TASK_INDEX em/EMPLOYEE_INDEX`
 
+* In this version of TaskHub, only a single employee can be assigned to a task at a time.
+* Assigning a task that has already been assigned to another employee will overwrite that employee.
 * The project index refers to the index number shown in the displayed projects list.
 * The task index refers to the index number shown in the last list of the above specified project.
 * The employee index refers to the index number of the employee **in the project list**.
@@ -555,5 +561,5 @@ If your changes to the data file makes its format invalid, TaskHub will discard 
 | **Sort Tasks By Deadline And Completion Status** | `sortT`                                                                                                                                                                                   |
 | **Assign Employee(s) To Project**                | `assignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDEXES]…​` <br> e.g, `assignP pr/4 em/1 2 3`                                                                               |
 | **Un-assign Employee(s) From Project**           | `unassignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDEXES]` <br> e.g, `unassignP pr/2 em/1 3`                                                                               |
-| **Assign Employee To Task**                      | `assignT` <br> e.g., `assignT pr/1 t/1 em/3`                                                                                                                                              |
-| **Un-assign Employee From Task**                 | `unassignT` <br> e.g., `unassignT pr/1 t/1`                                                                                                                                               |
+| **Assign Employee to Task**                      | `assignT pr/PROJECT_INDEX t/TASK_INDEX em/EMPLOYEE_INDEX` <br> e.g., `assignT pr/1 t/1 em/3`                                                                                              |
+| **Un-assign Employee from Task**                 | `unassignT pr/PROJECT_INDEX t/TASK_INDEX` <br> e.g., `unassignT pr/1 t/1`                                                                                                                 |
