@@ -12,25 +12,24 @@ title: User Guide
 * [Getting Started](#getting-started)
   * [Installing and launching TaskHub](#installing-and-launching-taskhub)
   * [Understanding the components of TaskHub](#understanding-the-components-of-taskhub)
-  * [Understanding the User Interface(UI)](#understanding-the-user-interface--ui-)
+  * [Understanding the User Interface (UI)](#understanding-the-user-interface--ui-)
   * [Quick start](#quick-start)
 * [Features](#features)
   * [General Commands](#general-commands)
-    * [View help : `help`](#view-help--help)
-      * [GUI Help:](#gui-help-)
+    * [View help: `help`](#view-help--help)
       * [CLI Help](#cli-help)
     * [List all employees and projects: `list`](#list-all-employees-and-projects--list)
-    * [Clear all entries : `clear`](#clear-all-entries--clear)
-    * [Exit the program : `exit`](#exit-the-program--exit)
+    * [Clear all entries: `clear`](#clear-all-entries--clear)
+    * [Exit the program: `exit`](#exit-the-program--exit)
   * [Employee Commands](#employee-commands)
     * [Add an employee: `addE`](#add-an-employee--adde)
-    * [Edit an employee : `editE`](#edit-an-employee--edite)
-    * [Delete an employee : `deleteE`](#delete-an-employee--deletee)
-    * [List all employees : `listE`](#list-all-employees--liste)
+    * [Edit an employee: `editE`](#edit-an-employee--edite)
+    * [Delete an employee: `deleteE`](#delete-an-employee--deletee)
+    * [List all employees: `listE`](#list-all-employees--liste)
     * [Locate employees by name: `findE`](#locate-employees-by-name--finde)
   * [Project Commands](#project-commands)
-    * [Add a new project : `addP`](#add-a-new-project--addp)
-    * [Edit a project : `editP`](#edit-a-project--editp)
+    * [Add a new project: `addP`](#add-a-new-project--addp)
+    * [Edit a project: `editP`](#edit-a-project--editp)
     * [Delete a project: `deleteP`](#delete-a-project--deletep)
     * [Mark project(s) as completed: `markP`](#mark-project--s--as-completed--markp)
     * [Mark project(s) as incomplete: `unmarkP`](#mark-project--s--as-incomplete--unmarkp)
@@ -52,9 +51,9 @@ title: User Guide
   * [Data Storage](#data-storage)
     * [Save the data](#save-the-data)
     * [Edit the data file](#edit-the-data-file)
-  * [FAQ](#faq)
-  * [Known issues](#known-issues)
-  * [Command summary](#command-summary)
+* [FAQ](#faq)
+* [Known issues](#known-issues)
+* [Command summary](#command-summary)
 <!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
@@ -201,10 +200,9 @@ e.g. if the command specifies `INDEX [MORE_INDEXES]`, it should be entered as `1
 
 ## General Commands
 
-### View help : `help`
+### View help: `help`
 
-#### CLI Help
-Alternatively, enter a `help` command into TaskHub to quickly display the same help window without having to click on help.
+Enter a `help` command into TaskHub to quickly display the same help window without having to click on help.
 
 Format: `help`
 
@@ -216,14 +214,14 @@ Shows a list of all employees and projects in TaskHub.
 Format: `list`
 
 
-### Clear all entries : `clear`
+### Clear all entries: `clear`
 
 Clears all entries from TaskHub.
 
 Format: `clear`
 
 
-### Exit the program : `exit`
+### Exit the program: `exit`
 
 Exits the program.
 
@@ -250,7 +248,7 @@ Examples:
 * `addE n/Betsy Crowe t/Junior e/betsycrowe@example.com a/Brick street p/91234567 t/Employee`
 
 
-### Edit an employee : `editE`
+### Edit an employee: `editE`
 
 Edits an existing employee in the TaskHub.
 
@@ -268,7 +266,7 @@ Examples:
 *  `editE 2 n/Betsy Crower t/` Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
 
 
-### Delete an employee : `deleteE`
+### Delete an employee: `deleteE`
 
 Deletes the specified employee from the employees list.
 
@@ -283,7 +281,7 @@ Examples:
 * `findE Betsy` followed by `deleteE 1` deletes the 1st employee in the results of the `findE` command.
 
 
-### List all employees : `listE`
+### List all employees: `listE`
 
 Shows a list of all employees in TaskHub.
 
@@ -319,7 +317,7 @@ Examples:
 ## Project Commands
 
 
-### Add a new project : `addP`
+### Add a new project: `addP`
 
 Adds a new project in TaskHub
 
@@ -337,7 +335,7 @@ Examples:
 * `addP n/Project2` will add an empty `Project2` to the projects list.
 
 
-### Edit a project : `editP`
+### Edit a project: `editP`
 
 Edits an existing project in the TaskHub.
 
@@ -645,7 +643,7 @@ If your changes to the data file makes its format invalid, TaskHub will discard 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+# FAQ
 
 **Q**: Why is all my TaskHub data gone?<br>
 **A**: TaskHub requires all data stored in the data file to be in the correct format so that it can be read back to TaskHub. A TaskHub that suddenly becomes empty indicates an issue with the data file.<br>
@@ -657,13 +655,13 @@ If you have not changed anything, ensure your `data` folder containing your `tas
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
+# Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+# Command summary
 
 | Action                                           | Format, Examples                                                                                                                                                                          |
 |--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
