@@ -68,6 +68,30 @@ TaskHub is a **desktop app for managing contacts, optimized for use via a Comman
 
 ## Navigating the User Guide
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Information**<br>
+
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+**:warning: Warning**<br>
+
+</div>
+
+<div markdown="block" class="alert alert-danger">
+
+**:no_entry: Danger**<br>
+
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+**:white_check_mark: Information**<br>
+
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 # Getting Started
@@ -403,8 +427,15 @@ Format: `priorityP INDEX [MORE_INDEXES] p/PRIORITY`
 * Sets the priority of the project(s) at the specified `INDEX(ES)`.
 * The index refers to the index number shown in the displayed projects list.
 * The index __must be a positive integer__ 1, 2, 3,...
-* The `PRIORITY` must be one of the following: `low`, `normal`, `high`.
 * All projects are set to normal priority by default.
+
+<div markdown="block" class="alert alert-warning">
+
+**:warning: Warning**<br>
+
+The `PRIORITY` must be one of the following: `low`, `normal`, `high`.
+
+</div>
 
 Examples:
 * `listP` followed by `priorityP 1 2 p/high` sets the 1st and 2nd projects as high priority in TaskHub.
@@ -562,12 +593,19 @@ Assigns a specified employee in a specified project to a specified task in that 
 
 Format `assignT pr/PROJECT_INDEX t/TASK_INDEX em/EMPLOYEE_INDEX`
 
-* In this version of TaskHub, only a single employee can be assigned to a task at a time.
-* Assigning a task that has already been assigned to another employee will overwrite that employee.
 * The project index refers to the index number shown in the displayed projects list.
 * The task index refers to the index number shown in the last list of the above specified project.
 * The employee index refers to the index number of the employee **in the project list**.
 * The index(es) **must be positive integers** 1, 2, 3,...
+
+<div markdown="block" class="alert alert-warning">
+
+**:warning: Warning**<br>
+
+* In this version of TaskHub, only a single employee can be assigned to a task at a time.
+* Assigning a task that has already been assigned to another employee will overwrite that employee.
+
+</div>
 
 Examples:
 * `listP` followed by `assignT pr/1 t/1 em/2` assigns the first task in the first project to the second employee in the project.
