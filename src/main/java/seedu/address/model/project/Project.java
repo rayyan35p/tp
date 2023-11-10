@@ -1,11 +1,14 @@
 package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 /**
  * Represents a Project in TaskHub.
@@ -15,52 +18,114 @@ public class Project {
 
     public static final String MESSAGE_CONSTRAINTS = "Projects can take any values, and it should not be blank";
 
-    /*
-     * The first character must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
-
-    public final String name;
-    public final Deadline deadline;
-    public final UniqueEmployeeList employeeList;
-    private final ProjectPriority projectPriority;
+    private final Name name;
+    private final UniqueEmployeeList employeeList;
+    private final TaskList tasks;
+    private final Deadline deadline;
+    private final Priority priority;
+    private final CompletionStatus completionStatus;
 
 
     /**
      * Constructs a {@code Project}.
      *
-     * @param project A valid Project.
+     * @param name A valid name.
      */
-    public Project(String project) {
-        requireNonNull(project);
-        this.name = project;
-        this.projectPriority = new ProjectPriority("normal");
+    public Project(String name) {
+        requireNonNull(name);
+        this.name = new Name(name);
+        this.priority = new Priority("normal");
         this.deadline = new Deadline("");
         this.employeeList = new UniqueEmployeeList();
+        this.completionStatus = new CompletionStatus(false);
+        this.tasks = new TaskList();
     }
 
     /**
      * Constructs a {@code Project}.
      *
-     * @param project A valid Project.
-     * @param employees A list of Employees that are in the project
-     * @param priority A valid ProjectPriority for the project.
-     * @param deadline A valid Deadline for the project.
+     * @param name A valid name.
      */
-    public Project(String project, UniqueEmployeeList employees, ProjectPriority priority, Deadline deadline) {
+    public Project(Name name) {
+        requireNonNull(name);
+        this.name = name;
+        this.priority = new Priority("normal");
+        this.deadline = new Deadline("");
+        this.employeeList = new UniqueEmployeeList();
+        this.completionStatus = new CompletionStatus(false);
+        this.tasks = new TaskList();
+    }
+
+    /**
+     * Constructs a {@code Project}.
+     *
+     * @param project A valid project.
+     */
+    public Project(Project project) {
         requireNonNull(project);
-        this.name = project;
-        this.projectPriority = priority;
+        this.name = project.getName();
+        this.priority = project.getPriority();
+        this.deadline = project.getDeadline();
+        this.employeeList = project.getEmployees();
+        this.completionStatus = project.getCompletionStatus();
+        this.tasks = project.getTasks();
+    }
+
+    /**
+     * Constructs a {@code Project}.
+     *
+     * @param name A valid name.
+     * @param employees A list of Employees that are in the project
+     * @param tasks A list of Tasks that are in the project
+     * @param priority A valid Priority for the project.
+     * @param deadline A valid Deadline for the project.
+     * @param completionStatus A valid CompletionStatus for the project.
+     */
+    public Project(Name name,
+                   UniqueEmployeeList employees,
+                   TaskList tasks,
+                   Priority priority,
+                   Deadline deadline,
+                   CompletionStatus completionStatus) {
+        requireAllNonNull(name, employees, tasks, priority, deadline, completionStatus);
+        this.name = name;
+        this.priority = priority;
         this.employeeList = employees;
+        this.tasks = tasks;
         this.deadline = deadline;
+        this.completionStatus = completionStatus;
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public UniqueEmployeeList getEmployees() {
+        return employeeList;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public Deadline getDeadline() {
+        return deadline;
+    }
+
+    public CompletionStatus getCompletionStatus() {
+        return completionStatus;
     }
 
     /**
      * Returns true if a given string is a valid project name.
      */
-    public static boolean isValidProject(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidProjectName(String test) {
+        try {
+            new Name(test);
+            return true;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     /**
@@ -90,37 +155,48 @@ public class Project {
                 && otherProject.name.equals(this.name);
     }
 
-    public UniqueEmployeeList getEmployees() {
-        return employeeList;
+    public TaskList getTasks() {
+        return tasks;
     }
 
-    public ProjectPriority getProjectPriority() {
-        return projectPriority;
+    /**
+     * Adds a task to the project
+     * @param task The task to be added.
+     */
+    public void addTask(Task task) {
+        tasks.add(task);
+    }
+
+    /**
+     * Removes a task from the project
+     * @param task The task to be removed.
+     */
+
+    public void removeTask(Task task) {
+        tasks.remove(task);
+    }
+
+    /**
+     * Sorts tasks in tasks list according to completion and deadline.
+     * Incomplete tasks will appear before complete tasks and tasks will be arranged in ascending deadline order.
+     */
+    public void sortTasksByDeadlineAndCompletion() {
+        tasks.sortTasksByDeadlineAndCompletion();
     }
 
     public String getListOfEmployeeNames() {
         StringBuilder employeeListString = new StringBuilder();
+        int index = 1;
         for (Employee employee : employeeList) {
-            employeeListString.append(employee.getName() + ", ");
-        }
-        if (employeeList.asUnmodifiableObservableList().size() != 0) {
-            employeeListString.delete(employeeListString.length() - 2,
-                    employeeListString.length());
+            employeeListString.append(index + ". " + employee.getName() + "\n");
+            index++;
         }
         return employeeListString.toString();
     }
 
-    public String getNameString() {
-        return this.name;
-    }
-
-    public Deadline getDeadline() {
-        return deadline;
-    }
-
     @Override
     public String toString() {
-        return name;
+        return name.toString();
     }
 
     @Override

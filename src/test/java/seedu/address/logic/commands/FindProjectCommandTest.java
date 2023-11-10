@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PROJECTS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalProjects.BETA;
-import static seedu.address.testutil.TypicalProjects.DELTA;
-import static seedu.address.testutil.TypicalProjects.GAMMA;
+import static seedu.address.testutil.TypicalProjects.betaFactory;
+import static seedu.address.testutil.TypicalProjects.deltaFactory;
+import static seedu.address.testutil.TypicalProjects.gammaFactory;
 import static seedu.address.testutil.TypicalProjects.getTypicalTaskHub;
 
 import java.util.Arrays;
@@ -82,7 +82,7 @@ public class FindProjectCommandTest {
         expectedModel.updateFilteredEmployeeList(employeePredicate);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(BETA, DELTA, GAMMA), model.getFilteredProjectList());
+        assertEquals(Arrays.asList(betaFactory(), deltaFactory(), gammaFactory()), model.getFilteredProjectList());
     }
 
     @Test

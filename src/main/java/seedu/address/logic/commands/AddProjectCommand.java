@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
 
@@ -21,9 +21,9 @@ public class AddProjectCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a project to the TaskHub. "
             + "Parameters: "
-            + PREFIX_PROJECT + "PROJECT_NAME\n"
+            + PREFIX_NAME + "PROJECT_NAME\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_PROJECT + "Rebuild Taskhub";
+            + PREFIX_NAME + "Rebuild Taskxhub";
 
 
     public static final String MESSAGE_SUCCESS = "New project added: %1$s";
@@ -49,12 +49,7 @@ public class AddProjectCommand extends Command {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
             }
-            //changes project of employee
             Employee employeeToAdd = lastShownList.get(targetIndex.getZeroBased());
-            EditCommand.EditEmployeeDescriptor editEmployeeDescriptor = new EditCommand.EditEmployeeDescriptor();
-            editEmployeeDescriptor.setProject(toAdd);
-            new EditCommand(targetIndex, editEmployeeDescriptor).execute(model);
-
             toAdd.addEmployee(employeeToAdd);
         }
 

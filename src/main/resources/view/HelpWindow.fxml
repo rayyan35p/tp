@@ -24,8 +24,8 @@
       <stylesheets>
         <URL value="@HelpWindow.css" />
       </stylesheets>
-      <ScrollPane vvalue="0.0" hbarPolicy="NEVER" prefHeight="600.0" prefWidth="525" fx:id="scrollPane">
-        <VBox fx:id="container" alignment="CENTER" spacing="10">
+      <ScrollPane vvalue="0.0" hbarPolicy="NEVER" prefHeight="600.0" prefWidth="600" fx:id="scrollPane" fitToWidth="true">
+        <VBox fx:id="container" alignment="CENTER" spacing="10" HBox.hgrow="ALWAYS">
           <Label fx:id="helpLabel" text="TaskHub Quick Guide:" />
           <Separator /> <!-- Add a separator after the label -->
           <VBox fx:id="vBox" spacing="10">

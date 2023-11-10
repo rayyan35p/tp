@@ -3,11 +3,15 @@ package seedu.address.ui;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
 
 /**
  * An UI component that displays information of a {@code Project}.
@@ -38,6 +42,12 @@ public class ProjectCard extends UiPart<Region> {
     private Label priority;
     @FXML
     private Label deadline;
+    @FXML
+    private StackPane taskListPlaceholder;
+    @FXML
+    private CheckBox completionStatus;
+    @FXML
+    private Label completionStatusText;
 
 
     /**
@@ -51,17 +61,17 @@ public class ProjectCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
 
         // Set the name
-        name.setText(project.getNameString());
+        name.setText(project.getName().toString());
 
         // Set the list of employees
         String listOfEmployeesString =
                 project.getEmployees().asUnmodifiableObservableList().size() == 0
                 ? "No members yet."
-                : "Members: " + project.getListOfEmployeeNames();
+                : "Members:\n" + project.getListOfEmployeeNames();
         projects.setText(listOfEmployeesString);
 
         // Set the priority
-        String priorityString = project.getProjectPriority().toString();
+        String priorityString = project.getPriority().toString();
         priority.setText("Priority: " + priorityString);
         if (priorityString.equals("low")) {
             priority.setStyle("-fx-text-fill: green;");
@@ -70,6 +80,14 @@ public class ProjectCard extends UiPart<Region> {
             priority.setStyle("-fx-text-fill: red;");
         }
 
+        ObservableList<Task> taskObservableList = project.getTasks().asUnmodifiableObservableList();
+        TaskListPanel taskListPanel = new TaskListPanel(taskObservableList);
+
+        if (taskObservableList.isEmpty()) {
+            taskListPlaceholder.setVisible(false);
+        } else {
+            taskListPlaceholder.getChildren().add(taskListPanel.getRoot());
+        }
         // Set the deadline
         if (project.getDeadline().value.isEmpty()) {
             deadline.setText("No deadline set");
@@ -77,7 +95,7 @@ public class ProjectCard extends UiPart<Region> {
             LocalDate currentDateTime = LocalDate.now(); // Get the current date
             LocalDate deadlineDate = project.getDeadline().getLocalDate(); // Get project deadline
 
-            String formattedDeadline = deadlineDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            String formattedDeadline = deadlineDate.format(DateTimeFormatter.ofPattern("dd-MM-uuuu"));
             deadline.setText("Deadline: " + formattedDeadline);
 
             // Compare project deadline with current date
@@ -89,5 +107,11 @@ public class ProjectCard extends UiPart<Region> {
                 deadline.setStyle("-fx-text-fill: green;");
             }
         }
+
+        // Set the completion status
+        completionStatusText.setText("Completed?:");
+        completionStatus.setSelected(project.getCompletionStatus().isCompleted);
+        // Prevent user from interacting with the checkbox through GUI
+        completionStatus.setDisable(true);
     }
 }

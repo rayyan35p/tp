@@ -313,6 +313,18 @@
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
     -fx-padding: 8 1 8 1;
 }
+.task_label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 12px;
+    -fx-text-fill: #010504;
+}
+
+#taskListView {
+    -fx-border-color: #727272; /* Border color (black in this case) */
+    -fx-border-width: 3; /* Border width */
+    -fx-padding: 3;
+}
+
 
 #cardPane {
     -fx-background-color: transparent;

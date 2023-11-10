@@ -16,21 +16,21 @@ public class ProjectTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Project(null));
+        assertThrows(NullPointerException.class, () -> new Project((String) null));
     }
 
     @Test
     public void isValidProject() {
         // null project
-        assertThrows(NullPointerException.class, () -> Project.isValidProject(null));
+        assertThrows(NullPointerException.class, () -> Project.isValidProjectName(null));
 
         // invalid projects
-        assertFalse(Project.isValidProject("")); // empty string
-        assertFalse(Project.isValidProject(" ")); // spaces only
+        assertFalse(Project.isValidProjectName("")); // empty string
+        assertFalse(Project.isValidProjectName(" ")); // spaces only
 
         // valid projects
-        assertTrue(Project.isValidProject("likes to study"));
-        assertTrue(Project.isValidProject("-")); // one character
+        assertTrue(Project.isValidProjectName("likes to study"));
+        assertTrue(Project.isValidProjectName("9")); // one character
     }
 
     @Test
@@ -41,7 +41,7 @@ public class ProjectTest {
         assertTrue(project.equals(project));
 
         // same values -> returns true
-        Project projectCopy = new Project(project.name);
+        Project projectCopy = new Project(project.getName());
         assertTrue(project.equals(projectCopy));
 
         // different types -> returns false
@@ -60,7 +60,7 @@ public class ProjectTest {
         Project project = new Project("some project");
         project.addEmployee(ALICE);
         project.addEmployee(BOB);
-        assertTrue(project.employeeList.contains(ALICE) && project.employeeList.contains(BOB));
+        assertTrue(project.getEmployees().contains(ALICE) && project.getEmployees().contains(BOB));
     }
 
     @Test
@@ -68,9 +68,9 @@ public class ProjectTest {
         Project project = new Project("some project");
         project.addEmployee(ALICE);
         project.addEmployee(BOB);
-        assertTrue(project.employeeList.contains(ALICE) && project.employeeList.contains(BOB));
+        assertTrue(project.getEmployees().contains(ALICE) && project.getEmployees().contains(BOB));
         project.removeEmployee(ALICE);
-        assertTrue(!project.employeeList.contains(ALICE) && project.employeeList.contains(BOB));
+        assertTrue(!project.getEmployees().contains(ALICE) && project.getEmployees().contains(BOB));
     }
 
     @Test
@@ -78,7 +78,7 @@ public class ProjectTest {
         Project project = new Project("some project");
         project.addEmployee(ALICE);
         project.addEmployee(BOB);
-        String expected = "Alice Pauline, Bob Choo";
+        String expected = "1. Alice Pauline\n2. Bob Choo\n";
 
         assertTrue(project.getListOfEmployeeNames().equals(expected));
     }

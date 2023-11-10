@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +11,7 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.employee.UniqueEmployeeList;
-import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectPriority;
 
 
 /**
@@ -30,24 +27,22 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
      */
     public AddProjectCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_PROJECT, PREFIX_EMPLOYEE);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_EMPLOYEE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PROJECT);
-        Project project = ParserUtil.parseProject(argMultimap.getValue(PREFIX_PROJECT).get());
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EMPLOYEE, PREFIX_NAME);
+        Project project = ParserUtil.parseProject(argMultimap.getValue(PREFIX_NAME).get());
+
         List<Index> employeeIndexes = new ArrayList<>();
+
         if (argMultimap.getValue(PREFIX_EMPLOYEE).isPresent()) {
-            for (String index : argMultimap.getValue(PREFIX_EMPLOYEE).get().split(" ")) {
-                employeeIndexes.add(ParserUtil.parseIndex(index));
-            }
+            employeeIndexes = ParserUtil.parseIndexes(argMultimap.getValue(PREFIX_EMPLOYEE).get());
         }
-        ProjectPriority priority = new ProjectPriority("normal");
-        Deadline deadline = new Deadline("");
-        project = new Project(project.getNameString(), new UniqueEmployeeList(), priority, deadline);
+        project = new Project(project.getName());
 
         return new AddProjectCommand(project, employeeIndexes);
     }

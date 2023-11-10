@@ -30,10 +30,20 @@ public class UniqueEmployeeList implements Iterable<Employee> {
 
     /**
      * Returns true if the list contains an equivalent employee as the given argument.
+     * (uses a weaker notion of equality)
      */
     public boolean contains(Employee toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameEmployee);
+    }
+
+    /**
+     * Returns true if the list contains the same employee as the given argument.
+     * (uses a stronger notion of equality)
+     */
+    public boolean strictlyContains(Employee toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -46,6 +56,20 @@ public class UniqueEmployeeList implements Iterable<Employee> {
             throw new DuplicateEmployeeException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Returns true if the list is empty.
+     */
+    public boolean isEmpty() {
+        return internalList.isEmpty();
+    }
+
+    /**
+     * Returns the size of the list.
+     */
+    public int size() {
+        return internalList.size();
     }
 
     /**
@@ -95,6 +119,14 @@ public class UniqueEmployeeList implements Iterable<Employee> {
         }
 
         internalList.setAll(employees);
+    }
+
+    /**
+     * Returns the size of the internalList.
+     * @return The size of the internalList.
+     */
+    public int getSize() {
+        return internalList.size();
     }
 
     /**

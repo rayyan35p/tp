@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.AddProjectCommand.MESSAGE_DUPLICATE_PROJECT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
-import static seedu.address.testutil.TypicalProjects.ALPHA;
-import static seedu.address.testutil.TypicalProjects.BETA;
+import static seedu.address.testutil.TypicalProjects.alphaFactory;
+import static seedu.address.testutil.TypicalProjects.betaFactory;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -28,6 +28,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TaskHub;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.ProjectBuilder;
 
 public class AddProjectCommandTest {
@@ -61,14 +62,14 @@ public class AddProjectCommandTest {
 
     @Test
     public void equals() {
-        AddProjectCommand addAlphaCommand = new AddProjectCommand(ALPHA, new ArrayList<>());
-        AddProjectCommand addBetaCommand = new AddProjectCommand(BETA, new ArrayList<>());
+        AddProjectCommand addAlphaCommand = new AddProjectCommand(alphaFactory(), new ArrayList<>());
+        AddProjectCommand addBetaCommand = new AddProjectCommand(betaFactory(), new ArrayList<>());
 
         // same object -> returns true
         assertTrue(addAlphaCommand.equals(addAlphaCommand));
 
         // same values -> returns true
-        AddProjectCommand addAlphaCommandCopy = new AddProjectCommand(ALPHA, new ArrayList<>());
+        AddProjectCommand addAlphaCommandCopy = new AddProjectCommand(alphaFactory(), new ArrayList<>());
         assertTrue(addAlphaCommand.equals(addAlphaCommandCopy));
 
         // different types -> returns false
@@ -83,8 +84,8 @@ public class AddProjectCommandTest {
 
     @Test
     public void toStringMethod() {
-        AddProjectCommand addProjectCommand = new AddProjectCommand(ALPHA, new ArrayList<>());
-        String expected = AddProjectCommand.class.getCanonicalName() + "{toAdd=" + ALPHA + "}";
+        AddProjectCommand addProjectCommand = new AddProjectCommand(alphaFactory(), new ArrayList<>());
+        String expected = AddProjectCommand.class.getCanonicalName() + "{toAdd=" + alphaFactory() + "}";
         assertEquals(expected, addProjectCommand.toString());
     }
 
@@ -131,6 +132,10 @@ public class AddProjectCommandTest {
         public void addProject(Project project) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void addTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void setTaskHub(ReadOnlyTaskHub newData) {
@@ -161,6 +166,10 @@ public class AddProjectCommandTest {
         public void deleteProject(Project project) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void deleteTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void setEmployee(Employee target, Employee editedEmployee) {
@@ -174,7 +183,12 @@ public class AddProjectCommandTest {
 
         @Override
         public ObservableList<Project> getFilteredProjectList() {
-            return null;
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Task> getFilteredTaskList() {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -189,6 +203,10 @@ public class AddProjectCommandTest {
 
         @Override
         public void updateFilteredProjectList(Predicate<Project> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void updateFilteredTaskList(Predicate<Task> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

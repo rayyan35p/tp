@@ -10,12 +10,17 @@ import java.util.regex.Pattern;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddEmployeeCommand;
 import seedu.address.logic.commands.AddProjectCommand;
-import seedu.address.logic.commands.AssignEmployeeCommand;
+import seedu.address.logic.commands.AddTaskCommand;
+import seedu.address.logic.commands.AssignProjectCommand;
+import seedu.address.logic.commands.AssignTaskCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeadlineProjectCommand;
 import seedu.address.logic.commands.DeleteEmployeeCommand;
 import seedu.address.logic.commands.DeleteProjectCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.DeleteTaskCommand;
+import seedu.address.logic.commands.EditEmployeeCommand;
+import seedu.address.logic.commands.EditProjectCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindEmployeeCommand;
 import seedu.address.logic.commands.FindProjectCommand;
@@ -23,9 +28,16 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListEmployeeAndProjectCommand;
 import seedu.address.logic.commands.ListEmployeeCommand;
 import seedu.address.logic.commands.ListProjectCommand;
+import seedu.address.logic.commands.MarkProjectCommand;
+import seedu.address.logic.commands.MarkTaskCommand;
 import seedu.address.logic.commands.PriorityProjectCommand;
-import seedu.address.logic.commands.ProjectDeadlineCommand;
+import seedu.address.logic.commands.SortTaskCommand;
+import seedu.address.logic.commands.UnassignProjectCommand;
+import seedu.address.logic.commands.UnassignTaskCommand;
+import seedu.address.logic.commands.UnmarkProjectCommand;
+import seedu.address.logic.commands.UnmarkTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+
 
 /**
  * Parses user input.
@@ -67,11 +79,17 @@ public class TaskHubParser {
         case AddProjectCommand.COMMAND_WORD:
             return new AddProjectCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case EditEmployeeCommand.COMMAND_WORD:
+            return new EditEmployeeCommandParser().parse(arguments);
 
-        case AssignEmployeeCommand.COMMAND_WORD:
-            return new AssignEmployeeCommandParser().parse(arguments);
+        case EditProjectCommand.COMMAND_WORD:
+            return new EditProjectCommandParser().parse(arguments);
+
+        case AssignProjectCommand.COMMAND_WORD:
+            return new AssignProjectCommandParser().parse(arguments);
+
+        case UnassignProjectCommand.COMMAND_WORD:
+            return new UnassignProjectCommandParser().parse(arguments);
 
         case DeleteEmployeeCommand.COMMAND_WORD:
             return new DeleteEmployeeCommandParser().parse(arguments);
@@ -94,14 +112,41 @@ public class TaskHubParser {
         case ListProjectCommand.COMMAND_WORD:
             return new ListProjectCommand();
 
+        case AddTaskCommand.COMMAND_WORD:
+            return new AddTaskCommandParser().parse(arguments);
+
+        case DeleteTaskCommand.COMMAND_WORD:
+            return new DeleteTaskCommandParser().parse(arguments);
+
+        case AssignTaskCommand.COMMAND_WORD:
+            return new AssignTaskCommandParser().parse(arguments);
+
+        case UnassignTaskCommand.COMMAND_WORD:
+            return new UnassignTaskCommandParser().parse(arguments);
+
         case ListEmployeeAndProjectCommand.COMMAND_WORD:
             return new ListEmployeeAndProjectCommand();
 
         case PriorityProjectCommand.COMMAND_WORD:
             return new PriorityProjectCommandParser().parse(arguments);
 
-        case ProjectDeadlineCommand.COMMAND_WORD:
-            return new ProjectDeadlineCommandParser().parse(arguments);
+        case DeadlineProjectCommand.COMMAND_WORD:
+            return new DeadlineProjectCommandParser().parse(arguments);
+
+        case MarkProjectCommand.COMMAND_WORD:
+            return new MarkProjectCommandParser().parse(arguments);
+
+        case UnmarkProjectCommand.COMMAND_WORD:
+            return new UnmarkProjectCommandParser().parse(arguments);
+
+        case MarkTaskCommand.COMMAND_WORD:
+            return new MarkTaskCommandParser().parse(arguments);
+
+        case UnmarkTaskCommand.COMMAND_WORD:
+            return new UnmarkTaskCommandParser().parse(arguments);
+
+        case SortTaskCommand.COMMAND_WORD:
+            return new SortTaskCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
