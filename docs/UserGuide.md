@@ -3,14 +3,117 @@ layout: page
 title: User Guide
 ---
 
-TaskHub is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TaskHub can get your project management tasks done faster than traditional GUI apps.
-
-* Table of Contents
-{:toc}
+# Table of Contents
+<!-- TOC -->
+* [Introduction](#introduction)
+  * [About TaskHub](#about-taskhub)
+  * [About this User Guide](#about-this-user-guide)
+  * [Navigating the User Guide](#navigating-the-user-guide)
+* [Getting Started](#getting-started)
+  * [Installing and launching TaskHub](#installing-and-launching-taskhub)
+  * [Understanding the components of TaskHub](#understanding-the-components-of-taskhub)
+  * [Understanding the User Interface(UI)](#understanding-the-user-interface--ui-)
+  * [Quick start](#quick-start)
+* [Features](#features)
+  * [General Commands](#general-commands)
+    * [View help : `help`](#view-help--help)
+      * [GUI Help:](#gui-help-)
+      * [CLI Help](#cli-help)
+    * [List all employees and projects: `list`](#list-all-employees-and-projects--list)
+    * [Clear all entries : `clear`](#clear-all-entries--clear)
+    * [Exit the program : `exit`](#exit-the-program--exit)
+  * [Employee Commands](#employee-commands)
+    * [Add an employee: `addE`](#add-an-employee--adde)
+    * [Edit an employee : `editE`](#edit-an-employee--edite)
+    * [Delete an employee : `deleteE`](#delete-an-employee--deletee)
+    * [List all employees : `listE`](#list-all-employees--liste)
+    * [Locate employees by name: `findE`](#locate-employees-by-name--finde)
+  * [Project Commands](#project-commands)
+    * [Add a new project : `addP`](#add-a-new-project--addp)
+    * [Edit a project : `editP`](#edit-a-project--editp)
+    * [Delete a project: `deleteP`](#delete-a-project--deletep)
+    * [Mark project(s) as completed: `markP`](#mark-project--s--as-completed--markp)
+    * [Mark project(s) as incomplete: `unmarkP`](#mark-project--s--as-incomplete--unmarkp)
+    * [Edit deadline of (a) project(s): `dlP`](#edit-deadline-of--a--project--s---dlp)
+    * [Prioritise projects: `priorityP`](#prioritise-projects--priorityp)
+    * [List all projects: `listP`](#list-all-projects--listp)
+    * [Locate projects by name: `findP`](#locate-projects-by-name--findp)
+  * [Task Commands](#task-commands)
+    * [Add a new task to a project: `addT`](#add-a-new-task-to-a-project--addt)
+    * [Delete a task from a project: `deleteT`](#delete-a-task-from-a-project--deletet)
+    * [Mark task(s) as completed: `markT`](#mark-task--s--as-completed--markt)
+    * [Mark task(s) as incomplete: `unmarkT`](#mark-task--s--as-incomplete--unmarkt)
+    * [Sort tasks by deadline and completion status: `sortT`](#sort-tasks-by-deadline-and-completion-status--sortt)
+  * [Assignment Commands](#assignment-commands)
+    * [Assign employee(s) to a project: `assignP`](#assign-employee--s--to-a-project--assignp)
+    * [Un-assign employee(s) from a project: `unassignP`](#un-assign-employee--s--from-a-project--unassignp)
+    * [Assign an employee to a task: `assignT`](#assign-an-employee-to-a-task--assignt)
+    * [Un-assign an employee from a task: `unassignT`](#un-assign-an-employee-from-a-task--unassignt)
+  * [Data Storage](#data-storage)
+    * [Save the data](#save-the-data)
+    * [Edit the data file](#edit-the-data-file)
+  * [FAQ](#faq)
+  * [Known issues](#known-issues)
+  * [Command summary](#command-summary)
+<!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Quick start
+# Introduction
+
+## About TaskHub
+TaskHub is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TaskHub can get your project management tasks done faster than traditional GUI apps.
+
+## About this User Guide
+
+## Navigating the User Guide
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Getting Started
+
+## Installing and launching TaskHub
+
+## Understanding the components of TaskHub
+
+## Understanding the User Interface(UI)
+
+![Ui Parts](images/UiParts.png)
+
+TaskHub's UI consists of 4 main parts that you will be using for your project management:
+
+### Menu Bar
+* The menu bar is where you can exit TaskHub or even open the help window with a simple click of your mouse!
+* While commands to exit TaskHub or open the help window can be entered as a command, this is a beginner-friendly alternative for newer users who might not be so familiar with the commands.
+
+#### GUI Help:
+Upon clicking help on the top of the GUI as shown below,
+
+![circled_help_gui](images/circledHelpGui.png)
+
+a help window pops up with a list of all the possible commands:
+
+![help window](images/HelpWindow.png)
+
+and at the bottom of the window, is a link to our user guide.
+
+![ug_link](images/HelpWindowUgLink.png)
+
+### Command Panel
+* The command panel is the main panel that you will be interacting with to key in commands and also get back the results of those commands.
+* The upper box is where you can type in your command.
+* And the lower box is where you will see the results of those commands.
+
+### Employee Panel
+* The employee panel is one of two panels that you can use to see what is stored in TaskHub.
+* The employee panel, as the name suggests, is where all the information about each employee is stored.
+* You can see their name, phone number, address, email address, and even whatever tags that you have for each of them as needed!
+
+### Project Panel
+* The project panel is the other panel that you will be using to see the data stored in TaskHub.
+* Projects, as well as their members, tasks to complete in the project, and other important details for managing your project are stored here!
+
+## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -75,21 +178,6 @@ e.g. if the command specifies `INDEX [MORE_INDEXES]`, it should be entered as `1
 ## General Commands
 
 ### View help : `help`
-
-
-#### GUI Help:
-Upon clicking help on the top of the GUI as shown below,
-
-![circled_help_gui](images/circledHelpGui.png)
-
-a help window pops up with a list of all the possible commands:
-
-![help window](images/HelpWindow.png)
-
-and at the bottom of the window, is a link to our user guide.
-
-![ug_link](images/HelpWindowUgLink.png)
-
 
 #### CLI Help
 Alternatively, enter a `help` command into TaskHub to quickly display the same help window without having to click on help.
@@ -521,6 +609,11 @@ If your changes to the data file makes its format invalid, TaskHub will discard 
 
 ## FAQ
 
+**Q**: Why is all my TaskHub data gone?<br>
+**A**: TaskHub requires all data stored in the data file to be in the correct format so that it can be read back to TaskHub. A TaskHub that suddenly becomes empty indicates an issue with the data file.<br>
+If you have directly changed any data in the `taskhub.json` file instead of through TaskHub, it is highly likely that it would be in the wrong format, resulting in an empty TaskHub.<br>
+If you have not changed anything, ensure your `data` folder containing your `taskhub.json` is in the same folder as your `taskhub.jar`.
+
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TaskHub home folder.
 
@@ -563,3 +656,5 @@ If your changes to the data file makes its format invalid, TaskHub will discard 
 | **Un-assign Employee(s) From Project**           | `unassignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDEXES]` <br> e.g, `unassignP pr/2 em/1 3`                                                                               |
 | **Assign Employee to Task**                      | `assignT pr/PROJECT_INDEX t/TASK_INDEX em/EMPLOYEE_INDEX` <br> e.g., `assignT pr/1 t/1 em/3`                                                                                              |
 | **Un-assign Employee from Task**                 | `unassignT pr/PROJECT_INDEX t/TASK_INDEX` <br> e.g., `unassignT pr/1 t/1`                                                                                                                 |
+
+[Return to Table of Contents](#table-of-contents)
