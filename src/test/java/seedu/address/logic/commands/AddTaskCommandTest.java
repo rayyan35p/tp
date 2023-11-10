@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
-import static seedu.address.testutil.TypicalProjects.ALPHA;
+import static seedu.address.testutil.TypicalProjects.alphaFactory;
 import static seedu.address.testutil.TypicalTasks.ALPHA_TASK;
 import static seedu.address.testutil.TypicalTasks.BETA_TASK;
 
@@ -20,6 +20,7 @@ import seedu.address.model.task.Task;
 import seedu.address.testutil.ModelStubWithEmptyProjectList;
 import seedu.address.testutil.ModelStubWithEmptyProjectListAndEmptyEmployeeList;
 import seedu.address.testutil.ModelStubWithProjectAndEmployee;
+import seedu.address.testutil.ProjectBuilder;
 import seedu.address.testutil.TaskBuilder;
 public class AddTaskCommandTest {
     @Test
@@ -29,7 +30,7 @@ public class AddTaskCommandTest {
 
     @Test
     public void execute_taskWithoutAssigneeAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(ALPHA, ALICE);
+        ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(alphaFactory(), ALICE);
         Task validTask = new TaskBuilder().build();
         Index index = ParserUtil.parseIndex("1");
         CommandResult commandResult = new AddTaskCommand(validTask,
@@ -40,7 +41,7 @@ public class AddTaskCommandTest {
     }
     @Test
     public void execute_taskWithAssigneeAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(ALPHA, ALICE);
+        ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(alphaFactory(), ALICE);
         Task validTask = new TaskBuilder().build();
         Index projectIndex = ParserUtil.parseIndex("1");
         Index employeeIndex = ParserUtil.parseIndex("1");
@@ -54,7 +55,7 @@ public class AddTaskCommandTest {
 
     @Test
     public void execute_addTaskToInvalidProjectIndex_throwsCommandException() throws Exception {
-        ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(ALPHA, ALICE);
+        ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(alphaFactory(), ALICE);
         Task validTask = new TaskBuilder().build();
         Index index = ParserUtil.parseIndex("2");
         AddTaskCommand addTaskCommand = new AddTaskCommand(validTask,
@@ -64,7 +65,8 @@ public class AddTaskCommandTest {
     }
     @Test
     public void execute_addTaskWithInvalidEmployeeIndex_throwsCommandException() throws Exception {
-        ModelStubWithProjectAndEmployee modelStub = new ModelStubWithProjectAndEmployee(ALPHA, ALICE);
+        ModelStubWithProjectAndEmployee modelStub =
+                new ModelStubWithProjectAndEmployee(new ProjectBuilder().withTasks(ALPHA_TASK).build(), ALICE);
         Task validTask = new TaskBuilder().build();
         Index projectIndex = ParserUtil.parseIndex("1");
         Index employeeIndex = ParserUtil.parseIndex("5");

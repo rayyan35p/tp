@@ -1,7 +1,6 @@
 package seedu.address.testutil;
 
 import static seedu.address.testutil.TypicalEmployees.ALICE;
-import static seedu.address.testutil.TypicalTasks.ALPHA_TASK;
 
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
@@ -38,7 +37,6 @@ public class ProjectBuilder {
         employeeList = new UniqueEmployeeList();
         employeeList.add(ALICE);
         taskList = new TaskList();
-        taskList.add(ALPHA_TASK);
         priority = new Priority(DEFAULT_PRIORITY);
         deadline = new Deadline(DEFAULT_DEADLINE);
         completionStatus = new CompletionStatus(DEFAULT_COMPLETION_STATUS);

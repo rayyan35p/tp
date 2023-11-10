@@ -22,6 +22,7 @@ class JsonSerializableTaskHub {
 
     public static final String MESSAGE_DUPLICATE_EMPLOYEE = "Employees list contains duplicate employee(s).";
     public static final String MESSAGE_DUPLICATE_PROJECT = "Projects list contains duplicate project(s).";
+    public static final String MESSAGE_NONEXISTENT_EMPLOYEE = "Employee(s) in project does not exist.";
 
     private final List<JsonAdaptedEmployee> employees = new ArrayList<>();
     private final List<JsonAdaptedProject> projects = new ArrayList<>();
@@ -64,6 +65,11 @@ class JsonSerializableTaskHub {
             Project project = jsonAdaptedProject.toModelType();
             if (taskHub.hasProject(project)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PROJECT);
+            }
+            for (Employee maybeEmployee : project.getEmployees()) {
+                if (!taskHub.strictlyHasEmployee(maybeEmployee)) {
+                    throw new IllegalValueException(MESSAGE_NONEXISTENT_EMPLOYEE);
+                }
             }
             taskHub.addProject(project);
         }
