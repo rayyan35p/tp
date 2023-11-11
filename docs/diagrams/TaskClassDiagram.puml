@@ -1,0 +1,24 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Task as TaskPackage <<Rectangle>>{
+Class Task {
+    - name : String
+    - deadline: LocalDateTime
+    - isDone: boolean
+
+}
+Class Employee
+Class Task
+
+
+Class I #FFFFFF
+}
+
+Task -down-> "0..1" Employee
+
+
+@enduml

@@ -10,7 +10,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyTaskHub;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
-import seedu.address.model.task.Task;
 
 /**
  * API of the Logic component
@@ -37,9 +36,6 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of projects */
     ObservableList<Project> getFilteredProjectList();
-
-    /** Returns an unmodifiable view of the filtered list of tasks */
-    ObservableList<Task> getFilteredTaskList();
 
     /**
      * Returns the user prefs' TaskHub file path.
