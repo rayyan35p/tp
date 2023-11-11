@@ -59,7 +59,7 @@ public class DeadlineProjectCommandParserTest {
     @Test
     public void parse_invalidIndex_failure() {
         // Invalid index
-        String userInput = "-1" + " " + PREFIX_DEADLINE + "31-02-2023";
+        String userInput = "-1" + " " + PREFIX_DEADLINE + "28-02-2023";
         assertParseFailure(parser, userInput, String.format(ParserUtil.MESSAGE_INVALID_INDEX, "-1"));
     }
 }
