@@ -33,4 +33,5 @@ Task *-left-> "0..1" Employee
 UniqueEmployeeList --> "~* filtered" Employee
 TaskList --> "*" Task
 
+hide class fields
 @enduml

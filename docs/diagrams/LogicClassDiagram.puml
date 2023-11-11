@@ -43,4 +43,6 @@ note right of XYZCommand: XYZCommand = AddEmployeeCommand, \nFindProjectCommand,
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
 Command .up.> CommandResult : produces >
+
+hide class fields
 @enduml
