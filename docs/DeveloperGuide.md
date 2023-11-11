@@ -116,7 +116,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `TaskHubParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddEmployeeCommand`) which the `TaskHubParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `TaskHubParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddEmployeeCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddEmployeeCommand`) which the `TaskHubParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddEmployeeCommandParser`, `DeleteEmployeeCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -127,14 +127,14 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the TaskHub data i.e., all `Employee`, `Project` and `Task` objects - `Employee` and `Project` objects are separately contained in a `UniqueEmployeeList` object and a `UniqueProjectList` object. `Task` objects exist within the `TaskList` of a `Project`.
+* stores the TaskHub data i.e., all `Employee` and `Project` objects, which are separately contained in a `UniqueEmployeeList` object and a `UniqueProjectList` object. `Task` objects exist within the `TaskList` of a `Project`.
 * stores the currently 'selected' `Employee` and `Project` objects (e.g., results of a search query) as 2 separate _filtered_ lists which are exposed to outsiders as unmodifiable `ObservableList<Employee>` and `ObservableList<Project>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` object.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TaskHub`, which `Employee` references. This allows `TaskHub` to only require one `Tag` object per unique tag, instead of each `Employee` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+:information_source: **Note:** The focus of the above class diagram is on the `Employee`, `Project`, `Task` classes as well as the relevant lists that contain them. More details will be provided in subsequent sections.
 
 </div>
 
@@ -146,8 +146,8 @@ The `Model` component,
 
 The `Employee` component stores an employee's data which comprises:
 
-* a `Name`, `Phone`, `Email`, `Address`, `Project` and `Tag`(s).
-* `Project`(s) and `Tag`(s) are optional.
+* a `Name`, `Phone`, `Email`, `Address` and `Tag`(s).
+* `Tag`(s) are optional.
 
 
 ### Project component
@@ -157,13 +157,15 @@ The `Employee` component stores an employee's data which comprises:
 
 The `Project` component stores a project's data which comprises:
 
-* a `Name`, `Deadline`, `UniqueEmployeeList`, `TaskList`, `ProjectPriority` and `CompletionStatus`.
+* a `Name`, `Deadline`, `UniqueEmployeeList`, `TaskList`, `Priority` and `CompletionStatus`.
 * The `Deadline` is optional.
 * The `UniqueEmployeeList` contains only the `Employee`s under the said `Project`.
 * Each `Employee` in the `UniqueEmployeeList` of the project must also exist in the `UniqueEmployeeList` of the `Model`. (All fields must be the same) 
 * The `TaskList` contains the `Task`s which have been added to the `Project`.
+* The `Employee` (if applicable) in each `Task` in the `TaskList` of the project must also exist in the `UniqueEmployeeList` of the project.
 
 ***Note: For the Model, Employee and Project components, lower-level details (e.g. most class attributes and methods) have been omitted for visual clarity.
+
 
 ### Task component
 **API** : [`Task.java`](https://github.com/AY2324S1-CS2103T-T08-3/tp/blob/master/src/main/java/seedu/address/model/task/Task.java)
@@ -175,6 +177,12 @@ The `Task` component stores a task's data which comprises:
 * a `name`, `deadline`, `Employee`, and `isDone` field.
 * The `Employee` is optional - a Task may be assigned to an `Employee` within the `Project` or not.
 
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The `Employee`, `Project` and `Task` class diagrams above have omitted some details (e.g. class methods) to improve visual clarity. Only the most important fields and associations are shown.
+
+</div>
 
 ### Storage component
 
