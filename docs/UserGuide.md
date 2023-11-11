@@ -60,35 +60,75 @@ title: User Guide
 # Introduction
 
 ## About TaskHub
-TaskHub is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TaskHub can get your project management tasks done faster than traditional GUI apps.
+Welcome to **TaskHub**, a powerful desktop application designed to make **project management** efficient and effortless.
+
+With TaskHub, you will be able to:
+* Store your employees' **contact information**
+* Create and manage **projects** for your employees to be delegated to
+* Create customized **tasks** for each project and assign your employees to them
+* View all of your **employees, projects and tasks** at a glance
+
+and much more!
+
+TaskHub uses a **Command Line Interface (CLI)** for you to type in your desired **actions**. If you are a **fast typist**, this is perfect for you as it allows you to execute commands without having to leave the keyboard and gets your project management tasks done faster than traditional GUI apps.
+
+TaskHub also uses a **Graphical User Interface (GUI)** to display **content and data**. This allows for data to be presented to you in an **elegant, fuss-free** manner.
+
+Start to streamline your project management workflow today with TaskHub!
+
+[Return to Table of Contents](#table-of-contents)
+
 
 ## About this User Guide
 
+This user guide aims to provide you with all the information needed to get started with TaskHub.
+
+If you are **new** to TaskHub, you may refer to the **[Navigating the User Guide](#navigating-the-user-guide)** section first, then to the **[Getting Started](#getting-started)** section to start installing and using TaskHub.
+
+If you would like to find out more about its **individual features**, you may refer to the **[Features](#features)** section.
+
+If you are an **experienced user** and want to quickly refer to the various commands, you may refer to the **[Command Summary](#command-summary)** section.
+
+If you would like to find out more about the **technical aspects of TaskHub**, you may refer to our **[Developer Guide](https://ay2324s1-cs2103t-t08-3.github.io/tp/DeveloperGuide.html)**.
+
+Finally, if you would like an **overview** of this entire user guide, you may refer to our **[Table of Contents](#table-of-contents)**.
+
+[Return to Table of Contents](#table-of-contents)
+
+
 ## Navigating the User Guide
+
+The following symbols will be used throughout this user guide to assist you.
+
+<div markdown="block" class="alert alert-success">
+
+**:white_check_mark: Tip:** Provides information that is not necessary to know, but could enhance your user experience.<br>
+
+</div>
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Information**<br>
+**:information_source: Information:** Provides information that will be **useful to know**.<br>
 
 </div>
 
 <div markdown="block" class="alert alert-warning">
 
-**:warning: Warning**<br>
+**:warning: Warning:** Provides **important** information about a feature/command.<br>
 
 </div>
 
 <div markdown="block" class="alert alert-danger">
 
-**:no_entry: Danger**<br>
+**:no_entry: Danger:** Provides **very important** information about a consequence (that could be **irreversible**) from a feature/command.<br>
 
 </div>
 
-<div markdown="block" class="alert alert-success">
+Links:
+* Words in blue are [links](#navigating-the-user-guide) that direct you to either a [section](#navigating-the-user-guide) of our user guide, or [another website](https://ay2324s1-cs2103t-t08-3.github.io/tp/).
+* At the bottom of every main section, there will be a [Return to Table of Contents](#table-of-contents) link directing you to the Table of Contents, allowing you to quickly switch between different sections.
 
-**:white_check_mark: Information**<br>
-
-</div>
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -98,7 +138,7 @@ TaskHub is a **desktop app for managing contacts, optimized for use via a Comman
 
 ## Understanding the components of TaskHub
 
-## Understanding the User Interface(UI)
+## Understanding the User Interface (UI)
 
 ![Ui Parts](images/UiParts.png)
 
