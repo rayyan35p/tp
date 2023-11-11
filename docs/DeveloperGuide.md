@@ -245,11 +245,9 @@ Step 6. A `CommandResult` is produced based on whether the execution was a succe
 
 ### Prioritise Projects Feature
 
-Upon creation of a new `Project`, a `ProjectPriority` can be assigned to that `Project` using the `priorityP` command. 
+A priority can be assigned to multiple projects using the `priorityP` command. 
 
-This command modifies the `ProjectPriority` attribute of a `Project` by creating a new `Project` with the updated `ProjectPriority` and replacing the existing `Project` with the updated one.
-
-Currently, only a single project's `ProjectPriority` can be changed at a time.
+This command modifies the `Priority` attribute of a `Project` by creating a new `Project` with the updated `Priority` and replacing the existing project with the updated one.
 
 Given below is an example usage scenario and the internal changes that happen at each step.
 
@@ -257,18 +255,17 @@ Given below is an example usage scenario and the internal changes that happen at
 
 Step 1. The user launches the application. All employees and projects will be shown to the user.
 
-Step 2. The user executes `priorityP 1 priority/high` to assign a high priority to the project indexed at 1. `LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to an `PriorityProjectCommandParser`.
+Step 2. The user executes `priorityP 1 2 3 p/high` to assign a high priority to the projects indexed at 1, 2 and 3. `LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to a `PriorityProjectCommandParser`.
 
 Step 3. `TaskHubParser` will call `PriorityProjectCommandParser#parse(arguments)` to produce a `PriorityProjectCommand` to be executed by the `LogicManager`.
 
 Step 4. `LogicManager` calls `PriorityProjectCommand#execute(model)` to produce a `CommandResult`.
 
-Step 5. During the execution of the `PriorityProjectCommand`, a new `Project` with the same details as the `Project` which is to have its `ProjectPriority` updated is created but the `ProjectPriority` is now high.
+Step 5. During the execution of the `PriorityProjectCommand`, new projects are created with the same details as the projects whose `Priority` is supposed to be changed, except that the `Priority` for all the projects are now high.
 
-Step 6. The model is updated accordingly through `ModelManager`.
+Step 6. The model is updated accordingly through `ModelManager` by replacing the old projects with the new projects with the updated `Priority`.
 
 Step 7. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`.
-
 
 ### Find Projects Feature
 
@@ -636,3 +633,63 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 2. _{ more test cases …​ }_
+
+## **Appendix: Future Enhancements**
+
+### \[Proposed\] Deadline validation between Tasks and Projects
+
+#### Proposed Implementation
+
+Currently, when a user enters a deadline for a task for a given project, any possible date can be entered including deadlines past the deadline of the project itself.
+
+We recognise that there is always a probability that tasks still can be added beyond a project's deadline, so we will not prevent users from doing so, but this scenario is not common.
+
+Beyond the possibility of users keying in a task deadline that is past the project deadline on purpose, there is also the issue that it may be accidental.
+
+Due to the aforementioned reasons, we believe the project deadlines and task deadlines should be validated.
+
+To be more specific, when tasks that have deadlines past the project deadline are added, there should be a warning indicating that a task with a deadline past the project deadline was added.
+
+Given below is an example usage scenario and how the validation mechanism behaves at each step.
+
+Step 1. The user executes `addT` to add a task to a project with a deadline past the project deadline.
+
+Step 2. The task is added as per normal in the storage, but a warning is also displayed in the `ResultDisplay`
+
+```
+New task added to project 1, Description: Task In a Project; Deadline: 13 Nov 2023, 11:59PM
+The task has a deadline past the project deadline! Check again if the details are correct and edit if needed!
+```
+
+Step 3. If the user intended to add a task with that deadline, then he/she would continue but if it was not intended, they would be alerted to the issue and be able to delete the task.
+
+### \[Proposed\] Multiple employees assigned to each task
+
+#### Proposed Implementation
+
+In this version of TaskHub, only 1 employee can be assigned at a time to each task.
+
+Tasks in a project can be worked on by multiple people at a time, so it would be more appropriate to expand the task to take on more than 1 employee.
+
+The current implementation of tasks is already using a `List` that has been restricted to hold only one `Employee`.
+
+`List` was chosen as the data type for storing assigned `Employees` in preparation for a future iteration where more employees could be held in each task.
+
+Thus, expanding `Task` to take more than one employee would simply involve allowing the list to take more than 1 `Employee`.
+
+However, this was not done in the current implementation due to the already complex nature of the `assignT` command which has to modify multiple instances of objects stored in the model.
+
+### \[Proposed\] Allowing multiple spaces between indexes
+
+#### Proposed Implementation
+
+TaskHub is not currently able to handle multiple spaces between indexes.
+
+In order to deal with multiple spaces, the following solution can be used (taken from [this StackOverflow discussion](https://stackoverflow.com/questions/2932392/java-how-to-replace-2-or-more-spaces-with-single-space-in-string-and-delete-lead))
+
+```Java
+String after = before.trim().replaceAll(" +", " ");
+```
+
+This will allow indexes with multiple spaces between indexes to be handled automatically instead of the user having to find where they may have put the additional space(s).
+
