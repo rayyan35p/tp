@@ -58,7 +58,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -335,10 +335,10 @@ Step 2. `Main` will look for the data file in the specified `filepath` in the `p
         then a new `TaskHub` with sample data will be created.
 
 Step 3. After retrieving the data file, `JsonTaskHubStorage` will call `JsonSerializableTaskHub` to check whether each `JsonAdaptedEmployee` fulfills the requirements of an `Employee`.
-        If the requirements are fulfilled ([Employee Requirements here](#employee-component))), then each `JsonAdaptedEmployee` is converted into an `Employee` and added to a `UniqueEmployeeList`.
+        If the requirements are fulfilled ([Employee Requirements here](#employee-component)), then each `JsonAdaptedEmployee` is converted into an `Employee` and added to a `UniqueEmployeeList`.
 
 Step 4. `JsonSerializableTaskHub` will then check whether each `JsonAdaptedProject` fulfills the requirements of a `Project`.
-        If the requirements are fulfilled ([Project Requirements here](#project-component))), then each `JsonAdaptedProject` is converted into a `Project` and added to a `UniqueProjectList`.
+        If the requirements are fulfilled ([Project Requirements here](#project-component)), then each `JsonAdaptedProject` is converted into a `Project` and added to a `UniqueProjectList`.
 
 If any `JsonAdaptedEmployee` or `JsonAdaptedProject` fails to meet the requirements, an empty `Taskhub` is returned.
 
@@ -532,7 +532,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | completely new user                 | have sample data              | practice some commands before trying the App                             |
 | `* *`    | user                                | purge all data                | get rid of sample/experimental data and add in my actual data            |
 | `*`      | user with many projects in TaskHub  | sort projects by date         | tell which project deadlines are coming soon                             |
-| `*`      | user with many employees in Taskhub | sort employees by name        | locate a employee easily                                                 |
+| `*`      | user with many employees in TaskHub | sort employees by name        | locate an employee easily                                                |
 | `*`      | new user                            | get autocomplete suggestions  | write commands without referring to usage instructions often             |
 
 *{More to be added}*
@@ -599,7 +599,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The input does not follow the format.
-  * 1a1. Taskhub shows an error message with the correct format.
+  * 1a1. TaskHub shows an error message with the correct format.
 
 Use case resumes at step 1.
 
@@ -666,9 +666,9 @@ testers are expected to do more *exploratory* testing.
 
 3. _{ more test cases …​ }_
 
-### Deleting a employee
+### Deleting an employee
 
-1. Deleting a employee while all employees are being shown
+1. Deleting an employee while all employees are being shown
 
    1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
 
