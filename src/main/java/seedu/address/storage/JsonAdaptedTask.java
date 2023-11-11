@@ -64,7 +64,7 @@ public class JsonAdaptedTask {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!Task.isValidTask(name)) {
-            throw new IllegalValueException(Task.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Task.MESSAGE_NO_TASK);
         }
         if (employee.isEmpty()) {
             return new Task(name, deadline, isDone);
