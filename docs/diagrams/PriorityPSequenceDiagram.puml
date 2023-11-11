@@ -11,10 +11,10 @@ end box
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
-[-> LogicManager : execute("priorityP 1 priority/high")
+[-> LogicManager : execute("priorityP 1 2 3 p/high")
 activate LogicManager
 
-LogicManager -> TaskHubParser : parseCommand("priorityP 1 priority/high")
+LogicManager -> TaskHubParser : parseCommand("priorityP 1 2 3 p/high")
 activate TaskHubParser
 
 create PriorityProjectCommand
@@ -36,11 +36,13 @@ activate Model
 Model --> PriorityProjectCommand
 deactivate Model
 
+loop for each project
 PriorityProjectCommand -> Model : setProject()
 activate Model
 
 Model --> PriorityProjectCommand
 deactivate Model
+end
 
 PriorityProjectCommand -> Model : updateFilteredProjectList()
 activate Model

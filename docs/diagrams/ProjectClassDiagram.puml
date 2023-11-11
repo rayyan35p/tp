@@ -5,13 +5,14 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Project as ProjectPackage <<Rectangle>>{
-Class Project {
-    + name : String
-}
+Class Project {}
+Class Name
 Class Deadline
 Class UniqueEmployeeList
-Class ProjectPriority
 Class Employee
+Class TaskList
+Class Task
+Class ProjectPriority
 Class CompletionStatus
 
 Class I #FFFFFF
@@ -20,11 +21,17 @@ Class I #FFFFFF
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Project
 
+Project -down-> "1" Name
 Project -down-> "0..1" Deadline
 Project *-down-> "1" UniqueEmployeeList
+Project *-down-> "1" TaskList
 Project *-down-> "1" ProjectPriority
 Project *-down-> "1" CompletionStatus
 
-UniqueEmployeeList --> "~* filtered" Employee
+Task *-left-> "0..1" Employee
 
+UniqueEmployeeList --> "~* filtered" Employee
+TaskList --> "*" Task
+
+hide class fields
 @enduml
