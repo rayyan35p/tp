@@ -689,13 +689,26 @@ If your changes to the data file makes its format invalid, TaskHub will discard 
 Taskhub may appear empty as it requires all data stored in the data file to be in the correct format so that it can be read back to TaskHub. A TaskHub that suddenly becomes empty indicates an issue with the data file.<br>
 
 <div markdown="span" class="alert alert-info">
-**The solution below assumes that you are familiar with files in the `.json` format. If you are unfamiliar, please check out [this website](https://www.w3schools.com/js/js_json_intro.asp)**
+
+:information_source:
+** The solution below assumes that you are familiar with files in the `.json` format, and how TaskHub stores data. If you are unfamiliar, please check out **[this website](https://www.w3schools.com/js/js_json_intro.asp)** to know more about `.json` files ** <br>
 If you have directly changed any data in the `taskhub.json` file instead of through TaskHub, it is highly likely that it would be in the wrong format, resulting in an empty TaskHub.<br>
-To attempt to recover as much data as possible, it is recommended to save a copy of the `taskhub.json` file somewhere else and perform the following actions.
-If you have not changed anything, ensure your `data` folder containing your `taskhub.json` is in the same folder as your `taskhub.jar`.
+To attempt to recover as much data as possible, it is recommended to save a copy of the `taskhub.json` file somewhere else and perform the following actions:<br>
+* Remove all projects from your `taskhub.json` file. (`"projects" : []` should be the result after this operation) 
+* Run TaskHub with the edited `taskhub.json` file. If the list of employees is shown, then the problem lies in your projects. Otherwise, a format error lies in the `"employee"` section of your json file. 
+It is recommended to start from scratch because most likely your projects and tasks that involve the employee have different degree of changes, and it might be impractical to manually change each occurence of the employee.  
+* Now, add each project one by one, ensuring that TaskHub can run normally after each project addition. If TaskHub appears empty after the addition of a particular project, Congratulations! 
+Check the employees assigned in your project and make sure every field is equal to its counterpart in the employee list.<br>
+While checking an employee assigned to a task, make sure the employee is the same employee in the project and in the employee list.
+* Repeat the step above until every project is added to TaskHub.
+If you have not changed anything, ensure your `data` folder containing your `taskhub.json` is in the same folder as your `taskhub.jar`.<br>
+
 </div>
 
-**Q**: Why 
+**Q**: Why is TaskHub not loading for me?
+**A**: If you did modify your `taskhub.json` file, it is most likely that you put the keyword `null` somewhere in the json file. Removing these keywords should at least present to you an empty TaskHub.<br>
+Another possibility is that your `taskhub.log` or `taskhub.json` files are set to read-only. 
+For Windows users, right-click each file in your file explorer, click on properties and untick `Read-only` in `Attributes`.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TaskHub home folder.
