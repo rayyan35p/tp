@@ -685,9 +685,17 @@ If your changes to the data file makes its format invalid, TaskHub will discard 
 # FAQ
 
 **Q**: Why is all my TaskHub data gone?<br>
-**A**: TaskHub requires all data stored in the data file to be in the correct format so that it can be read back to TaskHub. A TaskHub that suddenly becomes empty indicates an issue with the data file.<br>
+**A**: Most likely, your data is still mostly intact, so it is recommended to exit the app first as executing some commands such as `addE` will clear the previously stored data in this situation.
+Taskhub may appear empty as it requires all data stored in the data file to be in the correct format so that it can be read back to TaskHub. A TaskHub that suddenly becomes empty indicates an issue with the data file.<br>
+
+<div markdown="span" class="alert alert-info">
+**The solution below assumes that you are familiar with files in the `.json` format. If you are unfamiliar, please check out [this website](https://www.w3schools.com/js/js_json_intro.asp)**
 If you have directly changed any data in the `taskhub.json` file instead of through TaskHub, it is highly likely that it would be in the wrong format, resulting in an empty TaskHub.<br>
+To attempt to recover as much data as possible, it is recommended to save a copy of the `taskhub.json` file somewhere else and perform the following actions.
 If you have not changed anything, ensure your `data` folder containing your `taskhub.json` is in the same folder as your `taskhub.jar`.
+</div>
+
+**Q**: Why 
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TaskHub home folder.
