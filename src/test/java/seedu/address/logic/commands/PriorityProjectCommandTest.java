@@ -25,6 +25,8 @@ import seedu.address.model.project.Project;
 public class PriorityProjectCommandTest {
     private Model model = new ModelManager(getTypicalTaskHub(), new UserPrefs());
 
+    //------------------------------ Tests for constructor --------------------------------------------------------
+
     // EP: null priority
     @Test
     public void constructor_nullPriority_throwsNullPointerException() {
@@ -94,7 +96,7 @@ public class PriorityProjectCommandTest {
 
     // EP: index beyond list size
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+    public void execute_indexBeyondUnfilteredListSize_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredProjectList().size() + 1);
         PriorityProjectCommand projectPriorityCommand = new PriorityProjectCommand(
                 new Priority("high"), List.of(outOfBoundIndex));

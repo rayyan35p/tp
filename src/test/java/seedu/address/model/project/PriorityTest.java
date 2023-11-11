@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 
 //@@author rayyan35p
 public class PriorityTest {
+
+    //------------------------------ Tests for constructor --------------------------------------------------------
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Priority(null));
@@ -29,11 +31,13 @@ public class PriorityTest {
 
     @Test
     public void constructor_validPriority_constructs() {
-        assertEquals(Priority.Level.LOW, new Priority("low").value); // EP: low level
-        assertEquals(Priority.Level.NORMAL, new Priority("normal").value); // EP: normal level
-        assertEquals(Priority.Level.HIGH, new Priority("high").value); // EP: high level
-        assertEquals(Priority.Level.HIGH, new Priority("HIGH").value); // EP: all capitalised
+        assertEquals(Priority.Level.LOW, new Priority("low").getValue()); // EP: low level
+        assertEquals(Priority.Level.NORMAL, new Priority("normal").getValue()); // EP: normal level
+        assertEquals(Priority.Level.HIGH, new Priority("high").getValue()); // EP: high level
+        assertEquals(Priority.Level.HIGH, new Priority("HIGH").getValue()); // EP: all capitalised
     }
+
+    //-----------------------------------------------------------------------------------------------------------
 
     @Test
     public void isValidPriorityTest() {

@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.getTypicalTaskHub;
@@ -15,6 +16,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -26,6 +29,9 @@ import seedu.address.model.task.TaskList;
 public class AssignTaskCommandTest {
     private Model model = new ModelManager(getTypicalTaskHub(), new UserPrefs());
 
+    //------------------------------ Tests for constructor --------------------------------------------------------
+
+    // EP: null project index
     @Test
     public void constructor_nullProjectIndex_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AssignTaskCommand(
@@ -34,6 +40,7 @@ public class AssignTaskCommandTest {
                 INDEX_FIRST_EMPLOYEE));
     }
 
+    // EP: null task index
     @Test
     public void constructor_nullTaskIndex_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AssignTaskCommand(
@@ -41,7 +48,7 @@ public class AssignTaskCommandTest {
                 null,
                 INDEX_FIRST_EMPLOYEE));
     }
-
+    // EP: null employee index
     @Test
     public void constructor_nullEmployeeIndex_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AssignTaskCommand(INDEX_FIRST_PROJECT,
@@ -49,6 +56,9 @@ public class AssignTaskCommandTest {
                 null));
     }
 
+    //------------------------------ Tests for execute --------------------------------------------------------
+
+    // EP: valid inputs
     @Test
     public void execute_validIndexes_success() {
         Project projectToAssignTasks = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
@@ -85,6 +95,43 @@ public class AssignTaskCommandTest {
 
         assertCommandSuccess(assignTaskCommand, model, expectedMessage, expectedModel);
     }
+
+    // EP: invalid project index
+    @Test
+    public void execute_invalidProjectIndex_throwsCommandException() {
+        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(
+                Index.fromZeroBased(model.getFilteredProjectList().size() + 1),
+                INDEX_FIRST_TASK,
+                INDEX_FIRST_EMPLOYEE);
+
+        assertCommandFailure(assignTaskCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+    }
+
+    // EP: invalid task index
+    @Test
+    public void execute_invalidTaskIndex_throwsCommandException() {
+        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(
+                INDEX_FIRST_PROJECT,
+                Index.fromZeroBased(model.getFilteredProjectList()
+                        .get(INDEX_FIRST_PROJECT.getZeroBased()).getTasks().getSize() + 1),
+                INDEX_FIRST_EMPLOYEE);
+
+        assertCommandFailure(assignTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    // EP: invalid employee index
+    @Test
+    public void execute_invalidEmployeeIndex_throwsCommandException() {
+        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(
+                INDEX_FIRST_PROJECT,
+                INDEX_FIRST_TASK,
+                Index.fromZeroBased(model.getFilteredProjectList()
+                        .get(INDEX_FIRST_PROJECT.getZeroBased()).getEmployees().getSize() + 1));
+
+        assertCommandFailure(assignTaskCommand, model, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+    }
+
+    //-----------------------------------------------------------------------------------------------------------
 
     @Test
     public void equalsTest() {

@@ -16,7 +16,7 @@ public class Priority {
     public static final String MESSAGE_CONSTRAINTS =
             "Priority should only be low, normal, or high.";
 
-    public final Level value;
+    private final Level value;
 
     /**
      * Constructs a {@code Priority}.
@@ -50,6 +50,20 @@ public class Priority {
             return Level.HIGH;
         }
         return Level.NORMAL;
+    }
+
+    /**
+     * Returns the priority level as a Level enum.
+     */
+    public Level getValue() {
+        switch(this.value) {
+        case LOW:
+            return Level.LOW;
+        case HIGH:
+            return Level.HIGH;
+        default:
+            return Level.NORMAL;
+        }
     }
 
     @Override
