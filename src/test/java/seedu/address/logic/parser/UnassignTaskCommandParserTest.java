@@ -19,6 +19,7 @@ public class UnassignTaskCommandParserTest {
     private UnassignTaskCommandParser parser = new UnassignTaskCommandParser();
     @Test
     public void parse_allFieldsPresent_success() {
+        // EP: valid inputs
         Index projectIndex = INDEX_FIRST_PROJECT;
         Index taskIndex = INDEX_FIRST_TASK;
         String userInput = " " + PREFIX_PROJECT + INDEX_FIRST_PROJECT.getOneBased() + " "
@@ -32,21 +33,21 @@ public class UnassignTaskCommandParserTest {
         String expectedMessage = String.format(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 UnassignTaskCommand.MESSAGE_USAGE));
 
-        // missing project prefix
+        // EP: missing project prefix
         assertParseFailure(parser,
                 " " + INDEX_FIRST_PROJECT.getOneBased() + " "
                         + PREFIX_TASK + INDEX_FIRST_TASK.getOneBased() + " "
                         + PREFIX_EMPLOYEE + INDEX_FIRST_EMPLOYEE.getOneBased(),
                 expectedMessage);
 
-        // missing task prefix
+        // EP: missing task prefix
         assertParseFailure(parser,
                 " " + PREFIX_PROJECT + INDEX_FIRST_PROJECT.getOneBased() + " "
                         + INDEX_FIRST_TASK.getOneBased() + " "
                         + PREFIX_EMPLOYEE + INDEX_FIRST_EMPLOYEE.getOneBased(),
                 expectedMessage);
 
-        // all prefixes missing
+        // EP: all prefixes missing
         assertParseFailure(parser,
                 " " + INDEX_FIRST_PROJECT.getOneBased() + " "
                         + INDEX_FIRST_TASK.getOneBased() + " "

@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidPriority(String)}
  */
 public class Priority {
-    private enum Level {
+    enum Level {
         LOW,
         NORMAL,
         HIGH
@@ -33,14 +33,16 @@ public class Priority {
      * Returns true if a given string is a valid priority.
      */
     public static boolean isValidPriority(String test) {
+        assert test != null;
         String lowerCaseTest = test.toLowerCase().trim();
         return lowerCaseTest.equals("low") || lowerCaseTest.equals("normal") || lowerCaseTest.equals("high");
     }
 
     /**
-     * Converts a String priority into a Level enum.
+     * Converts a String priority into a Level enum. Defaults to a normal level if the input is neither high nor low.
      */
-    public static Level toLevel(String priority) {
+    private static Level toLevel(String priority) {
+        assert priority != null;
         if (priority.equals("low")) {
             return Level.LOW;
         }

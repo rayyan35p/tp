@@ -1,11 +1,14 @@
 package seedu.address.model.project;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.project.Priority.isValidPriority;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+//@@author rayyan35p
 public class PriorityTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -14,22 +17,37 @@ public class PriorityTest {
 
     @Test
     public void constructor_invalidPriority_throwsIllegalArgumentException() {
-        String invalidPriority = "";
-        assertThrows(IllegalArgumentException.class, () -> new Priority(invalidPriority));
+        // EP: empty string
+        assertThrows(IllegalArgumentException.class, () -> new Priority(""));
+        // EP: spaces only
+        assertThrows(IllegalArgumentException.class, () -> new Priority(" "));
+        // EP: spaces between characters
+        assertThrows(IllegalArgumentException.class, () -> new Priority("l o w"));
+        // EP: multiple valid levels combined
+        assertThrows(IllegalArgumentException.class, () -> new Priority("lownormal"));
+    }
+
+    @Test
+    public void constructor_validPriority_constructs() {
+        assertEquals(Priority.Level.LOW, new Priority("low").value); // EP: low level
+        assertEquals(Priority.Level.NORMAL, new Priority("normal").value); // EP: normal level
+        assertEquals(Priority.Level.HIGH, new Priority("high").value); // EP: high level
+        assertEquals(Priority.Level.HIGH, new Priority("HIGH").value); // EP: all capitalised
     }
 
     @Test
     public void isValidPriorityTest() {
-        assertThrows(NullPointerException.class, () -> Priority.isValidPriority(null));
+        assertThrows(AssertionError.class, () -> isValidPriority(null)); // EP: null
 
-        assertFalse(Priority.isValidPriority("")); // empty string
-        assertFalse(Priority.isValidPriority(" ")); // spaces only
-        assertFalse(Priority.isValidPriority("l o w")); // spaces between characters
+        assertFalse(isValidPriority("")); // EP: empty string
+        assertFalse(isValidPriority(" ")); // EP: spaces only
+        assertFalse(isValidPriority("l o w")); // EP: spaces between characters
+        assertFalse(isValidPriority("lownormal")); // EP: multiple valid levels combined
 
-        assertTrue(Priority.isValidPriority("low"));
-        assertTrue(Priority.isValidPriority("normal"));
-        assertTrue(Priority.isValidPriority("high"));
-        assertTrue(Priority.isValidPriority("NORMAL")); // all capitalised
+        assertTrue(isValidPriority("low")); // EP: low level
+        assertTrue(isValidPriority("normal")); // EP: normal level
+        assertTrue(isValidPriority("high")); // EP: high level
+        assertTrue(isValidPriority("NORMAL")); // EP: all capitalised
     }
 
     @Test

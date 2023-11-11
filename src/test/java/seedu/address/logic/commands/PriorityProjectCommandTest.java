@@ -25,17 +25,22 @@ import seedu.address.model.project.Project;
 public class PriorityProjectCommandTest {
     private Model model = new ModelManager(getTypicalTaskHub(), new UserPrefs());
 
+    // EP: null priority
     @Test
     public void constructor_nullPriority_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new PriorityProjectCommand(null,
                 List.of(INDEX_FIRST_PROJECT)));
     }
 
+    // EP: null index
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new PriorityProjectCommand(null, null));
     }
 
+    //------------------------------ Tests for execute --------------------------------------------------------
+
+    // EP: valid inputs
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Project projectToSetPriority = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
@@ -57,6 +62,7 @@ public class PriorityProjectCommandTest {
         assertCommandSuccess(projectPriorityCommand, model, expectedMessage, expectedModel);
     }
 
+    // EP: valid inputs with multiple indexes
     @Test
     public void execute_multipleValidIndexUnfilteredList_success() {
         Project projectToSetPriority = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
@@ -86,6 +92,7 @@ public class PriorityProjectCommandTest {
         assertCommandSuccess(projectPriorityCommand, model, expectedMessage, expectedModel);
     }
 
+    // EP: index beyond list size
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredProjectList().size() + 1);
@@ -94,6 +101,8 @@ public class PriorityProjectCommandTest {
 
         assertCommandFailure(projectPriorityCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
     }
+
+    //-----------------------------------------------------------------------------------------------------------
 
     @Test
     public void equalsTest() {
