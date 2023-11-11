@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_DEADLINE_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_NO_DEADLINE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_NO_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_TASK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMPLOYEE_INDEX_TASK;
@@ -53,6 +56,34 @@ class AddTaskCommandParserTest {
         // all prefixes missing
         assertParseFailure(parser, VALID_PROJECT_INDEX_TASK + VALID_NAME_TASK + VALID_DEADLINE_TASK,
                 expectedMessage);
+    }
+
+    @Test
+    public void parse_missingTaskName_failure() {
+        String expectedMessage = Task.MESSAGE_NO_TASK;
+
+        List<Employee> employeeList = Collections.singletonList(ALICE);
+
+        // User command has no name
+        assertParseFailure(parser, PREAMBLE_WHITESPACE + INVALID_TASK_NO_NAME, expectedMessage);
+    }
+    @Test
+    public void parse_missingTaskDeadline_failure() {
+        String expectedMessage = Task.MESSAGE_NO_DEADLINE;
+
+        List<Employee> employeeList = Collections.singletonList(ALICE);
+
+        // User command has no deadline
+        assertParseFailure(parser, PREAMBLE_WHITESPACE + INVALID_TASK_NO_DEADLINE, expectedMessage);
+    }
+    @Test
+    public void parse_invalidTaskDeadline_failure() {
+        String expectedMessage = Task.MESSAGE_INVALID_DEADLINE;
+
+        List<Employee> employeeList = Collections.singletonList(ALICE);
+
+        // User command has no deadline
+        assertParseFailure(parser, PREAMBLE_WHITESPACE + INVALID_TASK_DEADLINE_FORMAT, expectedMessage);
     }
 
 }

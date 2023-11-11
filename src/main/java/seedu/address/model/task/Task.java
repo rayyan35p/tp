@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,8 +16,14 @@ import seedu.address.model.employee.Employee;
  */
 public class Task {
 
-    public static final String MESSAGE_CONSTRAINTS = "You must enter a name for a task!\n"
-            + "You must also enter a deadline, which should be in the format: dd-mm-yyyy HHmm\n "
+    public static final String MESSAGE_NO_TASK = "You must enter a name for a task!";
+    public static final String MESSAGE_NO_DEADLINE = "You must enter a deadline for a task! "
+                                                    + "It should be a valid calendar date and time in the format: "
+                                                    + "dd-mm-yyyy HHmm\n"
+                                                    + "e.g., addT n/name pr/1 d/11-11-2023 2359";
+    public static final String MESSAGE_INVALID_DEADLINE = "Your deadline field is invalid! "
+            + "It should be a valid calendar date and time in the format: "
+            + "dd-mm-yyyy HHmm\n"
             + "e.g., addT n/name pr/1 d/11-11-2023 2359";
 
     /**
@@ -144,7 +151,7 @@ public class Task {
         return completionString + " | "
                                     + this.name + " | "
                                         + this.employee + " | "
-                                            + DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm").format(this.deadline);
+                                            + DateTimeFormatter.ofPattern("dd-MM-uuuu HHmm").format(this.deadline);
     }
 
     /**
@@ -154,7 +161,8 @@ public class Task {
      * @return A boolean value which tells us if the string represents a LocalDate.
      */
     public static boolean isValidDateTime(String input) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-uuuu HHmm")
+                                                 .withResolverStyle(ResolverStyle.STRICT);
         try {
             LocalDateTime.parse(input, dtf);
             return true; // Parsing success: Valid date/time
