@@ -100,25 +100,25 @@ Finally, if you would like an **overview** of this entire user guide, you may re
 
 The following symbols will be used throughout this user guide to assist you.
 
-<div markdown="block" class="alert alert-success">
+<div markdown="span" class="alert alert-primary">
 
-**:white_check_mark: Tip:** Provides information that is not necessary to know, but could **enhance** your **user experience**.<br>
+**:bulb: Tip:** Provides information that is not necessary to know, but could **enhance** your **user experience**.<br>
 
 </div>
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info">
 
 **:information_source: Information:** Provides information that will be **useful to know**.<br>
 
 </div>
 
-<div markdown="block" class="alert alert-warning">
+<div markdown="span" class="alert alert-warning">
 
 **:warning: Warning:** Provides **important** information about a feature/command.<br>
 
 </div>
 
-<div markdown="block" class="alert alert-danger">
+<div markdown="span" class="alert alert-danger">
 
 **:no_entry: Danger:** Provides **very important** information about a consequence (that could be **irreversible**) from a feature/command.<br>
 
