@@ -10,8 +10,6 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.UniqueProjectList;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskList;
 
 /**
  * Wraps all data at the task-hub level
@@ -21,7 +19,6 @@ public class TaskHub implements ReadOnlyTaskHub {
 
     private final UniqueEmployeeList employees;
     private final UniqueProjectList projects;
-    private final TaskList tasks;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -33,7 +30,6 @@ public class TaskHub implements ReadOnlyTaskHub {
     {
         employees = new UniqueEmployeeList();
         projects = new UniqueProjectList();
-        tasks = new TaskList();
     }
 
     public TaskHub() {}
@@ -64,13 +60,6 @@ public class TaskHub implements ReadOnlyTaskHub {
         this.projects.setProjects(projects);
     }
 
-    /**
-     * Replaces the contents of the Task list with {@code tasks}.
-     * {@code tasks} may contain duplicate tasks.
-     */
-    public void setTasks(List<Task> tasks) {
-        this.tasks.setTasks(tasks);
-    }
 
     /**
      * Resets the existing data of this {@code TaskHub} with {@code newData}.
@@ -80,7 +69,6 @@ public class TaskHub implements ReadOnlyTaskHub {
 
         setEmployees(newData.getEmployeeList());
         setProjects(newData.getProjectList());
-        setTasks(newData.getTaskList());
     }
 
     //// employee-level operations
@@ -91,6 +79,14 @@ public class TaskHub implements ReadOnlyTaskHub {
     public boolean hasEmployee(Employee employee) {
         requireNonNull(employee);
         return employees.contains(employee);
+    }
+
+    /**
+     * Returns true if a employee with all the same fields as {@code employee} exists in the TaskHub.
+     */
+    public boolean strictlyHasEmployee(Employee employee) {
+        requireNonNull(employee);
+        return employees.strictlyContains(employee);
     }
 
     /**
@@ -145,29 +141,12 @@ public class TaskHub implements ReadOnlyTaskHub {
     }
 
     /**
-     * Adds a task to the TaskHub.
-     * The task might already exist in TaskHub.
-     */
-    public void addTask(Task t) {
-        tasks.add(t);
-    }
-
-    /**
      * Removes {@code key} from this {@code TaskHub}.
      * {@code key} must exist in the TaskHub.
      */
     public void removeProject(Project key) {
         projects.remove(key);
     }
-
-    /**
-     * Removes {@code key} from this {@code TaskHub}.
-     * {@code key} must exist in the TaskHub.
-     */
-    public void removeTask(Task key) {
-        tasks.remove(key);
-    }
-    //// util methods
 
     @Override
     public String toString() {
@@ -186,11 +165,6 @@ public class TaskHub implements ReadOnlyTaskHub {
         return projects.asUnmodifiableObservableList();
     }
     @Override
-    public ObservableList<Task> getTaskList() {
-        return tasks.asUnmodifiableObservableList();
-    }
-
-    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -202,8 +176,7 @@ public class TaskHub implements ReadOnlyTaskHub {
         }
 
         TaskHub otherTaskHub = (TaskHub) other;
-        return employees.equals(otherTaskHub.employees) && projects.equals(otherTaskHub.projects)
-                && tasks.equals(otherTaskHub.tasks);
+        return employees.equals(otherTaskHub.employees) && projects.equals(otherTaskHub.projects);
     }
 
     @Override

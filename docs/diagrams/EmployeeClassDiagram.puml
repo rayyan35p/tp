@@ -32,4 +32,5 @@ Email -[hidden]right-> Address
 Address -[hidden]right-> Project
 Project -[hidden]right-> Tag
 
+hide class fields
 @enduml

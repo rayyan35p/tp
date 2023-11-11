@@ -101,8 +101,6 @@ public class AddTaskCommand extends Command {
 
         // update model and filtered list for Ui update.
         model.setProject(projectToEdit, editedProject);
-        model.addTask(this.task);
-
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, projectIndex.getOneBased(),
                                                Messages.format(this.task)));

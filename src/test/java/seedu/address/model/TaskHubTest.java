@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.getTypicalTaskHub;
-import static seedu.address.testutil.TypicalProjects.ALPHA;
+import static seedu.address.testutil.TypicalProjects.alphaFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -76,13 +76,13 @@ public class TaskHubTest {
 
     @Test
     public void hasProject_projectNotInTaskHub_returnFalse() {
-        assertFalse(taskHub.hasProject(ALPHA));
+        assertFalse(taskHub.hasProject(alphaFactory()));
     }
 
     @Test
     public void hasProject_projectInTaskHub_returnsTrue() {
-        taskHub.addProject(ALPHA);
-        assertTrue(taskHub.hasProject(ALPHA));
+        taskHub.addProject(alphaFactory());
+        assertTrue(taskHub.hasProject(alphaFactory()));
     }
 
     @Test
@@ -156,12 +156,5 @@ public class TaskHubTest {
         public ObservableList<Project> getProjectList() {
             return projects;
         }
-
-        @Override
-        public ObservableList<Task> getTaskList() {
-            return tasks;
-        }
-
     }
-
 }

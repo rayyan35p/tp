@@ -9,7 +9,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
-import seedu.address.model.task.Task;
 
 /**
  * A model stub with an empty project list.
@@ -33,10 +32,7 @@ public class ModelStubWithEmptyProjectList extends ModelStub {
     public void setProject(Project project, Project editedProject) {
         requireAllNonNull(project, editedProject);
     }
-    @Override
-    public void addTask(Task task) {
-        // do nothing
-    }
+
     @Override
     public ObservableList<Employee> getFilteredEmployeeList() {
         ObservableList<Employee> filteredList = FXCollections.observableArrayList();
