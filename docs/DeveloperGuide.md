@@ -151,9 +151,10 @@ The `Employee` component stores an employee's data which comprises:
 
 The `Project` component stores a project's data which comprises:
 
-* a `name` (stored as a String), `Deadline`, `UniqueEmployeeList`, `ProjectPriority` and `CompletionStatus`.
+* a `name`, `Deadline`, `UniqueEmployeeList`, `ProjectPriority` and `CompletionStatus`.
 * The `Deadline` is optional.
 * The `UniqueEmployeeList` contains only the `Employee`s under the said `Project`.
+* Each `Employee` in the `UniqueEmployeeList` of the project must also exist in the `UniqueEmployeeList` of the `Model`. (All fields must be the same) 
 
 ***Note: For the Model, Employee and Project components, lower-level details (e.g. most class attributes and methods) have been omitted for visual clarity.
 
@@ -228,15 +229,17 @@ When creating a new project from the `addP` command, each `Employee` that is to 
 
 Given below is an example usage scenario and the internal changes that happen at each step.
 
+![AddPSequenceDiagram](images/AddPSequenceDiagram.png)
+
 Step 1. The user launches the application. All employees and projects will be shown to the user.
 
-Step 2. The user executes `addP pr/Project1 em/1` to add a new `Project` called `Project1` with the 1st `Employee` on the list as a member. `LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to an `AddProjectCommandParser`.
+Step 2. The user executes `addP n/Project1 em/1 2 3` to add a new `Project` called `Project1` with the 1<sup>st</sup>, 2<sup>nd</sup> and 3<sup>rd</sup> `Employee` on the list as a member. `LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to an `AddProjectCommandParser`.
 
 Step 3. `TaskHubParser` will call `AddProjectCommandParser#parse(arguments)` to produce a `AddProjectCommand` to be executed by the `LogicManager`.
 
 Step 4. `LogicManager` calls `AddProjectCommand#execute(model)` to produce a `CommandResult `to be logged. 
 
-Step 5. During the execution of the `AddProjectCommand`, selected `Employee` objects are extracted from the current `UniqueEmployeeList` of `TaskHub` and added to the `Project` in the `AddProjectCommand`. New copies of `Employee` objects are also created to replace the original `Employee` objects in the UniqueEmployeeList using a new `EditCommand`.  
+Step 5. During the execution of the `AddProjectCommand`, selected `Employee`s are extracted from the current `UniqueEmployeeList` of `TaskHub` and added to the `Project` in the `AddProjectCommand`. New copies of `Employee` objects are also created to replace the original `Employee` objects in the UniqueEmployeeList using a new `EditCommand`.  
 
 Step 6. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`. 
 
@@ -316,6 +319,28 @@ Step 5. During the execution of the `MarkProjectCommand`, a new `Project` object
 Step 6. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`.
 
 A similar sequence of events will occur when executing the `unmarkP` command, except that the `isCompleted` attribute of each `Project` will be set to `false` instead of `true`.
+
+### Storage Validation
+
+When TaskHub is first loaded, the `taskhub.json` file is checked whether it can be converted into a valid TaskHub model.
+This is to prevent undefined behaviour from users making modifications to the `taskhub.json` file.
+
+Given below is an example usage scenario and the internal changes that happen at each step.
+
+![StorageValidationSequenceDiagram](images/StorageValidationSequenceDiagram.png)
+
+Step 1. The user launches the application.
+
+Step 2. `Main` will look for the data file in the specified `filepath` in the `preferences.json` file and pass it to the `JsonTaskHubStorage`. If there is no file found,
+        then a new `TaskHub` with sample data will be created.
+
+Step 3. After retrieving the data file, `JsonTaskHubStorage` will call `JsonSerializableTaskHub` to check whether each `JsonAdaptedEmployee` fulfills the requirements of an `Employee`.
+        If the requirements are fulfilled ([Employee Requirements here](#employee-component))), then each `JsonAdaptedEmployee` is converted into an `Employee` and added to a `UniqueEmployeeList`.
+
+Step 4. `JsonSerializableTaskHub` will then check whether each `JsonAdaptedProject` fulfills the requirements of a `Project`.
+        If the requirements are fulfilled ([Project Requirements here](#project-component))), then each `JsonAdaptedProject` is converted into a `Project` and added to a `UniqueProjectList`.
+
+If any `JsonAdaptedEmployee` or `JsonAdaptedProject` fails to meet the requirements, an empty `Taskhub` is returned.
 
 ### \[Proposed\] Undo/redo feature
 
