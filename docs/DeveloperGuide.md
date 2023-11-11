@@ -242,11 +242,9 @@ Step 6. A `CommandResult` is produced based on whether the execution was a succe
 
 ### Prioritise Projects Feature
 
-Upon creation of a new `Project`, a `ProjectPriority` can be assigned to that `Project` using the `priorityP` command. 
+A priority can be assigned to multiple projects using the `priorityP` command. 
 
-This command modifies the `ProjectPriority` attribute of a `Project` by creating a new `Project` with the updated `ProjectPriority` and replacing the existing `Project` with the updated one.
-
-Currently, only a single project's `ProjectPriority` can be changed at a time.
+This command modifies the `Priority` attribute of a `Project` by creating a new `Project` with the updated `Priority` and replacing the existing project with the updated one.
 
 Given below is an example usage scenario and the internal changes that happen at each step.
 
@@ -254,18 +252,17 @@ Given below is an example usage scenario and the internal changes that happen at
 
 Step 1. The user launches the application. All employees and projects will be shown to the user.
 
-Step 2. The user executes `priorityP 1 priority/high` to assign a high priority to the project indexed at 1. `LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to an `PriorityProjectCommandParser`.
+Step 2. The user executes `priorityP 1 2 3 p/high` to assign a high priority to the projects indexed at 1, 2 and 3. `LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to a `PriorityProjectCommandParser`.
 
 Step 3. `TaskHubParser` will call `PriorityProjectCommandParser#parse(arguments)` to produce a `PriorityProjectCommand` to be executed by the `LogicManager`.
 
 Step 4. `LogicManager` calls `PriorityProjectCommand#execute(model)` to produce a `CommandResult`.
 
-Step 5. During the execution of the `PriorityProjectCommand`, a new `Project` with the same details as the `Project` which is to have its `ProjectPriority` updated is created but the `ProjectPriority` is now high.
+Step 5. During the execution of the `PriorityProjectCommand`, new projects are created with the same details as the projects whose `Priority` is supposed to be changed, except that the `Priority` for all the projects are now high.
 
-Step 6. The model is updated accordingly through `ModelManager`.
+Step 6. The model is updated accordingly through `ModelManager` by replacing the old projects with the new projects with the updated `Priority`.
 
 Step 7. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`.
-
 
 ### Find Projects Feature
 
@@ -417,8 +414,6 @@ Beyond the possibility of users keying in a task deadline that is past the proje
 Due to the aforementioned reasons, we believe the project deadlines and task deadlines should be validated.
 
 To be more specific, when tasks that have deadlines past the project deadline are added, there should be a warning indicating that a task with a deadline past the project deadline was added.
-
-Users can potentially override this warning with a marker such as `-f`, similar to forcing commands in other command-line interpreters like Command Prompt.
 
 Given below is an example usage scenario and how the validation mechanism behaves at each step.
 
