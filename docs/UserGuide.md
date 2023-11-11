@@ -102,7 +102,7 @@ The following symbols will be used throughout this user guide to assist you.
 
 <div markdown="block" class="alert alert-success">
 
-**:white_check_mark: Tip:** Provides information that is not necessary to know, but could enhance your user experience.<br>
+**:white_check_mark: Tip:** Provides information that is not necessary to know, but could **enhance** your **user experience**.<br>
 
 </div>
 
