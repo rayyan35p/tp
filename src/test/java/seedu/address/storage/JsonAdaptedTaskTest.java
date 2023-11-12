@@ -33,10 +33,10 @@ public class JsonAdaptedTaskTest {
     }
 
     @Test
-    public void toModelType_whiteSpaceInName_throwsIllegalValueException() {
+    public void toModelType_emptyName_throwsIllegalValueException() {
         JsonAdaptedTask task =
-            new JsonAdaptedTask(" taskName", VALID_DEADLINE, VALID_COMPLETION_STATUS, VALID_EMPLOYEE);
-        String expectedMessage = Task.MESSAGE_CONSTRAINTS;
+            new JsonAdaptedTask("", VALID_DEADLINE, VALID_COMPLETION_STATUS, VALID_EMPLOYEE);
+        String expectedMessage = Task.MESSAGE_NO_TASK;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 }

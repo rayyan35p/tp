@@ -72,9 +72,15 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EmployeeListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EmployeeListPanel`, `ProjectListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2324S1-CS2103T-T08-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S1-CS2103T-T08-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+
+The diagram above briefly demonstrates the hierarchy of the Ui components. A few more notes are as follows:
+* At the level just below `MainWindow`, there are the main components, like `CommandBox`, `ResultDisplay`, `EmployeeListPanel` and `ProjectListPanel`.
+* `EmployeeListPanel` contains some number of `EmployeeCard`s.
+* `ProjectListPanel` contains some number of `ProjectCard`s 
+  * which contain a `TaskListPanel` with their `TaskCard`s if the relevant `Project` in the `Model` contains a `Task`.
 
 The `UI` component,
 
@@ -91,17 +97,17 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("deleteE 1")` API call as an example.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deleteE 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteEmployeeCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to a `TaskHubParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
-2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
+1. When `Logic` is called upon to execute a command, it is passed to a `TaskHubParser` object which in turn creates a parser that matches the command (e.g., `DeleteEmployeeCommandParser`) and uses it to parse the command.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteEmployeeCommand`) which is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to delete a employee).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -110,8 +116,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `TaskHubParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TaskHubParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `TaskHubParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddEmployeeCommand`) which the `TaskHubParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddEmployeeCommandParser`, `DeleteEmployeeCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2324S1-CS2103T-T08-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -121,7 +127,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the TaskHub data i.e., all `Employee` and `Project` objects (which are separately contained in a `UniqueEmployeeList` object and a `UniqueProjectList` object).
+* stores the TaskHub data i.e., all `Employee`, `Project` and `Task` objects - `Employee` and `Project` objects are separately contained in a `UniqueEmployeeList` object and a `UniqueProjectList` object. `Task` objects exist within the `TaskList` of a `Project`.
 * stores the currently 'selected' `Employee` and `Project` objects (e.g., results of a search query) as 2 separate _filtered_ lists which are exposed to outsiders as unmodifiable `ObservableList<Employee>` and `ObservableList<Project>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` object.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -151,12 +157,23 @@ The `Employee` component stores an employee's data which comprises:
 
 The `Project` component stores a project's data which comprises:
 
-* a `name`, `Deadline`, `UniqueEmployeeList`, `ProjectPriority` and `CompletionStatus`.
+* a `Name`, `Deadline`, `UniqueEmployeeList`, `TaskList`, `ProjectPriority` and `CompletionStatus`.
 * The `Deadline` is optional.
 * The `UniqueEmployeeList` contains only the `Employee`s under the said `Project`.
 * Each `Employee` in the `UniqueEmployeeList` of the project must also exist in the `UniqueEmployeeList` of the `Model`. (All fields must be the same) 
+* The `TaskList` contains the `Task`s which have been added to the `Project`.
 
 ***Note: For the Model, Employee and Project components, lower-level details (e.g. most class attributes and methods) have been omitted for visual clarity.
+
+### Task component
+**API** : [`Task.java`](https://github.com/AY2324S1-CS2103T-T08-3/tp/blob/master/src/main/java/seedu/address/model/task/Task.java)
+
+<img src="images/TaskClassDiagram.png" width="450" />
+
+The `Task` component stores a task's data which comprises:
+
+* a `name`, `deadline`, `Employee`, and `isDone` field.
+* The `Employee` is optional - a Task may be assigned to an `Employee` within the `Project` or not.
 
 
 ### Storage component
@@ -184,43 +201,30 @@ This section describes some noteworthy details on how certain features are imple
 In the `initialize()` method of the `HelpWindow` class, commands are organized into different categories using HashMaps. Here's an explanation:
 
 ```java
-// Initializes HashMaps to store commands for different sections
-Map<String, String> generalCommands = new HashMap<>();
-Map<String, String> employeeCommands = new HashMap<>();
-Map<String, String> projectCommands = new HashMap<>();
-
-// Adds general commands with their descriptions to the generalCommands HashMap
-generalCommands.put("help", "- Get help pop-up to display.");
-generalCommands.put("clear", "- Clears all entries from TaskHub.");
-generalCommands.put("exit", "- Exits the program.");
-
-// Adds employee-related commands with their descriptions to the employeeCommands HashMap
-employeeCommands.put("addE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…\u200B",
-        "- Adds an employee to the employees list.");
-// ... (other employee commands)
-
-// Adds project-related commands with their descriptions to the projectCommands HashMap
-projectCommands.put("listP", "- Shows a list of all projects in TaskHub.");
-// ... (other project commands)
+// Initializes LinkedHashMaps to store commands for different sections
+Map<String, String> generalCommands = new LinkedHashMap<>();
+Map<String, String> employeeCommands = new LinkedHashMap<>();
+Map<String, String> projectCommands = new LinkedHashMap<>();
+Map<String, String> taskCommands = new LinkedHashMap<>();
+Map<String, String> assignmentCommands = new LinkedHashMap<>();
 ```
-
-In this code snippet, each HashMap (`generalCommands`, `employeeCommands`, and `projectCommands`) is used to store commands related to a specific section of the application. The keys in the HashMap represent the commands themselves, while the corresponding values provide a description of what each command does.
+The command formats with short descriptions accompanying them are then inserted into each `LinkedHashMap` accordingly.
+The keys in the LinkedHashMap represent the command formats, while the corresponding values provide a description of what each command does.
 
 ```java
 // Adds sections and their respective commands to the VBox layout
 addToVBox("General Commands", generalCommands);
 addToVBox("Employee Commands", employeeCommands);
 addToVBox("Project Commands", projectCommands);
+addToVBox("Task Commands", taskCommands);
+addToVBox("Assignment Commands", assignmentCommands);
 ```
 
-The `addToVBox()` method takes a section header (like "General Commands") and a corresponding HashMap of commands. It then formats and adds these commands to the `VBox` layout of the help window. Inline code formatting (using backticks) could be applied as follows:
-
-```java
-String command = "addE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…\u200B";
-String description = "- Adds an employee to the employees list.";
-```
+The `addToVBox()` method takes a section header (like "General Commands") and a corresponding HashMap of commands. It then formats and adds these commands to the `VBox` layout of the help window.
 
 This code structure efficiently organizes commands into distinct sections, making it easier for users to locate and understand the functionalities provided by each command. It also promotes code readability and maintainability for developers working on the application.
+
+An alternative imeplementation of `HelpWindow` could be to store each command format and description in a centralized database, and retrieve the data from there to be displayed in the HelpWindow, rather than to have to modify the code in `HelpWindow` separately when there is a change in the formats/descriptions.
 
 
 ### Add Project feature
@@ -320,6 +324,28 @@ Step 6. A `CommandResult` is produced based on whether the execution was a succe
 
 A similar sequence of events will occur when executing the `unmarkP` command, except that the `isCompleted` attribute of each `Project` will be set to `false` instead of `true`.
 
+### Add Task feature
+![AddTSequenceDiagram](images/AddTSequenceDiagram.png)
+
+
+When creating a new task using the `addT` command, the `TaskList` of the specified `Project` is updated, and the `Project` is hence updated too.
+
+Given below is an example usage scenario and the internal changes that happen at each step.
+
+Step 1. The user launches the application. All employees and projects will be shown to the user.
+
+Step 2. The user executes `addT n/todo pr/1 em/1 d/11-11-2023 2359` to add a new `Task` called `todo` to the first currently listed `Project`, assigned to the first `Employee` within that `Project`. `LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to an `AddTaskCommandParser`.
+
+Step 3. `TaskHubParser` will call `AddTaskCommandParser#parse(arguments)` to produce a `AddTaskCommand` to be executed by the `LogicManager`.
+
+Step 4. `LogicManager` calls `AddTaskCommand#execute(model)` to produce a `CommandResult `to be logged.
+
+Step 5. During the execution of the `AddTaskCommand`, a new `Project` copy is created, with an updated `TaskList` that contains the newly created `Task`.
+If an `employeeIndex` was specified by the command (in this case it was), then `Model::getFilteredEmployeeList` is called to assign the new `Task` to the specified  `Employee`. 
+Then, the `Model#setProject` and `Model#updateFilteredProjectList` is called, to trigger a `Ui` update, as the specified `Project` has been updated with an updated `TaskList`.
+
+Step 6. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`.
+
 ### Storage Validation
 
 When TaskHub is first loaded, the `taskhub.json` file is checked whether it can be converted into a valid TaskHub model.
@@ -341,6 +367,7 @@ Step 4. `JsonSerializableTaskHub` will then check whether each `JsonAdaptedProje
         If the requirements are fulfilled ([Project Requirements here](#project-component)), then each `JsonAdaptedProject` is converted into a `Project` and added to a `UniqueProjectList`.
 
 If any `JsonAdaptedEmployee` or `JsonAdaptedProject` fails to meet the requirements, an empty `Taskhub` is returned.
+
 
 ### \[Proposed\] Undo/redo feature
 

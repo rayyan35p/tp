@@ -17,7 +17,7 @@ import seedu.address.model.task.Task;
  * A utility class containing a list of {@code task} objects to be used in tests.
  */
 public class TypicalTasks {
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu HHmm");
     public static final LocalDateTime DEFAULT_DEADLINE = LocalDateTime.parse("11-11-2023 2359", FORMATTER);
     public static final List<Employee> DEFAULT_EMPLOYEE = Collections.singletonList(ALICE);
 

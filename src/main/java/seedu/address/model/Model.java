@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
-import seedu.address.model.task.Task;
 
 /**
  * The API of the Model component.
@@ -79,8 +78,6 @@ public interface Model {
      */
     void deleteProject(Project project);
 
-    void deleteTask(Task task);
-
     /**
      * Adds the given employee.
      * {@code employee} must not already exist in the TaskHub.
@@ -92,12 +89,6 @@ public interface Model {
      * {@code project} must not already exist in the TaskHub.
      */
     void addProject(Project project);
-
-    /**
-     * Adds the given task.
-     * {@code task} may exist in TaskHub as multiple employees may need to do similar tasks.
-     */
-    void addTask(Task task);
 
     /**
      * Replaces the given employee {@code target} with {@code editedEmployee}.
@@ -112,9 +103,6 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered project list */
     ObservableList<Project> getFilteredProjectList();
-
-    /** Returns an unmodifiable view of the filtered task list */
-    ObservableList<Task> getFilteredTaskList();
 
     /**
      * Updates the filter of the filtered employee list to filter by the given {@code predicate}.
@@ -131,5 +119,4 @@ public interface Model {
      */
     void updateFilteredProjectList(Predicate<Project> predicate);
 
-    void updateFilteredTaskList(Predicate<Task> predicate);
 }
