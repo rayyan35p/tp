@@ -564,7 +564,7 @@ Format `deleteT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
 **:no_entry: Danger**<br>
 
 * This action is irreversible.
-* Please ensure that you are certain that you want to delete the employee before proceeding.
+* Please ensure that you are certain that you want to delete the task before proceeding.
 
 </div>
 
