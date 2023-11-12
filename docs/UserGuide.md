@@ -698,7 +698,7 @@ To attempt to recover as much data as possible, it is recommended to save a copy
 * Run TaskHub with the edited `taskhub.json` file. If the list of employees is shown, then the problem lies in your projects. Otherwise, a format error lies in the `"employee"` section of your json file. 
 It is recommended to start from scratch because most likely your projects and tasks that involve the employee have different degree of changes, and it might be impractical to manually change each occurence of the employee.  
 * Now, add each project one by one, ensuring that TaskHub can run normally after each project addition. If TaskHub appears empty after the addition of a particular project, it is most likely that the employees in the project are different from those stored in TaskHub.
-Check the employees assigned in your project and make sure every field is equal to its counterpart in the employee list.<br>
+Check the employees assigned in your project and employees assigned to relevant tasks, making sure every field is equal to its counterpart in the employee list.<br>
 While checking an employee assigned to a task, make sure the employee is the same employee in the project and in the employee list.
 * Repeat the step above until every project is added to TaskHub.
 If you have not changed anything, ensure your `data` folder containing your `taskhub.json` is in the same folder as your `taskhub.jar`.<br>
