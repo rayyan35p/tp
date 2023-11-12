@@ -16,7 +16,6 @@ public class PriorityTest {
     public void constructor_null_throwsNullPointerException() {
         // EP: null
         assertThrows(NullPointerException.class, () -> new Priority(null));
-        assertThrows(AssertionError.class, () -> new Priority(null));
     }
 
     @Test
