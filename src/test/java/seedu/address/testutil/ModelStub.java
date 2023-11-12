@@ -114,4 +114,9 @@ public class ModelStub implements Model {
     public void updateFilteredProjectList(Predicate<Project> predicate) {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public void sortTasksByDeadlineAndCompletion() {
+        throw new AssertionError("This method should not be called.");
+    }
 }

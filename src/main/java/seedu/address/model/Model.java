@@ -119,4 +119,10 @@ public interface Model {
      */
     void updateFilteredProjectList(Predicate<Project> predicate);
 
+    /**
+     * Sorts tasks in tasks list of each project according to completion and deadline.
+     * Incomplete tasks will appear before complete tasks and tasks will be arranged in ascending deadline order.
+     */
+    void sortTasksByDeadlineAndCompletion();
+
 }

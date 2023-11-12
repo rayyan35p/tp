@@ -1,32 +1,31 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.EmployeeBuilder;
-import seedu.address.testutil.ModelStubWithProjectAndEmployee;
+import seedu.address.testutil.ModelStub;
 import seedu.address.testutil.ProjectBuilder;
 import seedu.address.testutil.TaskBuilder;
 
 
 public class SortTaskCommandTest {
 
-    private ModelStubWithProjectAndEmployee modelStub;
-    private ModelStubWithProjectAndEmployee expectedModelStub;
+    private ModelStubWithProjectAndSortableTasks modelStub;
+    private ModelStubWithProjectAndSortableTasks expectedModelStub;
 
     @BeforeEach
     public void setUp() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
 
-        Employee employee = new EmployeeBuilder().withName("Alex").build();
         Task firstTask = new TaskBuilder().withName("First")
                 .withDoneness(true)
                 .withDeadline(LocalDateTime.parse("01-01-2020 1900", formatter)).build();
@@ -48,12 +47,43 @@ public class SortTaskCommandTest {
         Project expectedProject = new ProjectBuilder().withName("Build Website")
                 .withTasks(secondTask, fourthTask, firstTask, thirdTask).build();
 
-        modelStub = new ModelStubWithProjectAndEmployee(project, employee);
-        expectedModelStub = new ModelStubWithProjectAndEmployee(expectedProject, employee);
+        modelStub = new ModelStubWithProjectAndSortableTasks(project);
+        expectedModelStub = new ModelStubWithProjectAndSortableTasks(expectedProject);
     }
 
     @Test
     public void execute_taskListIsNotOrdered_ordersTaskList() {
         assertCommandSuccess(new SortTaskCommand(), modelStub, SortTaskCommand.MESSAGE_SUCCESS, expectedModelStub);
+    }
+
+    private class ModelStubWithProjectAndSortableTasks extends ModelStub {
+        private final List<Project> projectList;
+
+        ModelStubWithProjectAndSortableTasks(Project project) {
+            requireNonNull(project);
+            this.projectList = List.of(project);
+        }
+
+        @Override
+        public void sortTasksByDeadlineAndCompletion() {
+            for (Project project : projectList) {
+                project.sortTasksByDeadlineAndCompletion();
+            }
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof ModelStubWithProjectAndSortableTasks)) {
+                return false;
+            }
+
+            ModelStubWithProjectAndSortableTasks otherStub = (ModelStubWithProjectAndSortableTasks) other;
+            return this.projectList.equals(otherStub.projectList);
+        }
     }
 }
