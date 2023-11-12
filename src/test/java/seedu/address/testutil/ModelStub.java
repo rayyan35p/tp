@@ -16,6 +16,8 @@ import seedu.address.model.project.Project;
  */
 public class ModelStub implements Model {
 
+    // Note: this class is adapted from the private ModelStub class of AddCommandTest.java in AB3.
+
     //@@author Chandan8186-reused
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -47,13 +49,13 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
-    //@@author aslam341
+    //@@author aslam341-reused
     @Override
     public void addEmployee(Employee employee) {
         throw new AssertionError("This method should not be called.");
     }
 
-    //@@author antonTan96
+    //@@author antonTan96-reused
     @Override
     public void addProject(Project project) {
         throw new AssertionError("This method should not be called.");
@@ -70,31 +72,31 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
-    //@@author aslam341
+    //@@author aslam341-reused
     @Override
     public boolean hasEmployee(Employee employee) {
         throw new AssertionError("This method should not be called.");
     }
 
-    //@@author antonTan96
+    //@@author antonTan96-reused
     @Override
     public boolean hasProject(Project project) {
         throw new AssertionError("This method should not be called.");
     }
 
-    //@@author aslam341
+    //@@author aslam341-reused
     @Override
     public void deleteEmployee(Employee target) {
         throw new AssertionError("This method should not be called.");
     }
 
-    //@@author antonTan96
+    //@@author antonTan96-reused
     @Override
     public void deleteProject(Project project) {
         throw new AssertionError("This method should not be called.");
     }
 
-    //@@author aslam341
+    //@@author aslam341-reused
     @Override
     public void setEmployee(Employee target, Employee editedEmployee) {
         throw new AssertionError("This method should not be called.");
@@ -105,20 +107,20 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
-    //@@author antonTan96
+    //@@author antonTan96-reused
     @Override
     public ObservableList<Project> getFilteredProjectList() {
 
         throw new AssertionError("This method should not be called.");
     }
 
-    //@@author aslam341
+    //@@author aslam341-reused
     @Override
     public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 
-    //@@author antonTan96
+    //@@author antonTan96-reused
     @Override
     public void setProject(Project projectToEdit, Project editedProject) {
         throw new AssertionError("This method should not be called.");
