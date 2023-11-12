@@ -212,7 +212,7 @@ A `Project` in TaskHub is a managerial unit that includes information about [`Em
 |------------------|------------------------------------------------------------|----------------------------------------------|-------------------------------------------------------------------------------------------------|
 | Name             | Name of the project.                                       | `n/`                                         | -                                                                                               |
 | Employees        | Employees assigned to the project.                         | `em/`                                        | [`assignP`](#assign-employees-to-a-project-assignp)                                             |
-| Deadline         | Deadline for the project.                                  | -                                            | [`dlp`](#edit-deadline-of-a-projects-dlp)                                                       |
+| Deadline         | Deadline for the project.                                  | -                                            | [`dlP`](#edit-deadline-of-a-projects-dlp)                                                       |
 | Priority         | Priority level of the project.                             | -                                            | [`priorityP`](#prioritise-projects-priorityp)                                                   |
 | CompletionStatus | Indicates whether the project is completed or in progress. | -                                            | [`markP`](#mark-projects-as-completed-markp), [`unmarkP`](#mark-projects-as-incomplete-unmarkp) |
 | Tasks            | Tasks associated with the project.                         | -                                            | [`addT`](#add-a-new-task-to-a-project-addt)                                                     |
@@ -273,22 +273,105 @@ and at the bottom of the window, is a link to our user guide.
 * Projects, as well as their members, tasks to complete in the project, and other important details for managing your project are stored here!
 
 ## Quick start
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+The first step in the Quick Start guide involves `deleteP`, which is irreversible. If you wish to keep the sample data, then you can head straight to the Features section below to figure out TaskHub on your own.
+</div>
+
+If you're okay with modifying the sample data, then we'll proceed with our first gist of project management with TaskHub. Time is ticking!
+
+If you haven't started running any commands, TaskHub should look something like this when you first run it:
+
+<img src="images/QuickStartStart.png" width="700">
+
+### Step 1: Deleting a finished project
+Hmmm, it seems like you're done with the 'Website Redesign Project'. Let's get rid of this data by running the below command.
+
+```
+deleteP 1
+```
+
+You should get the following response:
+
+```
+Deleted Project: Name: Website Redesign; Completed? Yes; Deadline: 15-11-2023; Priority: HIGH
+Members: Alex Yeoh, Bernice Yu
+```
+Now, you're looking at the 'Market Expansion' project, which we'll be focusing on.
 
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+### Step 2: Adding a new employee to TaskHub:
+You've just got an email from your boss, saying that the fresh graduate that you recently interviewed is joining your team!
 
-   * `listE` : Lists all employees.
+Here are his details:
 
-   * `addE n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds an employee named `John Doe` to the TaskHub.
+| Name         | Anton Tan                       |
+|--------------|---------------------------------|
+| Phone Number | 98765432                        |
+| Email        | anton@mail.com                  |
+| Address      | Anton Street, block 123, #01-01 |
+| Strengths    | TeamPlayer, Hardworking         |
 
-   * `deleteE 3` : Deletes the 3rd employee shown in the current list.
+Let's run the following command to add him to your team of [`Employees`](#employees).
 
-   * `clear` : Deletes all data.
+```
+addE n/Anton Tan p/98765432 e/anton@mail.com a/Anton Street, block 123, #01-01 t/TeamPlayer Hardworking
+```
 
-   * `exit` : Exits the app.
+You should get the following response:
+```
+New employee added: Anton Tan; Phone: 98765432; Email: anton@mail.com; Address: Anton Street, block 123, #01-01; Tags: [TeamPlayer][Hardworking]
+```
 
-6. Refer to the [Features](#features) below for details of each command.
+### Step 3: Assigning an Employee to a Project in TaskHub:
+You've decided that you need more help with the 'Market Expansion Project'. Let's run the following command to enlist Anton's help:
+```
+assignP pr/1 em/7
+```
+
+You should get the following response:
+```
+Member(s) have been assigned!
+Name: Market Expansion; Completed? No; Deadline: 30-12-2023; Priority: NORMAL
+Members: Charlotte Oliveiro, David Li, Anton Tan
+```
+
+### Step 4: Adding a Task to a Project:
+Anton is eager to contribute to his newly assigned project. Since you've found that he is particularly skilled at Market Segmentation, let's run the following command to give him a task that he will excel at. To measure his capabilities, you'll only give him until the end of November to complete this.
+```
+addT n/Market Segmentation pr/1 em/3 d/30-11-2023 2359
+```
+
+You should get the following response:
+```
+New task added to project 1, Description: Market Segmentation; Deadline: 30 Nov 2023, 11:59PM; Assignee: Anton Tan
+```
+
+### Step 5: Marking a Task as Complete:
+It's the next morning. You receive an eager email from Anton reporting that he's already completed the Market Segmentation `Task`. After reviewing his report, you are thoroughly impressed and wish to mark his work as done in `TaskHub`. Let's run this command:
+```
+markT pr/1 t/3
+```
+
+You should get the following response:
+```
+1 task(s) marked as completed under the project: Market Expansion
+```
+
+If you've followed the steps correctly, TaskHub should look something like this now:
+
+Scroll down in the `Employees` pane to notice Anton, the newest addition to your team.
+
+<img src="images/QuickStartEnd.png" width="700">
+
+For a more comprehensive overview of what you can achieve with TaskHub, you may proceed to the [Features](#features) section below.
+
+
+
+
+
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
