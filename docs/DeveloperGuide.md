@@ -679,3 +679,6 @@ We plan to allow multiple employees to be assigned to each task.
 5. Currently, commands that allow users to add multiple continuous indexes (e.g. `priorityP 1 2 3 p/low`) do not allow multiple spaces between indexes (e.g. `priorityP 1 &nbsp;2 &nbsp;3 p/low`).
 Instead, an error message is currently shown to the user saying `Index provided was not a non-zero unsigned integer. This is not valid: <empty>`, due to the extra space.
 We plan to allow multiple spaces between indexes to be handled automatically instead of the user having to find where they may have put the additional space(s).
+6. Employee names currently cannot contain special characters, as the validation for this is too strict.
+A name such as `Vishnu S/O Prasath` cannot be added to the employee list, even though it could be a valid name.
+We plan to allow some special characters, such as `/` and `-`, to be added to the employee name.
