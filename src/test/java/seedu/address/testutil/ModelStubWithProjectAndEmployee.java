@@ -9,7 +9,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
-import seedu.address.model.task.Task;
 
 
 /**
@@ -60,11 +59,6 @@ public class ModelStubWithProjectAndEmployee extends ModelStub {
     public void setProject(Project project, Project editedProject) {
         requireAllNonNull(project, editedProject);
         this.project = editedProject;
-    }
-
-    @Override
-    public void addTask(Task task) {
-        this.project.addTask(task);
     }
 
     @Override

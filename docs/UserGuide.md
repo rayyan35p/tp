@@ -3,26 +3,191 @@ layout: page
 title: User Guide
 ---
 
-TaskHub is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TaskHub can get your project management tasks done faster than traditional GUI apps.
-
-* Table of Contents
-{:toc}
+# Table of Contents
+<!-- TOC -->
+* [Introduction](#introduction)
+  * [About TaskHub](#about-taskhub)
+  * [About this User Guide](#about-this-user-guide)
+  * [Navigating the User Guide](#navigating-the-user-guide)
+* [Getting Started](#getting-started)
+  * [Installing and launching TaskHub](#installing-and-launching-taskhub)
+  * [Understanding the components of TaskHub](#understanding-the-components-of-taskhub)
+  * [Understanding the User Interface (UI)](#understanding-the-user-interface--ui-)
+  * [Quick start](#quick-start)
+* [Features](#features)
+  * [General Commands](#general-commands)
+    * [View help: `help`](#view-help--help)
+    * [List all employees and projects: `list`](#list-all-employees-and-projects--list)
+    * [Clear all entries: `clear`](#clear-all-entries--clear)
+    * [Exit the program: `exit`](#exit-the-program--exit)
+  * [Employee Commands](#employee-commands)
+    * [Add an employee: `addE`](#add-an-employee--adde)
+    * [Edit an employee: `editE`](#edit-an-employee--edite)
+    * [Delete an employee: `deleteE`](#delete-an-employee--deletee)
+    * [List all employees: `listE`](#list-all-employees--liste)
+    * [Locate employees by name: `findE`](#locate-employees-by-name--finde)
+  * [Project Commands](#project-commands)
+    * [Add a new project: `addP`](#add-a-new-project--addp)
+    * [Edit a project: `editP`](#edit-a-project--editp)
+    * [Delete a project: `deleteP`](#delete-a-project--deletep)
+    * [Mark project(s) as completed: `markP`](#mark-project--s--as-completed--markp)
+    * [Mark project(s) as incomplete: `unmarkP`](#mark-project--s--as-incomplete--unmarkp)
+    * [Edit deadline of (a) project(s): `dlP`](#edit-deadline-of--a--project--s---dlp)
+    * [Prioritise projects: `priorityP`](#prioritise-projects--priorityp)
+    * [List all projects: `listP`](#list-all-projects--listp)
+    * [Locate projects by name: `findP`](#locate-projects-by-name--findp)
+  * [Task Commands](#task-commands)
+    * [Add a new task to a project: `addT`](#add-a-new-task-to-a-project--addt)
+    * [Delete a task from a project: `deleteT`](#delete-a-task-from-a-project--deletet)
+    * [Mark task(s) as completed: `markT`](#mark-task--s--as-completed--markt)
+    * [Mark task(s) as incomplete: `unmarkT`](#mark-task--s--as-incomplete--unmarkt)
+    * [Sort tasks by deadline and completion status: `sortT`](#sort-tasks-by-deadline-and-completion-status--sortt)
+  * [Assignment Commands](#assignment-commands)
+    * [Assign employee(s) to a project: `assignP`](#assign-employee--s--to-a-project--assignp)
+    * [Un-assign employee(s) from a project: `unassignP`](#un-assign-employee--s--from-a-project--unassignp)
+    * [Assign an employee to a task: `assignT`](#assign-an-employee-to-a-task--assignt)
+    * [Un-assign an employee from a task: `unassignT`](#un-assign-an-employee-from-a-task--unassignt)
+  * [Data Storage](#data-storage)
+    * [Save the data](#save-the-data)
+    * [Edit the data file](#edit-the-data-file)
+* [FAQ](#faq)
+* [Known issues](#known-issues)
+* [Command summary](#command-summary)
+<!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Quick start
+# Introduction
+
+## About TaskHub
+Welcome to **TaskHub**, a powerful desktop application designed to make **project management** efficient and effortless.
+
+With TaskHub, you will be able to:
+* Store your employees' **contact information**
+* Create and manage **projects** for your employees to be delegated to
+* Create customized **tasks** for each project and assign your employees to them
+* View all of your **employees, projects and tasks** at a glance
+
+and much more!
+
+TaskHub uses a **Command Line Interface (CLI)** for you to type in your desired **actions**. If you are a **fast typist**, this is perfect for you as it allows you to execute commands without having to leave the keyboard and gets your project management tasks done faster than traditional GUI apps.
+
+TaskHub also uses a **Graphical User Interface (GUI)** to display **content and data**. This allows for data to be presented to you in an **elegant, fuss-free** manner.
+
+Start to streamline your project management workflow today with TaskHub!
+
+[Return to Table of Contents](#table-of-contents)
+
+
+## About this User Guide
+
+This user guide aims to provide you with all the information needed to get started with TaskHub.
+
+If you are **new** to TaskHub, you may refer to the **[Navigating the User Guide](#navigating-the-user-guide)** section first, then to the **[Getting Started](#getting-started)** section to start installing and using TaskHub.
+
+If you would like to find out more about its **individual features**, you may refer to the **[Features](#features)** section.
+
+If you are an **experienced user** and want to quickly refer to the various commands, you may refer to the **[Command Summary](#command-summary)** section.
+
+If you would like to find out more about the **technical aspects of TaskHub**, you may refer to our **[Developer Guide](https://ay2324s1-cs2103t-t08-3.github.io/tp/DeveloperGuide.html)**.
+
+Finally, if you would like an **overview** of this entire user guide, you may refer to our **[Table of Contents](#table-of-contents)**.
+
+[Return to Table of Contents](#table-of-contents)
+
+
+## Navigating the User Guide
+
+The following symbols will be used throughout this user guide to assist you.
+
+<div markdown="span" class="alert alert-primary">
+
+**:bulb: Tip:** Provides information that is not necessary to know, but could **enhance** your **user experience**.<br>
+
+</div>
+
+<div markdown="span" class="alert alert-info">
+
+**:information_source: Information:** Provides information that will be **useful to know**.<br>
+
+</div>
+
+<div markdown="span" class="alert alert-warning">
+
+**:warning: Warning:** Provides **important** information about a feature/command.<br>
+
+</div>
+
+<div markdown="span" class="alert alert-danger">
+
+**:no_entry: Danger:** Provides **very important** information about a consequence (that could be **irreversible**) from a feature/command.<br>
+
+</div>
+
+Links:
+* Words in blue are [links](#navigating-the-user-guide) that direct you to either a [section](#navigating-the-user-guide) of our user guide, or [another website](https://ay2324s1-cs2103t-t08-3.github.io/tp/).
+* At the bottom of every main section, there will be a [Return to Table of Contents](#table-of-contents) link directing you to the Table of Contents, allowing you to quickly switch between different sections.
+
+[Return to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Getting Started
+
+## Installing and launching TaskHub
+
+## Understanding the components of TaskHub
+
+## Understanding the User Interface (UI)
+
+![Ui Parts](images/UiParts.png)
+
+TaskHub's UI consists of 4 main parts that you will be using for your project management:
+
+### Menu Bar
+* The menu bar is where you can exit TaskHub or even open the help window with a simple click of your mouse!
+* While commands to exit TaskHub or open the help window can be entered as a command, this is a beginner-friendly alternative for newer users who might not be so familiar with the commands.
+
+#### Help:
+Upon clicking help on the menu bar as shown below,
+
+![circled_help_gui](images/circledHelpGui.png)
+
+a help window pops up with a list of all the possible commands:
+
+![help window](images/HelpWindow.png)
+
+and at the bottom of the window, is a link to our user guide.
+
+![ug_link](images/HelpWindowUgLink.png)
+
+### Command Panel
+* The command panel is the main panel that you will be interacting with to key in commands and also get back the results of those commands.
+* The upper box is where you can type in your command.
+* And the lower box is where you will see the results of those commands.
+
+### Employee Panel
+* The employee panel is one of two panels that you can use to see what is stored in TaskHub.
+* The employee panel, as the name suggests, is where all the information about each employee is stored.
+* You can see their name, phone number, address, email address, and even whatever tags that you have for each of them as needed!
+
+### Project Panel
+* The project panel is the other panel that you will be using to see the data stored in TaskHub.
+* Projects, as well as their members, tasks to complete in the project, and other important details for managing your project are stored here!
+
+## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `taskhub.jar` from [here](https://github.com/AY2324S1-CS2103T-T08-3/tp/releases).
+2. Download the latest `taskhub.jar` from [here](https://github.com/AY2324S1-CS2103T-T08-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your TaskHub.
+3. Copy the file to the folder you want to use as the _home folder_ for your TaskHub.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar taskhub.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar taskhub.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `listE` : Lists all employees.
@@ -35,7 +200,7 @@ TaskHub is a **desktop app for managing contacts, optimized for use via a Comman
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -49,13 +214,16 @@ TaskHub is a **desktop app for managing contacts, optimized for use via a Comman
   e.g. in `addE n/NAME`, `NAME` is a parameter which can be used as `addE n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+
+* All commands that can take in multiple index should have its indexes separated by **single** spaces.<br>
+e.g. if the command specifies `INDEX [MORE_INDEXES]`, it should be entered as `1 2 3` instead of `1  2  3`.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `listE`, `listP`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -71,25 +239,9 @@ TaskHub is a **desktop app for managing contacts, optimized for use via a Comman
 
 ## General Commands
 
-### View help : `help`
+### View help: `help`
 
-
-#### GUI Help:
-Upon clicking help on the top of the GUI as shown below,
-
-![circled_help_gui](images/circledHelpGui.png)
-
-a help window pops up with a list of all the possible commands:
-
-![help window](images/HelpWindow.png)
-
-and at the bottom of the window, is a link to our user guide.
-
-![ug_link](images/HelpWindowUgLink.png)
-
-
-#### CLI Help
-Alternatively, enter a `help` command into TaskHub to quickly display the same help window without having to click on help.
+Enter a `help` command into TaskHub to quickly display the same help window without having to click on help.
 
 Format: `help`
 
@@ -101,14 +253,14 @@ Shows a list of all employees and projects in TaskHub.
 Format: `list`
 
 
-### Clear all entries : `clear`
+### Clear all entries: `clear`
 
 Clears all entries from TaskHub.
 
 Format: `clear`
 
 
-### Exit the program : `exit`
+### Exit the program: `exit`
 
 Exits the program.
 
@@ -135,7 +287,7 @@ Examples:
 * `addE n/Betsy Crowe t/Junior e/betsycrowe@example.com a/Brick street p/91234567 t/Employee`
 
 
-### Edit an employee : `editE`
+### Edit an employee: `editE`
 
 Edits an existing employee in the TaskHub.
 
@@ -144,7 +296,7 @@ Format: `editE INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed employee list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the employee will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the employee will be removed i.e. adding of tags is not cumulative.
 * You can remove all the employee’s tags by typing `t/` without
   specifying any tags after it.
 
@@ -153,7 +305,7 @@ Examples:
 *  `editE 2 n/Betsy Crower t/` Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
 
 
-### Delete an employee : `deleteE`
+### Delete an employee: `deleteE`
 
 Deletes the specified employee from the employees list.
 
@@ -168,7 +320,7 @@ Examples:
 * `findE Betsy` followed by `deleteE 1` deletes the 1st employee in the results of the `findE` command.
 
 
-### List all employees : `listE`
+### List all employees: `listE`
 
 Shows a list of all employees in TaskHub.
 
@@ -184,7 +336,7 @@ Additionally, it shows only the projects that these employees are under.
 
 Format: `findE KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -204,7 +356,7 @@ Examples:
 ## Project Commands
 
 
-### Add a new project : `addP`
+### Add a new project: `addP`
 
 Adds a new project in TaskHub
 
@@ -222,7 +374,7 @@ Examples:
 * `addP n/Project2` will add an empty `Project2` to the projects list.
 
 
-### Edit a project : `editP`
+### Edit a project: `editP`
 
 Edits an existing project in the TaskHub.
 
@@ -312,8 +464,15 @@ Format: `priorityP INDEX [MORE_INDEXES] p/PRIORITY`
 * Sets the priority of the project(s) at the specified `INDEX(ES)`.
 * The index refers to the index number shown in the displayed projects list.
 * The index __must be a positive integer__ 1, 2, 3,...
-* The `PRIORITY` must be one of the following: `low`, `normal`, `high`.
 * All projects are set to normal priority by default.
+
+<div markdown="block" class="alert alert-warning">
+
+**:warning: Warning**<br>
+
+The `PRIORITY` must be one of the following: `low`, `normal`, `high`.
+
+</div>
 
 Examples:
 * `listP` followed by `priorityP 1 2 p/high` sets the 1st and 2nd projects as high priority in TaskHub.
@@ -330,12 +489,12 @@ Format: `listP`
 
 ### Locate projects by name: `findP`
 
-Finds projects whose names contain any of the given keywords.
+Find projects whose names contain any of the given keywords.
 Additionally, it shows only the employees that are under these projects.
 
 Format: `findP KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `website` will match `Website`
+* The search is case-insensitive. e.g. `website` will match `Website`
 * The order of the keywords does not matter. e.g. `Create Website` will match `Website Create`
 * Only the name is searched.
 * Only full words will be matched e.g. `Website` will not match `Websites`
@@ -364,6 +523,7 @@ Format `addT pr/PROJECT_INDEX [em/EMPLOYEE_INDEX] n/TASK_NAME d/DEADLINE(dd-MM-y
 * otherwise it will have no assignee, and `assignT` can be used after that to assign it to an employee.
 * The index(es) **must be positive integers** 1, 2, 3,...
 * The deadline must be in the format `dd-MM-yyyy HHmm`. For example, `11-10-2023 2359` refers to 11th October 2023, 11.59pm.
+* It is possible for the deadline of the task to be after the deadline of the project. There are currently no warnings for such an input so please be careful while inputting your deadline dates.
 
 Examples:
 * `listP` followed by `addT pr/1 n/Website d/11-10-2023 2359` adds a task named `Website` with deadline `11-10-2023 2359` to the 1st project.
@@ -424,7 +584,7 @@ Sorts the tasks in each project by their deadline and completion status.
 
 Format: `sortT`
 
-* The sorting of tasks is done within each project i.e tasks from different projects are not compared.
+* The sorting of tasks is done within each project i.e. tasks from different projects are not compared.
 * Incomplete tasks will be placed before completed ones and tasks with an earlier deadline will be placed before those with a later one.
 * Completion status takes precedence over deadline i.e. an incomplete task with a later deadline will be placed before a completed task with an earlier deadline.
 
@@ -475,6 +635,15 @@ Format `assignT pr/PROJECT_INDEX t/TASK_INDEX em/EMPLOYEE_INDEX`
 * The employee index refers to the index number of the employee **in the project list**.
 * The index(es) **must be positive integers** 1, 2, 3,...
 
+<div markdown="block" class="alert alert-warning">
+
+**:warning: Warning**<br>
+
+* In this version of TaskHub, only a single employee can be assigned to a task at a time.
+* Assigning a task that has already been assigned to another employee will overwrite that employee.
+
+</div>
+
 Examples:
 * `listP` followed by `assignT pr/1 t/1 em/2` assigns the first task in the first project to the second employee in the project.
 * `findP Capstone` followed by `assignT pr/2 t/2 em/2` assigns the second task, in the second project from the results of `findP`, to the second employee in the project.
@@ -513,20 +682,25 @@ If your changes to the data file makes its format invalid, TaskHub will discard 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+# FAQ
+
+**Q**: Why is all my TaskHub data gone?<br>
+**A**: TaskHub requires all data stored in the data file to be in the correct format so that it can be read back to TaskHub. A TaskHub that suddenly becomes empty indicates an issue with the data file.<br>
+If you have directly changed any data in the `taskhub.json` file instead of through TaskHub, it is highly likely that it would be in the wrong format, resulting in an empty TaskHub.<br>
+If you have not changed anything, ensure your `data` folder containing your `taskhub.json` is in the same folder as your `taskhub.jar`.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TaskHub home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
+# Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+# Command summary
 
 | Action                                           | Format, Examples                                                                                                                                                                          |
 |--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -547,7 +721,7 @@ If your changes to the data file makes its format invalid, TaskHub will discard 
 | **Edit Project Deadline**                        | `dlP INDEX [MORE_INDEXES] [d/DEADLINE]` <br> e.g., `dlP 1 2 d/27-11-2023` <br>                                                                                                            |
 | **Prioritise Project(s)**                        | `priorityP INDEX [MORE_INDEXES] p/PRIORITY` <br> e.g., `priorityP 1 2 p/high` <br>                                                                                                        |
 | **List All Projects**                            | `listP`                                                                                                                                                                                   |
-| **Find Project(s)**                              | `findP KEYWORD [MORE_KEYWORDS]`<br> e.g., `findP Wesite Create`                                                                                                                           |
+| **Find Project(s)**                              | `findP KEYWORD [MORE_KEYWORDS]`<br> e.g., `findP Website Create`                                                                                                                          |
 | **Add Task**                                     | `addT pr/PROJECT_INDEX [em/EMPLOYEE_INDEX] n/TASK_NAME d/DEADLINE(dd-MM-yyyy HHmm)`<br> e.g., `addT pr/1 em/1 n/Read docs d/11-11-2023 2359`                                              |
 | **Delete Task**                                  | `deleteT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]` <br> e.g., `deleteT pr/1 t/1 5 3`                                                                                             |
 | **Mark Task(s) As Complete**                     | `markT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`<br> e.g., `markT pr/1 t/1 3`                                                                                                    |
@@ -555,5 +729,7 @@ If your changes to the data file makes its format invalid, TaskHub will discard 
 | **Sort Tasks By Deadline And Completion Status** | `sortT`                                                                                                                                                                                   |
 | **Assign Employee(s) To Project**                | `assignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDEXES]…​` <br> e.g, `assignP pr/4 em/1 2 3`                                                                               |
 | **Un-assign Employee(s) From Project**           | `unassignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [em/MORE_EMPLOYEE_INDEXES]` <br> e.g, `unassignP pr/2 em/1 3`                                                                               |
-| **Assign Employee To Task**                      | `assignT` <br> e.g., `assignT pr/1 t/1 em/3`                                                                                                                                              |
-| **Un-assign Employee From Task**                 | `unassignT` <br> e.g., `unassignT pr/1 t/1`                                                                                                                                               |
+| **Assign Employee to Task**                      | `assignT pr/PROJECT_INDEX t/TASK_INDEX em/EMPLOYEE_INDEX` <br> e.g., `assignT pr/1 t/1 em/3`                                                                                              |
+| **Un-assign Employee from Task**                 | `unassignT pr/PROJECT_INDEX t/TASK_INDEX` <br> e.g., `unassignT pr/1 t/1`                                                                                                                 |
+
+[Return to Table of Contents](#table-of-contents)

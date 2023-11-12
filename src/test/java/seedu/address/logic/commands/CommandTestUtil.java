@@ -95,10 +95,28 @@ public class CommandTestUtil {
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     // Task field descriptions
+    public static final String INVALID_DEADLINE_WITH_TIME = "30-02-2023 2559"; //30th Feb, 2559, not allowed
+
     public static final String VALID_TASK_ALL_FIELDS = " " + PREFIX_NAME + VALID_NAME_TASK + " "
                                                              + PREFIX_PROJECT + VALID_PROJECT_INDEX_TASK + " "
                                                              + PREFIX_DEADLINE + VALID_DEADLINE_TASK + " "
                                                                 + PREFIX_EMPLOYEE + VALID_EMPLOYEE_INDEX_TASK + " ";
+
+    public static final String INVALID_TASK_NO_NAME = " " + PREFIX_NAME + " "
+            + PREFIX_PROJECT + VALID_PROJECT_INDEX_TASK + " "
+            + PREFIX_DEADLINE + VALID_DEADLINE_TASK + " "
+            + PREFIX_EMPLOYEE + VALID_EMPLOYEE_INDEX_TASK + " ";
+    public static final String INVALID_TASK_NO_DEADLINE = " "
+            + PREFIX_NAME + VALID_NAME_TASK + " "
+            + PREFIX_PROJECT + VALID_PROJECT_INDEX_TASK + " "
+            + PREFIX_DEADLINE + " "
+            + PREFIX_EMPLOYEE + VALID_EMPLOYEE_INDEX_TASK + " ";
+
+    public static final String INVALID_TASK_DEADLINE_FORMAT = " "
+            + PREFIX_NAME + VALID_NAME_TASK + " "
+            + PREFIX_PROJECT + VALID_PROJECT_INDEX_TASK + " "
+            + PREFIX_DEADLINE + INVALID_DEADLINE_WITH_TIME + " "
+            + PREFIX_EMPLOYEE + VALID_EMPLOYEE_INDEX_TASK + " ";
 
 
     public static final EditEmployeeCommand.EditEmployeeDescriptor DESC_AMY;
