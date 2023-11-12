@@ -42,4 +42,6 @@ UniqueEmployeeList -[hidden]right-> I
 
 ModelManager -down-> "~* filtered" Employee
 ModelManager -down-> "~* filtered" Project
+
+hide class fields
 @enduml

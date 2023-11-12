@@ -32,7 +32,7 @@ public class Messages {
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_NO_EMPLOYEE_TO_UNASSIGN = "There is no employee assigned yet!";
     public static final String MESSAGE_NO_EMPLOYEE_TO_ASSIGN = "There is no employee that you can assign! "
-            + "Try adding an employee with addE first.";
+            + "Try assigning an employee to the project with assignP first.";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -95,7 +95,7 @@ public class Messages {
         builder.append("Description: " + task.getName());
 
         // Format the deadline
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mma");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM uuuu, hh:mma");
         String formattedDeadline = task.getDeadline().format(formatter);
 
         builder.append("; Deadline: " + formattedDeadline);

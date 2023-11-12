@@ -21,6 +21,16 @@ import seedu.address.model.project.Project;
  * A utility class containing a list of {@code Project} objects to be used in tests.
  */
 public class TypicalProjects {
+    public static final Project ALPHA = new ProjectBuilder().withTasks(ALPHA_TASK).build();
+    public static final Project BETA = new ProjectBuilder().withName("Beta").withEmployees(BENSON).withTasks(ALPHA_TASK)
+            .withDeadline("10-12-2022").withCompletionStatus(false).build();
+    public static final Project DELTA = new ProjectBuilder().withName("Delta").withEmployees(DANIEL, FIONA)
+            .withTasks(ALPHA_TASK, BETA_TASK)
+            .withDeadline("24-11-2024").withCompletionStatus(true).build();
+    public static final Project ECHO = new ProjectBuilder().withName("Echo").withEmployees()
+            .withTasks(ALPHA_TASK, BETA_TASK)
+            .withDeadline("20-10-2024").withCompletionStatus(false).build();
+
     private TypicalProjects() {} // prevents instantiation
 
     /**
