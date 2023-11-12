@@ -134,9 +134,106 @@ Links:
 
 # Getting Started
 
-## Installing and launching TaskHub
+## Installing and Launching TaskHub
+
+### Step 1: Install Java
+
+Ensure you have Java `11` or above installed on your computer. If you don't have Java installed, follow the steps in [Appendix A: Installing Java](#appendix-a-installing-java).
+
+### Step 2: Download TaskHub
+
+Download the latest `taskhub.jar` from [here](https://github.com/AY2324S1-CS2103T-T08-3/tp/releases).
+
+### Step 3: Set up TaskHub Home Folder
+
+Copy or move the downloaded `taskhub.jar` file to the folder you want to use as the _home folder_ for your TaskHub.
+
+### Step 4: Launch TaskHub
+
+1. Open a terminal (MacOS) or command prompt (Windows).
+
+2. Navigate to the folder where you placed the `taskhub.jar` file using the `cd` command. For example, our friendly TaskHubber has his `taskhub.jar` file in `/Users/timothyleow/Developer/TaskHub`, so he'll run:
+
+    ```bash
+    cd /Users/timothyleow/Developer/TaskHub
+    ```
+
+3. Verify that your working directory contains `taskhub.jar` by using the `ls` command. You should see `taskhub.jar` in the list of files printed. Here's what our friendly TaskHubber got when running this command.
+
+    ```bash
+    timothyleow@timleows-MBP TaskHub % ls
+    taskhub.jar
+    ```
+
+4. Once your terminal's working directory is the folder that contains `taskhub.jar`, run the following command to launch TaskHub:
+
+    ```bash 
+    java -jar taskhub.jar
+    ```
+
+   After executing this command, a graphical user interface (GUI) similar to the one below should appear shortly: 
+
+   <img src="images/Ui.png" width="700">
+
+   Note: The application comes with some sample data for your reference.
+
+---
 
 ## Understanding the components of TaskHub
+
+---
+### Employees
+
+
+<img src="images/Employee.png" width="400">
+
+An `Employee` is someone that you are managing. TaskHub allows you to store their essential details and `tag` them with their strengths and weaknesses so you can allocate them to suitable [`Projects`](#projects) or [`Tasks`](#tasks).
+
+#### Attributes:
+
+| Field        | Description                                                    | Prefix for [`addE`](#add-an-employee-adde) |
+|--------------|----------------------------------------------------------------|--------------------------------------------|
+| Name         | Name of the employee.                                          | `n/`                                       |
+| Phone Number | Phone number of the employee.                                  | `p/`                                       |
+| Email        | Email address of the employee.                                 | `e/`                                       |
+| Address      | Address of the employee.                                       | `a/`                                       |
+| Tags         | Tags indicating strengths/weaknesses/position of the employee. | `t/`                                       |
+
+---
+
+### Projects
+<img src="images/Project.png" width="400">
+
+
+A `Project` in TaskHub is a managerial unit that includes information about [`Employees`](#employee) allocated to the project and an (optionally) set [deadline](#edit-deadline-of-a-projects-dlp). You can [mark](#mark-projects-as-completed-markp) a `Project` as done when you deem fit. Additionally, you can add `Tasks` to a `Project`.
+#### Attributes:
+
+| Field            | Description                                                | Prefix for [`addP`](#add-a-new-project-addp) | Relevant Command(s)                                                                             |
+|------------------|------------------------------------------------------------|----------------------------------------------|-------------------------------------------------------------------------------------------------|
+| Name             | Name of the project.                                       | `n/`                                         | -                                                                                               |
+| Employees        | Employees assigned to the project.                         | `em/`                                        | [`assignP`](#assign-employees-to-a-project-assignp)                                             |
+| Deadline         | Deadline for the project.                                  | -                                            | [`dlp`](#edit-deadline-of-a-projects-dlp)                                                       |
+| Priority         | Priority level of the project.                             | -                                            | [`priorityP`](#prioritise-projects-priorityp)                                                   |
+| CompletionStatus | Indicates whether the project is completed or in progress. | -                                            | [`markP`](#mark-projects-as-completed-markp), [`unmarkP`](#mark-projects-as-incomplete-unmarkp) |
+| Tasks            | Tasks associated with the project.                         | -                                            | [`addT`](#add-a-new-task-to-a-project-addt)                                                     |
+
+---
+
+### Tasks
+
+<img src="images/Tasks.png" width="400">
+
+A `Task` in TaskHub represents a specific job within a `Project` that can be assigned to an `Employee` under that `Project`. Tasks are required to have a deadline. Managing `Task`s will be the main way of monitoring the work done within your `TaskHub`!
+
+#### Attributes:
+
+| Field    | Description                            | Prefix for [`addT`](#add-a-new-task-to-a-project-addt) | Relevant Command                                                                          |
+|----------|----------------------------------------|--------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| Name     | Name of the task.                      | `n/`                                                   | -                                                                                         |
+| Employee | Employee assigned to the task.         | `em/`                                                  | [`assignT`](#assign-an-employee-to-a-task-assignt)                                        |
+| Deadline | Deadline for completing the task.      | `d/`                                                   | -                                                                                         |
+| isDone   | Indicates whether the task is complete.| N.A.                                                   | [`markT`](#mark-tasks-as-completed-markt), [`unmarkT`](#mark-tasks-as-incomplete-unmarkt) |
+
 
 ## Understanding the User Interface (UI)
 
@@ -177,15 +274,6 @@ and at the bottom of the window, is a link to our user guide.
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
-
-2. Download the latest `taskhub.jar` from [here](https://github.com/AY2324S1-CS2103T-T08-3/tp/releases).
-
-3. Copy the file to the folder you want to use as the _home folder_ for your TaskHub.
-
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar taskhub.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -782,3 +870,35 @@ The first step is to open the folder that contains all your files related to Tas
 | [**Un-assign Employee from Task**](#un-assign-an-employee-from-a-task--unassignt)           | `unassignT pr/PROJECT_INDEX t/TASK_INDEX` <br> e.g., `unassignT pr/1 t/1`                                 |
 
 [Return to Table of Contents](#table-of-contents)
+
+## Appendix A: Installing Java
+
+Follow these steps to install Java on your computer:
+
+1. **Download Java 11:**
+   - For Mac users, click [here](https://www.oracle.com/java/technologies/downloads/#java11-mac) and download the appropriate file depending on your processor (ARM64 or Intel x64).
+   - For Windows users, click [here](https://www.oracle.com/java/technologies/downloads/#java11-windows) to download the appropriate file.
+   - For Linux users, click [here](https://www.oracle.com/java/technologies/downloads/#java11-linux) to download the appropriate file.
+
+2. **Follow the instructions on Oracle's website**
+   - Go to the appropriate guide page and follow the instructions based on your operating system to complete the installation.
+     - [MacOS](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html#GUID-2FE451B0-9572-4E38-A1A5-568B77B146DE)
+     - [Windows](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-A7E27B90-A28D-4237-9383-A58B416071CA)
+     - [Linux](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-linux-platforms.html#GUID-737A84E4-2EFF-4D38-8E60-3E29D1B884B8)
+
+4. **Verify Installation:**
+   After installation, open a terminal (on MacOS) or Command Prompt (on Windows) and run the following commands to verify that Java is installed:
+
+   ```bash
+   java -version
+
+If installed correctly, you should see version information for both Java and the Java Compiler. The message should look something like this:
+```
+openjdk version "11.0.20" 2023-07-18 LTS
+OpenJDK Runtime Environment Zulu11.66+15-CA (build 11.0.20+8-LTS)
+OpenJDK 64-Bit Server VM Zulu11.66+15-CA (build 11.0.20+8-LTS, mixed mode)
+```
+
+Now, you're ready to proceed with the launching of TaskHub. Click [here](#installing-and-launching-taskhub) to get back to the installation tutorial.
+
+
