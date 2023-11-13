@@ -911,7 +911,7 @@ Examples:
 
 ### Sort tasks by deadline and completion status: `sortT`
 
-Sorts the tasks in each project by their deadline and completion status.
+Sorts the tasks in each project in the displayed project panel by their deadline and completion status.
 
 Format: `sortT`
 
