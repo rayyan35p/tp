@@ -285,7 +285,9 @@ and at the bottom of the window, is a link to our user guide.
 
 If you're okay with modifying the sample data, then we'll proceed with our first gist of project management with TaskHub. Time is ticking!
 
-If you haven't started running any commands, TaskHub should look something like this when you first run it:
+At this point, you should have installed Java 11 and be able to to run TaskHub without issues. If you haven't done so, you may return to the [Installation Guide](#installing-and-launching-taskhub).
+
+If all is well, TaskHub should look something like this when you first run it:
 
 <img src="images/QuickStartStart.png" width="700">
 
