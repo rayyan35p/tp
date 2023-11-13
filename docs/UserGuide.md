@@ -178,6 +178,8 @@ Copy or move the downloaded `taskhub.jar` file to the folder you want to use as 
 
    Note: The application comes with some sample data for your reference.
 
+[Return to Table of Contents](#table-of-contents)
+
 ---
 
 ## Understanding the components of TaskHub
