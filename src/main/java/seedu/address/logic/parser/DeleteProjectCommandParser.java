@@ -13,8 +13,8 @@ public class DeleteProjectCommandParser implements Parser<DeleteProjectCommand> 
     @Override
     public DeleteProjectCommand parse(String userInput) throws ParseException {
 
-        try{
-            Integer.parseInt(userInput.replaceFirst("deleteP ","").trim());
+        try {
+            Integer.parseInt(userInput.replaceFirst("deleteP ", "").trim());
         } catch (NumberFormatException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteProjectCommand.MESSAGE_USAGE), pe);

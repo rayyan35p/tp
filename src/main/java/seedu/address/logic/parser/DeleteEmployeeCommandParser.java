@@ -19,8 +19,8 @@ public class DeleteEmployeeCommandParser implements Parser<DeleteEmployeeCommand
      */
     public DeleteEmployeeCommand parse(String args) throws ParseException {
 
-        try{
-            Integer.parseInt(args.replaceFirst("deleteE ","").trim());
+        try {
+            Integer.parseInt(args.replaceFirst("deleteE ", "").trim());
         } catch (NumberFormatException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteEmployeeCommand.MESSAGE_USAGE), pe);
