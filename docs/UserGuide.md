@@ -21,14 +21,14 @@ title: User Guide
     * [Clear all entries: `clear`](#clear-all-entries-clear)
     * [Exit the program: `exit`](#exit-the-program-exit)
   * [Employee Commands](#employee-commands)
-    * [Command Parameters](#command-parameters-1)
+    * [Command Parameters](#command-parameters)
     * [Add an employee: `addE`](#add-an-employee-adde)
     * [Edit an employee: `editE`](#edit-an-employee-edite)
     * [Delete an employee: `deleteE`](#delete-an-employee-deletee)
     * [List all employees: `listE`](#list-all-employees-liste)
     * [Locate employees by name: `findE`](#locate-employees-by-name-finde)
   * [Project Commands](#project-commands)
-    * [Command Parameters](#command-parameters-2)
+    * [Command Parameters](#command-parameters-1)
     * [Add a new project: `addP`](#add-a-new-project-addp)
     * [Edit a project: `editP`](#edit-a-project-editp)
     * [Delete a project: `deleteP`](#delete-a-project-deletep)
@@ -39,14 +39,14 @@ title: User Guide
     * [List all projects: `listP`](#list-all-projects-listp)
     * [Locate projects by name: `findP`](#locate-projects-by-name-findp)
   * [Task Commands](#task-commands)
-    * [Command Parameters](#command-parameters-3)
+    * [Command Parameters](#command-parameters-2)
     * [Add a new task to a project: `addT`](#add-a-new-task-to-a-project-addt)
     * [Delete a task from a project: `deleteT`](#delete-a-task-from-a-project-deletet)
     * [Mark task(s) as completed: `markT`](#mark-tasks-as-completed-markt)
     * [Mark task(s) as incomplete: `unmarkT`](#mark-tasks-as-incomplete-unmarkt)
     * [Sort tasks by deadline and completion status: `sortT`](#sort-tasks-by-deadline-and-completion-status-sortt)
   * [Assignment Commands](#assignment-commands)
-    * [Command Parameters](#command-parameters-4)
+    * [Command Parameters](#command-parameters-3)
     * [Assign employee(s) to a project: `assignP`](#assign-employees-to-a-project-assignp)
     * [Un-assign employee(s) from a project: `unassignP`](#un-assign-employees-from-a-project-unassignp)
     * [Assign an employee to a task: `assignT`](#assign-an-employee-to-a-task-assignt)
@@ -475,7 +475,7 @@ Format: `exit`
 
 <br>
 
-<a name="command-parameters-1"></a>
+<a name="command-parameters"></a>
 <!-- The table below is inspired by https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1 -->
 ### Command Parameters
 
@@ -600,7 +600,7 @@ Examples:
 
 <br>
 
-<a name="command-parameters-2"></a>
+<a name="command-parameters-1"></a>
 <!-- The table below is inspired by https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1 -->
 ### Command Parameters
 
@@ -806,7 +806,7 @@ Examples:
 
 <br>
 
-<a name="command-parameters-3"></a>
+<a name="command-parameters-2"></a>
 <!-- The table below is inspired by https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1 -->
 ### Command Parameters
 
@@ -927,7 +927,7 @@ Format: `sortT`
 
 <br>
 
-<a name="command-parameters-4"></a>
+<a name="command-parameters-3"></a>
 <!-- The table below is inspired by https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1 -->
 ### Command Parameters
 
