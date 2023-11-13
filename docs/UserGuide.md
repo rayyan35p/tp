@@ -53,6 +53,7 @@ title: User Guide
 * [FAQ](#faq)
 * [Known issues](#known-issues)
 * [Command summary](#command-summary)
+* [Appendix A: Installing Java](#appendix-a-installing-java)
 <!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
@@ -234,6 +235,7 @@ A `Task` in TaskHub represents a specific job within a `Project` that can be ass
 | Deadline | Deadline for completing the task.      | `d/`                                                   | -                                                                                         |
 | isDone   | Indicates whether the task is complete.| N.A.                                                   | [`markT`](#mark-tasks-as-completed-markt), [`unmarkT`](#mark-tasks-as-incomplete-unmarkt) |
 
+[Return to Table of Contents](#table-of-contents)
 
 ## Understanding the User Interface (UI)
 
@@ -271,6 +273,8 @@ and at the bottom of the window, is a link to our user guide.
 ### Project Panel
 * The project panel is the other panel that you will be using to see the data stored in TaskHub.
 * Projects, as well as their members, tasks to complete in the project, and other important details for managing your project are stored here!
+
+[Return to Table of Contents](#table-of-contents)
 
 ## Quick start
 <div markdown="span" class="alert alert-warning">
@@ -365,8 +369,9 @@ Scroll down in the `Employees` pane to notice Anton, the newest addition to your
 
 <img src="images/QuickStartEnd.png" width="700">
 
-For a more comprehensive overview of what you can achieve with TaskHub, you may proceed to the [Features](#features) section below.
+[Return to Table of Contents](#table-of-contents)
 
+For a more comprehensive overview of what you can achieve with TaskHub, you may proceed to the [Features](#features) section below.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -965,9 +970,9 @@ Follow these steps to install Java on your computer:
 3. **Verify Installation:**
    After installation, open a terminal (on MacOS) or Command Prompt (on Windows) and run the following commands to verify that Java is installed:
 
-   ```bash
+  ```
    java -version
-
+  ```
 If installed correctly, you should see version information for both Java and the Java Compiler. The message should look something like this:
 ```
 openjdk version "11.0.20" 2023-07-18 LTS
@@ -976,5 +981,8 @@ OpenJDK 64-Bit Server VM Zulu11.66+15-CA (build 11.0.20+8-LTS, mixed mode)
 ```
 
 Now, you're ready to proceed with the launching of TaskHub. Click [here](#installing-and-launching-taskhub) to get back to the installation tutorial.
+
+[Return to Table of Contents](#table-of-contents)
+
 
 
