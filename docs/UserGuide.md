@@ -12,47 +12,48 @@ title: User Guide
 * [Getting Started](#getting-started)
   * [Installing and launching TaskHub](#installing-and-launching-taskhub)
   * [Understanding the components of TaskHub](#understanding-the-components-of-taskhub)
-  * [Understanding the User Interface (UI)](#understanding-the-user-interface--ui-)
+  * [Understanding the User Interface (UI)](#understanding-the-user-interface-ui)
   * [Quick start](#quick-start)
 * [Features](#features)
   * [General Commands](#general-commands)
-    * [View help: `help`](#view-help--help)
-    * [List all employees and projects: `list`](#list-all-employees-and-projects--list)
-    * [Clear all entries: `clear`](#clear-all-entries--clear)
-    * [Exit the program: `exit`](#exit-the-program--exit)
+    * [View help: `help`](#view-help-help)
+    * [List all employees and projects: `list`](#list-all-employees-and-projects-list)
+    * [Clear all entries: `clear`](#clear-all-entries-clear)
+    * [Exit the program: `exit`](#exit-the-program-exit)
   * [Employee Commands](#employee-commands)
-    * [Add an employee: `addE`](#add-an-employee--adde)
-    * [Edit an employee: `editE`](#edit-an-employee--edite)
-    * [Delete an employee: `deleteE`](#delete-an-employee--deletee)
-    * [List all employees: `listE`](#list-all-employees--liste)
-    * [Locate employees by name: `findE`](#locate-employees-by-name--finde)
+    * [Add an employee: `addE`](#add-an-employee-adde)
+    * [Edit an employee: `editE`](#edit-an-employee-edite)
+    * [Delete an employee: `deleteE`](#delete-an-employee-deletee)
+    * [List all employees: `listE`](#list-all-employees-liste)
+    * [Locate employees by name: `findE`](#locate-employees-by-name-finde)
   * [Project Commands](#project-commands)
-    * [Add a new project: `addP`](#add-a-new-project--addp)
-    * [Edit a project: `editP`](#edit-a-project--editp)
-    * [Delete a project: `deleteP`](#delete-a-project--deletep)
-    * [Mark project(s) as completed: `markP`](#mark-project--s--as-completed--markp)
-    * [Mark project(s) as incomplete: `unmarkP`](#mark-project--s--as-incomplete--unmarkp)
-    * [Edit deadline of (a) project(s): `dlP`](#edit-deadline-of--a--project--s---dlp)
-    * [Prioritise projects: `priorityP`](#prioritise-projects--priorityp)
-    * [List all projects: `listP`](#list-all-projects--listp)
-    * [Locate projects by name: `findP`](#locate-projects-by-name--findp)
+    * [Add a new project: `addP`](#add-a-new-project-addp)
+    * [Edit a project: `editP`](#edit-a-project-editp)
+    * [Delete a project: `deleteP`](#delete-a-project-deletep)
+    * [Mark project(s) as completed: `markP`](#mark-projects-as-completed-markp)
+    * [Mark project(s) as incomplete: `unmarkP`](#mark-projects-as-incomplete-unmarkp)
+    * [Edit deadline of (a) project(s): `dlP`](#edit-deadline-of-a-projects-dlp)
+    * [Prioritise projects: `priorityP`](#prioritise-projects-priorityp)
+    * [List all projects: `listP`](#list-all-projects-listp)
+    * [Locate projects by name: `findP`](#locate-projects-by-name-findp)
   * [Task Commands](#task-commands)
-    * [Add a new task to a project: `addT`](#add-a-new-task-to-a-project--addt)
-    * [Delete a task from a project: `deleteT`](#delete-a-task-from-a-project--deletet)
-    * [Mark task(s) as completed: `markT`](#mark-task--s--as-completed--markt)
-    * [Mark task(s) as incomplete: `unmarkT`](#mark-task--s--as-incomplete--unmarkt)
-    * [Sort tasks by deadline and completion status: `sortT`](#sort-tasks-by-deadline-and-completion-status--sortt)
+    * [Add a new task to a project: `addT`](#add-a-new-task-to-a-project-addt)
+    * [Delete a task from a project: `deleteT`](#delete-a-task-from-a-project-deletet)
+    * [Mark task(s) as completed: `markT`](#mark-tasks-as-completed-markt)
+    * [Mark task(s) as incomplete: `unmarkT`](#mark-tasks-as-incomplete-unmarkt)
+    * [Sort tasks by deadline and completion status: `sortT`](#sort-tasks-by-deadline-and-completion-status-sortt)
   * [Assignment Commands](#assignment-commands)
-    * [Assign employee(s) to a project: `assignP`](#assign-employee--s--to-a-project--assignp)
-    * [Un-assign employee(s) from a project: `unassignP`](#un-assign-employee--s--from-a-project--unassignp)
-    * [Assign an employee to a task: `assignT`](#assign-an-employee-to-a-task--assignt)
-    * [Un-assign an employee from a task: `unassignT`](#un-assign-an-employee-from-a-task--unassignt)
+    * [Assign employee(s) to a project: `assignP`](#assign-employees-to-a-project-assignp)
+    * [Un-assign employee(s) from a project: `unassignP`](#un-assign-employees-from-a-project-unassignp)
+    * [Assign an employee to a task: `assignT`](#assign-an-employee-to-a-task-assignt)
+    * [Un-assign an employee from a task: `unassignT`](#un-assign-an-employee-from-a-task-unassignt)
   * [Data Storage](#data-storage)
     * [Save the data](#save-the-data)
     * [Edit the data file](#edit-the-data-file)
 * [FAQ](#faq)
 * [Known issues](#known-issues)
 * [Command summary](#command-summary)
+* [Appendix A: Installing Java](#appendix-a-installing-java)
 <!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
@@ -134,9 +135,109 @@ Links:
 
 # Getting Started
 
-## Installing and launching TaskHub
+## Installing and Launching TaskHub
+
+### Step 1: Install Java
+
+Ensure you have Java `11` or above installed on your computer. If you don't have Java installed, follow the steps in [Appendix A: Installing Java](#appendix-a-installing-java).
+
+### Step 2: Download TaskHub
+
+Download the latest `taskhub.jar` from [here](https://github.com/AY2324S1-CS2103T-T08-3/tp/releases).
+
+### Step 3: Set up TaskHub Home Folder
+
+Copy or move the downloaded `taskhub.jar` file to the folder you want to use as the _home folder_ for your TaskHub.
+
+### Step 4: Launch TaskHub
+
+1. Open a terminal (MacOS) or command prompt (Windows).
+
+2. Navigate to the folder where you placed the `taskhub.jar` file using the `cd` command. For example, our friendly TaskHubber has his `taskhub.jar` file in `/Users/timothyleow/Developer/TaskHub`, so he'll run:
+
+    ```bash
+    cd /Users/timothyleow/Developer/TaskHub
+    ```
+
+3. Verify that your working directory contains `taskhub.jar` by using the `ls` command. You should see `taskhub.jar` in the list of files printed. Here's what our friendly TaskHubber got when running this command.
+
+    ```bash
+    timothyleow@timleows-MBP TaskHub % ls
+    taskhub.jar
+    ```
+
+4. Once your terminal's working directory is the folder that contains `taskhub.jar`, run the following command to launch TaskHub:
+
+    ```bash 
+    java -jar taskhub.jar
+    ```
+
+   After executing this command, a graphical user interface (GUI) similar to the one below should appear shortly: 
+
+   <img src="images/Ui.png" width="700">
+
+   Note: The application comes with some sample data for your reference.
+
+[Return to Table of Contents](#table-of-contents)
+
+---
 
 ## Understanding the components of TaskHub
+
+---
+### Employees
+
+
+<img src="images/Employee.png" width="400">
+
+An `Employee` is someone that you are managing. TaskHub allows you to store their essential details and `tag` them with their strengths and weaknesses so you can allocate them to suitable [`Projects`](#projects) or [`Tasks`](#tasks).
+
+#### Attributes:
+
+| Field        | Description                                                    | Prefix for [`addE`](#add-an-employee-adde) |
+|--------------|----------------------------------------------------------------|--------------------------------------------|
+| Name         | Name of the employee.                                          | `n/`                                       |
+| Phone Number | Phone number of the employee.                                  | `p/`                                       |
+| Email        | Email address of the employee.                                 | `e/`                                       |
+| Address      | Address of the employee.                                       | `a/`                                       |
+| Tags         | Tags indicating strengths/weaknesses/position of the employee. | `t/`                                       |
+
+---
+
+### Projects
+<img src="images/Project.png" width="400">
+
+
+A `Project` in TaskHub is a managerial unit that includes information about [`Employees`](#employee) allocated to the project and an (optionally) set [deadline](#edit-deadline-of-a-projects-dlp). You can [mark](#mark-projects-as-completed-markp) a `Project` as done when you deem fit. Additionally, you can add `Tasks` to a `Project`.
+#### Attributes:
+
+| Field            | Description                                                | Prefix for [`addP`](#add-a-new-project-addp) | Relevant Command(s)                                                                             |
+|------------------|------------------------------------------------------------|----------------------------------------------|-------------------------------------------------------------------------------------------------|
+| Name             | Name of the project.                                       | `n/`                                         | -                                                                                               |
+| Employees        | Employees assigned to the project.                         | `em/`                                        | [`assignP`](#assign-employees-to-a-project-assignp)                                             |
+| Deadline         | Deadline for the project.                                  | -                                            | [`dlP`](#edit-deadline-of-a-projects-dlp)                                                       |
+| Priority         | Priority level of the project.                             | -                                            | [`priorityP`](#prioritise-projects-priorityp)                                                   |
+| CompletionStatus | Indicates whether the project is completed or in progress. | -                                            | [`markP`](#mark-projects-as-completed-markp), [`unmarkP`](#mark-projects-as-incomplete-unmarkp) |
+| Tasks            | Tasks associated with the project.                         | -                                            | [`addT`](#add-a-new-task-to-a-project-addt)                                                     |
+
+---
+
+### Tasks
+
+<img src="images/Tasks.png" width="400">
+
+A `Task` in TaskHub represents a specific job within a `Project` that can be assigned to an `Employee` under that `Project`. Tasks are required to have a deadline. Managing `Task`s will be the main way of monitoring the work done within your `TaskHub`!
+
+#### Attributes:
+
+| Field    | Description                            | Prefix for [`addT`](#add-a-new-task-to-a-project-addt) | Relevant Command                                                                          |
+|----------|----------------------------------------|--------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| Name     | Name of the task.                      | `n/`                                                   | -                                                                                         |
+| Employee | Employee assigned to the task.         | `em/`                                                  | [`assignT`](#assign-an-employee-to-a-task-assignt)                                        |
+| Deadline | Deadline for completing the task.      | `d/`                                                   | -                                                                                         |
+| isDone   | Indicates whether the task is complete.| N.A.                                                   | [`markT`](#mark-tasks-as-completed-markt), [`unmarkT`](#mark-tasks-as-incomplete-unmarkt) |
+
+[Return to Table of Contents](#table-of-contents)
 
 ## Understanding the User Interface (UI)
 
@@ -175,32 +276,118 @@ and at the bottom of the window, is a link to our user guide.
 * The project panel is the other panel that you will be using to see the data stored in TaskHub.
 * Projects, as well as their members, tasks to complete in the project, and other important details for managing your project are stored here!
 
+[Return to Table of Contents](#table-of-contents)
+
 ## Quick start
+<div markdown="span" class="alert alert-warning">
 
-1. Ensure you have Java `11` or above installed in your Computer.
+**:warning: Warning:** The first step in the Quick Start guide involves `deleteP`, which is irreversible. If you wish to keep the sample data, then you can head straight to the [Features](#features) section below to figure out TaskHub on your own.
 
-2. Download the latest `taskhub.jar` from [here](https://github.com/AY2324S1-CS2103T-T08-3/tp/releases).
+</div>
 
-3. Copy the file to the folder you want to use as the _home folder_ for your TaskHub.
+If you're okay with modifying the sample data, then we'll proceed with our first gist of project management with TaskHub. Time is ticking!
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar taskhub.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+At this point, you should have installed Java 11 and be able to to run TaskHub without issues. If you haven't done so, you may return to the [Installation Guide](#installing-and-launching-taskhub).
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+If all is well, TaskHub should look something like this when you first run it:
 
-   * `listE` : Lists all employees.
+<img src="images/QuickStartStart.png" width="700">
 
-   * `addE n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds an employee named `John Doe` to the TaskHub.
+### Step 1: Deleting a finished project
+Hmmm, it seems like you're done with the 'Website Redesign Project'. Let's get rid of this data by running the below command.
 
-   * `deleteE 3` : Deletes the 3rd employee shown in the current list.
+```
+deleteP 1
+```
 
-   * `clear` : Deletes all data.
+You should get the following response:
 
-   * `exit` : Exits the app.
+```
+Deleted Project: 
+Name: Website Redesign;
+Completed? Yes;
+Deadline: 15-11-2023;
+Priority: HIGH
+Members: Alex Yeoh, Bernice Yu
+```
+Now, you're looking at the 'Market Expansion' project, which we'll be focusing on.
 
-6. Refer to the [Features](#features) below for details of each command.
+
+### Step 2: Adding a new employee to TaskHub:
+You've just got an email from your boss, saying that the fresh graduate that you recently interviewed is joining your team!
+
+Here are his details:
+
+| Name         | Anton Tan                       |
+|--------------|---------------------------------|
+| Phone Number | 98765432                        |
+| Email        | anton@mail.com                  |
+| Address      | Anton Street, block 123, #01-01 |
+| Strengths    | TeamPlayer, Hardworking         |
+
+Let's run the following command to add him to your team of [`Employees`](#employees).
+
+```
+addE n/Anton Tan p/98765432 e/anton@mail.com
+ a/Anton Street, block 123, #01-01 t/TeamPlayer t/Hardworking
+```
+
+You should get the following response:
+```
+New employee added: Anton Tan;
+Phone: 98765432;
+Email: anton@mail.com;
+Address: Anton Street, block 123, #01-01;
+Tags: [TeamPlayer][Hardworking]
+```
+
+### Step 3: Assigning an Employee to a Project in TaskHub:
+You've decided that you need more help with the 'Market Expansion Project'. Let's run the following command to enlist Anton's help:
+```
+assignP pr/1 em/7
+```
+
+You should get the following response:
+```
+Member(s) have been assigned!
+Name: Market Expansion; Completed? No; Deadline: 30-12-2023; Priority: NORMAL
+Members: Charlotte Oliveiro, David Li, Anton Tan
+```
+
+### Step 4: Adding a Task to a Project:
+Anton is eager to contribute to his newly assigned project. Since you've found that he is particularly skilled at Market Segmentation, let's run the following command to give him a task that he will excel at. To measure his capabilities, you'll only give him until the end of November to complete this.
+```
+addT n/Market Segmentation pr/1 em/3 d/30-11-2023 2359
+```
+
+You should get the following response:
+```
+New task added to project 1, 
+Description: Market Segmentation;
+Deadline: 30 Nov 2023, 11:59PM;
+Assignee: Anton Tan
+```
+
+### Step 5: Marking a Task as Complete:
+It's the next morning. You receive an eager email from Anton reporting that he's already completed the Market Segmentation `Task`. After reviewing his report, you are thoroughly impressed and wish to mark his work as done in `TaskHub`. Let's run this command:
+```
+markT pr/1 t/3
+```
+
+You should get the following response:
+```
+1 task(s) marked as completed under the project: Market Expansion
+```
+
+If you've followed the steps correctly, TaskHub should look something like this now:
+
+Scroll down in the `Employees` pane to notice Anton, the newest addition to your team.
+
+<img src="images/QuickStartEnd.png" width="700">
+
+[Return to Table of Contents](#table-of-contents)
+
+For a more comprehensive overview of what you can achieve with TaskHub, you may proceed to the [Features](#features) section below.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -259,6 +446,15 @@ Clears all entries from TaskHub.
 
 Format: `clear`
 
+<div markdown="block" class="alert alert-danger">
+
+**:no_entry: Danger**<br>
+
+* This action is irreversible.
+* Please ensure that you are certain that you want to delete all existing employees, projects and tasks before proceeding.
+
+</div>
+
 
 ### Exit the program: `exit`
 
@@ -314,6 +510,15 @@ Format: `deleteE INDEX`
 * Deletes the employee at the specified `INDEX`.
 * The index refers to the index number shown in the displayed employees list.
 * The index **must be a positive integer** 1, 2, 3, …​
+
+<div markdown="block" class="alert alert-danger">
+
+**:no_entry: Danger**<br>
+
+* This action is irreversible.
+* Please ensure that you are certain that you want to delete the employee before proceeding.
+
+</div>
 
 Examples:
 * `listE` followed by `deleteE 2` deletes the 2nd employee in the employees list.
@@ -400,6 +605,15 @@ Format: `deleteP INDEX`
 * Deletes the project at the specified `INDEX`.
 * The index refers to the index number shown in the displayed employees list.
 * The index __must be a positive integer__ 1, 2, 3,...
+
+<div markdown="block" class="alert alert-danger">
+
+**:no_entry: Danger**<br>
+
+* This action is irreversible.
+* Please ensure that you are certain that you want to delete the project before proceeding.
+
+</div>
 
 Examples:
 * `listP` followed by `deleteP 2` deletes the 2nd project in TaskHub.
@@ -540,6 +754,15 @@ Format `deleteT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
 * The project index refers to the index number shown in the displayed projects list.
 * The task index(es) refer to the index number(s) shown in the task list of the above specified project.
 * The index(es) **must be positive integers** 1, 2, 3,...
+
+<div markdown="block" class="alert alert-danger">
+
+**:no_entry: Danger**<br>
+
+* This action is irreversible.
+* Please ensure that you are certain that you want to delete the task before proceeding.
+
+</div>
 
 Examples:
 * `listP` followed by `deleteT pr/1 t/1 3` deletes the 1st and 3rd tasks of the 1st project from TaskHub.
@@ -782,4 +1005,44 @@ The first step is to open the folder that contains all your files related to Tas
 | [**Assign Employee to Task**](#assign-an-employee-to-a-task-assignt)                    | `assignT pr/PROJECT_INDEX t/TASK_INDEX em/EMPLOYEE_INDEX` <br> e.g., `assignT pr/1 t/1 em/3`             |
 | [**Un-assign Employee from Task**](#un-assign-an-employee-from-a-task-unassignt)        | `unassignT pr/PROJECT_INDEX t/TASK_INDEX` <br> e.g., `unassignT pr/1 t/1`                                |
 
+| Action                                                                                      | Format, Examples                                                                                             |
+|---------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| [**Assign Employee(s) To Project**](#assign-employee--s--to-a-project--assignp)             | `assignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES]…​` <br> e.g, `assignP pr/4 em/1 2 3`     |
+| [**Un-assign Employee(s) From Project**](#un-assign-employee--s--from-a-project--unassignp) | `unassignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES]` <br> e.g, `unassignP pr/2 em/1 3`     |
+| [**Assign Employee to Task**](#assign-an-employee-to-a-task--assignt)                       | `assignT pr/PROJECT_INDEX t/TASK_INDEX em/EMPLOYEE_INDEX` <br> e.g., `assignT pr/1 t/1 em/3`                 |
+| [**Un-assign Employee from Task**](#un-assign-an-employee-from-a-task--unassignt)           | `unassignT pr/PROJECT_INDEX t/TASK_INDEX` <br> e.g., `unassignT pr/1 t/1`                                    |
+
 [Return to Table of Contents](#table-of-contents)
+
+## Appendix A: Installing Java
+
+Follow these steps to install Java on your computer:
+
+1. **Download Java 11:**
+  - Download Java 11 from [Oracle's website](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) based on your operating system.
+
+2. **Follow the instructions on Oracle's website**
+   - Go to the appropriate guide page and follow the instructions based on your operating system to complete the installation.
+     - [MacOS](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html#GUID-2FE451B0-9572-4E38-A1A5-568B77B146DE)
+     - [Windows](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-A7E27B90-A28D-4237-9383-A58B416071CA)
+     - [Linux](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-linux-platforms.html#GUID-737A84E4-2EFF-4D38-8E60-3E29D1B884B8)
+
+3. **Verify Installation:**
+   After installation, open a terminal (on MacOS) or Command Prompt (on Windows) and run the following commands to verify that Java is installed:
+
+  ```
+   java -version
+  ```
+If installed correctly, you should see version information for both Java and the Java Compiler. The message should look something like this:
+```
+openjdk version "11.0.20" 2023-07-18 LTS
+OpenJDK Runtime Environment Zulu11.66+15-CA (build 11.0.20+8-LTS)
+OpenJDK 64-Bit Server VM Zulu11.66+15-CA (build 11.0.20+8-LTS, mixed mode)
+```
+
+Now, you're ready to proceed with the launching of TaskHub. Click [here](#installing-and-launching-taskhub) to get back to the installation tutorial.
+
+[Return to Table of Contents](#table-of-contents)
+
+
+
