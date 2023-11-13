@@ -18,4 +18,6 @@ Employee *--> Name
 Employee *--> Phone
 Employee *--> Email
 Employee *--> Address
+
+hide class fields
 @enduml

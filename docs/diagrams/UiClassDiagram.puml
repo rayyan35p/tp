@@ -13,6 +13,10 @@ Class HelpWindow
 Class ResultDisplay
 Class EmployeeListPanel
 Class EmployeeCard
+Class ProjectListPanel
+Class ProjectCard
+Class TaskListPanel
+Class TaskCard
 Class StatusBarFooter
 Class CommandBox
 }
@@ -33,10 +37,15 @@ UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" EmployeeListPanel
+MainWindow *-down-> "1" ProjectListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
 EmployeeListPanel -down-> "*" EmployeeCard
+ProjectListPanel -down-> "*" ProjectCard
+ProjectCard -down-> "0..1" TaskListPanel
+TaskListPanel -down-> "1..*" TaskCard
+
 
 MainWindow -left-|> UiPart
 
@@ -44,10 +53,18 @@ ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 EmployeeListPanel --|> UiPart
 EmployeeCard --|> UiPart
+ProjectListPanel --|> UiPart
+ProjectCard --|> UiPart
+TaskListPanel --|> UiPart
+TaskCard --|> UiPart
+
+
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
 EmployeeCard ..> Model
+ProjectCard ..> Model
+TaskCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
@@ -57,4 +74,6 @@ CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
 
 MainWindow -[hidden]-|> UiPart
+
+hide class fields
 @enduml

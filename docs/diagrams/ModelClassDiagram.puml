@@ -14,8 +14,10 @@ Class UserPrefs
 
 Class UniqueEmployeeList
 Class UniqueProjectList
+Class TaskList
 Class Employee
 Class Project
+Class Task
 
 Class I #FFFFFF
 }
@@ -36,10 +38,14 @@ TaskHub *--> "1" UniqueEmployeeList
 UniqueEmployeeList --> "~* all" Employee
 TaskHub *--> "1" UniqueProjectList
 UniqueProjectList --> "~* all" Project
+Project *--> "1" TaskList
+TaskList --> "*" Task
 
 Employee -[hidden]up--> I
 UniqueEmployeeList -[hidden]right-> I
 
 ModelManager -down-> "~* filtered" Employee
 ModelManager -down-> "~* filtered" Project
+
+hide class fields
 @enduml

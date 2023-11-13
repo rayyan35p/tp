@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -151,7 +152,9 @@ public class ParserUtil {
         requireNonNull(taskName, deadlineString);
         String trimmedTaskName = taskName.trim();
         if (!Task.isValidTask(trimmedTaskName)) {
-            throw new ParseException(Task.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Task.MESSAGE_NO_TASK);
+        } else if (deadlineString.isBlank()) {
+            throw new ParseException(Task.MESSAGE_NO_DEADLINE);
         }
         return new Task(taskName, parseLocalDateTime(deadlineString));
     }
@@ -166,9 +169,10 @@ public class ParserUtil {
         requireNonNull(deadlineString);
         String trimmedDeadlineString = deadlineString.trim();
         if (!Task.isValidDateTime(deadlineString)) {
-            throw new ParseException(Task.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Task.MESSAGE_INVALID_DEADLINE);
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu HHmm")
+                                                       .withResolverStyle(ResolverStyle.STRICT);
         LocalDateTime parsedDateTime = LocalDateTime.parse(trimmedDeadlineString, formatter);
         return parsedDateTime;
     }

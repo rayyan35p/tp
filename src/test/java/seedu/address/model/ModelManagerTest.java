@@ -3,6 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EMPLOYEES;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
@@ -11,12 +12,19 @@ import static seedu.address.testutil.TypicalProjects.alphaFactory;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.SortTaskCommand;
 import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
+import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
+import seedu.address.testutil.ProjectBuilder;
+import seedu.address.testutil.TaskBuilder;
 import seedu.address.testutil.TaskHubBuilder;
 
 public class ModelManagerTest {
@@ -111,8 +119,36 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTaskList().remove(0));
+    public void sortTasksByDeadlineAndCompletion_tasksAreOrdered_returnsTrue() {
+        ModelManager originalModel = new ModelManager();
+        ModelManager expectedModel = new ModelManager();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+
+        Task firstTask = new TaskBuilder().withName("First")
+                .withDoneness(true)
+                .withDeadline(LocalDateTime.parse("01-01-2020 1900", formatter)).build();
+
+        Task secondTask = new TaskBuilder().withName("Second")
+                .withDoneness(false)
+                .withDeadline(LocalDateTime.parse("01-01-2021 1900", formatter)).build();
+
+        Task thirdTask = new TaskBuilder().withName("Third")
+                .withDoneness(true)
+                .withDeadline(LocalDateTime.parse("01-01-2022 1900", formatter)).build();
+
+        Task fourthTask = new TaskBuilder().withName("Fourth")
+                .withDoneness(false)
+                .withDeadline(LocalDateTime.parse("01-01-2022 1900", formatter)).build();
+
+        Project project = new ProjectBuilder().withName("Build Website")
+                .withTasks(firstTask, secondTask, thirdTask, fourthTask).build();
+        Project expectedProject = new ProjectBuilder().withName("Build Website")
+                .withTasks(secondTask, fourthTask, firstTask, thirdTask).build();
+
+        originalModel.addProject(project);
+        expectedModel.addProject(expectedProject);
+        assertCommandSuccess(new SortTaskCommand(), originalModel, SortTaskCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test

@@ -11,16 +11,26 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.FindProjectCommand;
 import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 
-class FindProjectCommandParserTest {
+public class FindProjectCommandParserTest {
+
+    /*
+    Test case design used: Equivalence Partition
+
+    EPs for userInput:
+    1. Strings that are empty or contain only whitespaces
+    2. Strings containing any other character (i.e. complement of EP1)
+    */
 
     private FindProjectCommandParser parser = new FindProjectCommandParser();
 
+    // EP used: EP1
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindProjectCommand.MESSAGE_USAGE));
     }
 
+    // EP used: EP2
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
