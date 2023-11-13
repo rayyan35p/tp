@@ -441,8 +441,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC01 - Add an employee**
 
-Guarantees: MSS -> The new employee is added to the list of employees.
-
 **MSS**
 
 1. User requests to add an employee. 
@@ -459,28 +457,26 @@ Guarantees: MSS -> The new employee is added to the list of employees.
     Use case ends.
 
 * 1b. User does not enter a required field.
-    * 1b1. TaskHub shows an error message.
+  * 1b1. TaskHub shows an error message.
 
-      Use case ends.
+    Use case ends.
 
 * 1c. User enters details of an employee that already exists.
-    * 1c1. TaskHub shows an error message.
+  * 1c1. TaskHub shows an error message.
 
-      Use case ends.
+    Use case ends.
 
 * 1d. User enters an invalid value for a field.
-    * 1d1. TaskHub shows an error message.
+  * 1d1. TaskHub shows an error message.
 
-      Use case ends.
+    Use case ends.
 
 * 1e. User enters multiple values for a single-valued field.
-    * 1e1. TaskHub shows an error message.
+  * 1e1. TaskHub shows an error message.
 
-      Use case ends.
+    Use case ends.
 
 **Use case: UC02 - Edit an employee**
-
-Guarantees: MSS -> The employee is updated with the new details.
 
 **MSS**
 
@@ -519,8 +515,6 @@ Guarantees: MSS -> The employee is updated with the new details.
   
 **Use case: UC03 - Delete an employee**
 
-Guarantees: MSS -> The employee is removed from the list of employees.
-
 **MSS**
 
 1. User requests to delete an employee.
@@ -543,13 +537,11 @@ Guarantees: MSS -> The employee is removed from the list of employees.
 
 **Use case: UC04 - List all employees**
 
-Guarantees: MSS -> All the employees are displayed.
-
 **MSS**
 
 1. User requests to list all employees.
 2. TaskHub displays the list of employees.
-3. TaskHub shows a success message to the User.
+3. TaskHub shows that all employees have been listed successfully.
 
     Use case ends.
 
@@ -591,8 +583,6 @@ Guarantees: MSS -> All the employees are displayed.
 
 **Use case: UC06 - Add a project**
 
-Guarantees: MSS -> The new project is added to the list of projects.
-
 **MSS**
 
 1. User requests to add a project.
@@ -630,13 +620,11 @@ Guarantees: MSS -> The new project is added to the list of projects.
 
 **Use case: UC07 - List all projects**
 
-Guarantees: MSS -> All the projects are displayed.
-
 **MSS**
 
 1. User requests to list all projects.
 2. TaskHub displays the list of projects.
-3. TaskHub shows a success message to the User.
+3. TaskHub shows that all projects have been listed successfully.
 
     Use case ends.
 
@@ -648,8 +636,6 @@ Guarantees: MSS -> All the projects are displayed.
     Use case ends.
 
 **Use case: UC08 - Edit a project**
-
-Guarantees: MSS -> The project is updated with the new details.
 
 **MSS**
 
@@ -688,8 +674,6 @@ Guarantees: MSS -> The project is updated with the new details.
     Use case ends.
 
 **Use case: UC09 - Delete a project**
-
-Guarantees: MSS -> The project is removed from the list of projects.
 
 **MSS**
 
@@ -741,8 +725,6 @@ Guarantees: MSS -> The project is removed from the list of projects.
 
 **Use case: UC11 - Mark a project as completed**
 
-Guarantees: MSS -> The project is marked as completed.
-
 **MSS**
 
 1. User lists all projects (UC07).
@@ -770,8 +752,6 @@ Guarantees: MSS -> The project is marked as completed.
     Use case ends.
 
 **Use case: UC12 - Mark a project as incomplete**
-
-Guarantees: MSS -> The project is marked as incomplete.
 
 **MSS**
 
@@ -802,8 +782,6 @@ Guarantees: MSS -> The project is marked as incomplete.
 **Use case: UC13 - Edit deadlines of multiple projects**
 
 This use case is also applicable to editing **priority** of multiple projects.
-
-Guarantees: MSS -> The deadlines of the projects are updated with the new details.
 
 **MSS**
 
@@ -836,18 +814,373 @@ Guarantees: MSS -> The deadlines of the projects are updated with the new detail
         
     Use case ends.
 
+**Use case: UC14 - Add a new task to a project**
 
+**MSS**
 
+1. User lists all projects (UC07).
+2. User requests to add a new task to a project.
+3. TaskHub adds the new task to the project and displays the updated list of tasks in the project.
+4. TaskHub shows that the task has been added successfully.
 
+    Use case ends.
 
+**Extensions**
 
-
-
-
-
-
-
+* 2a. User enters an invalid command.
+  * 2a1. TaskHub shows an error message.
     
+    Use case ends.
+
+* 2b. User does not enter a required field.
+  * 2b1. TaskHub shows an error message.
+    
+    Use case ends.
+
+* 2c. User enters an invalid value for a field.
+  * 2c1. TaskHub shows an error message.
+    
+    Use case ends.
+
+* 2d. User enters multiple values for a field.
+  * 2d1. TaskHub shows an error message.
+        
+    Use case ends.
+
+**Use case: UC15 - Delete a task from a project**
+
+**MSS**
+
+1. User lists all projects (UC07).
+2. User requests to delete a task from a project.
+3. TaskHub deletes the task from the project and displays the updated list of tasks in the project.
+4. TaskHub shows that the task has been deleted successfully.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User enters an invalid command.
+  * 2a1. TaskHub shows an error message.
+    
+    Use case ends.
+
+* 2b. User does not enter a required field.
+  * 2b1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2c. User enters an invalid value for a field.
+  * 2c1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2d. User enters multiple values for a single-valued field.
+  * 2d1. TaskHub shows an error message.
+
+    Use case ends.
+
+**Use case: UC16 - Mark a task as completed**
+
+**MSS**
+
+1. User lists all projects (UC07).
+2. User requests to mark a task as completed.
+3. TaskHub marks the task as completed and displays the updated list of tasks in the project.
+4. TaskHub shows that the task has been marked as completed successfully.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User enters an invalid command.
+  * 2a1. TaskHub shows an error message.
+    
+    Use case ends.
+
+* 2b. User does not enter a required field.
+  * 2b1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2c. User enters an invalid value for a field.
+  * 2c1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2d. User enters multiple values for a single-valued field.
+  * 2d1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2e. User enters a task that is already completed.
+  * 2e1. TaskHub shows that the task has been marked as completed successfully.
+
+    Use case ends.
+
+**Use case: UC17 - Mark a task as incomplete**
+
+**MSS**
+
+1. User lists all projects (UC07).
+2. User requests to mark a task as incomplete.
+3. TaskHub marks the task as incomplete and displays the updated list of tasks in the project.
+4. TaskHub shows that the task has been marked as incomplete successfully.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User enters an invalid command.
+  * 2a1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2b. User does not enter a required field.
+  * 2b1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2c. User enters an invalid value for a field.
+  * 2c1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2d. User enters multiple values for a single-valued field.
+  * 2d1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2e. User enters a task that is already incomplete.
+  * 2e1. TaskHub shows that the task has been marked as incomplete successfully.
+
+    Use case ends.
+
+**Use case: UC18 - Sort tasks in a project**
+
+**MSS**
+
+1. User lists all projects (UC07).
+2. User finds a project (UC10).
+3. User requests to sort the tasks in the project.
+4. TaskHub sorts the tasks in the project by deadline and completion status, and displays the updated list of tasks in the project.
+5. TaskHub shows that the tasks have been sorted successfully.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User enters an invalid command.
+  * 2a1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2b. There are no tasks to sort.
+  * 2b1. TaskHub shows success message but there is no effect on the project.
+
+    Use case ends.
+
+**Use case: UC19 - List all employees and projects**
+
+**MSS**
+
+1. User requests to list all employees and projects.
+2. TaskHub lists all employees and projects.
+3. TaskHub shows that all employees and projects have been listed successfully.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters an invalid command.
+  * 1a1. TaskHub shows an error message.
+
+    Use case ends.
+
+**Use case: UC20 - Assign an employee to a project**
+
+**MSS**
+
+1. User lists all employees and projects (UC19).
+2. User requests to assign an employee to a project.
+3. TaskHub assigns the employee to the project and displays the updated list of employees and projects.
+4. TaskHub shows that the employee has been assigned to the project successfully.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User enters an invalid command.
+  * 2a1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2b. User does not enter a required field.
+  * 2b1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2c. User enters an invalid value for a field.
+  * 2c1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2d. User enters multiple values for a single-valued field.
+  * 2d1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2e. User enters an employee that is already assigned to the project.
+  * 2e1. TaskHub shows success message but there is no effect on the project.
+
+    Use case ends.
+
+**Use case: UC21 - Un-assign an employee from a project**
+
+**MSS**
+
+1. User lists all employees and projects (UC19).
+2. User requests to un-assign an employee from a project.
+3. TaskHub un-assigns the employee from the project and displays the updated list of employees and projects.
+4. TaskHub shows that the employee has been un-assigned from the project successfully.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User enters an invalid command.
+  * 2a1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2b. User does not enter a required field.
+  * 2b1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2c. User enters an invalid value for a field.
+  * 2c1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2d. User enters multiple values for a single-valued field.
+  * 2d1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2e. User enters an employee that is not assigned to the project.
+  * 2e1. TaskHub shows an error message.
+
+    Use case ends.
+
+**Use case: UC22 - Assign an employee to a task in a project**
+
+**MSS**
+
+1. User lists all employees and projects (UC19).
+2. User requests to assign an employee to a task in a project.
+3. TaskHub assigns the employee to the task in the project and displays the updated list of employees and projects.
+4. TaskHub shows that the employee has been assigned to the task in the project successfully.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User enters an invalid command.
+  * 2a1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2b. User does not enter a required field.
+  * 2b1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2c. User enters an invalid value for a field.
+  * 2c1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2d. User enters multiple values for a field.
+  * 2d1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2e. User enters an employee that is already assigned to the task in the project.
+  * 2e1. TaskHub shows success message but there is no effect on the project or task.
+
+    Use case ends.
+
+* 2f. User enters a task that is already assigned to another employee in the project.
+  * 2f1. TaskHub replaces the existing employee in the task with the new employee.
+
+    Use case resumes from step 4.
+
+**Use case: UC23 - Un-assign an employee from a task in a project**
+
+**MSS**
+
+1. User lists all employees and projects (UC19).
+2. User requests to un-assign an employee from a task in a project.
+3. TaskHub un-assigns the employee from the task in the project and displays the updated list of employees and projects.
+4. TaskHub shows that the employee has been un-assigned from the task in the project successfully.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User enters an invalid command.
+  * 2a1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2b. User does not enter a required field.
+  * 2b1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2c. User enters an invalid value for a field.
+  * 2c1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2d. User enters multiple values for a field.
+  * 2d1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2e. User enters a task that is not assigned to any employee.
+  * 2e1. TaskHub shows an error message.
+
+    Use case ends.
+
+**Use case: UC24 - Clear all data **
+
+**MSS**
+
+1. User requests to clear all data.
+2. TaskHub clears all data and displays an empty list of employees and projects.
+3. TaskHub shows that all data has been cleared successfully.
+
+    Use case ends.
+
+**Use case: UC25 - Exit the application **
+
+**MSS**
+
+1. User requests to exit the application.
+2. TaskHub exits and closes.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters an invalid command.
+  * 1a1. TaskHub shows an error message.
+
+    Use case ends.
+
+
 
 
 ### Non-Functional Requirements
@@ -936,7 +1269,7 @@ We plan to add a warning to the user if the user tries to add a task with a dead
 `The newly added task has a deadline past the project deadline! Check again if the details are correct and edit if needed!`
 4. Currently, a maximum of only one employee can be assigned to each task, which does not accurately reflect the real world.
 We plan to allow multiple employees to be assigned to each task.
-5. Currently, commands that allow users to add multiple continuous indexes (e.g. `priorityP 1 2 3 p/low`) do not allow multiple spaces between indexes (e.g. `priorityP 1 &nbsp;2 &nbsp;3 p/low`).
+5. Currently, commands that allow users to add multiple continuous indexes (e.g. `priorityP 1 2 3 p/low`) do not allow multiple spaces between indexes (e.g. `priorityP 1  2  3 p/low`).
 Instead, an error message is currently shown to the user saying `Index provided was not a non-zero unsigned integer. This is not valid: <empty>`, due to the extra space.
 We plan to allow multiple spaces between indexes to be handled automatically instead of the user having to find where they may have put the additional space(s).
 6. Employee names currently cannot contain special characters, as the validation for this is too strict.
