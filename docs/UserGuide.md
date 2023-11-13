@@ -954,9 +954,7 @@ The first step is to open the folder that contains all your files related to Tas
 Follow these steps to install Java on your computer:
 
 1. **Download Java 11:**
-   - For Mac users, click [here](https://www.oracle.com/java/technologies/downloads/#java11-mac) and download the appropriate file depending on your processor (ARM64 or Intel x64).
-   - For Windows users, click [here](https://www.oracle.com/java/technologies/downloads/#java11-windows) to download the appropriate file.
-   - For Linux users, click [here](https://www.oracle.com/java/technologies/downloads/#java11-linux) to download the appropriate file.
+  - Download Java 11 from [Oracle's website](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) based on your operating system.
 
 2. **Follow the instructions on Oracle's website**
    - Go to the appropriate guide page and follow the instructions based on your operating system to complete the installation.
