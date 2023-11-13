@@ -538,6 +538,10 @@ Use case resumes at step 1.
 
 Given below are instructions to test the app manually.
 
+If there are no prerequisites stated, all you have to do is just open TaskHub.
+
+The testcases should also be done separately and not in sequence, i.e. The results of a testcase may affect the next testcase if the changes are not reversed.
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
@@ -547,7 +551,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
@@ -555,10 +559,77 @@ testers are expected to do more *exploratory* testing.
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   2. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch TaskHub by running the jar file in your terminal.<br>
        Expected: The most recent window size and location is retained.
 
-3. _{ more test cases …​ }_
+3. GUI Shutdown
+
+    1. While in TaskHub, click on the `File` button in the menu bar and click `Exit`.<br>
+        Expected: The TaskHub window is closed.
+
+4. CLI Shutdown
+
+    1. Enter `exit` in the command bar and press enter.<br>
+        Expected: The TaskHub window is closed.
+
+### Viewing Help
+
+1. GUI Help
+
+    1.  While in TaskHub, click on the `Help` button in the menu bar and click `Help`.<br>
+        Expected: The TaskHub Help window is opened.
+
+2. CLI Help
+
+    1. Enter `help` in the command bar and press enter.<br>
+       Expected: The TaskHub Help window is opened.
+
+3. `F1` Help
+   
+    1. While in TaskHub, press `F1` on your keyboard.
+       Expected: The TaskHub Help window is opened.
+
+### Listing all employees and projects
+
+1. List both employees and projects
+
+    1. Test Case: `list`<br>
+        Expected: Both employees and projects are listen in full, with its corresponding message. 
+
+    2. Test Case: `list extra keywords`<br>
+         Expected: Same as previous
+
+### Clearing all entries
+
+1. Clear all stored data in TaskHub
+
+    1. Test Case: `clear`<br>
+        Expected: All employees and projects are deleted, with its corresponding message.
+
+    2. Test Case: `clear extra keywords`<br>
+       Expected: Same as previous
+
+### Adding an employee
+
+1. Add a new employee
+
+    1. Test Case: `addE n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/Employee t/Junior`<br>
+       Expected: Employee "John Doe", with phone number "98765432", email "johnd@example.com", living at "John street, block 123, #01-01", with tags "Employee" and "Junior" is added to TaskHub.
+
+    2. Test Case: `addE n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`<br>
+       Expected: Same as previous but with no tags.
+
+    3. Test Case: `addE p/98765432 e/johnd@example.com a/John street, block 123, #01-01`<br>
+       Expected: No employee is added and an error message indicating "Invalid Command Format" is returned.
+
+    4. Test Case: `n/John Doe n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`<br>
+       Expected: No employee is added and an error message indicating duplicate fields are being used is returned.
+
+    5. Test Case: `addE [Employee with same name as previously added employee]`<br>
+       Expected: No employee is added and an error message indicating that the employee already exists in TaskHub is returned.
+
+
+### Editing an employee
 
 ### Deleting an employee
 
@@ -576,6 +647,46 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 2. _{ more test cases …​ }_
+
+### Listing all employees
+
+### Locate employees by name
+
+### Adding a new project
+
+### Editing a project
+
+### Deleting a project
+
+### Marking project(s) as completed
+
+### Marking project(s) as incomplete
+
+### Editing deadline of project(s)
+
+### Prioritising projects
+
+### Listing all projects
+
+### Locating projects by name
+
+### Adding a new task to a project
+
+### Deleting a task from a project
+
+### Marking a task complete
+
+### Marking task(s) as incomplete
+
+### Sort tasks
+
+### Assign employee(s) to a project
+
+### Un-assign employee(s) from a project
+
+### Assign an employee to a task
+
+### Un-assign an employee from a task
 
 ### Saving data
 
