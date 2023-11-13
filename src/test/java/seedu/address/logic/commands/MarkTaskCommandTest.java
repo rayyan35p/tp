@@ -27,11 +27,14 @@ import seedu.address.testutil.TaskBuilder;
 
 public class MarkTaskCommandTest {
 
+    // Heuristic applied: No More Than One Invalid Input In A Test Case
+
     @Test
     public void constructor_nullTask_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new MarkTaskCommand(null, null));
     }
 
+    // Invalid input: none (successful test)
     @Test
     public void execute_validProjectAndTaskIndexesUnfilteredList_success() throws Exception {
         Task taskToMark = new TaskBuilder().build();
@@ -49,6 +52,7 @@ public class MarkTaskCommandTest {
                         targetProject.getName()), commandResult.getFeedbackToUser());
     }
 
+    // Invalid input: project index
     @Test
     public void execute_invalidProjectIndex_throwsCommandException() {
         Task taskToMark = new TaskBuilder().build();
@@ -66,6 +70,7 @@ public class MarkTaskCommandTest {
                 markTaskCommand.execute(modelStub));
     }
 
+    // Invalid input: task index(es)
     @Test
     public void execute_invalidTaskIndexes_throwsCommandException() {
         Task taskToMark = new TaskBuilder().build();
@@ -95,7 +100,6 @@ public class MarkTaskCommandTest {
         assertThrows(CommandException.class, Messages.MESSAGE_NO_PROJECT_TO_MARK_UNMARK_TASK, () ->
                 markTaskCommand.execute(modelStub));
     }
-
 
     @Test
     public void equals() {

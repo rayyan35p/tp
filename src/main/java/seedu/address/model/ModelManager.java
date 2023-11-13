@@ -170,6 +170,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void sortTasksByDeadlineAndCompletion() {
+        for (Project project : filteredProjects) {
+            project.sortTasksByDeadlineAndCompletion();
+        }
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;

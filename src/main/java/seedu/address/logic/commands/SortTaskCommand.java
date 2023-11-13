@@ -2,10 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import seedu.address.model.Model;
-import seedu.address.model.project.Project;
 
 
 /**
@@ -21,10 +18,7 @@ public class SortTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        List<Project> lastShownProjectList = model.getFilteredProjectList();
-        for (Project project : lastShownProjectList) {
-            project.sortTasksByDeadlineAndCompletion();
-        }
+        model.sortTasksByDeadlineAndCompletion();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

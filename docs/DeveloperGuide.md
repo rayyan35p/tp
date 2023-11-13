@@ -116,7 +116,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `TaskHubParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddEmployeeCommand`) which the `TaskHubParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `TaskHubParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddEmployeeCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddEmployeeCommand`) which the `TaskHubParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddEmployeeCommandParser`, `DeleteEmployeeCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -127,14 +127,14 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the TaskHub data i.e., all `Employee`, `Project` and `Task` objects - `Employee` and `Project` objects are separately contained in a `UniqueEmployeeList` object and a `UniqueProjectList` object. `Task` objects exist within the `TaskList` of a `Project`.
+* stores the TaskHub data i.e., all `Employee` and `Project` objects, which are separately contained in a `UniqueEmployeeList` object and a `UniqueProjectList` object. `Task` objects exist within the `TaskList` of a `Project`.
 * stores the currently 'selected' `Employee` and `Project` objects (e.g., results of a search query) as 2 separate _filtered_ lists which are exposed to outsiders as unmodifiable `ObservableList<Employee>` and `ObservableList<Project>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` object.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TaskHub`, which `Employee` references. This allows `TaskHub` to only require one `Tag` object per unique tag, instead of each `Employee` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+:information_source: **Note:** The focus of the above class diagram is on the `Employee`, `Project`, `Task` classes as well as the relevant lists that contain them. More details will be provided in subsequent sections.
 
 </div>
 
@@ -146,8 +146,8 @@ The `Model` component,
 
 The `Employee` component stores an employee's data which comprises:
 
-* a `Name`, `Phone`, `Email`, `Address`, `Project` and `Tag`(s).
-* `Project`(s) and `Tag`(s) are optional.
+* a `Name`, `Phone`, `Email`, `Address` and `Tag`(s).
+* `Tag`(s) are optional.
 
 
 ### Project component
@@ -157,13 +157,15 @@ The `Employee` component stores an employee's data which comprises:
 
 The `Project` component stores a project's data which comprises:
 
-* a `Name`, `Deadline`, `UniqueEmployeeList`, `TaskList`, `ProjectPriority` and `CompletionStatus`.
+* a `Name`, `Deadline`, `UniqueEmployeeList`, `TaskList`, `Priority` and `CompletionStatus`.
 * The `Deadline` is optional.
 * The `UniqueEmployeeList` contains only the `Employee`s under the said `Project`.
 * Each `Employee` in the `UniqueEmployeeList` of the project must also exist in the `UniqueEmployeeList` of the `Model`. (All fields must be the same) 
 * The `TaskList` contains the `Task`s which have been added to the `Project`.
+* The `Employee` (if applicable) in each `Task` in the `TaskList` of the project must also exist in the `UniqueEmployeeList` of the project.
 
 ***Note: For the Model, Employee and Project components, lower-level details (e.g. most class attributes and methods) have been omitted for visual clarity.
+
 
 ### Task component
 **API** : [`Task.java`](https://github.com/AY2324S1-CS2103T-T08-3/tp/blob/master/src/main/java/seedu/address/model/task/Task.java)
@@ -175,6 +177,12 @@ The `Task` component stores a task's data which comprises:
 * a `name`, `deadline`, `Employee`, and `isDone` field.
 * The `Employee` is optional - a Task may be assigned to an `Employee` within the `Project` or not.
 
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The `Employee`, `Project` and `Task` class diagrams above have omitted some details (e.g. class methods) to improve visual clarity. Only the most important fields and associations are shown.
+
+</div>
 
 ### Storage component
 
@@ -368,90 +376,6 @@ Step 4. `JsonSerializableTaskHub` will then check whether each `JsonAdaptedProje
 
 If any `JsonAdaptedEmployee` or `JsonAdaptedProject` fails to meet the requirements, an empty `Taskhub` is returned.
 
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedTaskHub`. It extends `TaskHub` with an undo/redo history, stored internally as an `taskHubStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedTaskHub#commit()` — Saves the current TaskHub state in its history.
-* `VersionedTaskHub#undo()` — Restores the previous TaskHub state from its history.
-* `VersionedTaskHub#redo()` — Restores a previously undone TaskHub state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitTaskHub()`, `Model#undoTaskHub()` and `Model#redoTaskHub()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedTaskHub` will be initialized with the initial TaskHub state, and the `currentStatePointer` pointing to that single TaskHub state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th employee in the TaskHub. The `delete` command calls `Model#commitTaskHub()`, causing the modified state of the TaskHub after the `delete 5` command executes to be saved in the `taskHubStateList`, and the `currentStatePointer` is shifted to the newly inserted TaskHub state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new employee. The `add` command also calls `Model#commitTaskHub()`, causing another modified TaskHub state to be saved into the `taskHubStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitTaskHub()`, so the TaskHub state will not be saved into the `taskHubStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the employee was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoTaskHub()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous TaskHub state, and restores the TaskHub to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial TaskHub state, then there are no previous TaskHub states to restore. The `undo` command uses `Model#canUndoTaskHub()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoTaskHub()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the TaskHub to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `taskHubStateList.size() - 1`, pointing to the latest TaskHub state, then there are no undone TaskHub states to restore. The `redo` command uses `Model#canRedoTaskHub()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the TaskHub, such as `list`, will usually not call `Model#commitTaskHub()`, `Model#undoTaskHub()` or `Model#redoTaskHub()`. Thus, the `taskHubStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitTaskHub()`. Since the `currentStatePointer` is not pointing at the end of the `taskHubStateList`, all TaskHub states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire TaskHub.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the employee being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -661,62 +585,24 @@ testers are expected to do more *exploratory* testing.
 
 2. _{ more test cases …​ }_
 
-## **Appendix: Future Enhancements**
+## **Appendix: Planned Enhancements**
 
-### \[Proposed\] Deadline validation between Tasks and Projects
+Given below are the planned enhancements for the application.
 
-#### Proposed Implementation
-
-Currently, when a user enters a deadline for a task for a given project, any possible date can be entered including deadlines past the deadline of the project itself.
-
-We recognise that there is always a probability that tasks still can be added beyond a project's deadline, so we will not prevent users from doing so, but this scenario is not common.
-
-Beyond the possibility of users keying in a task deadline that is past the project deadline on purpose, there is also the issue that it may be accidental.
-
-Due to the aforementioned reasons, we believe the project deadlines and task deadlines should be validated.
-
-To be more specific, when tasks that have deadlines past the project deadline are added, there should be a warning indicating that a task with a deadline past the project deadline was added.
-
-Given below is an example usage scenario and how the validation mechanism behaves at each step.
-
-Step 1. The user executes `addT` to add a task to a project with a deadline past the project deadline.
-
-Step 2. The task is added as per normal in the storage, but a warning is also displayed in the `ResultDisplay`
-
-```
-New task added to project 1, Description: Task In a Project; Deadline: 13 Nov 2023, 11:59PM
-The task has a deadline past the project deadline! Check again if the details are correct and edit if needed!
-```
-
-Step 3. If the user intended to add a task with that deadline, then he/she would continue but if it was not intended, they would be alerted to the issue and be able to delete the task.
-
-### \[Proposed\] Multiple employees assigned to each task
-
-#### Proposed Implementation
-
-In this version of TaskHub, only 1 employee can be assigned at a time to each task.
-
-Tasks in a project can be worked on by multiple people at a time, so it would be more appropriate to expand the task to take on more than 1 employee.
-
-The current implementation of tasks is already using a `List` that has been restricted to hold only one `Employee`.
-
-`List` was chosen as the data type for storing assigned `Employees` in preparation for a future iteration where more employees could be held in each task.
-
-Thus, expanding `Task` to take more than one employee would simply involve allowing the list to take more than 1 `Employee`.
-
-However, this was not done in the current implementation due to the already complex nature of the `assignT` command which has to modify multiple instances of objects stored in the model.
-
-### \[Proposed\] Allowing multiple spaces between indexes
-
-#### Proposed Implementation
-
-TaskHub is not currently able to handle multiple spaces between indexes.
-
-In order to deal with multiple spaces, the following solution can be used (taken from [this StackOverflow discussion](https://stackoverflow.com/questions/2932392/java-how-to-replace-2-or-more-spaces-with-single-space-in-string-and-delete-lead))
-
-```Java
-String after = before.trim().replaceAll(" +", " ");
-```
-
-This will allow indexes with multiple spaces between indexes to be handled automatically instead of the user having to find where they may have put the additional space(s).
-
+1. The current validation for duplicate employees is too strict as it does not allow employees with the same name, but different details, to exist in the employee list.
+We plan to add a unique ID field for each employee to allow employees with the same name and differing IDs to exist in the employee list.
+2. The current validation for emails is too lenient as it allows some invalid emails to be accepted as valid.
+For example, in the following email format `local-part@domain`, the `local-part` can exceed the maximum length of 64 characters and is considered valid in our application, when it shouldn't be.
+We plan to use a stricter regular expression to validate emails, which is mentioned [here](https://www.baeldung.com/java-email-validation-regex).
+3. Currently, there is no validation to check if the project deadline is before the task deadline.
+Therefore, users can add tasks with deadlines past the project deadline by accident without knowing.
+We plan to add a warning to the user if the user tries to add a task with a deadline past the project deadline:
+`The newly added task has a deadline past the project deadline! Check again if the details are correct and edit if needed!`
+4. Currently, a maximum of only one employee can be assigned to each task, which does not accurately reflect the real world.
+We plan to allow multiple employees to be assigned to each task.
+5. Currently, commands that allow users to add multiple continuous indexes (e.g. `priorityP 1 2 3 p/low`) do not allow multiple spaces between indexes (e.g. `priorityP 1 &nbsp;2 &nbsp;3 p/low`).
+Instead, an error message is currently shown to the user saying `Index provided was not a non-zero unsigned integer. This is not valid: <empty>`, due to the extra space.
+We plan to allow multiple spaces between indexes to be handled automatically instead of the user having to find where they may have put the additional space(s).
+6. Employee names currently cannot contain special characters, as the validation for this is too strict.
+A name such as `Vishnu S/O Prasath` cannot be added to the employee list, even though it could be a valid name.
+We plan to allow some special characters, such as `/` and `-`, to be used in an employee's name.

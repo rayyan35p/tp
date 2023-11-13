@@ -11,7 +11,6 @@ Class Email
 Class Name
 Class Phone
 Class Tag
-Class Project
 
 Class I #FFFFFF
 }
@@ -23,14 +22,12 @@ Employee *-down-> "1" Name
 Employee *-down-> "1" Phone
 Employee *-down-> "1" Email
 Employee *-down-> "1" Address
-Employee -down-> "*" Project
 Employee -down-> "*" Tag
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Email
 Email -[hidden]right-> Address
-Address -[hidden]right-> Project
-Project -[hidden]right-> Tag
+Address -[hidden]right-> Tag
 
 hide class fields
 @enduml
