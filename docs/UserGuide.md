@@ -988,12 +988,12 @@ The first step is to open the folder that contains all your files related to Tas
 
 ## Task Commands
 
-| Action                                                                                                  | Format, Examples                                                                                                                             |
-|---------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
-| [**Add Task**](#add-a-new-task-to-a-project-addt)                                                       | `addT pr/PROJECT_INDEX [em/EMPLOYEE_INDEX] n/TASK_NAME d/DEADLINE(dd-MM-yyyy HHmm)`<br> e.g., `addT pr/1 em/1 n/Read docs d/11-11-2023 2359` |
-| [**Delete Task**](#delete-a-task-from-a-project-deletet)                                                | `deleteT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]` <br> e.g., `deleteT pr/1 t/1 5 3`                                                |
-| [**Mark Task(s) As Complete**](#mark-task-s-as-completed-markt)                                         | `markT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`<br> e.g., `markT pr/1 t/1 3`                                                       |
-| [**Mark Task(s) As Incomplete**](#mark-task-s-as-incomplete-unmarkt)                                    | `unmarkT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`<br> e.g., `unmarkT pr/1 t/1 3`                                                   |
+| Action                                                                                                | Format, Examples                                                                                                                             |
+|-------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Add Task**](#add-a-new-task-to-a-project-addt)                                                     | `addT pr/PROJECT_INDEX [em/EMPLOYEE_INDEX] n/TASK_NAME d/DEADLINE(dd-MM-yyyy HHmm)`<br> e.g., `addT pr/1 em/1 n/Read docs d/11-11-2023 2359` |
+| [**Delete Task**](#delete-a-task-from-a-project-deletet)                                              | `deleteT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]` <br> e.g., `deleteT pr/1 t/1 5 3`                                                |
+| [**Mark Task(s) As Complete**](#mark-tasks-as-completed-markt)                                        | `markT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`<br> e.g., `markT pr/1 t/1 3`                                                       |
+| [**Mark Task(s) As Incomplete**](#mark-tasks-as-incomplete-unmarkt)                                   | `unmarkT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`<br> e.g., `unmarkT pr/1 t/1 3`                                                   |
 | [**Sort Tasks By Deadline And Completion Status**](#sort-tasks-by-deadline-and-completion-status-sortt) | `sortT`                                                                                                                                      |
 
 ## Assignment Commands
