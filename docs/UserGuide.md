@@ -646,13 +646,13 @@ Examples:
 
 ### Edit a project: `editP`
 
-Edits an existing project in the TaskHub.
+Edits an existing project in TaskHub.
 
 Format: `editP INDEX [n/NAME] [p/PRIORITY] [d/DEADLINE]`
 
 * Edits the project at the specified `INDEX`.
 * The index refers to the index number shown in the displayed project panel.
-* The index must be a positive integer 1, 2, 3, …​
+* The index **must be a positive** integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * If a `DEADLINE` date is provided, it must be in the `dd-MM-yyyy` format.
@@ -694,12 +694,12 @@ Examples:
 
 Marks the specified project(s) as completed in TaskHub.
 
-Format `markP INDEX [MORE_INDEXES]`
+Format: `markP INDEX [MORE_INDEXES]`
 
 * Marks the project(s) at the specified `INDEX(ES)` as completed.
 * The index(es) refers to the index number(s) shown in the displayed project panel.
 * If multiple indexes are provided, each index __must be separated by a singular space__.
-* The index(es) **must be a positive integers** 1, 2, 3,...
+* The index(es) **must be a positive integer** 1, 2, 3,...
 
 Examples:
 * `listP` followed by `markP 1 3` marks the 1st and 3rd projects as completed in TaskHub.
@@ -712,12 +712,12 @@ Examples:
 
 Marks the specified project(s) as incomplete in TaskHub.
 
-Format `unmarkP INDEX [MORE_INDEXES]`
+Format: `unmarkP INDEX [MORE_INDEXES]`
 
 * Marks the project(s) at the specified `INDEX(ES)` as incomplete.
 * The index(es) refers to the index number(s) shown in the displayed projects panel.
 * If multiple indexes are provided, each index __must be separated by a singular space__.
-* The index(es) **must be a positive integers** 1, 2, 3,...
+* The index(es) **must be a positive integer** 1, 2, 3,...
 
 Examples:
 * `listP` followed by `unmarkP 1 3` marks the 1st and 3rd projects as incomplete in TaskHub.
@@ -825,7 +825,7 @@ Note that some of the limits for the parameters stated above are not enforced by
 
 Adds a new task to the specified project in TaskHub and assigns it to the (optionally) specified employee.
 
-Format `addT n/TASK_NAME pr/PROJECT_INDEX [em/EMPLOYEE_INDEX] d/DEADLINE`
+Format: `addT n/TASK_NAME pr/PROJECT_INDEX [em/EMPLOYEE_INDEX] d/DEADLINE`
 
 * Adds a new task to the project at the specified `PROJECT_INDEX`.
 * The employee index field is optional - the task will be assigned to the employee at `EMPLOYEE_INDEX` if specified,
@@ -843,9 +843,9 @@ Examples:
 
 ### Delete a task from a project: `deleteT`
 
-Deletes the specified task(s) from the specified project in TaskHub
+Deletes the specified task(s) from the specified project in TaskHub.
 
-Format `deleteT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
+Format: `deleteT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
 
 * Deletes the tasks at the specified `TASK_INDEX`(es), from the project at the specified `PROJECT_INDEX`.
 * The project index refers to the index number shown in the displayed project panel.
@@ -872,7 +872,7 @@ Examples:
 
 Marks the specified task(s) of a specified project as completed in TaskHub.
 
-Format `markT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
+Format: `markT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
 
 * Marks the tasks(s) at the specified `TASK_INDEX`(es), of the project at the specified `PROJECT_INDEX` as completed.
 * The project index refers to the index number shown in the displayed project panel.
@@ -891,7 +891,7 @@ Examples:
 
 Marks the specified task(s) of a specified project as incomplete in TaskHub.
 
-Format `unmarkT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
+Format: `unmarkT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
 
 * Marks the tasks(s) at the specified `TASK_INDEX`(es), of the project at the specified `PROJECT_INDEX` as incomplete.
 * The project index refers to the index number shown in the displayed project panel.
@@ -942,7 +942,7 @@ Note that some of the limits for the parameters stated above are not enforced by
 
 ### Assign employee(s) to a project: `assignP`
 
-Assigns employee(s) to a project in TaskHub
+Assigns employee(s) to a project in TaskHub.
 
 Format: `assignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES] ...`
 * The employee(s) specified by the `EMPLOYEE_INDEX(ES)` will be assigned to the project specified by the `PROJECT_INDEX`.
@@ -960,7 +960,7 @@ Examples:
 
 ### Un-assign employee(s) from a project: `unassignP`
 
-Un-assigns employee(s) from a project in TaskHub
+Un-assigns employee(s) from a project in TaskHub.
 
 Format: `unassignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES] ...`
 
@@ -989,7 +989,7 @@ Examples:
 
 Assigns a specified employee in a specified project to a specified task in that project.
 
-Format `assignT pr/PROJECT_INDEX t/TASK_INDEX em/EMPLOYEE_INDEX`
+Format: `assignT pr/PROJECT_INDEX t/TASK_INDEX em/EMPLOYEE_INDEX`
 
 * The employee specified by the `EMPLOYEE_INDEX` will be assigned to the task specified by the `TASK_INDEX` in the project specified by the `PROJECT_INDEX`.
 * The project index refers to the index number shown in the displayed project panel.
@@ -1017,7 +1017,7 @@ Examples:
 
 Un-assigns the currently assigned employee from the specified task in the specified project.
 
-Format `unassignT pr/PROJECT_INDEX t/TASK_INDEX`
+Format: `unassignT pr/PROJECT_INDEX t/TASK_INDEX`
 
 * The currently assigned employee, if exists, will be un-assigned from the task specified by the `TASK_INDEX` in the project specified by the `PROJECT_INDEX`.
 * The project index refers to the index number shown in the displayed project panel.
