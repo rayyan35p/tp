@@ -486,26 +486,30 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                             | I want to …​                  | So that I can…​                                                          |
-|----------|-------------------------------------|-------------------------------|--------------------------------------------------------------------------|
-| `* * *`  | completely new user                 | see usage instructions        | refer to instructions when I forget how to use the App                   |
-| `* * *`  | user                                | add a new employee            | easily manage and access employees in one place                          |
-| `* * *`  | user                                | delete an employee            | remove entries that I no longer need                                     |
-| `* * *`  | user                                | edit an employee              | change the details of the employee                                       |
-| `* * *`  | user                                | list all employees            | see an overview of all the employees                                     |
-| `* * *`  | user                                | add a new project             | easily manage and access projects in one place                           |
-| `* * *`  | user                                | delete a project              | remove entries that I no longer need                                     |
-| `* * *`  | user                                | edit a project                | change the details of the project                                        |
-| `* * *`  | user                                | list all projects             | see an overview of all my projects                                       |
-| `* * *`  | user                                | find an employee by name      | locate details of employees without having to go through the entire list |
-| `* * *`  | user                                | assign employees to a project | know which employees are on which projects in one place                  |
-| `* *`    | completely new user                 | have sample data              | practice some commands before trying the App                             |
-| `* *`    | user                                | purge all data                | get rid of sample/experimental data and add in my actual data            |
-| `*`      | user with many projects in TaskHub  | sort projects by date         | tell which project deadlines are coming soon                             |
-| `*`      | user with many employees in TaskHub | sort employees by name        | locate an employee easily                                                |
-| `*`      | new user                            | get autocomplete suggestions  | write commands without referring to usage instructions often             |
-
-*{More to be added}*
+| Priority | As a …​                             | I want to …​                 | So that I can…​                                                                |
+|----------|-------------------------------------|------------------------------|--------------------------------------------------------------------------------|
+| `* * *`  | completely new user                 | see usage instructions       | refer to instructions when I forget how to use the App                         |
+| `* * *`  | user                                | add a new employee           | easily manage and access employees in one place                                |
+| `* * *`  | user                                | delete an employee           | remove entries that I no longer need                                           |
+| `* * *`  | user                                | edit an employee             | change the details of the employee                                             |
+| `* * *`  | user                                | list all employees           | see an overview of all the employees                                           |
+| `* * *`  | user                                | add a new project            | easily manage and access projects in one place                                 |
+| `* * *`  | user                                | delete a project             | remove entries that I no longer need                                           |
+| `* * *`  | user                                | edit a project               | change the details of the project                                              |
+| `* * *`  | user                                | list all projects            | see an overview of all my projects                                             |
+| `* * *`  | user                                | find an employee by name     | locate details of employees without having to go through the entire list       |
+| `* * *`  | user                                | assign employees to a project | know which employees are on which projects in one place                        |
+| `* * *`  | user with projects                  | add a task to a project      | know what needs to be done within a project                                    |
+| `* * *`  | user with projects                  | delete a task from a project | remove accidental additions or remove tasks that are no longer needed          |
+| `* * *`  | user with projects and employees    | assign employees to a task   | delegate tasks to them for efficient work allocation                           |
+| `* * *`  | user with tasks                     | mark a task as complete      | keep track of my project's progress based on the tasks that are completed      |
+| `* * *`  | user with tasks                     | mark a task as incomplete    | fix tasks that might have been marked as done but have more to be done         |
+| `* * *`  | user with projects and tasks        | sort tasks                   | see at a glance which tasks are done or which are most urgent and not yet done |
+| `* *`    | completely new user                 | have sample data             | practice some commands before trying the App                                   |
+| `* *`    | user                                | purge all data               | get rid of sample/experimental data and add in my actual data                  |
+| `*`      | user with many projects in TaskHub  | sort projects by date        | tell which project deadlines are coming soon                                   |
+| `*`      | user with many employees in TaskHub | sort employees by name       | locate an employee easily                                                      |
+| `*`      | new user                            | get autocomplete suggestions | write commands without referring to usage instructions often                   |
 
 ### Use cases
 
@@ -602,11 +606,15 @@ Use case resumes at step 1.
 4.  Should continue to work in most file directories as long as TaskHub and its data file maintain the same structure.
 5.  Should be easily usable even by a first time user.
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, macOS
+
+### Requirements yet to be implemented
+1. Sorting projects by completion and date has not yet been implemented.
+2. Sorting employees by name has not yet been implemented.
+3. Autocomplete commands has not yet been implemented.
+4. Assigning multiple employees to a task has not yet been implemented.
 
 --------------------------------------------------------------------------------------------------------------------
 
