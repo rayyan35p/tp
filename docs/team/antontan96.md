@@ -30,9 +30,9 @@ Given below are my contributions to the project.
   * Enhance Storage Validation to make sure that Employees assigned to a project are exactly the same as its counterpart stored in TaskHub.
   * Made the Main Window look better when window exceeds a certain height[\#149](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/149)
   * Refactored `Remark` to `Project`
-* **Icon Design**: Designed the icon for TaskHub. <br> ![TaskHubIcon](../../src/main/resources/images/task_hub_32.png)
+* **Icon Design**: Designed the icon for TaskHub. <br> ![TaskHubIcon](./../images/task_hub_32.png)
 
-* **Logo Design**: Created the Logo for TaskHub using Figma with Timothy's design from Visily. <br>![TaskHubIcon](../../src/main/resources/images/task_hub_logo.png)
+* **Logo Design**: Created the Logo for TaskHub using Figma with Timothy's design from Visily. <br>![TaskHubIcon](./../images/task_hub_logo.png)
 
 * **Documentation**:
     * User Guide:
