@@ -16,7 +16,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AssignProjectCommand;
 
 public class AssignProjectCommandParserTest {
@@ -77,7 +76,7 @@ public class AssignProjectCommandParserTest {
         assertParseFailure(parser, AssignProjectCommand.COMMAND_WORD, expectedMessage);
 
         // no employee index
-        assertParseFailure(parser,  " " + PREFIX_PROJECT + INDEX_FIRST_EMPLOYEE.getOneBased(), expectedMessage);
+        assertParseFailure(parser, " " + PREFIX_PROJECT + INDEX_FIRST_EMPLOYEE.getOneBased(), expectedMessage);
 
         // no project index
         assertParseFailure(parser, " " + PREFIX_EMPLOYEE + INDEX_FIRST_EMPLOYEE.getOneBased(), expectedMessage);

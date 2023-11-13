@@ -64,7 +64,7 @@ public class AddProjectCommandTest {
 
     // Invalid input: Employee index does not exist in TaskHub
     @Test
-    public void execute_addEmployeeToProject_employeeDoesNotExist_throwsCommandException() {
+    public void execute_addNonExistentEmployee_throwsCommandException() {
         Project project = new ProjectBuilder().build();
         ArrayList<Index> invalidIndex = new ArrayList<>();
         ModelStub modelStub = new ModelStubWithProject(project);

@@ -23,8 +23,8 @@ public class DeleteProjectCommand extends Command {
             + ": Deletes the project identified by the index number used in the displayed project list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
-    private static final Logger logger = LogsCenter.getLogger(DeadlineProjectCommand.class);
     public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "Deleted Project: %1$s";
+    private static final Logger logger = LogsCenter.getLogger(DeadlineProjectCommand.class);
 
     private final Index targetIndex;
     public DeleteProjectCommand(Index targetIndex) {

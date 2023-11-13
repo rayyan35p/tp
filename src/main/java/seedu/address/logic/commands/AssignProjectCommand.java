@@ -72,14 +72,14 @@ public class AssignProjectCommand extends Command {
     }
 
     private void employeeIsInList(int target, int size) throws CommandException {
-        if(target >= size) {
+        if (target >= size) {
             logger.warning("Invalid employee index: " + (target + 1));
             throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
         }
     }
 
     private void projectIsInList(int target, int size) throws CommandException {
-        if(target >= size) {
+        if (target >= size) {
             logger.warning("Invalid project index: " + (target + 1));
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
