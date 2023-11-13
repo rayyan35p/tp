@@ -489,7 +489,9 @@ Format: `exit`
 | `KEYWORD` | The keyword to find an employee by name.<br/><br/> It should only contain alphanumeric characters and spaces. <br/><br/> It is case-insensitive.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | <ul><li>`Alex`</li><li>`alex yeoh`</li></ul>                         |
 
 Note that some of the limits for the parameters stated above are not enforced by the application. You are recommended to follow these limits for the best user experience. We may enforce them in a future iteration.
+
 [Return to Table of Contents](#table-of-contents)
+
 <br>
 
 ### Add an employee: `addE`
@@ -606,17 +608,18 @@ Examples:
 | `EMPLOYEE_INDEX`       | The index number of the employee as shown in the employee panel.<br/><br/> It should be a positive integer, and should not be more than the number of employees currently shown in the displayed employee panel. It should be less than 1000. | <ul><li>`1`</li></ul>                                                    |
 | `INDEX`                | The index number of the project as shown in the project panel.<br/><br/> It should be a positive integer, and should not be more than the number of projects currently shown in the displayed project panel. It should be less than 1000.     | <ul><li>`2`</li></ul>                                                    |
 | `PRIORITY`             | The project's priority level.<br/><br/> It should only take one of these 3 values: `low`, `normal`, `high`.                                                                                                                                   | <ul><li>`low`</li><li>`high`</li></ul>                                   |
-| `DEADLINE`             | The project's deadline date.<br/><br/> It can either be empty (to indicate that there is no deadline set), or it must be a valid date in the `dd-MM-yyyy`` format.                                                                            | <ul><li>`28-02-2024`</li><li>`08-11-2022`</li></ul>                      |
+| `DEADLINE`             | The project's deadline date.<br/><br/> It can either be empty (to indicate that there is no deadline set), or it must be a valid date in the `dd-MM-yyyy` format.                                                                             | <ul><li>`28-02-2024`</li><li>`08-11-2022`</li></ul>                      |
 | `KEYWORD`              | The keyword to find a project by name.<br/><br/> It should only contain alphanumeric characters and spaces. <br/><br/> It is case-insensitive.                                                                                                | <ul><li>`Website`</li><li>`create website`</li></ul>                     |
 
 Note that some of the limits for the parameters stated above are not enforced by the application. You are recommended to follow these limits for the best user experience. We may enforce them in a future iteration.
+
 [Return to Table of Contents](#table-of-contents)
 
 <br>
 
 ### Add a new project: `addP`
 
-Adds a new project in TaskHub
+Adds a new project in TaskHub.
 
 Format: `addP n/PROJECT_NAME [em/EMPLOYEE_INDEX(ES)]`
 
@@ -813,7 +816,7 @@ Examples:
 | `DEADLINE`       | The task's deadline.<br/><br/> It must be a valid date and time in the `dd-MM-yyyy HHmm` format.                                                                                                                                                       | <ul><li>`11-11-2023 2359`</li><li>`28-02-2024 0900`</li></ul>         |
 
 Note that some of the limits for the parameters stated above are not enforced by the application. You are recommended to follow these limits for the best user experience. We may enforce them in a future iteration.
-<br>
+
 [Return to Table of Contents](#table-of-contents)
 
 <br>
@@ -931,6 +934,7 @@ Format: `sortT`
 | `TASK_INDEX`     | The index number of the task as shown in the specified project on the project panel.<br/><br/> It should be a positive integer, and should not be more than the number of tasks currently in the specified project. It should be less than 1000.                                                                                                                                                                                                                                                                                                                                                                                              | <ul><li>`3`</li></ul> |
 
 Note that some of the limits for the parameters stated above are not enforced by the application. You are recommended to follow these limits for the best user experience. We may enforce them in a future iteration.
+
 [Return to Table of Contents](#table-of-contents)
 
 <br>
