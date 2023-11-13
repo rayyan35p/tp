@@ -12,7 +12,7 @@ title: User Guide
 * [Getting Started](#getting-started)
   * [Installing and launching TaskHub](#installing-and-launching-taskhub)
   * [Understanding the components of TaskHub](#understanding-the-components-of-taskhub)
-  * [Understanding the User Interface (UI)](#understanding-the-user-interface-ui-)
+  * [Understanding the User Interface (UI)](#understanding-the-user-interface-ui)
   * [Quick start](#quick-start)
 * [Features](#features)
   * [General Commands](#general-commands)
