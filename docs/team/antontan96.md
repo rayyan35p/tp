@@ -9,6 +9,9 @@ TaskHub is a desktop project management application used by project managers to 
 
 Given below are my contributions to the project.
 
+* **Code Contribution**:[RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=antontan96&breakdown=false&sort=groupTitle%20dsc&sortWithin=title&since=2023-09-22&timeframe=commit&mergegroup=&groupSelect=groupByRepos)
+
+
 * `Project` model: 
   * Created the infrastructure for projects in `model` files.
   * Created `JsonAdaptedProject` for projects to be locally stored in TaskHub.
@@ -35,9 +38,13 @@ Given below are my contributions to the project.
     * User Guide:
         * Added documentation for the features `addP`,`assignP`,`deleteP`
         * Added solutions for the FAQ section.
-        * Added sections to the Command Summary
+        * Added sections to the Command Summary.
     * Developer Guide:
         * Added Use Case Scenarios.
         * Updated the Storage section to fit our application.
         * Documented the design of Add Projects command and Storage Validation.
+
+* **Team-based Tasks**:
+  * Submitted product concept and User Guide draft.
+
 
