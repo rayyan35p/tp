@@ -445,7 +445,7 @@ Guarantees: The new employee is added to the list of employees.
 
 **MSS**
 
-1. User inputs the command to add an employee. 
+1. User requests to add an employee. 
 2. TaskHub adds the employee to the list of employees and displays the updated list.
 3. TaskHub shows that the employee has been added successfully.
 
@@ -472,6 +472,67 @@ Guarantees: The new employee is added to the list of employees.
     * 1d1. TaskHub shows an error message.
 
       Use case ends.
+
+**Use case: UC02 - Edit an employee**
+
+Guarantees: The employee is updated with the new details.
+
+**MSS**
+
+1. User requests to edit the details of an employee.
+2. TaskHub edits the employee with the new details and displays the updated list.
+3. TaskHub shows that the employee has been edited successfully.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters an invalid command.
+  * 1a1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 1b. User does not enter at least one field to edit.
+  * 1b1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 1c. User enters an invalid value for a field.
+  * 1c1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 1d. User edits the employee's name to one that already exists.
+  * 1d1. TaskHub shows an error message.
+
+    Use case ends.
+
+**Use case: UC03 - Delete an employee**
+
+Guarantees: The employee is removed from the list of employees.
+
+**MSS**
+
+1. User requests to delete an employee.
+2. TaskHub deletes the employee from the list of employees and displays the updated list.
+3. TaskHub shows that the employee has been deleted successfully.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters an invalid command.
+  * 1a1. TaskHub shows an error message.
+
+    Use case ends.
+  
+* 1b. User does not enter an valid index for the employee.
+  * 1b1. TaskHub shows an error message.
+
+    Use case ends.
+
+
+
 
     
 
