@@ -425,6 +425,15 @@ Clears all entries from TaskHub.
 
 Format: `clear`
 
+<div markdown="block" class="alert alert-danger">
+
+**:no_entry: Danger**<br>
+
+* This action is irreversible.
+* Please ensure that you are certain that you want to delete all existing employees, projects and tasks before proceeding.
+
+</div>
+
 
 ### Exit the program: `exit`
 
@@ -480,6 +489,15 @@ Format: `deleteE INDEX`
 * Deletes the employee at the specified `INDEX`.
 * The index refers to the index number shown in the displayed employees list.
 * The index **must be a positive integer** 1, 2, 3, …​
+
+<div markdown="block" class="alert alert-danger">
+
+**:no_entry: Danger**<br>
+
+* This action is irreversible.
+* Please ensure that you are certain that you want to delete the employee before proceeding.
+
+</div>
 
 Examples:
 * `listE` followed by `deleteE 2` deletes the 2nd employee in the employees list.
@@ -566,6 +584,15 @@ Format: `deleteP INDEX`
 * Deletes the project at the specified `INDEX`.
 * The index refers to the index number shown in the displayed employees list.
 * The index __must be a positive integer__ 1, 2, 3,...
+
+<div markdown="block" class="alert alert-danger">
+
+**:no_entry: Danger**<br>
+
+* This action is irreversible.
+* Please ensure that you are certain that you want to delete the project before proceeding.
+
+</div>
 
 Examples:
 * `listP` followed by `deleteP 2` deletes the 2nd project in TaskHub.
@@ -706,6 +733,15 @@ Format `deleteT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
 * The project index refers to the index number shown in the displayed projects list.
 * The task index(es) refer to the index number(s) shown in the task list of the above specified project.
 * The index(es) **must be positive integers** 1, 2, 3,...
+
+<div markdown="block" class="alert alert-danger">
+
+**:no_entry: Danger**<br>
+
+* This action is irreversible.
+* Please ensure that you are certain that you want to delete the task before proceeding.
+
+</div>
 
 Examples:
 * `listP` followed by `deleteT pr/1 t/1 3` deletes the 1st and 3rd tasks of the 1st project from TaskHub.
