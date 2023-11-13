@@ -53,6 +53,7 @@ title: User Guide
 * [FAQ](#faq)
 * [Known issues](#known-issues)
 * [Command summary](#command-summary)
+* [Appendix A: Installing Java](#appendix-a-installing-java)
 <!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
@@ -177,6 +178,8 @@ Copy or move the downloaded `taskhub.jar` file to the folder you want to use as 
 
    Note: The application comes with some sample data for your reference.
 
+[Return to Table of Contents](#table-of-contents)
+
 ---
 
 ## Understanding the components of TaskHub
@@ -234,6 +237,7 @@ A `Task` in TaskHub represents a specific job within a `Project` that can be ass
 | Deadline | Deadline for completing the task.      | `d/`                                                   | -                                                                                         |
 | isDone   | Indicates whether the task is complete.| N.A.                                                   | [`markT`](#mark-tasks-as-completed-markt), [`unmarkT`](#mark-tasks-as-incomplete-unmarkt) |
 
+[Return to Table of Contents](#table-of-contents)
 
 ## Understanding the User Interface (UI)
 
@@ -272,6 +276,8 @@ and at the bottom of the window, is a link to our user guide.
 * The project panel is the other panel that you will be using to see the data stored in TaskHub.
 * Projects, as well as their members, tasks to complete in the project, and other important details for managing your project are stored here!
 
+[Return to Table of Contents](#table-of-contents)
+
 ## Quick start
 <div markdown="span" class="alert alert-warning">
 
@@ -281,7 +287,9 @@ and at the bottom of the window, is a link to our user guide.
 
 If you're okay with modifying the sample data, then we'll proceed with our first gist of project management with TaskHub. Time is ticking!
 
-If you haven't started running any commands, TaskHub should look something like this when you first run it:
+At this point, you should have installed Java 11 and be able to to run TaskHub without issues. If you haven't done so, you may return to the [Installation Guide](#installing-and-launching-taskhub).
+
+If all is well, TaskHub should look something like this when you first run it:
 
 <img src="images/QuickStartStart.png" width="700">
 
@@ -295,7 +303,11 @@ deleteP 1
 You should get the following response:
 
 ```
-Deleted Project: Name: Website Redesign; Completed? Yes; Deadline: 15-11-2023; Priority: HIGH
+Deleted Project: 
+Name: Website Redesign;
+Completed? Yes;
+Deadline: 15-11-2023;
+Priority: HIGH
 Members: Alex Yeoh, Bernice Yu
 ```
 Now, you're looking at the 'Market Expansion' project, which we'll be focusing on.
@@ -316,12 +328,17 @@ Here are his details:
 Let's run the following command to add him to your team of [`Employees`](#employees).
 
 ```
-addE n/Anton Tan p/98765432 e/anton@mail.com a/Anton Street, block 123, #01-01 t/TeamPlayer t/Hardworking
+addE n/Anton Tan p/98765432 e/anton@mail.com
+ a/Anton Street, block 123, #01-01 t/TeamPlayer t/Hardworking
 ```
 
 You should get the following response:
 ```
-New employee added: Anton Tan; Phone: 98765432; Email: anton@mail.com; Address: Anton Street, block 123, #01-01; Tags: [TeamPlayer][Hardworking]
+New employee added: Anton Tan;
+Phone: 98765432;
+Email: anton@mail.com;
+Address: Anton Street, block 123, #01-01;
+Tags: [TeamPlayer][Hardworking]
 ```
 
 ### Step 3: Assigning an Employee to a Project in TaskHub:
@@ -345,7 +362,10 @@ addT n/Market Segmentation pr/1 em/3 d/30-11-2023 2359
 
 You should get the following response:
 ```
-New task added to project 1, Description: Market Segmentation; Deadline: 30 Nov 2023, 11:59PM; Assignee: Anton Tan
+New task added to project 1, 
+Description: Market Segmentation;
+Deadline: 30 Nov 2023, 11:59PM;
+Assignee: Anton Tan
 ```
 
 ### Step 5: Marking a Task as Complete:
@@ -365,8 +385,9 @@ Scroll down in the `Employees` pane to notice Anton, the newest addition to your
 
 <img src="images/QuickStartEnd.png" width="700">
 
-For a more comprehensive overview of what you can achieve with TaskHub, you may proceed to the [Features](#features) section below.
+[Return to Table of Contents](#table-of-contents)
 
+For a more comprehensive overview of what you can achieve with TaskHub, you may proceed to the [Features](#features) section below.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1002,9 +1023,9 @@ Follow these steps to install Java on your computer:
 3. **Verify Installation:**
    After installation, open a terminal (on MacOS) or Command Prompt (on Windows) and run the following commands to verify that Java is installed:
 
-   ```bash
+  ```
    java -version
-
+  ```
 If installed correctly, you should see version information for both Java and the Java Compiler. The message should look something like this:
 ```
 openjdk version "11.0.20" 2023-07-18 LTS
@@ -1013,5 +1034,8 @@ OpenJDK 64-Bit Server VM Zulu11.66+15-CA (build 11.0.20+8-LTS, mixed mode)
 ```
 
 Now, you're ready to proceed with the launching of TaskHub. Click [here](#installing-and-launching-taskhub) to get back to the installation tutorial.
+
+[Return to Table of Contents](#table-of-contents)
+
 
 
