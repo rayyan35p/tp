@@ -46,4 +46,5 @@ JsonAdaptedProject --> "*" JsonAdaptedEmployee
 JsonAdaptedTask -right-> "0..1" JsonAdaptedEmployee
 JsonAdaptedEmployee --> "*" JsonAdaptedTag
 
+hide class fields
 @enduml
