@@ -5,10 +5,12 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.PROJECT_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_AMY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EMPLOYEE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -70,9 +72,13 @@ public class AddProjectCommandParserTest {
     }
 
     //EP: 4
+    // " n/Alpha! em/1 2"
     @Test
     public void parse_invalidProjectName_failure() {
-        String input = " n/Alpha! em/1 2";
+        String input = " " + PREFIX_NAME
+                       + "ALPHA!" + " "
+                       + PREFIX_EMPLOYEE + INDEX_FIRST_EMPLOYEE.toString()
+                       + " " + INDEX_SECOND_EMPLOYEE.toString();
         assertParseFailure(parser, input, seedu.address.model.project.Name.MESSAGE_CONSTRAINTS);
     }
 

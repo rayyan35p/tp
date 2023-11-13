@@ -42,7 +42,7 @@ public class DeleteProjectCommandParserTest {
     //EP:3
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "aString",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteProjectCommand.MESSAGE_USAGE));
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteProjectCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, "aString", expectedMessage);
     }
 }

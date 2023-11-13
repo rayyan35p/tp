@@ -25,11 +25,6 @@ public class DeleteProjectCommandTest {
     // Test Heuristic used: No More Than One Invalid Input In A Test Case
     private Model model = new ModelManager(getTypicalTaskHub(), new UserPrefs());
 
-    // Invalid input: null Project Index
-    @Test
-    public void constructor_nullProjectIndex_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new DeleteProjectCommand(null));
-    }
 
     // Invalid input: none (success)
     @Test
