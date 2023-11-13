@@ -12,41 +12,41 @@ title: User Guide
 * [Getting Started](#getting-started)
   * [Installing and launching TaskHub](#installing-and-launching-taskhub)
   * [Understanding the components of TaskHub](#understanding-the-components-of-taskhub)
-  * [Understanding the User Interface (UI)](#understanding-the-user-interface--ui-)
+  * [Understanding the User Interface (UI)](#understanding-the-user-interface-ui)
   * [Quick start](#quick-start)
 * [Features](#features)
   * [General Commands](#general-commands)
-    * [View help: `help`](#view-help--help)
-    * [List all employees and projects: `list`](#list-all-employees-and-projects--list)
-    * [Clear all entries: `clear`](#clear-all-entries--clear)
-    * [Exit the program: `exit`](#exit-the-program--exit)
+    * [View help: `help`](#view-help-help)
+    * [List all employees and projects: `list`](#list-all-employees-and-projects-list)
+    * [Clear all entries: `clear`](#clear-all-entries-clear)
+    * [Exit the program: `exit`](#exit-the-program-exit)
   * [Employee Commands](#employee-commands)
-    * [Add an employee: `addE`](#add-an-employee--adde)
-    * [Edit an employee: `editE`](#edit-an-employee--edite)
-    * [Delete an employee: `deleteE`](#delete-an-employee--deletee)
-    * [List all employees: `listE`](#list-all-employees--liste)
-    * [Locate employees by name: `findE`](#locate-employees-by-name--finde)
+    * [Add an employee: `addE`](#add-an-employee-adde)
+    * [Edit an employee: `editE`](#edit-an-employee-edite)
+    * [Delete an employee: `deleteE`](#delete-an-employee-deletee)
+    * [List all employees: `listE`](#list-all-employees-liste)
+    * [Locate employees by name: `findE`](#locate-employees-by-name-finde)
   * [Project Commands](#project-commands)
-    * [Add a new project: `addP`](#add-a-new-project--addp)
-    * [Edit a project: `editP`](#edit-a-project--editp)
-    * [Delete a project: `deleteP`](#delete-a-project--deletep)
-    * [Mark project(s) as completed: `markP`](#mark-project--s--as-completed--markp)
-    * [Mark project(s) as incomplete: `unmarkP`](#mark-project--s--as-incomplete--unmarkp)
-    * [Edit deadline of (a) project(s): `dlP`](#edit-deadline-of--a--project--s---dlp)
-    * [Prioritise projects: `priorityP`](#prioritise-projects--priorityp)
-    * [List all projects: `listP`](#list-all-projects--listp)
-    * [Locate projects by name: `findP`](#locate-projects-by-name--findp)
+    * [Add a new project: `addP`](#add-a-new-project-addp)
+    * [Edit a project: `editP`](#edit-a-project-editp)
+    * [Delete a project: `deleteP`](#delete-a-project-deletep)
+    * [Mark project(s) as completed: `markP`](#mark-projects-as-completed-markp)
+    * [Mark project(s) as incomplete: `unmarkP`](#mark-projects-as-incomplete-unmarkp)
+    * [Edit deadline of (a) project(s): `dlP`](#edit-deadline-of-a-projects-dlp)
+    * [Prioritise projects: `priorityP`](#prioritise-projects-priorityp)
+    * [List all projects: `listP`](#list-all-projects-listp)
+    * [Locate projects by name: `findP`](#locate-projects-by-name-findp)
   * [Task Commands](#task-commands)
-    * [Add a new task to a project: `addT`](#add-a-new-task-to-a-project--addt)
-    * [Delete a task from a project: `deleteT`](#delete-a-task-from-a-project--deletet)
-    * [Mark task(s) as completed: `markT`](#mark-task--s--as-completed--markt)
-    * [Mark task(s) as incomplete: `unmarkT`](#mark-task--s--as-incomplete--unmarkt)
-    * [Sort tasks by deadline and completion status: `sortT`](#sort-tasks-by-deadline-and-completion-status--sortt)
+    * [Add a new task to a project: `addT`](#add-a-new-task-to-a-project-addt)
+    * [Delete a task from a project: `deleteT`](#delete-a-task-from-a-project-deletet)
+    * [Mark task(s) as completed: `markT`](#mark-tasks-as-completed-markt)
+    * [Mark task(s) as incomplete: `unmarkT`](#mark-tasks-as-incomplete-unmarkt)
+    * [Sort tasks by deadline and completion status: `sortT`](#sort-tasks-by-deadline-and-completion-status-sortt)
   * [Assignment Commands](#assignment-commands)
-    * [Assign employee(s) to a project: `assignP`](#assign-employee--s--to-a-project--assignp)
-    * [Un-assign employee(s) from a project: `unassignP`](#un-assign-employee--s--from-a-project--unassignp)
-    * [Assign an employee to a task: `assignT`](#assign-an-employee-to-a-task--assignt)
-    * [Un-assign an employee from a task: `unassignT`](#un-assign-an-employee-from-a-task--unassignt)
+    * [Assign employee(s) to a project: `assignP`](#assign-employees-to-a-project-assignp)
+    * [Un-assign employee(s) from a project: `unassignP`](#un-assign-employees-from-a-project-unassignp)
+    * [Assign an employee to a task: `assignT`](#assign-an-employee-to-a-task-assignt)
+    * [Un-assign an employee from a task: `unassignT`](#un-assign-an-employee-from-a-task-unassignt)
   * [Data Storage](#data-storage)
     * [Save the data](#save-the-data)
     * [Edit the data file](#edit-the-data-file)
@@ -899,8 +899,12 @@ TaskHub's data is saved in the hard disk automatically after any command that ch
 
 TaskHub data are saved automatically as a JSON file `[JAR file location]/data/taskhub.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-danger">
+
+:no_entry: **Danger:**
 If your changes to the data file makes its format invalid, TaskHub will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
+More details are provided under the [FAQ Section](#faq). <br>
+
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -954,56 +958,56 @@ The first step is to open the folder that contains all your files related to Tas
 
 ## General Commands
 
-| Action                                                                        | Format, Examples                                                                                                                                                                          |
-|-------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [**Help**](#view-help--help)                                                  | `help`                                                                                                                                                                                    |
-| [**List All Employees And Projects**](#list-all-employees-and-projects--list) | `list`                                                                                                                                                                                    |
-| [**Clear**](#clear-all-entries--clear)                                        | `clear`                                                                                                                                                                                   |
-| [**Exit**](#exit-the-program--exit)                                           | `exit`                                                                                                                                                                                    |
+| Action                                                                       | Format, Examples                                                                                                                                                                          |
+|------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Help**](#view-help-help)                                                  | `help`                                                                                                                                                                                    |
+| [**List All Employees And Projects**](#list-all-employees-and-projects-list) | `list`                                                                                                                                                                                    |
+| [**Clear**](#clear-all-entries-clear)                                        | `clear`                                                                                                                                                                                   |
+| [**Exit**](#exit-the-program-exit)                                           | `exit`                                                                                                                                                                                    |
 
 ## Employee Commands
 
 | Action                                                   | Format, Examples                                                                                                                                                              |
 |----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [**Add Employee**](#add-an-employee--adde)               | `addE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addE n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/Java`                     |
-| [**Edit Employee**](#edit-an-employee--edite)            | `editE INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g., `editE 1 n/John Doe p/11114444 e/johndoe@example.com a/123, Clementi Rd, 1234665 t/Python` |
-| [**Delete Employee**](#delete-an-employee--deletee)      | `deleteE INDEX`<br> e.g., `deleteE 3`                                                                                                                                         |
-| [**List All Employees**](#list-all-employees--liste)     | `listE`                                                                                                                                                                       |
-| [**Find Employee(s)**](#locate-employees-by-name--finde) | `findE KEYWORD [MORE_KEYWORDS]`<br> e.g., `findE James Jake`                                                                                                                  |
+| [**Add Employee**](#add-an-employee-adde)                | `addE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addE n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/Java`                     |
+| [**Edit Employee**](#edit-an-employee-edite)             | `editE INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g., `editE 1 n/John Doe p/11114444 e/johndoe@example.com a/123, Clementi Rd, 1234665 t/Python` |
+| [**Delete Employee**](#delete-an-employee-deletee)       | `deleteE INDEX`<br> e.g., `deleteE 3`                                                                                                                                         |
+| [**List All Employees**](#list-all-employees-liste)      | `listE`                                                                                                                                                                       |
+| [**Find Employee(s)**](#locate-employees-by-name-finde)  | `findE KEYWORD [MORE_KEYWORDS]`<br> e.g., `findE James Jake`                                                                                                                  |
 
 ## Project Commands
 
-| Action                                                                        | Format, Examples                                                                              |
-|-------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| [**Add Project**](#add-a-new-project--addp)                                   | `addP n/PROJECT_NAME [em/EMPLOYEE_INDEX]…​` <br> e.g, `addP n/CS2103T em/2 3 4 5`             |
-| [**Edit Project**](#edit-a-project--editp)                                    | `editP INDEX [n/NAME] [p/PRIORITY] [d/DEADLINE]` <br> e.g., `editP 3 n/Create Website p/high` |
-| [**Delete Project**](#delete-a-project--deletep)                              | `deleteP INDEX`<br> e.g., `deleteP 3`                                                         |
-| [**Mark Project(s) As Complete**](#mark-project--s--as-completed--markp)      | `markP INDEX [MORE_INDEXES]`<br> e.g., `markP 1 3`                                            |
-| [**Mark Project(s) As Incomplete**](#mark-project--s--as-incomplete--unmarkp) | `unmarkP INDEX [MORE_INDEXES]`<br> e.g., `unmarkP 1 3`                                        |
-| [**Edit Project Deadline**](#edit-deadline-of--a--project--s---dlp)           | `dlP INDEX [MORE_INDEXES] d/[DEADLINE]` <br> e.g., `dlP 1 2 d/27-11-2023` <br>                |
-| [**Prioritise Project(s)**](#prioritise-projects--priorityp)                  | `priorityP INDEX [MORE_INDEXES] p/PRIORITY` <br> e.g., `priorityP 1 2 p/high` <br>            |
-| [**List All Projects**](#list-all-projects--listp)                            | `listP`                                                                                       |
-| [**Find Project(s)**](#locate-projects-by-name--findp)                        | `findP KEYWORD [MORE_KEYWORDS]`<br> e.g., `findP Website Create`                              |
+| Action                                                                    | Format, Examples                                                                              |
+|---------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| [**Add Project**](#add-a-new-project-addp)                                | `addP n/PROJECT_NAME [em/EMPLOYEE_INDEX]…​` <br> e.g, `addP n/CS2103T em/2 3 4 5`             |
+| [**Edit Project**](#edit-a-project-editp)                                 | `editP INDEX [n/NAME] [p/PRIORITY] [d/DEADLINE]` <br> e.g., `editP 3 n/Create Website p/high` |
+| [**Delete Project**](#delete-a-project-deletep)                           | `deleteP INDEX`<br> e.g., `deleteP 3`                                                         |
+| [**Mark Project(s) As Complete**](#mark-projects-as-completed-markp)      | `markP INDEX [MORE_INDEXES]`<br> e.g., `markP 1 3`                                            |
+| [**Mark Project(s) As Incomplete**](#mark-projects-as-incomplete-unmarkp) | `unmarkP INDEX [MORE_INDEXES]`<br> e.g., `unmarkP 1 3`                                        |
+| [**Edit Project Deadline**](#edit-deadline-of-a-projects-dlp)             | `dlP INDEX [MORE_INDEXES] d/[DEADLINE]` <br> e.g., `dlP 1 2 d/27-11-2023` <br>                |
+| [**Prioritise Project(s)**](#prioritise-projects-priorityp)               | `priorityP INDEX [MORE_INDEXES] p/PRIORITY` <br> e.g., `priorityP 1 2 p/high` <br>            |
+| [**List All Projects**](#list-all-projects-listp)                         | `listP`                                                                                       |
+| [**Find Project(s)**](#locate-projects-by-name-findp)                     | `findP KEYWORD [MORE_KEYWORDS]`<br> e.g., `findP Website Create`                              |
 
 
 ## Task Commands
 
-| Action                                                                                                    | Format, Examples                                                                                                                                                                          |
-|-----------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [**Add Task**](#add-a-new-task-to-a-project--addt)                                                        | `addT pr/PROJECT_INDEX [em/EMPLOYEE_INDEX] n/TASK_NAME d/DEADLINE(dd-MM-yyyy HHmm)`<br> e.g., `addT pr/1 em/1 n/Read docs d/11-11-2023 2359`                                              |
-| [**Delete Task**](#delete-a-task-from-a-project--deletet)                                                 | `deleteT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]` <br> e.g., `deleteT pr/1 t/1 5 3`                                                                                             |
-| [**Mark Task(s) As Complete**](#mark-task--s--as-completed--markt)                                        | `markT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`<br> e.g., `markT pr/1 t/1 3`                                                                                                    |
-| [**Mark Task(s) As Incomplete**](#mark-task--s--as-incomplete--unmarkt)                                   | `unmarkT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`<br> e.g., `unmarkT pr/1 t/1 3`                                                                                                |
-| [**Sort Tasks By Deadline And Completion Status**](#sort-tasks-by-deadline-and-completion-status--sortt)  | `sortT`                                                                                                                                                                                   |
+| Action                                                                                                | Format, Examples                                                                                                                             |
+|-------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Add Task**](#add-a-new-task-to-a-project-addt)                                                     | `addT pr/PROJECT_INDEX [em/EMPLOYEE_INDEX] n/TASK_NAME d/DEADLINE(dd-MM-yyyy HHmm)`<br> e.g., `addT pr/1 em/1 n/Read docs d/11-11-2023 2359` |
+| [**Delete Task**](#delete-a-task-from-a-project-deletet)                                              | `deleteT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]` <br> e.g., `deleteT pr/1 t/1 5 3`                                                |
+| [**Mark Task(s) As Complete**](#mark-tasks-as-completed-markt)                                        | `markT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`<br> e.g., `markT pr/1 t/1 3`                                                       |
+| [**Mark Task(s) As Incomplete**](#mark-tasks-as-incomplete-unmarkt)                                   | `unmarkT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`<br> e.g., `unmarkT pr/1 t/1 3`                                                   |
+| [**Sort Tasks By Deadline And Completion Status**](#sort-tasks-by-deadline-and-completion-status-sortt) | `sortT`                                                                                                                                      |
 
 ## Assignment Commands
 
-| Action                                                                                      | Format, Examples                                                                                             |
-|---------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| [**Assign Employee(s) To Project**](#assign-employee--s--to-a-project--assignp)             | `assignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES]…​` <br> e.g, `assignP pr/4 em/1 2 3`     |
-| [**Un-assign Employee(s) From Project**](#un-assign-employee--s--from-a-project--unassignp) | `unassignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES]` <br> e.g, `unassignP pr/2 em/1 3`     |
-| [**Assign Employee to Task**](#assign-an-employee-to-a-task--assignt)                       | `assignT pr/PROJECT_INDEX t/TASK_INDEX em/EMPLOYEE_INDEX` <br> e.g., `assignT pr/1 t/1 em/3`                 |
-| [**Un-assign Employee from Task**](#un-assign-an-employee-from-a-task--unassignt)           | `unassignT pr/PROJECT_INDEX t/TASK_INDEX` <br> e.g., `unassignT pr/1 t/1`                                    |
+| Action                                                                                  | Format, Examples                                                                                         |
+|-----------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| [**Assign Employee(s) To Project**](#assign-employees-to-a-project-assignp)             | `assignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES]…​` <br> e.g, `assignP pr/4 em/1 2 3` |
+| [**Un-assign Employee(s) From Project**](#un-assign-employees-from-a-project-unassignp) | `unassignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES]` <br> e.g, `unassignP pr/2 em/1 3` |
+| [**Assign Employee to Task**](#assign-an-employee-to-a-task-assignt)                    | `assignT pr/PROJECT_INDEX t/TASK_INDEX em/EMPLOYEE_INDEX` <br> e.g., `assignT pr/1 t/1 em/3`             |
+| [**Un-assign Employee from Task**](#un-assign-an-employee-from-a-task-unassignt)        | `unassignT pr/PROJECT_INDEX t/TASK_INDEX` <br> e.g., `unassignT pr/1 t/1`                                |
 
 [Return to Table of Contents](#table-of-contents)
 
