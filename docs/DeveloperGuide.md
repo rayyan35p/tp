@@ -585,62 +585,24 @@ testers are expected to do more *exploratory* testing.
 
 2. _{ more test cases …​ }_
 
-## **Appendix: Future Enhancements**
+## **Appendix: Planned Enhancements**
 
-### \[Proposed\] Deadline validation between Tasks and Projects
+Given below are the planned enhancements for the application.
 
-#### Proposed Implementation
-
-Currently, when a user enters a deadline for a task for a given project, any possible date can be entered including deadlines past the deadline of the project itself.
-
-We recognise that there is always a probability that tasks still can be added beyond a project's deadline, so we will not prevent users from doing so, but this scenario is not common.
-
-Beyond the possibility of users keying in a task deadline that is past the project deadline on purpose, there is also the issue that it may be accidental.
-
-Due to the aforementioned reasons, we believe the project deadlines and task deadlines should be validated.
-
-To be more specific, when tasks that have deadlines past the project deadline are added, there should be a warning indicating that a task with a deadline past the project deadline was added.
-
-Given below is an example usage scenario and how the validation mechanism behaves at each step.
-
-Step 1. The user executes `addT` to add a task to a project with a deadline past the project deadline.
-
-Step 2. The task is added as per normal in the storage, but a warning is also displayed in the `ResultDisplay`
-
-```
-New task added to project 1, Description: Task In a Project; Deadline: 13 Nov 2023, 11:59PM
-The task has a deadline past the project deadline! Check again if the details are correct and edit if needed!
-```
-
-Step 3. If the user intended to add a task with that deadline, then he/she would continue but if it was not intended, they would be alerted to the issue and be able to delete the task.
-
-### \[Proposed\] Multiple employees assigned to each task
-
-#### Proposed Implementation
-
-In this version of TaskHub, only 1 employee can be assigned at a time to each task.
-
-Tasks in a project can be worked on by multiple people at a time, so it would be more appropriate to expand the task to take on more than 1 employee.
-
-The current implementation of tasks is already using a `List` that has been restricted to hold only one `Employee`.
-
-`List` was chosen as the data type for storing assigned `Employees` in preparation for a future iteration where more employees could be held in each task.
-
-Thus, expanding `Task` to take more than one employee would simply involve allowing the list to take more than 1 `Employee`.
-
-However, this was not done in the current implementation due to the already complex nature of the `assignT` command which has to modify multiple instances of objects stored in the model.
-
-### \[Proposed\] Allowing multiple spaces between indexes
-
-#### Proposed Implementation
-
-TaskHub is not currently able to handle multiple spaces between indexes.
-
-In order to deal with multiple spaces, the following solution can be used (taken from [this StackOverflow discussion](https://stackoverflow.com/questions/2932392/java-how-to-replace-2-or-more-spaces-with-single-space-in-string-and-delete-lead))
-
-```Java
-String after = before.trim().replaceAll(" +", " ");
-```
-
-This will allow indexes with multiple spaces between indexes to be handled automatically instead of the user having to find where they may have put the additional space(s).
-
+1. The current validation for duplicate employees is too strict as it does not allow employees with the same name, but different details, to exist in the employee list.
+We plan to add a unique ID field for each employee to allow employees with the same name and differing IDs to exist in the employee list.
+2. The current validation for emails is too lenient as it allows some invalid emails to be accepted as valid.
+For example, in the following email format `local-part@domain`, the `local-part` can exceed the maximum length of 64 characters and is considered valid in our application, when it shouldn't be.
+We plan to use a stricter regular expression to validate emails, which is mentioned [here](https://www.baeldung.com/java-email-validation-regex).
+3. Currently, there is no validation to check if the project deadline is before the task deadline.
+Therefore, users can add tasks with deadlines past the project deadline by accident without knowing.
+We plan to add a warning to the user if the user tries to add a task with a deadline past the project deadline:
+`The newly added task has a deadline past the project deadline! Check again if the details are correct and edit if needed!`
+4. Currently, a maximum of only one employee can be assigned to each task, which does not accurately reflect the real world.
+We plan to allow multiple employees to be assigned to each task.
+5. Currently, commands that allow users to add multiple continuous indexes (e.g. `priorityP 1 2 3 p/low`) do not allow multiple spaces between indexes (e.g. `priorityP 1 &nbsp;2 &nbsp;3 p/low`).
+Instead, an error message is currently shown to the user saying `Index provided was not a non-zero unsigned integer. This is not valid: <empty>`, due to the extra space.
+We plan to allow multiple spaces between indexes to be handled automatically instead of the user having to find where they may have put the additional space(s).
+6. Employee names currently cannot contain special characters, as the validation for this is too strict.
+A name such as `Vishnu S/O Prasath` cannot be added to the employee list, even though it could be a valid name.
+We plan to allow some special characters, such as `/` and `-`, to be used in an employee's name.
