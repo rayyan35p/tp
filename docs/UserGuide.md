@@ -478,6 +478,7 @@ Format: `exit`
 <a name="command-parameters-1"></a>
 <!-- The table below is inspired by https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1 -->
 ### Command Parameters
+
 | Parameter | Description​                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Examples​                                                            |
 |-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
 | `NAME`    | The employee's name.<br/><br/> It should only contain alphanumeric characters and spaces.<br/><br/> It should not be blank and should not exceed 80 characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | <ul><li>`John Doe`</li><li>`Vishnu`</li></ul>                        |
@@ -602,6 +603,7 @@ Examples:
 <a name="command-parameters-2"></a>
 <!-- The table below is inspired by https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1 -->
 ### Command Parameters
+
 | Parameter              | Description​                                                                                                                                                                                                                                  | Examples​                                                                |
 |------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
 | `NAME`/ `PROJECT_NAME` | The project's name.<br/><br/> It should only contain alphanumeric characters and spaces.<br/><br/> It should not be blank and should not exceed 80 characters.                                                                                | <ul><li>`Website Redesign`</li><li>`Market Sentiment Analysis`</li></ul> |
@@ -807,6 +809,7 @@ Examples:
 <a name="command-parameters-3"></a>
 <!-- The table below is inspired by https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1 -->
 ### Command Parameters
+
 | Parameter        | Description​                                                                                                                                                                                                                                           | Examples​                                                             |
 |------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
 | `TASK_NAME`      | The task's name.<br/><br/> It should only contain alphanumeric characters and spaces.<br/><br/> It should not be blank and should not exceed 80 characters.                                                                                            | <ul><li>`Create Wireframes`</li><li>`Responsive Web Design`</li></ul> |
@@ -843,11 +846,11 @@ Examples:
 
 ### Delete a task from a project: `deleteT`
 
-Deletes the specified task(s) from the specified project in TaskHub.
+Delete the specified task(s) from the specified project in TaskHub.
 
 Format: `deleteT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
 
-* Deletes the tasks at the specified `TASK_INDEX`(es), from the project at the specified `PROJECT_INDEX`.
+* Delete the task(s) at the specified `TASK_INDEX`(es), from the project at the specified `PROJECT_INDEX`.
 * The project index refers to the index number shown in the displayed project panel.
 * The task index(es) refer to the index number(s) shown in the task list of the above specified project.
 * The indexes **must be positive integers** 1, 2, 3,...
@@ -927,6 +930,7 @@ Format: `sortT`
 <a name="command-parameters-4"></a>
 <!-- The table below is inspired by https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1 -->
 ### Command Parameters
+
 | Parameter        | Description​                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Examples​             |
 |------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|
 | `PROJECT_INDEX`  | The index number of the project as shown in the project panel.<br/><br/> It should be a positive integer, and should not be more than the number of projects currently shown in the displayed project panel. It should be less than 1000.                                                                                                                                                                                                                                                                                                                                                                                                     | <ul><li>`1`</li></ul> |
