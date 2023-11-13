@@ -12,7 +12,6 @@ import seedu.address.model.task.TaskList;
 
 /**
  * Represents a Project in TaskHub.
- * Guarantees: immutable; is always valid
  */
 public class Project {
 

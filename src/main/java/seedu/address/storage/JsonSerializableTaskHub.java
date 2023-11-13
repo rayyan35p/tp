@@ -55,24 +55,29 @@ class JsonSerializableTaskHub {
     public TaskHub toModelType() throws IllegalValueException {
         TaskHub taskHub = new TaskHub();
         for (JsonAdaptedEmployee jsonAdaptedEmployee : employees) {
-            Employee employee = jsonAdaptedEmployee.toModelType();
-            if (taskHub.hasEmployee(employee)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_EMPLOYEE);
-            }
-            taskHub.addEmployee(employee);
+            addEmployee(jsonAdaptedEmployee.toModelType(), taskHub);
         }
         for (JsonAdaptedProject jsonAdaptedProject : projects) {
-            Project project = jsonAdaptedProject.toModelType();
-            if (taskHub.hasProject(project)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PROJECT);
-            }
-            for (Employee maybeEmployee : project.getEmployees()) {
-                if (!taskHub.strictlyHasEmployee(maybeEmployee)) {
-                    throw new IllegalValueException(MESSAGE_NONEXISTENT_EMPLOYEE);
-                }
-            }
-            taskHub.addProject(project);
+            addProject(jsonAdaptedProject.toModelType(), taskHub);
         }
         return taskHub;
+    }
+    private void addEmployee(Employee employee, TaskHub taskHub) throws IllegalValueException {
+        if (taskHub.hasEmployee(employee)) {
+            throw new IllegalValueException(MESSAGE_DUPLICATE_EMPLOYEE);
+        }
+        taskHub.addEmployee(employee);
+    }
+
+    private void addProject(Project project, TaskHub taskHub) throws IllegalValueException {
+        if (taskHub.hasProject(project)) {
+            throw new IllegalValueException(MESSAGE_DUPLICATE_PROJECT);
+        }
+        for (Employee maybeEmployee : project.getEmployees()) {
+            if (!taskHub.strictlyHasEmployee(maybeEmployee)) {
+                throw new IllegalValueException(MESSAGE_NONEXISTENT_EMPLOYEE);
+            }
+        }
+        taskHub.addProject(project);
     }
 }
