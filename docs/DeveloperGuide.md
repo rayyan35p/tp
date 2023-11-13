@@ -646,13 +646,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Delete an employee
 
-   1. Test case: `deleteE 1`<br>
+   1. Prerequisite: There mst be employees present in the displayed employee list.
+
+   2. Test case: `deleteE 1`<br>
       Expected: First employee is deleted from the list. Details of the deleted employee shown in the message.
 
-   2. Test case: `deleteE 0`<br>
+   3. Test case: `deleteE 0`<br>
       Expected: No employee is deleted and an error message indicating the index provided was not a positive non-zero integer is returned.
 
-   3. Other incorrect delete commands to try: `deleteE`, `deleteE x`, `deleteE 1 2 3`, ...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `deleteE`, `deleteE x`, `deleteE 1 2 3`, `...` (where x is larger than the employee list size)<br>
       Expected: Similar to previous but with different error messages.
 
 ### Listing all employees
@@ -708,7 +710,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Edit a project
 
-   1. Prerequisite: There must be projects present in TaskHub.
+   1. Prerequisite: There must be projects present in the displayed project list.
 
    2. Test Case: `editP 1 n/Market Analysis p/low d/10-10-2023`<br>
       Expected: Edits the name, priority, and deadline of the 1st project to be "Market Analysis", low priority, and 10-10-2023, respectively.
@@ -720,22 +722,22 @@ testers are expected to do more *exploratory* testing.
 
 1. Delete a project
 
-   1. Prerequisite: There must be projects present in TaskHub.
+   1. Prerequisite: There must be projects present in the displayed project list.
 
    2. Test case: `deleteP 1`<br>
-      Expected: First project is deleted from the list. Details of the deleted project shown in the message.
+      Expected: First project is deleted from the list. Details of the deleted project are shown in the message.
 
    3. Test case: `deleteP 0`<br>
       Expected: No project is deleted and an error message indicating the index provided was not a positive non-zero integer is returned.
 
-   4. Other incorrect delete commands to try: `deleteP`, `deleteP x`, `deleteP 1 2 3`, ...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `deleteP`, `deleteP x`, `deleteP 1 2 3`, `...` (where x is larger than the project list size)<br>
       Expected: Similar to previous but with different error messages.
 
 ### Marking project(s) as completed
 
-1. Mark a project as complete
+1. Mark projects as complete
 
-   1. Prerequisite: There must be projects present in TaskHub.
+   1. Prerequisite: There must be projects present in the displayed project list.
 
    2. Test case: `markP 1 2 3`<br>
       Expected: Marks projects at indexes 1, 2, 3 as completed and returns the corresponding message to the user.
@@ -747,7 +749,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Mark project(s) as incomplete
 
-   1. Prerequisite: There must be projects present in TaskHub.
+   1. Prerequisite: There must be projects present in the displayed project list.
 
    2. Test case: `unmarkP 1 2 3`<br>
       Expected: Unmarks projects at indexes 1, 2, 3 as incomplete and returns the corresponding message to the user.
@@ -759,7 +761,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Edit the deadline of project(s)
 
-   1. Prerequisite: There must be projects present in TaskHub.
+   1. Prerequisite: There must be projects present in the displayed project list.
 
    2. Test case: `dlP 1 2 3 d/10-10-2023`<br>
       Expected: Sets the deadline of the projects indexed at 1, 2, and 3 as 10-10-2023 and returns the corresponding message to the user.
@@ -777,7 +779,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Prioritise projects
 
-   1. Prerequisite: There must be projects present in TaskHub.
+   1. Prerequisite: There must be projects present in the displayed project list.
 
    2. Test case: `priorityP 1 2 3 p/high`<br>
       Expected: The priority of the projects indexed at 1, 2, and 3 are set to high, with its corresponding message shown to the user.
@@ -807,7 +809,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Find a project
 
-    1. Prerequisite: There must be projects present in TaskHub.
+    1. Prerequisite: There must be projects present in the displayed project list.
 
     2. Test case: `findP market product`<br>
        Expected: Projects whose name has "market" or "product" are listed. In the case of the sample data, it should only be "Market Expansion" and "New Product Launch" projects.
@@ -825,7 +827,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Add a task
 
-   1. Prerequisite: There must be projects present in TaskHub and if you want to simultaneous assign an employee to the project, employees must also be assigned to the project.
+   1. Prerequisite: There must be projects present in the displayed project list and if you want to simultaneously assign an employee to the task, they must also be assigned to the project.
 
    2. Test case: `addT pr/1 em/1 n/Website d/11-10-2023 2359`<br>
       Expected: A task named "Website" is added to the first project, with deadline "11-10-2023 2359", and the employee indexed at 1 in the employee list is assigned to it. The corresponding message is also returned to the user.
@@ -840,19 +842,19 @@ testers are expected to do more *exploratory* testing.
 
 1. Delete tasks
 
-    1. Prerequisite: There must be projects which contain tasks present in TaskHub.
+    1. Prerequisite: There must be projects which contain tasks present in the displayed project list.
 
     2. Test case: `deleteT pr/1 t/1 3`<br>
-       Expected: Tasks indexed at 1 and 3 in the project list are deleted from the first project and the corresponding messaged is returned to the user.
+       Expected: Tasks indexed at 1 and 3 in the task list of the first project in the project list are deleted from that project and the corresponding message is returned to the user.
 
-    3. Other incorrect delete commands to try: `deleteT`, `deleteT pr/1 t/x`, `deleteT pr/x t/1`, `deleteP 1 2 3`, ...` (where x is larger than the list size)<br>
+    3. Other incorrect delete commands to try: `deleteT`, `deleteT pr/1 t/x`, `deleteT pr/x t/1`, `deleteP 1 2 3`, `...` (where x is larger than the project list or task list size)<br>
        Expected: Similar to previous but with different error messages.
 
-### Marking a task complete
+### Marking task(s) as complete
 
 1. Mark tasks as complete
 
-   1. Prerequisite: There must be projects which contain tasks present in TaskHub.
+   1. Prerequisite: There must be projects which contain tasks present in the displayed project list.
 
    2. Test case: `markT pr/1 t/1 2 3`<br>
       Expected: Marks tasks at indexes 1, 2, 3 in the first project as completed and returns the corresponding message to the user.
@@ -864,7 +866,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Mark tasks as incomplete
 
-    1. Prerequisite: There must be projects which contain tasks present in TaskHub.
+    1. Prerequisite: There must be projects which contain tasks present in the displayed project list.
 
     2. Test case: `unmarkT pr/1 t/1 2 3`<br>
        Expected: Marks tasks at indexes 1, 2, 3 in the first project as incomplete and returns the corresponding message to the user.
@@ -876,7 +878,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Sort tasks according to deadline and completion status
 
-   1. Prerequisite: There must be projects with tasks with differing deadlines and completion statuses in TaskHub.
+   1. Prerequisite: There must be projects with tasks in the displayed project list.
 
    2. Test case: `sortT`<br>
       Expected: Tasks in all projects are sorted, incomplete tasks are placed first, with those with earlier deadlines being placed first. The corresponding message is also returned to the user.
@@ -888,7 +890,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Assign employees to a project
 
-   1. Prerequisite: There must be employees and project present in TaskHub.
+   1. Prerequisite: There must be employees and project present in the displayed employee and project list.
 
    2. Test case: `assignP pr/2 em/1 3`<br>
       Expected: Employees at indexes at 1 and 3 in the employee list are assigned to the second project and the corresponding message is returned to the user.
@@ -900,7 +902,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Unassign employees from a project
 
-   1. Prerequisite: There must be employees and projects with employees assigned present in TaskHub.
+   1. Prerequisite: There must be employees and projects in the displayed employee and project list with employees assigned present to the projects.
 
    2. Test case: `unassignP pr/2 em/1 3`<br>
       Expected: Employees at indexes at 1 and 3 in the employee list are unassigned from the second project if they were assigned originally, and the corresponding message is returned to the user.
@@ -912,7 +914,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Assign employee in a project to a task
 
-    1. Prerequisite: There must be employees, and projects with employees assigned, and tasks present, in TaskHub.
+    1. Prerequisite: There must be a project in the displayed project list containing at least an employee and a task.
 
     2. Test case: `assignT pr/2 em/1 t/1`<br>
        Expected: Employee at index 1 in the second project is assigned to the first task and the corresponding message is returned to the user.
@@ -924,7 +926,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Unassign employee in a project from a task
 
-    1. Prerequisite: There must be employees, projects, and tasks present in TaskHub, with employees assigned to the tasks.
+    1. Prerequisite: There must be a project in the displayed project list containing an employee and a task with an assigned employee.
 
     2. Test case: `unassignT pr/2 t/1`<br>
        Expected: Un-assigns the first task in the second project from any employees currently assigned to it and returns the corresponding message to the user.<br>
