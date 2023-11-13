@@ -303,7 +303,11 @@ deleteP 1
 You should get the following response:
 
 ```
-Deleted Project: Name: Website Redesign; Completed? Yes; Deadline: 15-11-2023; Priority: HIGH
+Deleted Project: 
+Name: Website Redesign;
+Completed? Yes;
+Deadline: 15-11-2023;
+Priority: HIGH
 Members: Alex Yeoh, Bernice Yu
 ```
 Now, you're looking at the 'Market Expansion' project, which we'll be focusing on.
@@ -324,12 +328,17 @@ Here are his details:
 Let's run the following command to add him to your team of [`Employees`](#employees).
 
 ```
-addE n/Anton Tan p/98765432 e/anton@mail.com a/Anton Street, block 123, #01-01 t/TeamPlayer t/Hardworking
+addE n/Anton Tan p/98765432 e/anton@mail.com
+ a/Anton Street, block 123, #01-01 t/TeamPlayer t/Hardworking
 ```
 
 You should get the following response:
 ```
-New employee added: Anton Tan; Phone: 98765432; Email: anton@mail.com; Address: Anton Street, block 123, #01-01; Tags: [TeamPlayer][Hardworking]
+New employee added: Anton Tan;
+Phone: 98765432;
+Email: anton@mail.com;
+Address: Anton Street, block 123, #01-01;
+Tags: [TeamPlayer][Hardworking]
 ```
 
 ### Step 3: Assigning an Employee to a Project in TaskHub:
@@ -353,7 +362,10 @@ addT n/Market Segmentation pr/1 em/3 d/30-11-2023 2359
 
 You should get the following response:
 ```
-New task added to project 1, Description: Market Segmentation; Deadline: 30 Nov 2023, 11:59PM; Assignee: Anton Tan
+New task added to project 1, 
+Description: Market Segmentation;
+Deadline: 30 Nov 2023, 11:59PM;
+Assignee: Anton Tan
 ```
 
 ### Step 5: Marking a Task as Complete:
