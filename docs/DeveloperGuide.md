@@ -538,7 +538,7 @@ Use case resumes at step 1.
 
 Given below are instructions to test the app manually.
 
-If there are no prerequisites stated, all you have to do is just open TaskHub.
+If there are no prerequisites stated, all you have to do is just open TaskHub and you can use the sample data.
 
 The testcases should also be done separately and not in sequence, i.e. The results of a testcase may affect the next testcase if the changes are not reversed.
 
@@ -628,47 +628,200 @@ testers are expected to do more *exploratory* testing.
     5. Test Case: `addE [Employee with same name as previously added employee]`<br>
        Expected: No employee is added and an error message indicating that the employee already exists in TaskHub is returned.
 
-
 ### Editing an employee
+
+1. Edit an employee
+   
+   1. Test Case: `editE 1 p/91234567 e/johndoe@example.com`<br>
+      Expected: Edits the phone number and email address of the 1st employee to be 91234567 and johndoe@example.com respectively.
+   
+   2. Test Case: `editE 2 t/`<br>
+      Expected: Removes all existing tags of the 2nd employee.
+
+   3. Test Case: `editE 1`<br>
+      Expected: No employees edited and an error message indicating that at least one of the fields to edit must be provided is returned.
 
 ### Deleting an employee
 
-1. Deleting an employee while all employees are being shown
+1. Delete an employee
 
-   1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
+   1. Test case: `deleteE 1`<br>
+      Expected: First employee is deleted from the list. Details of the deleted employee shown in the message.
 
-   2. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `deleteE 0`<br>
+      Expected: No employee is deleted and an error message indicating the index provided was not a positive non-zero integer is returned.
 
-   3. Test case: `delete 0`<br>
-      Expected: No employee is deleted. Error details shown in the status message. Status bar remains the same.
-
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-2. _{ more test cases …​ }_
+   3. Other incorrect delete commands to try: `deleteE`, `deleteE x`, `deleteE 1 2 3`, ...` (where x is larger than the list size)<br>
+      Expected: Similar to previous but with different error messages.
 
 ### Listing all employees
 
+1. Listing all the employees(only)
+
+   1. Prerequisite: Run `findP market` to filter the employees to be only those in the `Market Expansion` project, and the projects to only be the same project.
+
+   2. Test case: `listE`
+      Expected: Only the employees list should be updated to display all the employees, together with its corresponding message.
+
+   3. Test case: `listE extra keywords`
+      Expected: Similar to previous.
+
 ### Locate employees by name
+
+1. Finding an employee
+
+   1. Prerequisite: There must be employees present in TaskHub.
+
+   2. Test case: `findE alex yu`
+      Expected: Employees whose name has "alex" or "yu" are listed. In the case of the sample data, it should only be "Alex Yeoh" and "Bernice Yu".
+
+   3. Test case: `findE ALEX YU`
+      Expected: Same as previous.
+
+   4. Test case: `findE al`
+      Expected: Employees whose name has "al" are listed. In the case of the sample data, no employee has a name where any part is made up of "al" only, hence there should be 0 employees listed.
+
+   5. Test case: `findE`
+      Expected: No employees will be searched for and an error message indicating "Invalid Command Format" is returned.
 
 ### Adding a new project
 
+1. Add a project
+
+   1. Test Case: `addP n/Project1 em/1 2 3`<br>
+      Expected: Project with name "Project1", is created and employees indexed at 1,2, and 3 are assigned to it.
+
+   2. Test Case: `addP n/Project1`<br>
+      Expected: Same as previous but with no employees assigned.
+
+   3. Test Case: `addP em/1 2 3`<br>
+      Expected: No project is created and an error message indicating "Invalid Command Format" is returned.
+
+   4. Test Case: `addP n/Project1 n/Project1 em/1 2 3`<br>
+      Expected: No project is created and an error message indicating duplicate fields are being used is returned.
+
+   5. Test Case: `addE [Project with same name as previously added project]`<br>
+      Expected: No project is added and an error message indicating that the project already exists in TaskHub is returned.
+
 ### Editing a project
+
+1. Edit a project
+
+   1. Prerequisite: There must be projects present in TaskHub.
+
+   2. Test Case: `editP 1 n/Market Analysis p/low d/10-10-2023`<br>
+      Expected: Edits the name, priority, and deadline of the 1st project to be "Market Analysis", low priority, and  respectively.
+
+   3. Test Case: `editP 2 t/`<br>
+      Expected: Removes all existing tags of the 2nd employee.
+
+   4. Test Case: `editP 1`<br>
+      Expected: No employees edited and an error message indicating that at least one of the fields to edit must be provided is returned.
 
 ### Deleting a project
 
+1. Delete a project
+
+   1. Prerequisite: There must be projects present in TaskHub.
+
+   2. Test case: `deleteP 1`<br>
+      Expected: First project is deleted from the list. Details of the deleted project shown in the message.
+
+   3. Test case: `deleteP 0`<br>
+      Expected: No project is deleted and an error message indicating the index provided was not a positive non-zero integer is returned.
+
+   4. Other incorrect delete commands to try: `deleteP`, `deleteP x`, `deleteP 1 2 3`, ...` (where x is larger than the list size)<br>
+      Expected: Similar to previous but with different error messages.
+
 ### Marking project(s) as completed
+
+1. Mark a project as complete
+
+   1. Prerequisite: There must be projects present in TaskHub.
+
+   2. Test case: `markP 1 2 3`
+      Expected: Marks projects at indexes 1,2, 3 as completed and returns the corresponding message.
+
+   3. Test case: `markP 0`
+      Expected: No project is marked and an error message indicating the index provided was not a positive non-zero integer is returned.
 
 ### Marking project(s) as incomplete
 
+1. Mark project(s) as incomplete
+
+   1. Prerequisite: There must be projects that are marked as complete in TaskHub
+
+   2. Test case: `unmarkP 1 2 3`
+      Expected: Unmarks projects at indexes 1,2, 3 as incomplete and returns the corresponding message.
+
+   3. Test case: `unmarkP 0`
+      Expected: No project is unmarked and an error message indicating the index provided was not a positive non-zero integer is returned.
+
 ### Editing deadline of project(s)
+
+1. Edit the deadline of project(s)
+
+   1. Prerequisite: There must be projects present in TaskHub.
+
+   2. Test case: `dlP 1 2 3 d/10-10-2023`
+      Expected: Sets the deadline of the projects indexed at 1,2, and 3 as 10-10-2023 and returns the corresponding message.
+
+   3. Test case: `dlP 1 2 3 d/`
+      Expected: Removes the deadline of the projects indexed at 1,2, and 3 and returns the corresponding message.
+
+   4. Test case: `dlP 1 d/10-13-2023`
+      Expected: No deadline in any project is edited and the correct way to format the date is returned.
+
+   5. Test case: `dlP 0 d/`
+      Expected: No deadline in any project is edited and an error message indicating the index provided was not a positive non-zero integer is returned.
 
 ### Prioritising projects
 
+1. Prioritise projects
+
+   1. Prerequisite: There must be projects present in TaskHub.
+
+   2. Test case: `priorityP 1 2 3 p/high`
+      Expected: The priority of the projects indexed at 1,2, and 3 are set to high, and the corresponding message is returned.
+
+   3. Test case: `priorityP 1 2 3 p/important`
+      Expected: No projects have their priorities changed, and a message indicating that the priority should only be low, normal, or high, is returned.
+
+   4. Test case: `priorityP 1`
+      Expected: No projects have their priorities changed and an error message indicating "Invalid Command Format" is returned.
+
+   5. Test case: `priorityP 0 p/low`
+      Expected: No projects have their priorities changed and an error message indicating the index provided was not a positive non-zero integer is returned.
+
 ### Listing all projects
 
+1. Listing all the projects(only)
+
+    1. Prerequisite: Run `findE alex` to filter the employees list to be only those with the name `alex`, and the projects list to the projects that those employees are assigned to.
+
+    2. Test case: `listP`
+       Expected: Only the projects list should be updated to display all the projects, together with its corresponding message.
+
+    3. Test case: `listP extra keywords`
+       Expected: Similar to previous.
+
 ### Locating projects by name
+
+1. Finding a project
+
+    1. Prerequisite: There must be projects present in TaskHub.
+
+    2. Test case: `findP market product`
+       Expected: Projects whose name has "market" or "product" are listed. In the case of the sample data, it should only be "Market Expansion" and "New Product Launch" projects.
+
+    3. Test case: `findP MARKET PRODUCT`
+       Expected: Same as previous.
+
+    4. Test case: `findP mark`
+       Expected: Projects whose name has "mark" are listed. In the case of the sample data, no project has a name where any part is made up of "mark" only, hence there should be 0 projects listed.
+
+    5. Test case: `findP`
+       Expected: No projects will be searched for and an error message indicating "Invalid Command Format" is returned.
 
 ### Adding a new task to a project
 
