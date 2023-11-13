@@ -425,6 +425,15 @@ Clears all entries from TaskHub.
 
 Format: `clear`
 
+<div markdown="block" class="alert alert-danger">
+
+**:no_entry: Danger**<br>
+
+* This action is irreversible.
+* Please ensure that you are certain that you want to all entries before proceeding.
+
+</div>
+
 
 ### Exit the program: `exit`
 
