@@ -846,11 +846,11 @@ Examples:
 
 ### Delete a task from a project: `deleteT`
 
-Deletes the specified task(s) from the specified project in TaskHub.
+Delete the specified task(s) from the specified project in TaskHub.
 
 Format: `deleteT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
 
-* Deletes the tasks at the specified `TASK_INDEX`(es), from the project at the specified `PROJECT_INDEX`.
+* Delete the task(s) at the specified `TASK_INDEX`(es), from the project at the specified `PROJECT_INDEX`.
 * The project index refers to the index number shown in the displayed project panel.
 * The task index(es) refer to the index number(s) shown in the task list of the above specified project.
 * The indexes **must be positive integers** 1, 2, 3,...
