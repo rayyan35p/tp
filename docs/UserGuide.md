@@ -273,9 +273,6 @@ and at the bottom of the window, is a link to our user guide.
 * Projects, as well as their members, tasks to complete in the project, and other important details for managing your project are stored here!
 
 ## Quick start
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-</div>
-
 <div markdown="span" class="alert alert-warning">
 
 **:warning: Warning:** The first step in the Quick Start guide involves `deleteP`, which is irreversible. If you wish to keep the sample data, then you can head straight to the [Features](#features) section below to figure out TaskHub on your own.
@@ -369,13 +366,6 @@ Scroll down in the `Employees` pane to notice Anton, the newest addition to your
 <img src="images/QuickStartEnd.png" width="700">
 
 For a more comprehensive overview of what you can achieve with TaskHub, you may proceed to the [Features](#features) section below.
-
-
-
-
-
-
-
 
 
 --------------------------------------------------------------------------------------------------------------------
