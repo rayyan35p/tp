@@ -5,7 +5,7 @@ title: Timothy Leow's Project Portfolio Page
 
 ### Project: TaskHub
 
-## Overview
+### Overview
 TaskHub is a desktop project management application used by project managers to manage projects and their team members in each project. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
 ## Summary of Contributions
 
@@ -59,10 +59,7 @@ My code contributions to TaskHub can be found [here](https://nus-cs2103-ay2324s1
 - Gave Aslam code quality suggestions in [this PR](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/109) so that we could sync up our implementation of deadlines in both `Tasks` and `Projects`.
 
 #### Contributions beyond the project team:
-##### Evidence of helping others e.g. responses you posted in our forum, bugs you reported in other team's products,
 - Reported an above average bug count of 10 with value-added suggestions to my allocated PE-D team, can be seen from the [PE-D](https://github.com/timleow/ped/issues) repo.
-
-##### Evidence of technical leadership e.g. sharing useful information in the forum
 - Participated in the forum in this [issue](https://github.com/nus-cs2103-AY2324S1/forum/issues/145).
 
 --- 
