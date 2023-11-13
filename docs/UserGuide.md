@@ -430,7 +430,7 @@ Format: `clear`
 **:no_entry: Danger**<br>
 
 * This action is irreversible.
-* Please ensure that you are certain that you want to all entries before proceeding.
+* Please ensure that you are certain that you want to delete all existing employees, projects and tasks before proceeding.
 
 </div>
 
