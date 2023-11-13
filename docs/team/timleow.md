@@ -64,4 +64,118 @@ My code contributions to TaskHub can be found [here](https://nus-cs2103-ay2324s1
 
 ##### Evidence of technical leadership e.g. sharing useful information in the forum
 - Participated in the forum in this [issue](https://github.com/nus-cs2103-AY2324S1/forum/issues/145).
---- ---
+
+--- 
+
+## UG Extracts
+
+## Understanding the components of TaskHub
+
+---
+### Employees
+
+
+<img src="../images/Employee.png" width="400">
+
+An `Employee` is someone that you are managing. TaskHub allows you to store their essential details and `tag` them with their strengths and weaknesses so you can allocate them to suitable [`Projects`](#projects) or [`Tasks`](#tasks).
+
+#### Attributes:
+
+| Field        | Description                                                    | Prefix for [`addE`](#add-an-employee-adde) |
+|--------------|----------------------------------------------------------------|--------------------------------------------|
+| Name         | Name of the employee.                                          | `n/`                                       |
+| Phone Number | Phone number of the employee.                                  | `p/`                                       |
+| Email        | Email address of the employee.                                 | `e/`                                       |
+| Address      | Address of the employee.                                       | `a/`                                       |
+| Tags         | Tags indicating strengths/weaknesses/position of the employee. | `t/`                                       |
+
+---
+
+### Projects
+<img src="../images/Project.png" width="400">
+
+
+A `Project` in TaskHub is a managerial unit that includes information about [`Employees`](#employee) allocated to the project and an (optionally) set [deadline](#edit-deadline-of-a-projects-dlp). You can [mark](#mark-projects-as-completed-markp) a `Project` as done when you deem fit. Additionally, you can add `Tasks` to a `Project`.
+#### Attributes:
+
+| Field            | Description                                                | Prefix for [`addP`](#add-a-new-project-addp) | Relevant Command(s)                                                                             |
+|------------------|------------------------------------------------------------|----------------------------------------------|-------------------------------------------------------------------------------------------------|
+| Name             | Name of the project.                                       | `n/`                                         | -                                                                                               |
+| Employees        | Employees assigned to the project.                         | `em/`                                        | [`assignP`](#assign-employees-to-a-project-assignp)                                             |
+| Deadline         | Deadline for the project.                                  | -                                            | [`dlP`](#edit-deadline-of-a-projects-dlp)                                                       |
+| Priority         | Priority level of the project.                             | -                                            | [`priorityP`](#prioritise-projects-priorityp)                                                   |
+| CompletionStatus | Indicates whether the project is completed or in progress. | -                                            | [`markP`](#mark-projects-as-completed-markp), [`unmarkP`](#mark-projects-as-incomplete-unmarkp) |
+| Tasks            | Tasks associated with the project.                         | -                                            | [`addT`](#add-a-new-task-to-a-project-addt)                                                     |
+
+---
+
+### Tasks
+
+<img src="../images/Tasks.png" width="400">
+
+A `Task` in TaskHub represents a specific job within a `Project` that can be assigned to an `Employee` under that `Project`. Tasks are required to have a deadline. Managing `Task`s will be the main way of monitoring the work done within your `TaskHub`!
+
+#### Attributes:
+
+| Field    | Description                            | Prefix for [`addT`](#add-a-new-task-to-a-project-addt) | Relevant Command                                                                          |
+|----------|----------------------------------------|--------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| Name     | Name of the task.                      | `n/`                                                   | -                                                                                         |
+| Employee | Employee assigned to the task.         | `em/`                                                  | [`assignT`](#assign-an-employee-to-a-task-assignt)                                        |
+| Deadline | Deadline for completing the task.      | `d/`                                                   | -                                                                                         |
+| isDone   | Indicates whether the task is complete.| N.A.                                                   | [`markT`](#mark-tasks-as-completed-markt), [`unmarkT`](#mark-tasks-as-incomplete-unmarkt) |
+
+
+---
+
+
+## DG Extracts
+
+### UI component
+
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S1-CS2103T-T08-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+
+![Structure of the UI Component](../images/UiClassDiagram.png)
+
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EmployeeListPanel`, `ProjectListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2324S1-CS2103T-T08-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S1-CS2103T-T08-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+
+The diagram above briefly demonstrates the hierarchy of the Ui components. A few more notes are as follows:
+* At the level just below `MainWindow`, there are the main components, like `CommandBox`, `ResultDisplay`, `EmployeeListPanel` and `ProjectListPanel`.
+* `EmployeeListPanel` contains some number of `EmployeeCard`s.
+* `ProjectListPanel` contains some number of `ProjectCard`s
+  * which contain a `TaskListPanel` with their `TaskCard`s if the relevant `Project` in the `Model` contains a `Task`.
+
+The `UI` component,
+
+* executes user commands using the `Logic` component.
+* listens for changes to `Model` data so that the UI can be updated with the modified data.
+* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+* depends on some classes in the `Model` component, as it displays `Employee` object residing in the `Model`.
+
+### Add Task feature
+![AddTSequenceDiagram](../images/AddTSequenceDiagram.png)
+
+
+When creating a new task using the `addT` command, the `TaskList` of the specified `Project` is updated, and the `Project` is hence updated too.
+
+Given below is an example usage scenario and the internal changes that happen at each step.
+
+Step 1. The user launches the application. All employees and projects will be shown to the user.
+
+Step 2. The user executes `addT n/todo pr/1 em/1 d/11-11-2023 2359` to add a new `Task` called `todo` to the first currently listed `Project`, assigned to the first `Employee` within that `Project`. `LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to an `AddTaskCommandParser`.
+
+Step 3. `TaskHubParser` will call `AddTaskCommandParser#parse(arguments)` to produce a `AddTaskCommand` to be executed by the `LogicManager`.
+
+Step 4. `LogicManager` calls `AddTaskCommand#execute(model)` to produce a `CommandResult `to be logged.
+
+Step 5. During the execution of the `AddTaskCommand`, a new `Project` copy is created, with an updated `TaskList` that contains the newly created `Task`.
+If an `employeeIndex` was specified by the command (in this case it was), then `Model::getFilteredEmployeeList` is called to assign the new `Task` to the specified  `Employee`.
+Then, the `Model#setProject` and `Model#updateFilteredProjectList` is called, to trigger a `Ui` update, as the specified `Project` has been updated with an updated `TaskList`.
+
+Step 6. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`.
+
+
+
+
+---
