@@ -48,6 +48,9 @@ Given below are my contributions to the project.
 * **Contributions to team-based tasks**:
   * Absorbed "Remark" functionality implemented at the start of the tP, to be morphed into projects. ([\#36](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/36))
 
+* **Contributions beyond the project team**:
+  * Participated in [this forum discussion](https://github.com/nus-cs2103-AY2324S1/forum/issues/42#issuecomment-1697139439) and contributed with a potential solution for a peer's issue.
+
 * **Documentation**:
   * User Guide:
     * Added UG introduction.
@@ -56,6 +59,7 @@ Given below are my contributions to the project.
     * Amended the DG glossary.
     * Updated the Model section to fit our application.
     * Documented the design of my Find Projects command.
+    * Added the Effort section and the relevant sub-sections.
   * Project README:
     * Updated the README description and links to fit our application.
 
