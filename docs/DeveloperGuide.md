@@ -881,7 +881,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisite: There must be projects with tasks in the displayed project list.
 
    2. Test case: `sortT`<br>
-      Expected: Tasks in all projects are sorted, incomplete tasks are placed first, with those with earlier deadlines being placed first. The corresponding message is also returned to the user.
+      Expected: Tasks in all projects in the displayed project list are sorted, incomplete tasks are placed first, with those with earlier deadlines being placed first. The corresponding message is also returned to the user.
 
    3. Test case: `sortT extra keywords`<br>
       Expected: Same as previous.
