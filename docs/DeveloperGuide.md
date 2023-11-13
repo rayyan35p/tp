@@ -825,12 +825,12 @@ testers are expected to do more *exploratory* testing.
 
 1. Add a task
 
-   1. Prerequisite: There must be projects present in TaskHub.
+   1. Prerequisite: There must be projects present in TaskHub and if you want to simultaneous assign an employee to the project, employees must also be assigned to the project.
 
    2. Test case: `addT pr/1 em/1 n/Website d/11-10-2023 2359`<br>
-      Expected: A task named "Website" is added to the first project, with deadline "11-10-2023 2359", and the employee indexed at 1 is assigned to it. The corresponding message is also returned to the user.
+      Expected: A task named "Website" is added to the first project, with deadline "11-10-2023 2359", and the employee indexed at 1 in the employee list is assigned to it. The corresponding message is also returned to the user.
 
-   3. Test case: `addT pr/1 em/1 n/Website d/11-10-2023 2359`<br>
+   3. Test case: `addT pr/1 n/Website d/11-10-2023 2359`<br>
       Expected: Same as previous but without the employee assigned.
 
    4. Test case: `addT n/Website d/11-10-2023 2359`<br>
@@ -843,7 +843,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisite: There must be projects which contain tasks present in TaskHub.
 
     2. Test case: `deleteT pr/1 t/1 3`<br>
-       Expected: Tasks indexed at 1 and 3 are deleted from the first project and the corresponding messaged is returned to the user.
+       Expected: Tasks indexed at 1 and 3 in the project list are deleted from the first project and the corresponding messaged is returned to the user.
 
     3. Other incorrect delete commands to try: `deleteT`, `deleteT pr/1 t/x`, `deleteT pr/x t/1`, `deleteP 1 2 3`, ...` (where x is larger than the list size)<br>
        Expected: Similar to previous but with different error messages.
@@ -867,10 +867,10 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisite: There must be projects which contain tasks present in TaskHub.
 
     2. Test case: `unmarkT pr/1 t/1 2 3`<br>
-       Expected: Unmarks tasks at indexes 1, 2, 3 in the first project as incomplete and returns the corresponding message to the user.
+       Expected: Marks tasks at indexes 1, 2, 3 in the first project as incomplete and returns the corresponding message to the user.
 
     3. Test case: `unmarkT pr/1 t/0`<br>
-       Expected: No tasks are unmarked and an error message indicating the index provided was not a positive non-zero integer is returned.
+       Expected: No tasks are marked as incomplete and an error message indicating the index provided was not a positive non-zero integer is returned.
 
 ### Sort tasks
 
@@ -891,7 +891,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisite: There must be employees and project present in TaskHub.
 
    2. Test case: `assignP pr/2 em/1 3`<br>
-      Expected: Employees at indexes at 1 and 3 in the project are assigned to the second project and the corresponding message is returned to the user.
+      Expected: Employees at indexes at 1 and 3 in the employee list are assigned to the second project and the corresponding message is returned to the user.
 
    3. Test case: `assignP em/1 3`<br>
       Expected: No employees will be assigned to any project and an error message indicating "Invalid Command Format" is returned.
@@ -912,7 +912,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Assign employee in a project to a task
 
-    1. Prerequisite: There must be employees and projects with employees assigned and tasks present in TaskHub.
+    1. Prerequisite: There must be employees, and projects with employees assigned, and tasks present, in TaskHub.
 
     2. Test case: `assignT pr/2 em/1 t/1`<br>
        Expected: Employee at index 1 in the second project is assigned to the first task and the corresponding message is returned to the user.
