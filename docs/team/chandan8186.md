@@ -25,7 +25,7 @@ Given below are my contributions to the project.
   * What it does: Lets the user sort tasks in each project by completion status (incomplete before completed) and deadline (earlier before later).
   * Justification: Allows users to better visualize the progress of task completion in each project.
 
-* **Ui Feature/Enhancement**: Added a rudimentary Ui panel and cards for projects ([\#89](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/89))
+* **Ui Feature/Enhancement**: Added a Ui panel and cards for projects ([\#89](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/89))
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=chandan8186&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22)
 
