@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.getTypicalTaskHub;
@@ -15,6 +16,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_WITH_ASSIGNED_TASKS_IN
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -25,6 +28,9 @@ import seedu.address.model.task.TaskList;
 public class UnassignTaskCommandTest {
     private Model model = new ModelManager(getTypicalTaskHub(), new UserPrefs());
 
+    //------------------------------ Tests for constructor --------------------------------------------------------
+
+    // EP: null project index
     @Test
     public void constructor_nullProjectIndex_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new UnassignTaskCommand(
@@ -32,6 +38,7 @@ public class UnassignTaskCommandTest {
                 INDEX_FIRST_TASK));
     }
 
+    // EP: null task index
     @Test
     public void constructor_nullTaskIndex_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new UnassignTaskCommand(
@@ -39,6 +46,9 @@ public class UnassignTaskCommandTest {
                 null));
     }
 
+    //------------------------------ Tests for execute --------------------------------------------------------
+
+    // EP: valid inputs
     @Test
     public void execute_validIndexes_success() {
         Project projectToEdit = model.getFilteredProjectList()
@@ -72,6 +82,29 @@ public class UnassignTaskCommandTest {
 
         assertCommandSuccess(unassignTaskCommand, model, expectedMessage, expectedModel);
     }
+
+    // EP: invalid project index
+    @Test
+    public void execute_invalidProjectIndex_throwsCommandException() {
+        UnassignTaskCommand unassignTaskCommand = new UnassignTaskCommand(
+                Index.fromZeroBased(model.getFilteredProjectList().size() + 1),
+                INDEX_FIRST_TASK);
+
+        assertCommandFailure(unassignTaskCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+    }
+
+    // EP: invalid task index
+    @Test
+    public void execute_invalidTaskIndex_throwsCommandException() {
+        UnassignTaskCommand unassignTaskCommand = new UnassignTaskCommand(
+                INDEX_FIRST_PROJECT,
+                Index.fromZeroBased(model.getFilteredProjectList()
+                        .get(INDEX_FIRST_PROJECT.getZeroBased()).getTasks().getSize() + 1));
+
+        assertCommandFailure(unassignTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    //-----------------------------------------------------------------------------------------------------------
 
     @Test
     public void equalsTest() {
