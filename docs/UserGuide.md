@@ -626,6 +626,12 @@ Format: `addP n/PROJECT_NAME [em/EMPLOYEE_INDEX(ES)]`
 * The priority is `normal` by default.
 * The status is `not completed` by default.
 
+<div markdown="span" class="alert alert-info">
+
+**:information_source: Information:** If the newly added project does not show up in the project panel, try running `list` or `listP`.<br>
+
+</div>
+
 Examples: 
 * `addP n/Project1 em/1` will add `Project1` to the projects list, and assigns the employee at index 1 currently displayed in the employee panel to this project.
 * `addP n/Project2` will add an empty `Project2` to the projects list.
