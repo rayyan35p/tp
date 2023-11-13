@@ -410,26 +410,30 @@ If any `JsonAdaptedEmployee` or `JsonAdaptedProject` fails to meet the requireme
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                             | I want to …​                  | So that I can…​                                                          |
-|----------|-------------------------------------|-------------------------------|--------------------------------------------------------------------------|
-| `* * *`  | completely new user                 | see usage instructions        | refer to instructions when I forget how to use the App                   |
-| `* * *`  | user                                | add a new employee            | easily manage and access employees in one place                          |
-| `* * *`  | user                                | delete an employee            | remove entries that I no longer need                                     |
-| `* * *`  | user                                | edit an employee              | change the details of the employee                                       |
-| `* * *`  | user                                | list all employees            | see an overview of all the employees                                     |
-| `* * *`  | user                                | add a new project             | easily manage and access projects in one place                           |
-| `* * *`  | user                                | delete a project              | remove entries that I no longer need                                     |
-| `* * *`  | user                                | edit a project                | change the details of the project                                        |
-| `* * *`  | user                                | list all projects             | see an overview of all my projects                                       |
-| `* * *`  | user                                | find an employee by name      | locate details of employees without having to go through the entire list |
-| `* * *`  | user                                | assign employees to a project | know which employees are on which projects in one place                  |
-| `* *`    | completely new user                 | have sample data              | practice some commands before trying the App                             |
-| `* *`    | user                                | purge all data                | get rid of sample/experimental data and add in my actual data            |
-| `*`      | user with many projects in TaskHub  | sort projects by date         | tell which project deadlines are coming soon                             |
-| `*`      | user with many employees in TaskHub | sort employees by name        | locate an employee easily                                                |
-| `*`      | new user                            | get autocomplete suggestions  | write commands without referring to usage instructions often             |
-
-*{More to be added}*
+| Priority | As a …​                             | I want to …​                 | So that I can…​                                                                |
+|----------|-------------------------------------|------------------------------|--------------------------------------------------------------------------------|
+| `* * *`  | completely new user                 | see usage instructions       | refer to instructions when I forget how to use the App                         |
+| `* * *`  | user                                | add a new employee           | easily manage and access employees in one place                                |
+| `* * *`  | user                                | delete an employee           | remove entries that I no longer need                                           |
+| `* * *`  | user                                | edit an employee             | change the details of the employee                                             |
+| `* * *`  | user                                | list all employees           | see an overview of all the employees                                           |
+| `* * *`  | user                                | add a new project            | easily manage and access projects in one place                                 |
+| `* * *`  | user                                | delete a project             | remove entries that I no longer need                                           |
+| `* * *`  | user                                | edit a project               | change the details of the project                                              |
+| `* * *`  | user                                | list all projects            | see an overview of all my projects                                             |
+| `* * *`  | user                                | find an employee by name     | locate details of employees without having to go through the entire list       |
+| `* * *`  | user                                | assign employees to a project | know which employees are on which projects in one place                        |
+| `* * *`  | user with projects                  | add a task to a project      | know what needs to be done within a project                                    |
+| `* * *`  | user with projects                  | delete a task from a project | remove accidental additions or remove tasks that are no longer needed          |
+| `* * *`  | user with projects and employees    | assign employees to a task   | delegate tasks to them for efficient work allocation                           |
+| `* * *`  | user with tasks                     | mark a task as complete      | keep track of my project's progress based on the tasks that are completed      |
+| `* * *`  | user with tasks                     | mark a task as incomplete    | fix tasks that might have been marked as done but have more to be done         |
+| `* * *`  | user with projects and tasks        | sort tasks                   | see at a glance which tasks are done or which are most urgent and not yet done |
+| `* *`    | completely new user                 | have sample data             | practice some commands before trying the App                                   |
+| `* *`    | user                                | purge all data               | get rid of sample/experimental data and add in my actual data                  |
+| `*`      | user with many projects in TaskHub  | sort projects by date        | tell which project deadlines are coming soon                                   |
+| `*`      | user with many employees in TaskHub | sort employees by name       | locate an employee easily                                                      |
+| `*`      | new user                            | get autocomplete suggestions | write commands without referring to usage instructions often                   |
 
 ### Use cases
 
@@ -526,11 +530,15 @@ Use case resumes at step 1.
 4.  Should continue to work in most file directories as long as TaskHub and its data file maintain the same structure.
 5.  Should be easily usable even by a first time user.
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, macOS
+
+### Requirements yet to be implemented
+1. Sorting projects by completion and date has not yet been implemented.
+2. Sorting employees by name has not yet been implemented.
+3. Autocomplete commands has not yet been implemented.
+4. Assigning multiple employees to a task has not yet been implemented.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -606,3 +614,37 @@ We plan to allow multiple spaces between indexes to be handled automatically ins
 6. Employee names currently cannot contain special characters, as the validation for this is too strict.
 A name such as `Vishnu S/O Prasath` cannot be added to the employee list, even though it could be a valid name.
 We plan to allow some special characters, such as `/` and `-`, to be used in an employee's name.
+
+
+## **Appendix: Effort**
+
+### **Difficulty Level**
+
+Building TaskHub was of moderate to high difficulty for our team due to the following reasons:
+
+- we had to build on top of an existing, brownfield project, the codebase of which we were not familiar with
+- it was our first time working with Java and JavaFX in a software engineering context
+- we created two more model components (`Project`s and `Task`s) with dependencies among each other and with `Employee`s
+
+### **Challenges Faced**
+
+We had encountered the following challenges during the process of building TaskHub:
+
+- Refactoring the AB3 codebase to fit TaskHub's requirements
+  - Although refactoring was not as difficult as creating new features, it did take a while due to the size of AB3's codebase. Specifically, we refactored `Person`s to `Employee`s, as well as the product name from AB3 to TaskHub.
+- Morphing `Remark`s into `Project`s
+  - In keeping with the evolutionary style of the tP, we decided to morph `Remark` from the Remark tutorial into `Project`. This was especially challenging due to the vast differences between how both of them were structured/meant to behave.
+- Introducing `Task`s along with its dependencies
+  - We felt that this was one of the most challenging parts of our project since this third entity introduced additional dependencies and opened our project up to more potential bugs. Implementing the user interface components for `Task`s was also not easy as they had to be made simple yet descriptive for the user.
+
+
+### **Effort Required**
+
+Given the above difficulties and challenges, due to the two additional entities of `Project` and `Task` (on top of AB3's `Person`) along with all of their attributes (e.g. `Deadline`, `Priority` and `CompletionStatus`), a considerable amount of effort was put in to manage the additional dependencies and conduct additonal unit/integration testing.
+
+
+### **Achievements**
+
+- Built a comprehensive but easy-to-understand user interface for `Employee`s, `Project`s and `Task`s
+- Introduced new features that were previously not included in AB3, such as sorting tasks according to deadline and completion status
+

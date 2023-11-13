@@ -250,7 +250,7 @@ TaskHub's UI consists of 4 main parts that you will be using for your project ma
 * While commands to exit TaskHub or open the help window can be entered as a command, this is a beginner-friendly alternative for newer users who might not be so familiar with the commands.
 
 #### Help:
-Upon clicking help on the menu bar as shown below,
+Upon clicking help on the menu bar as shown below or by using the shortcut `F1`,
 
 ![circled_help_gui](images/circledHelpGui.png)
 
@@ -907,6 +907,8 @@ More details are provided under the [FAQ Section](#faq). <br>
 
 </div>
 
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 # FAQ
@@ -921,15 +923,15 @@ Taskhub may appear empty as it requires all data stored in the data file to be i
 **The solution below assumes that you are familiar with files in the `.json` format, and how TaskHub stores data. If you are unfamiliar, please check out** **[this website](https://www.w3schools.com/js/js_json_intro.asp) to know more about `.json` files** <br>
 If you have directly changed any data in the `taskhub.json` file instead of through TaskHub, it is highly likely that it would be in the wrong format, resulting in an empty TaskHub.<br>
 To attempt to recover as much data as possible, it is recommended to save a copy of the `taskhub.json` file somewhere else and perform the following actions:<br>
-* Remove all projects from your `taskhub.json` file. (`"projects" : []` should be the result after this operation, like the image shown below)<br>
+1. Remove all projects from your `taskhub.json` file. (`"projects" : []` should be the result after this operation, like the image shown below)<br>
 ![Data file with only employees](images/DataFileWithoutProjects.png)
-* Run TaskHub with the edited `taskhub.json` file. If the list of employees is shown, then the problem lies in your projects. Otherwise, a format error lies in the `"employee"` section of your json file. 
+2. Run TaskHub with the edited `taskhub.json` file. If the list of employees is shown, then the problem lies in your projects. Otherwise, a format error lies in the `"employee"` section of your json file. 
 It is recommended to start from scratch because most likely your projects and tasks that involve the employee have different degree of changes, and it might be impractical to manually change each occurence of the employee.  
-* Now, add each project one by one, ensuring that TaskHub can run normally after each project addition. If TaskHub appears empty after the addition of a particular project, it is most likely that the employees in the project are different from those stored in TaskHub.
+3. Now, add each project one by one, ensuring that TaskHub can run normally after each project addition. If TaskHub appears empty after the addition of a particular project, it is most likely that the employees in the project are different from those stored in TaskHub.
 Check the employees assigned in your project and employees assigned to relevant tasks, making sure every field is equal to its counterpart in the employee list.<br>
 While checking an employee assigned to a task, make sure the employee is the same employee in the project and in the employee list. Each project should have this format:
 ![Data file with a project](images/DataFileWithProject.png)
-* Repeat the step above until every project is added to TaskHub.
+4. Repeat the step above until every project is added to TaskHub.<br>
 If you have not changed anything, ensure your `data` folder containing your `taskhub.json` is in the same folder as your `taskhub.jar`.<br>
 
 </div>
@@ -945,6 +947,8 @@ The first step is to open the folder that contains all your files related to Tas
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TaskHub home folder.
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1010,6 +1014,8 @@ The first step is to open the folder that contains all your files related to Tas
 | [**Un-assign Employee from Task**](#un-assign-an-employee-from-a-task-unassignt)        | `unassignT pr/PROJECT_INDEX t/TASK_INDEX` <br> e.g., `unassignT pr/1 t/1`                                |
 
 [Return to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Appendix A: Installing Java
 
