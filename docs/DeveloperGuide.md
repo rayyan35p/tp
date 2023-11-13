@@ -579,7 +579,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2c. User enters a name that does not exist.
   * 2c1. TaskHub shows a blank list of employees and projects.
         
-  Use case ends.
+    Use case ends.
 
 **Use case: UC06 - Add a project**
 
