@@ -614,6 +614,9 @@ We plan to allow multiple spaces between indexes to be handled automatically ins
 6. Employee names currently cannot contain special characters, as the validation for this is too strict.
 A name such as `Vishnu S/O Prasath` cannot be added to the employee list, even though it could be a valid name.
 We plan to allow some special characters, such as `/` and `-`, to be used in an employee's name.
+7. The `sortT` command currently runs without displaying any error message, even if there are no tasks displayed in the project list.
+This does not affect the functionality of the `sortT` command. 
+Nonetheless, we plan to add an error message to be displayed to the user saying `There are no displayed projects containing any task!`, thereby indicating that there are no displayed tasks to be sorted.
 
 
 ## **Appendix: Effort**
