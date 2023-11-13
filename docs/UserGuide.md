@@ -21,12 +21,14 @@ title: User Guide
     * [Clear all entries: `clear`](#clear-all-entries-clear)
     * [Exit the program: `exit`](#exit-the-program-exit)
   * [Employee Commands](#employee-commands)
+    * [Command Parameters](#command-parameters-1)
     * [Add an employee: `addE`](#add-an-employee-adde)
     * [Edit an employee: `editE`](#edit-an-employee-edite)
     * [Delete an employee: `deleteE`](#delete-an-employee-deletee)
     * [List all employees: `listE`](#list-all-employees-liste)
     * [Locate employees by name: `findE`](#locate-employees-by-name-finde)
   * [Project Commands](#project-commands)
+    * [Command Parameters](#command-parameters-2)
     * [Add a new project: `addP`](#add-a-new-project-addp)
     * [Edit a project: `editP`](#edit-a-project-editp)
     * [Delete a project: `deleteP`](#delete-a-project-deletep)
@@ -37,12 +39,14 @@ title: User Guide
     * [List all projects: `listP`](#list-all-projects-listp)
     * [Locate projects by name: `findP`](#locate-projects-by-name-findp)
   * [Task Commands](#task-commands)
+    * [Command Parameters](#command-parameters-3)
     * [Add a new task to a project: `addT`](#add-a-new-task-to-a-project-addt)
     * [Delete a task from a project: `deleteT`](#delete-a-task-from-a-project-deletet)
     * [Mark task(s) as completed: `markT`](#mark-tasks-as-completed-markt)
     * [Mark task(s) as incomplete: `unmarkT`](#mark-tasks-as-incomplete-unmarkt)
     * [Sort tasks by deadline and completion status: `sortT`](#sort-tasks-by-deadline-and-completion-status-sortt)
   * [Assignment Commands](#assignment-commands)
+    * [Command Parameters](#command-parameters-4)
     * [Assign employee(s) to a project: `assignP`](#assign-employees-to-a-project-assignp)
     * [Un-assign employee(s) from a project: `unassignP`](#un-assign-employees-from-a-project-unassignp)
     * [Assign an employee to a task: `assignT`](#assign-an-employee-to-a-task-assignt)
@@ -421,6 +425,7 @@ e.g. if the command specifies `INDEX [MORE_INDEXES]`, it should be entered as `1
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
+[Return to Table of Contents](#table-of-contents)
 
 <br>
 
@@ -462,6 +467,7 @@ Exits the program.
 
 Format: `exit`
 
+[Return to Table of Contents](#table-of-contents)
 
 <br>
 
@@ -469,6 +475,7 @@ Format: `exit`
 
 <br>
 
+<a name="command-parameters-1"></a>
 <!-- The table below is inspired by https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1 -->
 ### Command Parameters
 | Parameter | Description​                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Examples​                                                            |
@@ -481,6 +488,7 @@ Format: `exit`
 | `INDEX`   | The index number of the employee as shown in the employee panel.<br/><br/> It should be a positive integer, and should not be more than the number of employees currently shown in the displayed employee panel. It should be less than 1000.                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | <ul><li>`1`</li></ul>                                                |
 | `KEYWORD` | The keyword to find an employee by name.<br/><br/> It should only contain alphanumeric characters and spaces. <br/><br/> It is case-insensitive.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | <ul><li>`Alex`</li><li>`alex yeoh`</li></ul>                         |
 Note that some of the limits for the parameters stated above are not enforced by the application. You are recommended to follow these limits for the best user experience. We may enforce them in a future iteration.
+[Return to Table of Contents](#table-of-contents)
 <br>
 
 ### Add an employee: `addE`
@@ -496,6 +504,8 @@ An employee can have any number of tags (including 0)
 Examples:
 * `addE n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `addE n/Betsy Crowe t/Junior e/betsycrowe@example.com a/Brick street p/91234567 t/Employee`
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### Edit an employee: `editE`
@@ -514,6 +524,8 @@ Format: `editE INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 Examples:
 *  `editE 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st employee to be `91234567` and `johndoe@example.com` respectively.
 *  `editE 2 n/Betsy Crower t/` Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### Delete an employee: `deleteE`
@@ -539,6 +551,8 @@ Examples:
 * `listE` followed by `deleteE 2` deletes the 2nd employee in the employees list.
 * `findE Betsy` followed by `deleteE 1` deletes the 1st employee in the results of the `findE` command.
 
+[Return to Table of Contents](#table-of-contents)
+
 
 ### List all employees: `listE`
 
@@ -547,6 +561,8 @@ Shows a list of all employees in TaskHub.
 ![list example](images/listE.png)
 
 Format: `listE`
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### Locate employees by name: `findE`
@@ -570,6 +586,7 @@ Examples:
 
   ![result for 'findE David'](images/findE.png)
 
+[Return to Table of Contents](#table-of-contents)
 
 <br>
 
@@ -577,6 +594,7 @@ Examples:
 
 <br>
 
+<a name="command-parameters-2"></a>
 <!-- The table below is inspired by https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1 -->
 ### Command Parameters
 | Parameter              | Description​                                                                                                                                                                                                                                        | Examples​                                                                |
@@ -588,6 +606,7 @@ Examples:
 | `DEADLINE`             | The project's deadline date.<br/><br/> It can either be empty (to indicate that there is no deadline set), or it must be a valid date in the `dd-MM-yyyy`` format.                                                                                  | <ul><li>`28-02-2024`</li><li>`08-11-2022`</li></ul>                      |
 | `KEYWORD`              | The keyword to find a project by name.<br/><br/> It should only contain alphanumeric characters and spaces. <br/><br/> It is case-insensitive.                                                                                                      | <ul><li>`Website`</li><li>`create website`</li></ul>                     |
 Note that some of the limits for the parameters stated above are not enforced by the application. You are recommended to follow these limits for the best user experience. We may enforce them in a future iteration.
+[Return to Table of Contents](#table-of-contents)
 
 <br>
 
@@ -608,7 +627,9 @@ Examples:
 * `addP n/Project1 em/1` will add `Project1` to the projects list with the employee index 1 assigned to the project.
 * `addP n/Project2` will add an empty `Project2` to the projects list.
 
-  
+[Return to Table of Contents](#table-of-contents)
+
+
 ### Edit a project: `editP`
 
 Edits an existing project in the TaskHub.
@@ -625,6 +646,8 @@ Format: `editP INDEX [n/NAME] [p/PRIORITY] [d/DEADLINE]`
 Examples:
 * `editP 1 n/Market Analysis p/low` Edits the name and priority of the 1st project to `Market Analysis` and `low` respectively.
 * `editP 2 p/high d/` Edits the priority and deadline of the 2nd project to `high` and removes the deadline.
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### Delete a project: `deleteP`
@@ -648,6 +671,8 @@ Format: `deleteP INDEX`
 Examples:
 * `listP` followed by `deleteP 2` deletes the 2nd project in TaskHub.
 
+[Return to Table of Contents](#table-of-contents)
+
 
 ### Mark project(s) as completed: `markP`
 
@@ -663,6 +688,8 @@ Examples:
 * `listP` followed by `markP 1 3` marks the 1st and 3rd projects as completed in TaskHub.
 * `findP Capstone` followed by `markP 1` marks the 1st project in the results of the `findP` command as completed.
 
+[Return to Table of Contents](#table-of-contents)
+
 
 ### Mark project(s) as incomplete: `unmarkP`
 
@@ -677,6 +704,8 @@ Format `unmarkP INDEX [MORE_INDEXES]`
 Examples:
 * `listP` followed by `unmarkP 1 3` marks the 1st and 3rd projects as incomplete in TaskHub.
 * `findP Capstone` followed by `unmarkP 1` marks the 1st project in the results of the `findP` command as incomplete.
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### Edit deadline of (a) project(s): `dlP`
@@ -698,6 +727,8 @@ Examples:
 *  `dlP 2 d/18-01-2022` sets the deadline of the 2nd project to be `18-01-2022`.
 *  `dlP 1 2 d/` removes the deadline of the 1st and 2nd projects.
 *  `findP Infinity` followed by `dlP 1 d/25-11-2024` sets the deadline of the 1st project in the results of the `findP` command to be `25-11-2024`.
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### Prioritise projects: `priorityP`
@@ -721,6 +752,8 @@ The `PRIORITY` must be one of the following: `low`, `normal`, `high`.
 Examples:
 * `listP` followed by `priorityP 1 2 p/high` sets the 1st and 2nd projects as high priority in TaskHub.
 
+[Return to Table of Contents](#table-of-contents)
+
 
 ### List all projects: `listP`
 
@@ -729,6 +762,8 @@ Shows a list of all projects in TaskHub.
 ![list example](images/listP.png)
 
 Format: `listP`
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### Locate projects by name: `findP`
@@ -750,6 +785,7 @@ Examples:
 * `findP market` returns `Market Expansion` <br>
   ![result for 'findP market'](images/findP.png)
 
+[Return to Table of Contents](#table-of-contents)
 
 <br>
 
@@ -757,6 +793,7 @@ Examples:
 
 <br>
 
+<a name="command-parameters-3"></a>
 <!-- The table below is inspired by https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1 -->
 ### Command Parameters
 | Parameter        | Description​                                                                                                                                                                                                                                           | Examples​                                                             |
@@ -767,6 +804,9 @@ Examples:
 | `TASK_NAME`      | The task's name.<br/><br/> It should only contain alphanumeric characters and spaces.<br/><br/> It should not be blank and should not exceed 80 characters.                                                                                            | <ul><li>`Create Wireframes`</li><li>`Responsive Web Design`</li></ul> |
 | `DEADLINE`       | The task's deadline.<br/><br/> It must be a valid date and time in the `dd-MM-yyyy HHmm` format.                                                                                                                                                       | <ul><li>`11-11-2023 2359`</li><li>`28-02-2024 0900`</li></ul>         |
 Note that some of the limits for the parameters stated above are not enforced by the application. You are recommended to follow these limits for the best user experience. We may enforce them in a future iteration.
+<br>
+[Return to Table of Contents](#table-of-contents)
+
 <br>
 
 ### Add a new task to a project: `addT`
@@ -785,6 +825,8 @@ Format `addT pr/PROJECT_INDEX [em/EMPLOYEE_INDEX] n/TASK_NAME d/DEADLINE(dd-MM-y
 Examples:
 * `listP` followed by `addT pr/1 n/Website d/11-10-2023 2359` adds a task named `Website` with deadline `11-10-2023 2359` to the 1st project.
 * `findP Capstone` followed by `addT pr/1 n/Website d/11-10-2023 2359` adds a task named `Website` with deadline `11-10-2023 2359` to the 1st project from the result of the `findP` command.
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### Delete a task from a project: `deleteT`
@@ -811,6 +853,8 @@ Examples:
 * `listP` followed by `deleteT pr/1 t/1 3` deletes the 1st and 3rd tasks of the 1st project from TaskHub.
 * `findP Capstone` followed by `deleteT pr/2 t/2` deletes the 2nd task in the 2nd project from the results of the `findP` command.
 
+[Return to Table of Contents](#table-of-contents)
+
 
 ### Mark task(s) as completed: `markT`
 
@@ -826,6 +870,8 @@ Format `markT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
 Examples:
 * `listP` followed by `markT pr/1 t/1 3` marks the 1st and 3rd tasks of the 1st project as completed in TaskHub.
 * `findP Capstone` followed by `markT pr/2 t/2` marks the 2nd task in the 2nd project from the results of the `findP` command as completed.
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### Mark task(s) as incomplete: `unmarkT`
@@ -843,6 +889,8 @@ Examples:
 * `listP` followed by `unmarkT pr/1 t/1 3` marks the 1st and 3rd tasks of the 1st project as incomplete in TaskHub.
 * `findP Capstone` followed by `unmarkT pr/2 t/2` marks the 2nd task in the 2nd project from the results of the `findP` command as incomplete.
 
+[Return to Table of Contents](#table-of-contents)
+
 
 ### Sort tasks by deadline and completion status: `sortT`
 
@@ -854,6 +902,7 @@ Format: `sortT`
 * Incomplete tasks will be placed before completed ones and tasks with an earlier deadline will be placed before those with a later one.
 * Completion status takes precedence over deadline i.e. an incomplete task with a later deadline will be placed before a completed task with an earlier deadline.
 
+[Return to Table of Contents](#table-of-contents)
 
 <br>
 
@@ -861,6 +910,7 @@ Format: `sortT`
 
 <br>
 
+<a name="command-parameters-4"></a>
 <!-- The table below is inspired by https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1 -->
 ### Command Parameters
 | Parameter        | Description​                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Examples​             |
@@ -869,6 +919,7 @@ Format: `sortT`
 | `EMPLOYEE_INDEX` | This has slightly different meanings depending on the command that uses this parameter.<br/><br/> `assignP`/`unassignP`:<br/><br/> The index number of the employee as shown in the employee panel.<br/><br/> It should not be more than the number of employees currently shown in the displayed employee panel.<br/><br/> `assignT`:<br/><br/> The index number of the employee as shown in the specified project on the project panel.<br/><br/> It should not be more than the number of employees present in the specified project.<br/><br/> `In all cases`:<br/><br/> It should be a positive integer and it should be less than 1000. | <ul><li>`2`</li></ul> |
 | `TASK_INDEX`     | The index number of the task as shown in the specified project on the project panel.<br/><br/> It should be a positive integer, and should not be more than the number of tasks currently in the specified project. It should be less than 1000.                                                                                                                                                                                                                                                                                                                                                                                              | <ul><li>`3`</li></ul> |
 Note that some of the limits for the parameters stated above are not enforced by the application. You are recommended to follow these limits for the best user experience. We may enforce them in a future iteration.
+[Return to Table of Contents](#table-of-contents)
 
 <br>
 
@@ -886,6 +937,8 @@ Examples:
 * `list` followed by `assignP pr/2 em/1 3` will assign the 1st and 3rd employees to the 2nd project.
 * `findP Capstone` followed by `assignP pr/1 em/1` will assign the 1st employee to the 1st project from the results of the `findP` command.
 
+[Return to Table of Contents](#table-of-contents)
+
 
 ### Un-assign employee(s) from a project: `unassignP`
 
@@ -901,6 +954,8 @@ Format: `unassignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES] ..
 Examples:
 * `list` followed by `unassignP pr/2 em/1 3` will un-assign the 1st and 3rd employees from the 2nd project.
 * `findP Capstone` followed by `unassignP pr/1 em/1` un-assigns the 1st employee from the 1st project from the results of the `findP` command.
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### Assign an employee to a task: `assignT`
@@ -927,6 +982,8 @@ Examples:
 * `listP` followed by `assignT pr/1 t/1 em/2` assigns the first task in the first project to the second employee in the project.
 * `findP Capstone` followed by `assignT pr/2 t/2 em/2` assigns the second task, in the second project from the results of `findP`, to the second employee in the project.
 
+[Return to Table of Contents](#table-of-contents)
+
 
 ### Un-assign an employee from a task: `unassignT`
 
@@ -942,6 +999,7 @@ Examples:
 * `listP` followed by `unassignT pr/1 t/1` un-assigns the first task in the first project from the currently assigned employee.
 * `findP Capstone` followed by `unassignT pr/2 t/2` un-assigns the second task, in the second project from the results of `findP`, from the currently assigned employee.
 
+[Return to Table of Contents](#table-of-contents)
 
 <br>
 
@@ -962,6 +1020,8 @@ If your changes to the data file makes its format invalid, TaskHub will discard 
 More details are provided under the [FAQ Section](#faq). <br>
 
 </div>
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1001,6 +1061,8 @@ The first step is to open the folder that contains all your files related to Tas
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TaskHub home folder.
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
