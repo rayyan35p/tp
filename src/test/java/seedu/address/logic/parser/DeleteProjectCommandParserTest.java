@@ -16,13 +16,13 @@ public class DeleteProjectCommandParserTest {
     Test case design used: Equivalence Partition
 
     EPs for userInput:
-        1. Strings following the format: "deleteP INDEX"
-            with a valid INDEX e.g. "deleteP 1"
+        1. Strings following the format: "INDEX"
+            with a valid INDEX e.g. "1"
 
-        2. Strings following the format: "deleteP INDEX"
-            but without a valid INDEX e.g. "deleteP 0"
+        2. Strings following the format: "INDEX"
+            but without a valid INDEX e.g. "0"
 
-        3. Strings not following the format: "deleteP INDEX" e.g. "aString"
+        3. Strings not following the format: "INDEX" e.g. "aString"
 
      */
     private DeleteProjectCommandParser parser = new DeleteProjectCommandParser();

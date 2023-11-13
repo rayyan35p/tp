@@ -28,19 +28,19 @@ public class AddProjectCommandParserTest {
     Test case design used: Equivalence Partition
 
     EPs for userInput:
-        1. Strings following the format: "n/PROJECT_NAME [em/EMPLOYEE_INDEXES]"
+        1. Strings following the format: " n/PROJECT_NAME [em/EMPLOYEE_INDEXES]"
         where PROJECT_NAME is valid and all INDEXES are positive integers e.g. "n/Alpha em/1 2 3"
 
-        2. Strings following the format: "n/PROJECT_NAME [em/EMPLOYEE_INDEXES]"
+        2. Strings following the format: " n/PROJECT_NAME [em/EMPLOYEE_INDEXES]"
         where the PROJECT_NAME is valid, but not EMPLOYEE_INDEXES e.g. "n/Alpha em/0 3 5"
 
-        3. Strings following the format: "n/PROJECT_NAME [em/EMPLOYEE_INDEXES]"
+        3. Strings following the format: " n/PROJECT_NAME [em/EMPLOYEE_INDEXES]"
         with no EMPLOYEE_INDEXES e.g. "n/Alpha"
 
-        4. Strings following the format: "n/PROJECT_NAME em/[EMPLOYEE_INDEXES]"
+        4. Strings following the format: " n/PROJECT_NAME em/[EMPLOYEE_INDEXES]"
         where EMPLOYEE_INDEXES are valid but PROJECT_NAME is not e.g. "n/Alpha! em/1 2"
 
-        5. Strings not following the format: "n/PROJECT_NAME em/[EMPLOYEE_INDEXES]" e.g. "somerandomtextstring"
+        5. Strings not following the format: " n/PROJECT_NAME em/[EMPLOYEE_INDEXES]" e.g. "somerandomtextstring"
     */
     private AddProjectCommandParser parser = new AddProjectCommandParser();
 
