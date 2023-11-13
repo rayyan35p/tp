@@ -14,6 +14,16 @@ import seedu.address.testutil.ProjectBuilder;
 
 public class ProjectNameContainsKeywordsPredicateTest {
 
+    /*
+    Test case design used: Equivalence Partition
+
+    EPs for predicate:
+    1. Project name contains at least one of the keywords
+    2. Project name contains none of the keywords
+
+    Note: Here, the number of keywords could be any non-negative integer.
+    */
+
     @Test
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
@@ -41,6 +51,7 @@ public class ProjectNameContainsKeywordsPredicateTest {
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
+    // EP used: EP 1
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
@@ -61,6 +72,7 @@ public class ProjectNameContainsKeywordsPredicateTest {
         assertTrue(predicate.test(new ProjectBuilder().withName("Create Website").build()));
     }
 
+    // EP used: EP 2
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
