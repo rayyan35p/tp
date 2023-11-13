@@ -21,12 +21,14 @@ title: User Guide
     * [Clear all entries: `clear`](#clear-all-entries-clear)
     * [Exit the program: `exit`](#exit-the-program-exit)
   * [Employee Commands](#employee-commands)
+    * [Command Parameters](#command-parameters-1)
     * [Add an employee: `addE`](#add-an-employee-adde)
     * [Edit an employee: `editE`](#edit-an-employee-edite)
     * [Delete an employee: `deleteE`](#delete-an-employee-deletee)
     * [List all employees: `listE`](#list-all-employees-liste)
     * [Locate employees by name: `findE`](#locate-employees-by-name-finde)
   * [Project Commands](#project-commands)
+    * [Command Parameters](#command-parameters-2)
     * [Add a new project: `addP`](#add-a-new-project-addp)
     * [Edit a project: `editP`](#edit-a-project-editp)
     * [Delete a project: `deleteP`](#delete-a-project-deletep)
@@ -37,12 +39,14 @@ title: User Guide
     * [List all projects: `listP`](#list-all-projects-listp)
     * [Locate projects by name: `findP`](#locate-projects-by-name-findp)
   * [Task Commands](#task-commands)
+    * [Command Parameters](#command-parameters-3)
     * [Add a new task to a project: `addT`](#add-a-new-task-to-a-project-addt)
     * [Delete a task from a project: `deleteT`](#delete-a-task-from-a-project-deletet)
     * [Mark task(s) as completed: `markT`](#mark-tasks-as-completed-markt)
     * [Mark task(s) as incomplete: `unmarkT`](#mark-tasks-as-incomplete-unmarkt)
     * [Sort tasks by deadline and completion status: `sortT`](#sort-tasks-by-deadline-and-completion-status-sortt)
   * [Assignment Commands](#assignment-commands)
+    * [Command Parameters](#command-parameters-4)
     * [Assign employee(s) to a project: `assignP`](#assign-employees-to-a-project-assignp)
     * [Un-assign employee(s) from a project: `unassignP`](#un-assign-employees-from-a-project-unassignp)
     * [Assign an employee to a task: `assignT`](#assign-an-employee-to-a-task-assignt)
@@ -421,6 +425,7 @@ e.g. if the command specifies `INDEX [MORE_INDEXES]`, it should be entered as `1
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
+[Return to Table of Contents](#table-of-contents)
 
 <br>
 
@@ -462,17 +467,38 @@ Exits the program.
 
 Format: `exit`
 
+[Return to Table of Contents](#table-of-contents)
 
 <br>
 
 ## Employee Commands
 
+<br>
+
+<a name="command-parameters-1"></a>
+<!-- The table below is inspired by https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1 -->
+### Command Parameters
+| Parameter | Description​                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Examples​                                                            |
+|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
+| `NAME`    | The employee's name.<br/><br/> It should only contain alphanumeric characters and spaces.<br/><br/> It should not be blank and should not exceed 80 characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | <ul><li>`John Doe`</li><li>`Vishnu`</li></ul>                        |
+| `PHONE`   | The employee's phone number.<br/><br/> It should only contain numbers.<br/><br/> It should be at least 3 digits long and should not exceed 20 digits.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | <ul><li>`91822213`</li><li>`9313491028503`</li></ul>                 |
+| `EMAIL`   | The employee's email.<br/><br/> It should be of the format **local-part@domain**.<br/><br/> The **local-part** should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-)<br/><br/> This is followed by a **'@'** and then a **domain name**. The **domain name** is made up of **domain labels** separated by periods. The **domain name** must end with a **domain label** at least 2 characters long, have each **domain label** start and end with alphanumeric characters, and have each **domain label** consist of alphanumeric characters, separated only by hyphens, if any.<br/><br/> The total length of the email should not exceed 100 characters. | <ul><li>`john.doe@gmail.com`</li><li>`bernice@hotmail.com`</li></ul> |
+| `ADDRESS` | The employee's address.<br/><br/> It can take any values, and it should not be blank.<br/><br/> It should not exceed more than 100 characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | <ul><li>`Ang Mo Kio Industrial Park 2 #01-1427`</li></ul>            |
+| `TAG`     | The employee's tag(s).<br/><br/> It should only contain alphanumeric characters.<br/><br/> It should not exceed more than 40 characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | <ul><li>`Manager`</li><li>`Team1`</li></ul>                          |
+| `INDEX`   | The index number of the employee as shown in the employee panel.<br/><br/> It should be a positive integer, and should not be more than the number of employees currently shown in the displayed employee panel. It should be less than 1000.                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | <ul><li>`1`</li></ul>                                                |
+| `KEYWORD` | The keyword to find an employee by name.<br/><br/> It should only contain alphanumeric characters and spaces. <br/><br/> It is case-insensitive.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | <ul><li>`Alex`</li><li>`alex yeoh`</li></ul>                         |
+
+Note that some of the limits for the parameters stated above are not enforced by the application. You are recommended to follow these limits for the best user experience. We may enforce them in a future iteration.
+
+[Return to Table of Contents](#table-of-contents)
+
+<br>
 
 ### Add an employee: `addE`
 
 Adds an employee to the employees list.
 
-Format: `addE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `addE n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An employee can have any number of tags (including 0)
@@ -482,6 +508,8 @@ Examples:
 * `addE n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `addE n/Betsy Crowe t/Junior e/betsycrowe@example.com a/Brick street p/91234567 t/Employee`
 
+[Return to Table of Contents](#table-of-contents)
+
 
 ### Edit an employee: `editE`
 
@@ -489,7 +517,9 @@ Edits an existing employee in the TaskHub.
 
 Format: `editE INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed employee list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the employee at the specified `INDEX`.
+* The index refers to the index number shown in the displayed employee panel.
+* The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the employee will be removed i.e. adding of tags is not cumulative.
@@ -500,6 +530,8 @@ Examples:
 *  `editE 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st employee to be `91234567` and `johndoe@example.com` respectively.
 *  `editE 2 n/Betsy Crower t/` Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
 
+[Return to Table of Contents](#table-of-contents)
+
 
 ### Delete an employee: `deleteE`
 
@@ -508,7 +540,7 @@ Deletes the specified employee from the employees list.
 Format: `deleteE INDEX`
 
 * Deletes the employee at the specified `INDEX`.
-* The index refers to the index number shown in the displayed employees list.
+* The index refers to the index number shown in the displayed employee panel.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 <div markdown="block" class="alert alert-danger">
@@ -524,6 +556,8 @@ Examples:
 * `listE` followed by `deleteE 2` deletes the 2nd employee in the employees list.
 * `findE Betsy` followed by `deleteE 1` deletes the 1st employee in the results of the `findE` command.
 
+[Return to Table of Contents](#table-of-contents)
+
 
 ### List all employees: `listE`
 
@@ -532,6 +566,8 @@ Shows a list of all employees in TaskHub.
 ![list example](images/listE.png)
 
 Format: `listE`
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### Locate employees by name: `findE`
@@ -555,37 +591,68 @@ Examples:
 
   ![result for 'findE David'](images/findE.png)
 
+[Return to Table of Contents](#table-of-contents)
 
 <br>
 
 ## Project Commands
 
+<br>
+
+<a name="command-parameters-2"></a>
+<!-- The table below is inspired by https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1 -->
+### Command Parameters
+| Parameter              | Description​                                                                                                                                                                                                                                  | Examples​                                                                |
+|------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| `NAME`/ `PROJECT_NAME` | The project's name.<br/><br/> It should only contain alphanumeric characters and spaces.<br/><br/> It should not be blank and should not exceed 80 characters.                                                                                | <ul><li>`Website Redesign`</li><li>`Market Sentiment Analysis`</li></ul> |
+| `EMPLOYEE_INDEX`       | The index number of the employee as shown in the employee panel.<br/><br/> It should be a positive integer, and should not be more than the number of employees currently shown in the displayed employee panel. It should be less than 1000. | <ul><li>`1`</li></ul>                                                    |
+| `INDEX`                | The index number of the project as shown in the project panel.<br/><br/> It should be a positive integer, and should not be more than the number of projects currently shown in the displayed project panel. It should be less than 1000.     | <ul><li>`2`</li></ul>                                                    |
+| `PRIORITY`             | The project's priority level.<br/><br/> It should only take one of these 3 values: `low`, `normal`, `high`.                                                                                                                                   | <ul><li>`low`</li><li>`high`</li></ul>                                   |
+| `DEADLINE`             | The project's deadline date.<br/><br/> It can either be empty (to indicate that there is no deadline set), or it must be a valid date in the `dd-MM-yyyy` format.                                                                             | <ul><li>`28-02-2024`</li><li>`08-11-2022`</li></ul>                      |
+| `KEYWORD`              | The keyword to find a project by name.<br/><br/> It should only contain alphanumeric characters and spaces. <br/><br/> It is case-insensitive.                                                                                                | <ul><li>`Website`</li><li>`create website`</li></ul>                     |
+
+Note that some of the limits for the parameters stated above are not enforced by the application. You are recommended to follow these limits for the best user experience. We may enforce them in a future iteration.
+
+[Return to Table of Contents](#table-of-contents)
+
+<br>
 
 ### Add a new project: `addP`
 
-Adds a new project in TaskHub
+Adds a new project in TaskHub.
 
-Format: `addP n/PROJECT_NAME [em/EMPLOYEE_INDEXES] ...`
+Format: `addP n/PROJECT_NAME [em/EMPLOYEE_INDEX(ES)]`
 
-* Adds a new project with the employees assigned to the project.
-* Each employee index __must be separated with a space.__
-* The employee must exist in the employees list.
-* There is no deadline by default.
+* Adds a new project with the given name, and assigns employee(s) to this project if `EMPLOYEE_INDEX(ES)` are provided.
+* The index(es) refers to the index number(s) shown in the displayed employee panel.
+* If multiple indexes are provided, each employee index __must be separated by a singular space__.
+* The index(es) **must be a positive integers** 1, 2, 3,...
+* There is no deadline set by default.
 * The priority is `normal` by default.
 * The status is `not completed` by default.
 
+<div markdown="span" class="alert alert-info">
+
+**:information_source: Information:** If the newly added project does not show up in the project panel, try running `list` or `listP`.<br>
+
+</div>
+
 Examples: 
-* `addP n/Project1 em/1` will add `Project1` to the projects list with the employee index 1 assigned to the project.
+* `addP n/Project1 em/1` will add `Project1` to the projects list, and assigns the employee at index 1 currently displayed in the employee panel to this project.
 * `addP n/Project2` will add an empty `Project2` to the projects list.
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### Edit a project: `editP`
 
-Edits an existing project in the TaskHub.
+Edits an existing project in TaskHub.
 
 Format: `editP INDEX [n/NAME] [p/PRIORITY] [d/DEADLINE]`
 
-* Edits the project at the specified `INDEX`. The index refers to the index number shown in the displayed project list. The index must be a positive integer 1, 2, 3, …​
+* Edits the project at the specified `INDEX`.
+* The index refers to the index number shown in the displayed project panel.
+* The index **must be a positive** integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * If a `DEADLINE` date is provided, it must be in the `dd-MM-yyyy` format.
@@ -594,7 +661,9 @@ Format: `editP INDEX [n/NAME] [p/PRIORITY] [d/DEADLINE]`
 
 Examples:
 * `editP 1 n/Market Analysis p/low` Edits the name and priority of the 1st project to `Market Analysis` and `low` respectively.
-* `editP 2 p/high d/` Edits the priority and deadline of the 2nd project to `high` and removes the deadline.
+* `editP 2 p/high d/` Edits 2nd project's priority to `high` and removes the deadline.
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### Delete a project: `deleteP`
@@ -603,7 +672,7 @@ Deletes the specified project from TaskHub.
 
 Format: `deleteP INDEX`
 * Deletes the project at the specified `INDEX`.
-* The index refers to the index number shown in the displayed employees list.
+* The index refers to the index number shown in the displayed project panel.
 * The index __must be a positive integer__ 1, 2, 3,...
 
 <div markdown="block" class="alert alert-danger">
@@ -618,56 +687,66 @@ Format: `deleteP INDEX`
 Examples:
 * `listP` followed by `deleteP 2` deletes the 2nd project in TaskHub.
 
+[Return to Table of Contents](#table-of-contents)
+
 
 ### Mark project(s) as completed: `markP`
 
 Marks the specified project(s) as completed in TaskHub.
 
-Format `markP INDEX [MORE_INDEXES]`
+Format: `markP INDEX [MORE_INDEXES]`
 
 * Marks the project(s) at the specified `INDEX(ES)` as completed.
-* The index(es) refers to the index number shown in the displayed projects list.
-* The index(es) **must be a positive integers** 1, 2, 3,...
+* The index(es) refers to the index number(s) shown in the displayed project panel.
+* If multiple indexes are provided, each index __must be separated by a singular space__.
+* The index(es) **must be a positive integer** 1, 2, 3,...
 
 Examples:
 * `listP` followed by `markP 1 3` marks the 1st and 3rd projects as completed in TaskHub.
 * `findP Capstone` followed by `markP 1` marks the 1st project in the results of the `findP` command as completed.
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### Mark project(s) as incomplete: `unmarkP`
 
 Marks the specified project(s) as incomplete in TaskHub.
 
-Format `unmarkP INDEX [MORE_INDEXES]`
+Format: `unmarkP INDEX [MORE_INDEXES]`
 
 * Marks the project(s) at the specified `INDEX(ES)` as incomplete.
-* The index(es) refers to the index number shown in the displayed projects list.
-* The index(es) **must be a positive integers** 1, 2, 3,...
+* The index(es) refers to the index number(s) shown in the displayed projects panel.
+* If multiple indexes are provided, each index __must be separated by a singular space__.
+* The index(es) **must be a positive integer** 1, 2, 3,...
 
 Examples:
 * `listP` followed by `unmarkP 1 3` marks the 1st and 3rd projects as incomplete in TaskHub.
 * `findP Capstone` followed by `unmarkP 1` marks the 1st project in the results of the `findP` command as incomplete.
 
+[Return to Table of Contents](#table-of-contents)
+
 
 ### Edit deadline of (a) project(s): `dlP`
 
-Edits the deadline of the specified project(s) in the projects list.
+Edits the deadline of the specified project(s) in Taskhub.
 
 Format: `dlP INDEX [MORE_INDEXES] d/[DEADLINE]`
 
 * Edits the deadline of the project(s) at the specified `INDEX(ES)`.
-* The index(es) refers to the index number shown in the displayed projects list.
+* The index(es) refers to the index number(s) shown in the displayed project panel.
+* If multiple indexes are provided, each index __must be separated by a singular space__.
 * The index(es) **must be a positive integer** 1, 2, 3, …
-* DATE refers to the date of the deadline.
 * The `d/` prefix is required, but the `DEADLINE` is optional.
 * If a date is provided, it must be in the `dd-MM-yyyy` format.
-* Existing deadline will be updated to the new deadline.
+* Existing deadline will be updated to the new deadline for each project.
 * To remove the deadline of a project, leave the `DEADLINE` blank.
 
 Examples:
 *  `dlP 2 d/18-01-2022` sets the deadline of the 2nd project to be `18-01-2022`.
 *  `dlP 1 2 d/` removes the deadline of the 1st and 2nd projects.
 *  `findP Infinity` followed by `dlP 1 d/25-11-2024` sets the deadline of the 1st project in the results of the `findP` command to be `25-11-2024`.
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### Prioritise projects: `priorityP`
@@ -676,20 +755,15 @@ Sets a priority for the specified project(s) in TaskHub.
 
 Format: `priorityP INDEX [MORE_INDEXES] p/PRIORITY`
 * Sets the priority of the project(s) at the specified `INDEX(ES)`.
-* The index refers to the index number shown in the displayed projects list.
-* The index __must be a positive integer__ 1, 2, 3,...
-* All projects are set to normal priority by default.
-
-<div markdown="block" class="alert alert-warning">
-
-**:warning: Warning**<br>
-
-The `PRIORITY` must be one of the following: `low`, `normal`, `high`.
-
-</div>
+* The index(es) refers to the index number(s) shown in the displayed project panel.
+* If multiple indexes are provided, each index __must be separated by a singular space__.
+* The index(es) __must be a positive integer__ 1, 2, 3,...
+* The `PRIORITY` must be one of: `low`, `normal` or `high`.
 
 Examples:
 * `listP` followed by `priorityP 1 2 p/high` sets the 1st and 2nd projects as high priority in TaskHub.
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### List all projects: `listP`
@@ -699,6 +773,8 @@ Shows a list of all projects in TaskHub.
 ![list example](images/listP.png)
 
 Format: `listP`
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### Locate projects by name: `findP`
@@ -720,40 +796,61 @@ Examples:
 * `findP market` returns `Market Expansion` <br>
   ![result for 'findP market'](images/findP.png)
 
+[Return to Table of Contents](#table-of-contents)
 
 <br>
 
 ## Task Commands
 
+<br>
+
+<a name="command-parameters-3"></a>
+<!-- The table below is inspired by https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1 -->
+### Command Parameters
+| Parameter        | Description​                                                                                                                                                                                                                                           | Examples​                                                             |
+|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
+| `TASK_NAME`      | The task's name.<br/><br/> It should only contain alphanumeric characters and spaces.<br/><br/> It should not be blank and should not exceed 80 characters.                                                                                            | <ul><li>`Create Wireframes`</li><li>`Responsive Web Design`</li></ul> |
+| `PROJECT_INDEX`  | The index number of the project as shown in the project panel.<br/><br/> It should be a positive integer, and should not be more than the number of projects currently shown in the displayed project panel. It should be less than 1000.              | <ul><li>`1`</li></ul>                                                 |
+| `EMPLOYEE_INDEX` | The index number of the employee as shown in the specified project on the project panel.<br/><br/> It should be a positive integer, and should not be more than the number of employees present in the specified project. It should be less than 1000. | <ul><li>`2`</li></ul>                                                 |
+| `TASK_INDEX`     | The index number of the task as shown in the specified project on the project panel.<br/><br/> It should be a positive integer, and should not be more than the number of tasks currently in the specified project. It should be less than 1000.       | <ul><li>`3`</li></ul>                                                 |
+| `DEADLINE`       | The task's deadline.<br/><br/> It must be a valid date and time in the `dd-MM-yyyy HHmm` format.                                                                                                                                                       | <ul><li>`11-11-2023 2359`</li><li>`28-02-2024 0900`</li></ul>         |
+
+Note that some of the limits for the parameters stated above are not enforced by the application. You are recommended to follow these limits for the best user experience. We may enforce them in a future iteration.
+
+[Return to Table of Contents](#table-of-contents)
+
+<br>
 
 ### Add a new task to a project: `addT`
 
 Adds a new task to the specified project in TaskHub and assigns it to the (optionally) specified employee.
 
-Format `addT pr/PROJECT_INDEX [em/EMPLOYEE_INDEX] n/TASK_NAME d/DEADLINE(dd-MM-yyyy HHmm) `
+Format: `addT n/TASK_NAME pr/PROJECT_INDEX [em/EMPLOYEE_INDEX] d/DEADLINE`
 
 * Adds a new task to the project at the specified `PROJECT_INDEX`.
 * The employee index field is optional - the task will be assigned to the employee at `EMPLOYEE_INDEX` if specified,
 * otherwise it will have no assignee, and `assignT` can be used after that to assign it to an employee.
-* The index(es) **must be positive integers** 1, 2, 3,...
-* The deadline must be in the format `dd-MM-yyyy HHmm`. For example, `11-10-2023 2359` refers to 11th October 2023, 11.59pm.
-* It is possible for the deadline of the task to be after the deadline of the project. There are currently no warnings for such an input so please be careful while inputting your deadline dates.
+* The indexes **must be positive integers** 1, 2, 3,...
+* The deadline must be in the format `dd-MM-yyyy HHmm`.
+* It is possible for the deadline of the task to be after the deadline of the project.
 
 Examples:
 * `listP` followed by `addT pr/1 n/Website d/11-10-2023 2359` adds a task named `Website` with deadline `11-10-2023 2359` to the 1st project.
 * `findP Capstone` followed by `addT pr/1 n/Website d/11-10-2023 2359` adds a task named `Website` with deadline `11-10-2023 2359` to the 1st project from the result of the `findP` command.
 
+[Return to Table of Contents](#table-of-contents)
+
 
 ### Delete a task from a project: `deleteT`
 
-Deletes the specified task(s) from the specified project in TaskHub
+Deletes the specified task(s) from the specified project in TaskHub.
 
-Format `deleteT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
+Format: `deleteT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
 
 * Deletes the tasks at the specified `TASK_INDEX`(es), from the project at the specified `PROJECT_INDEX`.
-* The project index refers to the index number shown in the displayed projects list.
+* The project index refers to the index number shown in the displayed project panel.
 * The task index(es) refer to the index number(s) shown in the task list of the above specified project.
-* The index(es) **must be positive integers** 1, 2, 3,...
+* The indexes **must be positive integers** 1, 2, 3,...
 
 <div markdown="block" class="alert alert-danger">
 
@@ -768,37 +865,45 @@ Examples:
 * `listP` followed by `deleteT pr/1 t/1 3` deletes the 1st and 3rd tasks of the 1st project from TaskHub.
 * `findP Capstone` followed by `deleteT pr/2 t/2` deletes the 2nd task in the 2nd project from the results of the `findP` command.
 
+[Return to Table of Contents](#table-of-contents)
+
 
 ### Mark task(s) as completed: `markT`
 
 Marks the specified task(s) of a specified project as completed in TaskHub.
 
-Format `markT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
+Format: `markT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
 
 * Marks the tasks(s) at the specified `TASK_INDEX`(es), of the project at the specified `PROJECT_INDEX` as completed.
-* The project index refers to the index number shown in the displayed projects list.
+* The project index refers to the index number shown in the displayed project panel.
 * The task index(es) refer to the index number(s) shown in the task list of the above specified project.
-* The index(es) **must be positive integers** 1, 2, 3,...
+* If multiple indexes are provided, each index __must be separated by a singular space__.
+* The indexes **must be positive integers** 1, 2, 3,...
 
 Examples:
 * `listP` followed by `markT pr/1 t/1 3` marks the 1st and 3rd tasks of the 1st project as completed in TaskHub.
 * `findP Capstone` followed by `markT pr/2 t/2` marks the 2nd task in the 2nd project from the results of the `findP` command as completed.
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### Mark task(s) as incomplete: `unmarkT`
 
 Marks the specified task(s) of a specified project as incomplete in TaskHub.
 
-Format `unmarkT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
+Format: `unmarkT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
 
 * Marks the tasks(s) at the specified `TASK_INDEX`(es), of the project at the specified `PROJECT_INDEX` as incomplete.
-* The project index refers to the index number shown in the displayed projects list.
+* The project index refers to the index number shown in the displayed project panel.
 * The task index(es) refer to the index number(s) shown in the task list of the above specified project.
-* The index(es) **must be positive integers** 1, 2, 3,...
+* If multiple indexes are provided, each index __must be separated by a singular space__.
+* The indexes **must be positive integers** 1, 2, 3,...
 
 Examples:
 * `listP` followed by `unmarkT pr/1 t/1 3` marks the 1st and 3rd tasks of the 1st project as incomplete in TaskHub.
 * `findP Capstone` followed by `unmarkT pr/2 t/2` marks the 2nd task in the 2nd project from the results of the `findP` command as incomplete.
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### Sort tasks by deadline and completion status: `sortT`
@@ -811,52 +916,86 @@ Format: `sortT`
 * Incomplete tasks will be placed before completed ones and tasks with an earlier deadline will be placed before those with a later one.
 * Completion status takes precedence over deadline i.e. an incomplete task with a later deadline will be placed before a completed task with an earlier deadline.
 
+[Return to Table of Contents](#table-of-contents)
 
 <br>
 
 ## Assignment Commands
 
+<br>
+
+<a name="command-parameters-4"></a>
+<!-- The table below is inspired by https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1 -->
+### Command Parameters
+| Parameter        | Description​                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Examples​             |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|
+| `PROJECT_INDEX`  | The index number of the project as shown in the project panel.<br/><br/> It should be a positive integer, and should not be more than the number of projects currently shown in the displayed project panel. It should be less than 1000.                                                                                                                                                                                                                                                                                                                                                                                                     | <ul><li>`1`</li></ul> |
+| `EMPLOYEE_INDEX` | This has slightly different meanings depending on the command that uses this parameter.<br/><br/> `assignP`/`unassignP`:<br/><br/> The index number of the employee as shown in the employee panel.<br/><br/> It should not be more than the number of employees currently shown in the displayed employee panel.<br/><br/> `assignT`:<br/><br/> The index number of the employee as shown in the specified project on the project panel.<br/><br/> It should not be more than the number of employees present in the specified project.<br/><br/> `In all cases`:<br/><br/> It should be a positive integer and it should be less than 1000. | <ul><li>`2`</li></ul> |
+| `TASK_INDEX`     | The index number of the task as shown in the specified project on the project panel.<br/><br/> It should be a positive integer, and should not be more than the number of tasks currently in the specified project. It should be less than 1000.                                                                                                                                                                                                                                                                                                                                                                                              | <ul><li>`3`</li></ul> |
+
+Note that some of the limits for the parameters stated above are not enforced by the application. You are recommended to follow these limits for the best user experience. We may enforce them in a future iteration.
+
+[Return to Table of Contents](#table-of-contents)
+
+<br>
+
 
 ### Assign employee(s) to a project: `assignP`
 
-Assigns employee(s) to a project in TaskHub
+Assigns employee(s) to a project in TaskHub.
 
 Format: `assignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES] ...`
-* The employee(s) will be assigned to the project
-* Each employee index __must be separated with a space.__
-* The project and employee index refers to the index number shown in the displayed project and employee list.
+* The employee(s) specified by the `EMPLOYEE_INDEX(ES)` will be assigned to the project specified by the `PROJECT_INDEX`.
+* The project index refers to the index number shown in the displayed project panel.
+* The employee index(es) refer to the index number(s) shown in the displayed employee panel.
+* If multiple indexes are provided, each index __must be separated by a singular space__.
+* The indexes **must be positive integers** 1, 2, 3,...
 
 Examples:
 * `list` followed by `assignP pr/2 em/1 3` will assign the 1st and 3rd employees to the 2nd project.
 * `findP Capstone` followed by `assignP pr/1 em/1` will assign the 1st employee to the 1st project from the results of the `findP` command.
 
+[Return to Table of Contents](#table-of-contents)
+
 
 ### Un-assign employee(s) from a project: `unassignP`
 
-Un-assigns employee(s) from a project in TaskHub
+Un-assigns employee(s) from a project in TaskHub.
 
 Format: `unassignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES] ...`
 
-* The employee(s) will be unassigned from the project
-* Each employee index __must be separated with a space.__
-* The project and employee index refers to the index number shown in the displayed project and employee list.
-* If the employee is assigned to a task within the project, the employee will be unassigned from the task as well.
+* The employee(s) specified by the `EMPLOYEE_INDEX(ES)` will be un-assigned from the project specified by the `PROJECT_INDEX`.
+* The project index refers to the index number shown in the displayed project panel.
+* The employee index(es) refer to the index number(s) shown in the displayed employee panel.
+* If multiple indexes are provided, each index __must be separated by a singular space__.
+* The indexes **must be positive integers** 1, 2, 3,...
+
+<div markdown="block" class="alert alert-warning">
+
+**:warning: Warning**<br>
+
+* If an employee to be unassigned from the project is currently assigned to a task within the project, the employee will be unassigned from the task as well.
+
+</div>
 
 Examples:
 * `list` followed by `unassignP pr/2 em/1 3` will un-assign the 1st and 3rd employees from the 2nd project.
 * `findP Capstone` followed by `unassignP pr/1 em/1` un-assigns the 1st employee from the 1st project from the results of the `findP` command.
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### Assign an employee to a task: `assignT`
 
 Assigns a specified employee in a specified project to a specified task in that project.
 
-Format `assignT pr/PROJECT_INDEX t/TASK_INDEX em/EMPLOYEE_INDEX`
+Format: `assignT pr/PROJECT_INDEX t/TASK_INDEX em/EMPLOYEE_INDEX`
 
-* The project index refers to the index number shown in the displayed projects list.
-* The task index refers to the index number shown in the last list of the above specified project.
-* The employee index refers to the index number of the employee **in the project list**.
-* The index(es) **must be positive integers** 1, 2, 3,...
+* The employee specified by the `EMPLOYEE_INDEX` will be assigned to the task specified by the `TASK_INDEX` in the project specified by the `PROJECT_INDEX`.
+* The project index refers to the index number shown in the displayed project panel.
+* The task index refers to the index number of the task as shown in the **specified project** on the project panel. 
+* The employee index refers to the index number of the employee as shown in the **specified project** on the project panel.
+* The indexes **must be positive integers** 1, 2, 3,...
 
 <div markdown="block" class="alert alert-warning">
 
@@ -871,21 +1010,25 @@ Examples:
 * `listP` followed by `assignT pr/1 t/1 em/2` assigns the first task in the first project to the second employee in the project.
 * `findP Capstone` followed by `assignT pr/2 t/2 em/2` assigns the second task, in the second project from the results of `findP`, to the second employee in the project.
 
+[Return to Table of Contents](#table-of-contents)
+
 
 ### Un-assign an employee from a task: `unassignT`
 
 Un-assigns the currently assigned employee from the specified task in the specified project.
 
-Format `unassignT pr/PROJECT_INDEX t/TASK_INDEX`
+Format: `unassignT pr/PROJECT_INDEX t/TASK_INDEX`
 
-* The project index refers to the index number shown in the displayed projects list.
-* The task index refers to the index number shown in the last list of the above specified project.
-* The index(es) **must be positive integers** 1, 2, 3,...
+* The currently assigned employee, if exists, will be un-assigned from the task specified by the `TASK_INDEX` in the project specified by the `PROJECT_INDEX`.
+* The project index refers to the index number shown in the displayed project panel.
+* The task index refers to the index number of the task as shown in the **specified project** on the project panel.
+* The indexes **must be positive integers** 1, 2, 3,...
 
 Examples:
 * `listP` followed by `unassignT pr/1 t/1` un-assigns the first task in the first project from the currently assigned employee.
 * `findP Capstone` followed by `unassignT pr/2 t/2` un-assigns the second task, in the second project from the results of `findP`, from the currently assigned employee.
 
+[Return to Table of Contents](#table-of-contents)
 
 <br>
 
