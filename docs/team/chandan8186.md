@@ -54,7 +54,7 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added UG introduction.
-    * Added documentation for the above-mentioned features.
+    * Added documentation for the features that I had implemented (mentioned above).
   * Developer Guide:
     * Amended the DG glossary.
     * Updated the Model section to fit our application.
