@@ -12,12 +12,15 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class DeleteProjectCommandParser implements Parser<DeleteProjectCommand> {
     @Override
     public DeleteProjectCommand parse(String userInput) throws ParseException {
-        try {
-            Index index = ParserUtil.parseIndex(userInput);
-            return new DeleteProjectCommand(index);
-        } catch (ParseException pe) {
+
+        try{
+            Integer.parseInt(userInput.replaceFirst("deleteP ","").trim());
+        } catch (NumberFormatException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteProjectCommand.MESSAGE_USAGE), pe);
         }
+        Index index = ParserUtil.parseIndex(userInput);
+        return new DeleteProjectCommand(index);
+
     }
 }
