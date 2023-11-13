@@ -531,6 +531,56 @@ Guarantees: The employee is removed from the list of employees.
 
     Use case ends.
 
+**Use case: UC04 - List all employees**
+
+Guarantees: The list of employees is displayed.
+
+**MSS**
+
+1. User requests to list all employees.
+2. TaskHub displays the list of employees.
+3. TaskHub shows a success message to the User.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters an invalid command.
+  * 1a1. TaskHub shows an error message.
+
+    Use case ends.
+
+**Use case: UC05 - Find an employee by name**
+
+**MSS**
+
+1. User requests to find an employee by name.
+2. TaskHub displays the list of employees with the name.
+3. TaskHub displays the relevant list of projects in which the employee is involved.
+4. TaskHub shows a success message to the User.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters an invalid command.
+  * 1a1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 1b. User does not enter a name.
+  * 1b1. TaskHub shows an error message.
+    
+    Use case ends.
+
+* 1c. User enters a name that does not exist.
+  * 1c1. TaskHub shows a blank list of employees and projects.
+        
+  Use case ends.
+
+
+
+
 
 
 
