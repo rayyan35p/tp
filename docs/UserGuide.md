@@ -274,7 +274,12 @@ and at the bottom of the window, is a link to our user guide.
 
 ## Quick start
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The first step in the Quick Start guide involves `deleteP`, which is irreversible. If you wish to keep the sample data, then you can head straight to the Features section below to figure out TaskHub on your own.
+</div>
+
+<div markdown="span" class="alert alert-warning">
+
+**:warning: Warning:** The first step in the Quick Start guide involves `deleteP`, which is irreversible. If you wish to keep the sample data, then you can head straight to the [Features](#features) section below to figure out TaskHub on your own.
+
 </div>
 
 If you're okay with modifying the sample data, then we'll proceed with our first gist of project management with TaskHub. Time is ticking!
@@ -314,7 +319,7 @@ Here are his details:
 Let's run the following command to add him to your team of [`Employees`](#employees).
 
 ```
-addE n/Anton Tan p/98765432 e/anton@mail.com a/Anton Street, block 123, #01-01 t/TeamPlayer Hardworking
+addE n/Anton Tan p/98765432 e/anton@mail.com a/Anton Street, block 123, #01-01 t/TeamPlayer t/Hardworking
 ```
 
 You should get the following response:
