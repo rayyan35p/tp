@@ -46,7 +46,8 @@ My code contributions to TaskHub can be found [here](https://nus-cs2103-ay2324s1
 - **Implementation Section**
   - Upgraded Help Feature
   - Add Task feature (created sequence diagram for this)
-####Contributions to team-based tasks:
+
+#### Contributions to team-based tasks:
 - Set up the GitHub team org/repo
 - Updated diagrams in DG related to Tasks
 - Created tags to help with bug triaging post PE-D
