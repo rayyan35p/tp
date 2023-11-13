@@ -3,7 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -21,7 +23,7 @@ public class DeleteProjectCommand extends Command {
             + ": Deletes the project identified by the index number used in the displayed project list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
-
+    private static final Logger logger = LogsCenter.getLogger(DeadlineProjectCommand.class);
     public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "Deleted Project: %1$s";
 
     private final Index targetIndex;
@@ -33,6 +35,7 @@ public class DeleteProjectCommand extends Command {
         requireNonNull(model);
         List<Project> lastShownList = model.getFilteredProjectList();
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            logger.warning("Invalid project index: " + targetIndex.getOneBased());
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
         Project projectToDelete = lastShownList.get(targetIndex.getZeroBased());
