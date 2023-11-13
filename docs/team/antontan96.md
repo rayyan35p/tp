@@ -47,4 +47,7 @@ Given below are my contributions to the project.
 * **Team-based Tasks**:
   * Submitted product concept and User Guide draft.
 
+* **Contributions beyond the project Team**:
+  * Started a discussion on how Scanners worked in Java [here](https://github.com/nus-cs2103-AY2324S1/forum/issues/55)
+
 
