@@ -446,12 +446,27 @@ Format: `exit`
 
 ## Employee Commands
 
+<br>
+
+<!-- The table below is inspired by https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1 -->
+### Command Parameters
+| Parameter | Description​                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Examples​                                                            |
+|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
+| `NAME`    | The employee's name.<br/><br/> It should only contain alphanumeric characters and spaces.<br/><br/> It should not be blank and should not exceed 80 characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | <ul><li>`John Doe`</li><li>`Vishnu`</li></ul>                        |
+| `PHONE`   | The employee's phone number.<br/><br/> It should only contain numbers.<br/><br/> It should be at least 3 digits long and should not exceed 20 digits.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | <ul><li>`91822213`</li><li>`9313491028503`</li></ul>                 |
+| `EMAIL`   | The employee's email.<br/><br/> It should be of the format **local-part@domain**.<br/><br/> The **local-part** should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-)<br/><br/> This is followed by a **'@'** and then a **domain name**. The **domain name** is made up of **domain labels** separated by periods. The **domain name** must end with a **domain label** at least 2 characters long, have each **domain label** start and end with alphanumeric characters, and have each **domain label** consist of alphanumeric characters, separated only by hyphens, if any.<br/><br/> The total length of the email should not exceed 100 characters. | <ul><li>`john.doe@gmail.com`</li><li>`bernice@hotmail.com`</li></ul> |
+| `ADDRESS` | The employee's address.<br/><br/> It can take any values, and it should not be blank.<br/><br/> It should not exceed more than 100 characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | <ul><li>`Ang Mo Kio Industrial Park 2 #01-1427`</li></ul>            |
+| `TAG`     | The employee's tag(s).<br/><br/> It should only contain alphanumeric characters.<br/><br/> It should not exceed more than 40 characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | <ul><li>`Manager`</li><li>`Team1`</li></ul>                          |
+| `INDEX`   | The index number of the employee as shown in the employee panel.<br/><br/> It should be a positive integer, and should not be more than the number of employees currently shown in the displayed employee panel. It should be less than 1000.                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | <ul><li>`1`</li></ul>                                                |
+| `KEYWORD` | The keyword to find an employee by name.<br/><br/> It should only contain alphanumeric characters and spaces. <br/><br/> It is case-insensitive.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | <ul><li>`Alex`</li><li>`alex yeoh`</li></ul>                         |
+Note that some of the limits for the parameters stated above are not enforced by the application. You are recommended to follow these limits for the best user experience. We may enforce them in a future iteration.
+<br>
 
 ### Add an employee: `addE`
 
 Adds an employee to the employees list.
 
-Format: `addE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `addE n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An employee can have any number of tags (including 0)
@@ -539,6 +554,21 @@ Examples:
 
 ## Project Commands
 
+<br>
+
+<!-- The table below is inspired by https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1 -->
+### Command Parameters
+| Parameter              | Description​                                                                                                                                                                                                                                        | Examples​                                                                |
+|------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| `NAME`/ `PROJECT_NAME` | The project's name.<br/><br/> It should only contain alphanumeric characters and spaces.<br/><br/> It should not be blank and should not exceed 80 characters.                                                                                      | <ul><li>`Website Redesign`</li><li>`Market Sentiment Analysis`</li></ul> |
+| `EMPLOYEE_INDEXES`     | The index number(s) of the employee(s) as shown in the employee panel.<br/><br/> It should be a positive integer, and should not be more than the number of employees currently shown in the displayed employee panel. It should be less than 1000. | <ul><li>`1`</li></ul>                                                    |
+| `INDEX`                | The index number of the project as shown in the project panel.<br/><br/> It should be a positive integer, and should not be more than the number of projects currently shown in the displayed project panel. It should be less than 1000.           | <ul><li>`2`</li></ul>                                                    |
+| `PRIORITY`             | The project's priority level.<br/><br/> It should only take one of these 3 values: `low`, `normal`, `high`.                                                                                                                                         | <ul><li>`low`</li><li>`high`</li></ul>                                   |
+| `DEADLINE`             | The project's deadline date.<br/><br/> It can either be empty (to indicate that there is no deadline set), or it must be a valid date in the `dd-MM-yyyy`` format.                                                                                  | <ul><li>`28-02-2024`</li><li>`08-11-2022`</li></ul>                      |
+| `KEYWORD`              | The keyword to find a project by name.<br/><br/> It should only contain alphanumeric characters and spaces. <br/><br/> It is case-insensitive.                                                                                                      | <ul><li>`Website`</li><li>`create website`</li></ul>                     |
+Note that some of the limits for the parameters stated above are not enforced by the application. You are recommended to follow these limits for the best user experience. We may enforce them in a future iteration.
+
+<br>
 
 ### Add a new project: `addP`
 
@@ -557,7 +587,7 @@ Examples:
 * `addP n/Project1 em/1` will add `Project1` to the projects list with the employee index 1 assigned to the project.
 * `addP n/Project2` will add an empty `Project2` to the projects list.
 
-
+  
 ### Edit a project: `editP`
 
 Edits an existing project in the TaskHub.
@@ -704,6 +734,19 @@ Examples:
 
 ## Task Commands
 
+<br>
+
+<!-- The table below is inspired by https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1 -->
+### Command Parameters
+| Parameter        | Description​                                                                                                                                                                                                                                           | Examples​                                                             |
+|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
+| `PROJECT_INDEX`  | The index number of the project as shown in the project panel.<br/><br/> It should be a positive integer, and should not be more than the number of projects currently shown in the displayed project panel. It should be less than 1000.              | <ul><li>`1`</li></ul>                                                 |
+| `EMPLOYEE_INDEX` | The index number of the employee as shown in the specified project on the project panel.<br/><br/> It should be a positive integer, and should not be more than the number of employees present in the specified project. It should be less than 1000. | <ul><li>`2`</li></ul>                                                 |
+| `TASK_INDEX`     | The index number of the task as shown in the specified project on the project panel.<br/><br/> It should be a positive integer, and should not be more than the number of tasks currently in the specified project. It should be less than 1000.       | <ul><li>`3`</li></ul>                                                 |
+| `TASK_NAME`      | The task's name.<br/><br/> It should only contain alphanumeric characters and spaces.<br/><br/> It should not be blank and should not exceed 80 characters.                                                                                            | <ul><li>`Create Wireframes`</li><li>`Responsive Web Design`</li></ul> |
+| `DEADLINE`       | The task's deadline.<br/><br/> It must be a valid date and time in the `dd-MM-yyyy HHmm` format.                                                                                                                                                       | <ul><li>`11-11-2023 2359`</li><li>`28-02-2024 0900`</li></ul>         |
+Note that some of the limits for the parameters stated above are not enforced by the application. You are recommended to follow these limits for the best user experience. We may enforce them in a future iteration.
+<br>
 
 ### Add a new task to a project: `addT`
 
@@ -794,6 +837,19 @@ Format: `sortT`
 <br>
 
 ## Assignment Commands
+
+<br>
+
+<!-- The table below is inspired by https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1 -->
+### Command Parameters
+| Parameter        | Description​                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Examples​             |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|
+| `PROJECT_INDEX`  | The index number of the project as shown in the project panel.<br/><br/> It should be a positive integer, and should not be more than the number of projects currently shown in the displayed project panel. It should be less than 1000.                                                                                                                                                                                                                                                                                                                                                                                                     | <ul><li>`1`</li></ul> |
+| `EMPLOYEE_INDEX` | This has slightly different meanings depending on the command that uses this parameter.<br/><br/> `assignP`/`unassignP`:<br/><br/> The index number of the employee as shown in the employee panel.<br/><br/> It should not be more than the number of employees currently shown in the displayed employee panel.<br/><br/> `assignT`:<br/><br/> The index number of the employee as shown in the specified project on the project panel.<br/><br/> It should not be more than the number of employees present in the specified project.<br/><br/> `In all cases`:<br/><br/> It should be a positive integer and it should be less than 1000. | <ul><li>`2`</li></ul> |
+| `TASK_INDEX`     | The index number of the task as shown in the specified project on the project panel.<br/><br/> It should be a positive integer, and should not be more than the number of tasks currently in the specified project. It should be less than 1000.                                                                                                                                                                                                                                                                                                                                                                                              | <ul><li>`3`</li></ul> |
+Note that some of the limits for the parameters stated above are not enforced by the application. You are recommended to follow these limits for the best user experience. We may enforce them in a future iteration.
+
+<br>
 
 
 ### Assign employee(s) to a project: `assignP`
