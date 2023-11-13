@@ -606,3 +606,37 @@ We plan to allow multiple spaces between indexes to be handled automatically ins
 6. Employee names currently cannot contain special characters, as the validation for this is too strict.
 A name such as `Vishnu S/O Prasath` cannot be added to the employee list, even though it could be a valid name.
 We plan to allow some special characters, such as `/` and `-`, to be used in an employee's name.
+
+
+## **Appendix: Effort**
+
+### **Difficulty Level**
+
+Building TaskHub was of moderate to high difficulty for our team due to the following reasons:
+
+- we had to build on top of an existing, brownfield project, the codebase of which we were not familiar with
+- it was our first time working with Java and JavaFX in a software engineering context
+- we created two more model components (`Project`s and `Task`s) with dependencies among each other and with `Employee`s
+
+### **Challenges Faced**
+
+We had encountered the following challenges during the process of building TaskHub:
+
+- Refactoring the AB3 codebase to fit TaskHub's requirements
+  - Although refactoring was not as difficult as creating new features, it did take a while due to the size of AB3's codebase. Specifically, we refactored `Person`s to `Employee`s, as well as the product name from AB3 to TaskHub.
+- Morphing `Remark`s into `Project`s
+  - In keeping with the evolutionary style of the tP, we decided to morph `Remark` from the Remark tutorial into `Project`. This was especially challenging due to the vast differences between how both of them were structured/meant to behave.
+- Introducing `Task`s along with its dependencies
+  - We felt that this was one of the most challenging parts of our project since this third entity introduced additional dependencies and opened our project up to more potential bugs. Implementing the user interface components for `Task`s was also not easy as they had to be made simple yet descriptive for the user.
+
+
+### **Effort Required**
+
+Given the above difficulties and challenges, due to the two additional entities of `Project` and `Task` (on top of AB3's `Person`) along with all of their attributes (e.g. `Deadline`, `Priority` and `CompletionStatus`), a considerable amount of effort was put in to manage the additional dependencies and conduct additonal unit/integration testing.
+
+
+### **Achievements**
+
+- Built a comprehensive but easy-to-understand user interface for `Employee`s, `Project`s and `Task`s
+- Introduced new features that were previously not included in AB3, such as sorting tasks according to deadline and completion status
+
