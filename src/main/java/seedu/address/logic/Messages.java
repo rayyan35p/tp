@@ -71,7 +71,7 @@ public class Messages {
         builder.append("Name: " + project.getName());
         builder.append("; Completed? " + (project.getCompletionStatus().isCompleted ? "Yes" : "No"));
         builder.append("; Deadline: " + (project.getDeadline().value.isEmpty() ? "Not set" : project.getDeadline()));
-        builder.append("; Priority: " + project.getPriority().value + "\n");
+        builder.append("; Priority: " + project.getPriority().getValue() + "\n");
         builder.append("Members: ");
 
         List<Employee> employees = project.getEmployees().asUnmodifiableObservableList();
