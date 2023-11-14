@@ -16,6 +16,19 @@ public class UnmarkProjectCommandParserTest {
 
     private UnmarkProjectCommandParser parser = new UnmarkProjectCommandParser();
 
+    /*
+    Test case design used: Equivalence Partition
+
+    EPs for userInput:
+    1. Strings following the format: "INDEX [MORE_INDEXES]"
+    where there are multiple positive integers
+        e.g. "1 2"
+
+    2. Strings following the format: "INDEX [MORE_INDEXES]"
+    where there is a non-integer
+        e.g. "a"
+    */
+
     @Test
     public void parse_validIndexes_success() {
         List<Index> indexes = new ArrayList<>();
