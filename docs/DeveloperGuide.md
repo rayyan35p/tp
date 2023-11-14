@@ -1209,6 +1209,8 @@ Given below are instructions to test the app manually.
 
 If there are no prerequisites stated, all you have to do is just open TaskHub and you can use the sample data.
 
+You can reset the sample data by deleting `taskhub.json` in the `data` folder and relaunching TaskHub.
+
 The testcases should also be done separately and not in sequence, i.e. The results of a testcase may affect the next testcase if the changes are not reversed.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
@@ -1301,14 +1303,16 @@ testers are expected to do more *exploratory* testing.
 ### Editing an employee
 
 1. Edit an employee
-   
-   1. Test Case: `editE 1 p/91234567 e/johndoe@example.com`<br>
+
+   1. Prerequisite: There mst be employees present in the displayed employee list.
+
+   2. Test Case: `editE 1 p/91234567 e/johndoe@example.com`<br>
       Expected: Edits the phone number and email address of the 1st employee to be 91234567 and johndoe@example.com respectively.
    
-   2. Test Case: `editE 2 t/`<br>
+   3. Test Case: `editE 2 t/`<br>
       Expected: Removes all existing tags of the 2nd employee.
 
-   3. Test Case: `editE 1`<br>
+   4. Test Case: `editE 1`<br>
       Expected: No employees edited and an error message indicating that at least one of the fields to edit must be provided is returned.
 
 ### Deleting an employee
@@ -1421,10 +1425,10 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisite: There must be projects present in the displayed project list.
 
    2. Test case: `unmarkP 1 2 3`<br>
-      Expected: Unmarks projects at indexes 1, 2, 3 as incomplete and returns the corresponding message to the user.
+      Expected: Marks projects at indexes 1, 2, 3 as incomplete and returns the corresponding message to the user.
 
    3. Test case: `unmarkP 0`<br>
-      Expected: No project is unmarked and an error message indicating the index provided was not a positive non-zero integer is returned.
+      Expected: No project is marked as incomplete and an error message indicating the index provided was not a positive non-zero integer is returned.
 
 ### Editing deadline of project(s)
 
@@ -1499,7 +1503,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisite: There must be projects present in the displayed project list and if you want to simultaneously assign an employee to the task, they must also be assigned to the project.
 
    2. Test case: `addT pr/1 em/1 n/Website d/11-10-2023 2359`<br>
-      Expected: A task named "Website" is added to the first project, with deadline "11-10-2023 2359", and the employee indexed at 1 in the employee list is assigned to it. The corresponding message is also returned to the user.
+      Expected: A task named "Website" is added to the first project, with deadline "11-10-2023 11:59PM", and the employee indexed at 1 in the employee list is assigned to it. The corresponding message is also returned to the user.
 
    3. Test case: `addT pr/1 n/Website d/11-10-2023 2359`<br>
       Expected: Same as previous but without the employee assigned.
