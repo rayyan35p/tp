@@ -205,7 +205,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Upgraded help feature 
+### Upgraded Help Feature 
 In the `initialize()` method of the `HelpWindow` class, commands are organized into different categories using HashMaps. Here's an explanation:
 
 ```java
@@ -235,7 +235,7 @@ This code structure efficiently organizes commands into distinct sections, makin
 An alternative imeplementation of `HelpWindow` could be to store each command format and description in a centralized database, and retrieve the data from there to be displayed in the HelpWindow, rather than to have to modify the code in `HelpWindow` separately when there is a change in the formats/descriptions.
 
 
-### Add Project feature
+### Add Project Feature
 
 When creating a new project from the `addP` command, each `Employee` that is to be added to the `Project` is updated to have an empty `Project`. This is to avoid cyclic dependency between an `Employee` and a `Project`.
 
@@ -310,7 +310,7 @@ the model's `FilteredEmployeeList` is updated through `ModelManager`.
 Step 7. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`.
 
 
-### Mark Projects feature
+### Mark Projects Feature
 
 Execution of the `markP` command will result in each `Project` being marked as completed. This is done by setting each `Project`'s `isCompleted` attribute to `true`.
 
@@ -320,7 +320,7 @@ Given below is an example usage scenario and the internal changes that happen at
 
 Step 1. The user launches the application. All employees and projects will be shown to the user.
 
-Step 2. The user executes `markP 1 3` to mark the 1st and 3rd `Project` on the shown list as completed. `LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to a `MarkProjectParser`.
+Step 2. The user executes `markP 1 3` to mark the 1st and 3rd `Project` on the shown list as completed. `LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to a `MarkProjectCommandParser`.
 
 Step 3. `TaskHubParser` will call `MarkProjectParser#parse(arguments)` to produce a `MarkProjectCommand` to be executed by the `LogicManager`.
 
@@ -330,9 +330,33 @@ Step 5. During the execution of the `MarkProjectCommand`, a new `Project` object
 
 Step 6. A `CommandResult` is produced based on whether the execution was a success or not and returned to the `LogicManager`.
 
-A similar sequence of events will occur when executing the `unmarkP` command, except that the `isCompleted` attribute of each `Project` will be set to `false` instead of `true`.
+A similar sequence of events will occur when executing the `unmarkP` command, except that the `isCompleted` attribute of each `Project` will be set to `false` instead of `true` in step 5.
 
-### Add Task feature
+
+### Set Deadline for Project Feature
+
+The deadline of a `Project` can be set using the `editP` or the `dlP` commands.
+The former is used when you only want to edit 1 project, while the latter is used when you want to edit the deadlines of 1 or more projects.
+In this context, we shall use the `dlP` command to edit the deadline of 1 project for ease of explanation.
+
+Step 1. The user launches the application. All employees and projects will be shown to the user.
+
+Step 2. The user executes `dlP 1 d/11-11-2023` to set the deadline of the 1st project to 11 November 2023. `LogicManager` will call `TaskHubParser#parse(input)` to extract the parameters and pass it to a `DeadlineProjectCommandParser`.
+
+Step 3. `TaskHubParser` will call `DeadlineProjectCommandParser#parse(arguments)` to produce a `DeadlineProjectCommand` to be executed by the `LogicManager`.
+
+Step 4. `LogicManager` calls `DeadlineProjectCommand#execute(model)` to produce a `CommandResult`.
+
+Step 5. During the execution of the `DeadlineProjectCommand`, a new `Project` object is created with the same details as the project whose deadline is supposed to be changed, except that the deadline is now 11 November 2023.
+
+Step 6. The model is updated accordingly through `ModelManager` by replacing the old project with the new project with the updated deadline.
+
+The following activity diagram summarises the steps taken to set the deadline of a project, from the user's perspective:
+
+![SetDeadlineActivityDiagram](images/SetDeadlineActivityDiagram.png)
+
+
+### Add Task Feature
 ![AddTSequenceDiagram](images/AddTSequenceDiagram.png)
 
 
