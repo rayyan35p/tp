@@ -1,0 +1,26 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+:User executes command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([d/ prefix present])
+    if () then ([d/ field empty])
+        : Remove existing Deadline
+         from Project;
+    else ([else])
+        if () then ([d/ field is valid date)
+            : Add Deadline to Project;
+        else ([else])
+            : Invalid Deadline error;
+        endif
+    endif
+else ([else])
+    : Invalid Command Format error;
+endif
+stop
+@enduml
