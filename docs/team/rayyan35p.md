@@ -23,16 +23,15 @@ Given below are my contributions to the project.
 * **Project management**:
     * Managed release `v1.2.1` on GitHub
 
-* **Enhancements to existing features**:
-
 * **Documentation**:
     * User Guide:
         * Added documentation for the features `priorityP`, `assignT` and `uassignT` [\#160](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/160)
         * Updated the UG to replace outdated information and screenshots with updated TaskHub information [\#181](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/181)
+        * Restructured the UG to be more user-friendly and informative [\#240](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/240)
     * Developer Guide:
         * Added non-functional requirements.
         * Added implementation details of the `priorityP` feature.
-        * Added instructions for manual testing for all the TaskHub commands. [\#264](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/264)
+        * Added instructions for manual testing for **all** the TaskHub commands [\#264](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/264)
 
 * **Team-based Tasks**:
     * PRs reviewed (with non-trivial review comments): [\#130](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/130), [\#138](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/138), [\#154](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/154)
