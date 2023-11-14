@@ -1154,7 +1154,7 @@ This use case is also applicable to editing **priority** of multiple projects.
 
     Use case ends.
 
-**Use case: UC24 - Clear all data **
+**Use case: UC24 - Clear all data**
 
 **MSS**
 
@@ -1164,7 +1164,7 @@ This use case is also applicable to editing **priority** of multiple projects.
 
     Use case ends.
 
-**Use case: UC25 - Exit the application **
+**Use case: UC25 - Exit the application**
 
 **MSS**
 
