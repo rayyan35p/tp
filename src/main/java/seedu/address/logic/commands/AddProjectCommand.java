@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -28,6 +30,7 @@ public class AddProjectCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New project added: %1$s";
     public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the TaskHub";
+    private static final Logger logger = LogsCenter.getLogger(DeadlineProjectCommand.class);
 
     private final Project toAdd;
     private final List<Index> employeeIndexes;
@@ -46,9 +49,7 @@ public class AddProjectCommand extends Command {
         requireNonNull(model);
         List<Employee> lastShownList = model.getFilteredEmployeeList();
         for (Index targetIndex : employeeIndexes) {
-            if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
-            }
+            employeeIsInList(targetIndex.getZeroBased(), lastShownList.size());
             Employee employeeToAdd = lastShownList.get(targetIndex.getZeroBased());
             toAdd.addEmployee(employeeToAdd);
         }
@@ -59,6 +60,13 @@ public class AddProjectCommand extends Command {
 
         model.addProject(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+    }
+
+    private void employeeIsInList(int target, int size) throws CommandException {
+        if (target >= size) {
+            logger.warning("Invalid employee index: " + (target + 1));
+            throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+        }
     }
 
     @Override

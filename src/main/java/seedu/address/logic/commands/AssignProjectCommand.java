@@ -6,7 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EMPLOYEES;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -32,7 +34,7 @@ public class AssignProjectCommand extends Command {
 
     public static final String MESSAGE_ADD_PROJECT_SUCCESS = "Member(s) have been assigned!\n%1$s";
 
-
+    private static final Logger logger = LogsCenter.getLogger(DeadlineProjectCommand.class);
     private final Index projectIndex;
     private final List<Index> employeeIndexes;
 
@@ -51,16 +53,12 @@ public class AssignProjectCommand extends Command {
         List<Employee> lastShownEmployeeList = model.getFilteredEmployeeList();
         List<Project> lastShownProjectList = model.getFilteredProjectList();
 
-        if (projectIndex.getZeroBased() >= lastShownProjectList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
-        }
+        projectIsInList(projectIndex.getZeroBased(), lastShownProjectList.size());
 
         Project projectToEdit = lastShownProjectList.get(projectIndex.getZeroBased());
         Project editedProject = new Project(projectToEdit);
         for (Index employeeIndex : employeeIndexes) {
-            if (employeeIndex.getZeroBased() >= lastShownEmployeeList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
-            }
+            employeeIsInList(employeeIndex.getZeroBased(), lastShownEmployeeList.size());
             Employee employeeToAdd = lastShownEmployeeList.get(employeeIndex.getZeroBased());
             if (!editedProject.getEmployees().contains(employeeToAdd)) {
                 editedProject.getEmployees().add(employeeToAdd);
@@ -73,6 +71,19 @@ public class AssignProjectCommand extends Command {
         return new CommandResult(generateSuccessMessage(editedProject));
     }
 
+    private void employeeIsInList(int target, int size) throws CommandException {
+        if (target >= size) {
+            logger.warning("Invalid employee index: " + (target + 1));
+            throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+        }
+    }
+
+    private void projectIsInList(int target, int size) throws CommandException {
+        if (target >= size) {
+            logger.warning("Invalid project index: " + (target + 1));
+            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+        }
+    }
     /**
      * Generates a command execution success message based on whether
      * the employees are added to a project.
