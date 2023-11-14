@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `chandan_ab@u.nus.edu`
 
 ## Project team
 
@@ -17,6 +17,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/antontan96.md)]
 
 * Role: Developer
+* Responsibilities:
+  * Co-ordinate product design
 
 ### Aslam
 
@@ -26,7 +28,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/aslam341.md)]
 
 * Role: Developer
-* Responsibilities: Features
+* Responsibilities:
+  * Ensure code quality, standard and correctness
 
 ### Chandan
 
@@ -34,9 +37,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/Chandan8186)] 
 [[portfolio](team/chandan8186.md)]
-[[email](mailto:chandan_ab@u.nus.edu)]
 
 * Role: Developer
+* Responsibilities: 
+  * Manage and verify product releases
 
 ### Rayyan Ismail
 
@@ -46,6 +50,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/rayyan35p.md)]
 
 * Role: Developer
+* Responsibilities:
+  * Ensure team meets deadlines for deliverables
 
 ### Timothy Leow
 
@@ -55,4 +61,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/timleow.md)]
 
 * Role: Developer
-* Responsibilities: Implement Help Pop-Up and updating User profile, value proposition in Developer Guide
+* Responsibilities:
+  * Manage bug triaging
+
