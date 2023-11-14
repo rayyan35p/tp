@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* The command parameter tables in our User Guide was inspired by a similar table from a different team [W08-1](https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1), who is also taking this module presently, although our content is very different due to the different nature of our products. 
 
 --------------------------------------------------------------------------------------------------------------------
 
