@@ -1649,9 +1649,9 @@ Nonetheless, we plan to add an error message to be displayed to the user saying 
 
 Building TaskHub was of moderate to high difficulty for our team due to the following reasons:
 
-- we had to build on top of an existing, brownfield project, the codebase of which we were not familiar with
-- it was our first time working with Java and JavaFX in a software engineering context
-- we created two more model components (`Project`s and `Task`s) with dependencies among each other and with `Employee`s
+- We had to build on top of an existing, brownfield project, the codebase of which we were not familiar with
+- It was our first time working with Java and JavaFX in a software engineering context
+- We created two more model components (`Project`s and `Task`s) with dependencies among each other and with `Employee`s
 
 ### **Challenges Faced**
 
