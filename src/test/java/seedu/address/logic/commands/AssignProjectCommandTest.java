@@ -21,18 +21,24 @@ import seedu.address.model.UserPrefs;
 import seedu.address.testutil.ProjectBuilder;
 
 public class AssignProjectCommandTest {
+
+    // Test Heuristic used: No More Than One Invalid Input In A Test Case
     private Model model = new ModelManager(getTypicalTaskHub(), new UserPrefs());
 
+    // Invalid input: null Project Index
     @Test
     public void constructor_nullProjectIndex_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AssignProjectCommand(null, new ArrayList<>()));
     }
 
+    // Invalid input: null Employee Index
     @Test
     public void constructor_nullEmployeeIndexes_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AssignProjectCommand(Index.fromOneBased(1),
                                                                     null));
     }
+
+    // Invalid input: none (success)
     @Test
     public void execute_validInputs_success() {
 
@@ -48,6 +54,7 @@ public class AssignProjectCommandTest {
         assertCommandSuccess(assignProjectCommand, model, expectedMessage, expectedModel);
     }
 
+    // Invalid Input: Employee Index out of Bounds
     @Test
     public void execute_employeeIndexOutOfBounds_throwsException() {
         Index outOfBoundsIndex = Index.fromOneBased(999);
@@ -55,6 +62,17 @@ public class AssignProjectCommandTest {
                 new AssignProjectCommand(Index.fromOneBased(1),
                         new ArrayList<>(Arrays.asList(outOfBoundsIndex)));
         assertThrows(CommandException.class, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX, () ->
+                assignProjectCommand.execute(model));
+    }
+
+    // Invalid Input: Project Index out of Bounds
+    @Test
+    public void execute_projectIndexOutOfBounds_throwsException() {
+        Index outOfBoundsIndex = Index.fromOneBased(999);
+        AssignProjectCommand assignProjectCommand =
+                new AssignProjectCommand(outOfBoundsIndex,
+                        new ArrayList<>(Arrays.asList(Index.fromZeroBased(0))));
+        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX, () ->
                 assignProjectCommand.execute(model));
     }
 

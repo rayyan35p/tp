@@ -17,8 +17,14 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.project.Project;
 
+
 public class DeleteProjectCommandTest {
+
+    // Test Heuristic used: No More Than One Invalid Input In A Test Case
     private Model model = new ModelManager(getTypicalTaskHub(), new UserPrefs());
+
+
+    // Invalid input: none (success)
     @Test
     public void execute_validInputs_success() {
         Project projectToDelete = model.getFilteredProjectList().get(INDEX_FIRST_EMPLOYEE.getZeroBased());
@@ -33,6 +39,7 @@ public class DeleteProjectCommandTest {
         assertCommandSuccess(deleteProjectCommand, model, expectedMessage, expectedModel);
     }
 
+    // Invalid input: Project index out of Bounds
     @Test
     public void execute_invalidIndex_exceptionThrown() {
         DeleteProjectCommand deleteProjectCommand = new DeleteProjectCommand(Index.fromOneBased(99));

@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ReadOnlyTaskHub;
@@ -28,30 +29,49 @@ import seedu.address.testutil.ProjectBuilder;
 
 public class AddProjectCommandTest {
 
+    // Heuristic applied: No More Than One Invalid Input In A Test Case
+
+    // Invalid input: null Project
     @Test
     public void constructor_nullProject_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddProjectCommand(null, null));
     }
 
+    //Invalid input: none (successful test)
     @Test
     public void execute_projectAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingProjectAdded modelStub = new ModelStubAcceptingProjectAdded();
         Project validProject = new ProjectBuilder().withEmployees().build();
-
-        CommandResult commandResult = new AddProjectCommand(validProject, new ArrayList<>()).execute(modelStub);
+        ArrayList<Index> validIndex = new ArrayList<>();
+        validIndex.add(Index.fromOneBased(1));
+        CommandResult commandResult = new AddProjectCommand(validProject, validIndex).execute(modelStub);
 
         assertEquals(String.format(AddProjectCommand.MESSAGE_SUCCESS, Messages.format(validProject)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validProject), modelStub.projectsAdded);
     }
 
+    // Invalid input: Project name exists in TaskHub
     @Test
-    public void execute_duplicateEmployee_throwsCommandException() {
+    public void execute_duplicateProject_throwsCommandException() {
         Project validProject = new ProjectBuilder().build();
         AddProjectCommand addProjectCommand = new AddProjectCommand(validProject, new ArrayList<>());
         ModelStub modelStub = new ModelStubWithProject(validProject);
 
         assertThrows(CommandException.class, MESSAGE_DUPLICATE_PROJECT, () ->
+                addProjectCommand.execute(modelStub));
+    }
+
+    // Invalid input: Employee index does not exist in TaskHub
+    @Test
+    public void execute_addNonExistentEmployee_throwsCommandException() {
+        Project project = new ProjectBuilder().build();
+        ArrayList<Index> invalidIndex = new ArrayList<>();
+        ModelStub modelStub = new ModelStubWithProject(project);
+        invalidIndex.add(Index.fromZeroBased(modelStub.getFilteredEmployeeList().size()));
+        AddProjectCommand addProjectCommand = new AddProjectCommand(project, invalidIndex);
+
+        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX, () ->
                 addProjectCommand.execute(modelStub));
     }
 
