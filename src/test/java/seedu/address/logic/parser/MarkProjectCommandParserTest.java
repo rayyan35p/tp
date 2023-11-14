@@ -16,6 +16,20 @@ public class MarkProjectCommandParserTest {
 
     private MarkProjectCommandParser parser = new MarkProjectCommandParser();
 
+    /*
+    Test case design used: Equivalence Partition
+
+    EPs for userInput:
+    1. Strings following the format: "INDEX [MORE_INDEXES]"
+    where there are multiple positive integers
+        e.g. "1 2"
+
+    2. Strings following the format: "INDEX [MORE_INDEXES]"
+    where there is a non-integer
+        e.g. "a"
+    */
+
+    // EP used: EP 1
     @Test
     public void parse_validIndexes_success() {
         List<Index> indexes = new ArrayList<>();
@@ -27,6 +41,7 @@ public class MarkProjectCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
+    // EP used: EP 2
     @Test
     public void parse_invalidIndex_failure() {
         String userInput = "a";

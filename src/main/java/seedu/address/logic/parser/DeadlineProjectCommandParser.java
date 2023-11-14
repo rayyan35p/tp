@@ -20,6 +20,7 @@ public class DeadlineProjectCommandParser implements Parser<DeadlineProjectComma
     /**
      * Parses the given {@code String} of arguments in the context of the DeadlineProjectCommand
      * and returns an DeadlineProjectCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeadlineProjectCommand parse(String args) throws ParseException {

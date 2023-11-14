@@ -39,6 +39,8 @@ public class DeadlineProjectCommand extends Command {
     private final Deadline deadline;
 
     /**
+     * Creates a DeadlineProjectCommand to add a deadline to the specified projects.
+     *
      * @param projectIndexes of the project in the filtered project list to edit the deadline
      * @param deadline to be updated to
      */
@@ -76,7 +78,7 @@ public class DeadlineProjectCommand extends Command {
 
     /**
      * Generates a command execution success message based on whether the deadline is added to or removed from
-     * {@code projectToEdit}.
+     * all the projects.
      */
     private String generateSuccessMessage() {
         String message = !deadline.value.isEmpty()

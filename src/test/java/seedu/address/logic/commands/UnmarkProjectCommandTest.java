@@ -28,6 +28,7 @@ public class UnmarkProjectCommandTest {
 
     private Model model = new ModelManager(getTypicalTaskHub(), new UserPrefs());
 
+    // Invalid input: none (successful test)
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Project projectToUnmark = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
@@ -42,6 +43,7 @@ public class UnmarkProjectCommandTest {
         assertCommandSuccess(unmarkProjectCommand, model, expectedMessage, expectedModel);
     }
 
+    // Invalid input: none (successful test)
     @Test
     public void execute_validIndexesUnfilteredList_success() {
         List<Index> indexes = List.of(INDEX_FIRST_PROJECT, INDEX_SECOND_PROJECT);
@@ -60,6 +62,7 @@ public class UnmarkProjectCommandTest {
         assertCommandSuccess(unmarkProjectCommand, model, expectedMessage, expectedModel);
     }
 
+    // Invalid input: project index
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredProjectList().size() + 1);

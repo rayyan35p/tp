@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
 /**
@@ -51,7 +52,7 @@ public class Deadline {
         try {
             LocalDate.parse(test, DATE_FORMATTER);
             return true; // Parsing success: Valid deadline
-        } catch (Exception e) {
+        } catch (DateTimeParseException e) {
             return false; // Parsing failed: Invalid deadline
         }
     }

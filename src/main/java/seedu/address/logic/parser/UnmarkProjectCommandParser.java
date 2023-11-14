@@ -15,6 +15,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class UnmarkProjectCommandParser implements Parser<UnmarkProjectCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the UnmarkProjectCommand
+     * and returns an UnmarkProjectCommand object for execution.
+     *
+     * @throws ParseException if the user input does not conform the expected format
+     */
     @Override
     public UnmarkProjectCommand parse(String args) throws ParseException {
         requireNonNull(args);
