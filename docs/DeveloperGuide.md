@@ -663,7 +663,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-* 3d. User edits the project's name to one that already exists.
+* 2d. User edits the project's name to one that already exists.
   * 2d1. TaskHub shows an error message.
 
     Use case ends.
@@ -1107,9 +1107,9 @@ This use case is also applicable to editing **priority** of multiple projects.
     Use case ends.
 
 * 2e. User enters an employee that is already assigned to the task in the project.
-  * 2e1. TaskHub shows success message but there is no effect on the project or task.
+  * 2e1. There is no change to the project or task.
 
-    Use case ends.
+    Use case resumes from step 4.
 
 * 2f. User enters a task that is already assigned to another employee in the project.
   * 2f1. TaskHub replaces the existing employee in the task with the new employee.
