@@ -13,7 +13,7 @@ if () then ([d/ prefix present])
         : Remove existing Deadline
          from Project;
     else ([else])
-        if () then ([d/ field is valid date)
+        if () then ([d/ field is valid date])
             : Add Deadline to Project;
         else ([else])
             : Invalid Deadline error;
