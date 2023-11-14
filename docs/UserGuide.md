@@ -576,7 +576,7 @@ Format: `listE`
 Finds employees whose names contain any of the given keywords.
 Additionally, it shows only the projects that these employees are under.
 
-Format: `findE KEYWORD [MORE_KEYWORDS]`
+Format: `findE KEYWORD [MORE_KEYWORDS]…​`
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -784,7 +784,7 @@ Format: `listP`
 Find projects whose names contain any of the given keywords.
 Additionally, it shows only the employees that are under these projects.
 
-Format: `findP KEYWORD [MORE_KEYWORDS]`
+Format: `findP KEYWORD [MORE_KEYWORDS]…​`
 
 * The search is case-insensitive. e.g. `website` will match `Website`
 * The order of the keywords does not matter. e.g. `Create Website` will match `Website Create`

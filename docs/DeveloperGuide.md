@@ -164,8 +164,6 @@ The `Project` component stores a project's data which comprises:
 * The `TaskList` contains the `Task`s which have been added to the `Project`.
 * The `Employee` (if applicable) in each `Task` in the `TaskList` of the project must also exist in the `UniqueEmployeeList` of the project.
 
-***Note: For the Model, Employee and Project components, lower-level details (e.g. most class attributes and methods) have been omitted for visual clarity.
-
 
 ### Task component
 **API** : [`Task.java`](https://github.com/AY2324S1-CS2103T-T08-3/tp/blob/master/src/main/java/seedu/address/model/task/Task.java)
@@ -180,7 +178,7 @@ The `Task` component stores a task's data which comprises:
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Note:** The `Employee`, `Project` and `Task` class diagrams above have omitted some details (e.g. class methods) to improve visual clarity. Only the most important fields and associations are shown.
+:information_source: **Note:** The `Model`, `Employee`, `Project` and `Task` class diagrams above have omitted some details (e.g. class methods) to improve visual clarity. Only the most important fields and associations are shown.
 
 </div>
 
@@ -677,23 +675,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-* 2b. User does not enter at least one field to edit.
+* 2b. User does not enter a valid index for the project.
   * 2b1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2c. User does not enter at least one field to edit.
+  * 2c1. TaskHub shows an error message.
     
     Use case ends.
 
-* 2c. User enters an invalid value for a field.
-  * 2c1. TaskHub shows an error message.
-
-    Use case ends.
-
-* 2d. User edits the project's name to one that already exists.
+* 2d. User enters an invalid value for a field.
   * 2d1. TaskHub shows an error message.
 
     Use case ends.
 
-* 2e. User enters multiple values for a single-valued field.
+* 2e. User edits the project's name to one that already exists.
   * 2e1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2f. User enters multiple values for a single-valued field.
+  * 2f1. TaskHub shows an error message.
     
     Use case ends.
 
@@ -1178,7 +1181,7 @@ This use case is also applicable to editing **priority** of multiple projects.
 
     Use case ends.
 
-**Use case: UC24 - Clear all data **
+**Use case: UC24 - Clear all data**
 
 **MSS**
 
@@ -1188,7 +1191,7 @@ This use case is also applicable to editing **priority** of multiple projects.
 
     Use case ends.
 
-**Use case: UC25 - Exit the application **
+**Use case: UC25 - Exit the application**
 
 **MSS**
 
@@ -1670,9 +1673,9 @@ Nonetheless, we plan to add an error message to be displayed to the user saying 
 
 Building TaskHub was of moderate to high difficulty for our team due to the following reasons:
 
-- we had to build on top of an existing, brownfield project, the codebase of which we were not familiar with
-- it was our first time working with Java and JavaFX in a software engineering context
-- we created two more model components (`Project`s and `Task`s) with dependencies among each other and with `Employee`s
+- We had to build on top of an existing, brownfield project, the codebase of which we were not familiar with
+- It was our first time working with Java and JavaFX in a software engineering context
+- We created two more model components (`Project`s and `Task`s) with dependencies among each other and with `Employee`s
 
 ### **Challenges Faced**
 
