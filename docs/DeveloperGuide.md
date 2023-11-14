@@ -653,23 +653,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-* 2b. User does not enter at least one field to edit.
+* 2b. User does not enter a valid index for the project.
   * 2b1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2c. User does not enter at least one field to edit.
+  * 2c1. TaskHub shows an error message.
     
     Use case ends.
 
-* 2c. User enters an invalid value for a field.
-  * 2c1. TaskHub shows an error message.
-
-    Use case ends.
-
-* 2d. User edits the project's name to one that already exists.
+* 2d. User enters an invalid value for a field.
   * 2d1. TaskHub shows an error message.
 
     Use case ends.
 
-* 2e. User enters multiple values for a single-valued field.
+* 2e. User edits the project's name to one that already exists.
   * 2e1. TaskHub shows an error message.
+
+    Use case ends.
+
+* 2f. User enters multiple values for a single-valued field.
+  * 2f1. TaskHub shows an error message.
     
     Use case ends.
 
