@@ -413,7 +413,7 @@ For a more comprehensive overview of what you can achieve with TaskHub, you may 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* All commands that can take in multiple index should have its indexes separated by **single** spaces.<br>
+* All commands that can take in multiple index**es** should have its indexes separated by **single** spaces.<br>
 e.g. if the command specifies `INDEX [MORE_INDEXES]`, it should be entered as `1 2 3` instead of `1  2  3`.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `listE`, `listP`, `exit` and `clear`) will be ignored.<br>

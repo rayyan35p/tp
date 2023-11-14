@@ -28,7 +28,10 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=aslam341&breakdown=true)
 
-  * **Project management**: Setting milestones and deadlines for the team, ensuring that the team is on track to meet the deadlines, and ensuring that the team is on track to meet the milestones.
+  * **Project management**: 
+  * Setting milestones and deadlines for the team, ensuring that the team is on track to meet the deadlines, and ensuring that the team is on track to meet the milestones.
+  * Contributed to issue-tracking and management.
+  * Managed the latest [milestone 1.4 release](https://github.com/AY2324S1-CS2103T-T08-3/tp/releases).
 
 * **Enhancements to existing features**: 
   * Enhanced the existing deadline and priority commands to set the respective attributes for multiple projects at once, from only being able to set for one project at a time.
@@ -39,7 +42,6 @@ Given below are my contributions to the project.
   * Improved on the existing sample data to have much more information for new users to try out commands on and understand the application better. (Pull request [\#179](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/179))
 
 * **Contributions to team-based tasks**:
-  * Document the user stories in the Developer Guide. 
   * Renamed all references to the original AddressBook project to TaskHub. (Pull requests [\#87](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/87), [\#97](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/97))
   * Renamed all references to Person model to Employee model. (Pull requests [\#83](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/83), [\#97](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/97)) 
   * Enable java assertions in the project. (Pull request [\#119](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/119))
@@ -48,12 +50,16 @@ Given below are my contributions to the project.
   * PRs reviewed (with non-trivial review comments): 
     (Pull requests [\#111](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/111#discussion_r1371983270),
     [\#138](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/138#discussion_r1375265054),
-    [\#155](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/156), and more...) 
+    [\#156](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/156), and more...) 
 
 * **Documentation**:
   * User Guide:
     * Added documentation for the new features I implemented which are mentioned above.
-    * Ensuring correctness of the features in the user guide, such as command format and example usages.
+    * Ensuring correctness of the features in the user guide, such as command format and example usages, for the entire user guide.
+    * Added command parameter tables for each command section, inspired from another current team [W08-1](https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1).
+
   * Developer Guide:
-    * Document the user stories. (Pull request [\#82](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/82))
-    * Documented the design of the mark project command. (Pull request [\#130](https://github.com/AY2324S1-CS2103T-T08-3/tp/pull/130))
+    * Added most of the user stories.
+    * Documented the design of the mark project command.
+    * Documented the design of commands related to setting project deadlines.
+    * Added all the use cases.
