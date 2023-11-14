@@ -33,6 +33,7 @@ public class MarkProjectCommand extends Command {
 
     /**
      * Creates a MarkProjectCommand to mark the specified projects as completed.
+     *
      * @param projectIndexes which are the indexes of the projects to mark as completed.
      */
     public MarkProjectCommand(List<Index> projectIndexes) {
