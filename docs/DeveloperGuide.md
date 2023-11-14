@@ -164,8 +164,6 @@ The `Project` component stores a project's data which comprises:
 * The `TaskList` contains the `Task`s which have been added to the `Project`.
 * The `Employee` (if applicable) in each `Task` in the `TaskList` of the project must also exist in the `UniqueEmployeeList` of the project.
 
-***Note: For the Model, Employee and Project components, lower-level details (e.g. most class attributes and methods) have been omitted for visual clarity.
-
 
 ### Task component
 **API** : [`Task.java`](https://github.com/AY2324S1-CS2103T-T08-3/tp/blob/master/src/main/java/seedu/address/model/task/Task.java)
@@ -180,7 +178,7 @@ The `Task` component stores a task's data which comprises:
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Note:** The `Employee`, `Project` and `Task` class diagrams above have omitted some details (e.g. class methods) to improve visual clarity. Only the most important fields and associations are shown.
+:information_source: **Note:** The `Model`, `Employee`, `Project` and `Task` class diagrams above have omitted some details (e.g. class methods) to improve visual clarity. Only the most important fields and associations are shown.
 
 </div>
 
