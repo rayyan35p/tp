@@ -895,6 +895,7 @@ Examples:
 
 [Return to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
 
 ### Mark task(s) as completed: `markT`
 
@@ -927,6 +928,8 @@ Format: `unmarkT pr/PROJECT_INDEX t/TASK_INDEX [MORE_TASK_INDEXES]`
 * If multiple indexes are provided, each index __must be separated by a singular space__.
 * The indexes **must be positive integers** 1, 2, 3,...
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `listP` followed by `unmarkT pr/1 t/1 3` marks the 1st and 3rd tasks of the 1st project as incomplete in TaskHub.
 * `findP Capstone` followed by `unmarkT pr/2 t/2` marks the 2nd task in the 2nd project from the results of the `findP` command as incomplete.
@@ -946,11 +949,9 @@ Format: `sortT`
 
 [Return to Table of Contents](#table-of-contents)
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ## Assignment Commands
-
-<br>
 
 <a name="command-parameters-3"></a>
 <!-- The table below is inspired by https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1 -->
@@ -966,8 +967,7 @@ Note that some of the limits for the parameters stated above are not enforced by
 
 [Return to Table of Contents](#table-of-contents)
 
-<br>
-
+<div style="page-break-after: always;"></div>
 
 ### Assign employee(s) to a project: `assignP`
 
