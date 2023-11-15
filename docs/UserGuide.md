@@ -760,6 +760,8 @@ Format: `dlP INDEX [MORE_INDEXES] d/[DEADLINE]`
 * Existing deadline will be updated to the new deadline for each project.
 * To remove the deadline of a project, leave the `DEADLINE` blank.
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 *  `dlP 2 d/18-01-2022` sets the deadline of the 2nd project to be `18-01-2022`.
 *  `dlP 1 2 d/` removes the deadline of the 1st and 2nd projects.
@@ -816,15 +818,13 @@ Examples:
 * `findP website model` returns `Create Website`, `Build Model`
 * `findP market` returns `Market Expansion` <br>
 
-<img src="images/findP.png" width="500">
+<img src="images/findP.png" width="450">
 
 [Return to Table of Contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
 
 ## Task Commands
-
-<br>
 
 <a name="command-parameters-2"></a>
 <!-- The table below is inspired by https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1 -->
@@ -835,6 +835,9 @@ Examples:
 | `TASK_NAME`      | The task's name.<br/><br/> It should only contain alphanumeric characters and spaces.<br/><br/> It should not be blank and should not exceed 80 characters.                                                                                            | - `Create Wireframes`<br/> - `Responsive Web Design` |
 | `PROJECT_INDEX`  | The index number of the project as shown in the project panel.<br/><br/> It should be a positive integer, and should not be more than the number of projects currently shown in the displayed project panel. It should be less than 1000.              | - `1`                                                |
 | `EMPLOYEE_INDEX` | The index number of the employee as shown in the specified project on the project panel.<br/><br/> It should be a positive integer, and should not be more than the number of employees present in the specified project. It should be less than 1000. | - `2`                                                |
+
+| Parameter        | Description​                                                                                                                                                                                                                                           | Examples​                                            |
+|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
 | `TASK_INDEX`     | The index number of the task as shown in the specified project on the project panel.<br/><br/> It should be a positive integer, and should not be more than the number of tasks currently in the specified project. It should be less than 1000.       | - `3`                                                |
 | `DEADLINE`       | The task's deadline.<br/><br/> It must be a valid date and time in the `dd-MM-yyyy HHmm` format.                                                                                                                                                       | - `11-11-2023 2359`<br/> - `28-02-2024 0900`         |
 
@@ -842,7 +845,7 @@ Note that some of the limits for the parameters stated above are not enforced by
 
 [Return to Table of Contents](#table-of-contents)
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ### Add a new task to a project: `addT`
 
