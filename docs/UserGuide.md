@@ -264,7 +264,7 @@ Upon clicking help on the menu bar as shown below or by using the shortcut `F1`,
 
 a help window pops up with a list of all the possible commands:
 
-![help window](images/HelpWindow.png)
+<img src="images/HelpWindow.png" height="200" />
 
 and at the bottom of the window, is a link to our user guide.
 
