@@ -505,7 +505,7 @@ Note that some of the limits for the parameters stated above are not enforced by
 
 [Return to Table of Contents](#table-of-contents)
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ### Add an employee: `addE`
 
@@ -605,15 +605,13 @@ Examples:
 * `findE alex david` returns `Alex Yeoh`, `David Li`
 * `findE david` returns `David Li` <br>
 
-<img src="images/findE.png" width="500">
+<img src="images/findE.png" width="450">
 
 [Return to Table of Contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
 
 ## Project Commands
-
-<br>
 
 <a name="command-parameters-1"></a>
 <!-- The table below is inspired by https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1 -->
