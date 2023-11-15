@@ -401,7 +401,7 @@ If you've followed the steps correctly, TaskHub should look something like this 
 
 Scroll down in the `Employees` pane to notice Anton, the newest addition to your team.
 
-<img src="images/QuickStartEnd.png" width="600">
+<img src="images/QuickStartEnd.png" width="700">
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -547,6 +547,7 @@ Examples:
 
 [Return to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
 
 ### Delete an employee: `deleteE`
 
@@ -573,6 +574,7 @@ Examples:
 
 [Return to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
 
 ### List all employees: `listE`
 
