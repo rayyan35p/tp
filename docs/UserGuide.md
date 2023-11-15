@@ -630,8 +630,6 @@ Note that some of the limits for the parameters stated above are not enforced by
 
 [Return to Table of Contents](#table-of-contents)
 
-<br>
-
 ### Add a new project: `addP`
 
 Adds a new project in TaskHub.
@@ -680,6 +678,7 @@ Examples:
 
 [Return to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
 
 ### Delete a project: `deleteP`
 
