@@ -179,7 +179,7 @@ Copy or move the downloaded `taskhub.jar` file to the folder you want to use as 
 
    After executing this command, a graphical user interface (GUI) similar to the one below should appear shortly: 
 
-   <img src="images/Ui.png" width="600" class="center">
+   <img src="images/Ui.png" width="600">
 
    Note: The application comes with some sample data for your reference.
 
@@ -268,11 +268,11 @@ Upon clicking help on the menu bar as shown below or by using the shortcut `F1`,
 
 a help window pops up with a list of all the possible commands:
 
-<img src="images/HelpWindow.png" height="450" class="center">
+<img src="images/HelpWindow.png" height="450">
 
 and at the bottom of the window, is a link to our user guide.
 
-<img src="images/HelpWindowUgLink.png" height="450" class="center">
+<img src="images/HelpWindowUgLink.png" height="450">
 
 <div style="page-break-after: always;"></div>
 
@@ -403,7 +403,7 @@ If you've followed the steps correctly, TaskHub should look something like this 
 
 Scroll down in the `Employees` pane to notice Anton, the newest addition to your team.
 
-<img src="images/QuickStartEnd.png" width="600" class="center">
+<img src="images/QuickStartEnd.png" width="600">
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -578,7 +578,7 @@ Examples:
 
 Shows a list of all employees in TaskHub.
 
-<img src="images/listE.png" width="500" class="center">
+<img src="images/listE.png" width="500">
 
 Format: `listE`
 
@@ -605,7 +605,7 @@ Examples:
 * `findE alex david` returns `Alex Yeoh`, `David Li`
 * `findE david` returns `David Li` <br>
 
-<img src="images/findE.png" width="450" class="center">
+<img src="images/findE.png" width="450">
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -792,7 +792,7 @@ Examples:
 
 Shows a list of all projects in TaskHub.
 
-<img src="images/listP.png" width="500" class="center">
+<img src="images/listP.png" width="500">
 
 Format: `listP`
 
@@ -818,7 +818,7 @@ Examples:
 * `findP website model` returns `Create Website`, `Build Model`
 * `findP market` returns `Market Expansion` <br>
 
-<img src="images/findP.png" width="450" class="center">
+<img src="images/findP.png" width="450">
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -847,8 +847,6 @@ Note that some of the limits for the parameters stated above are not enforced by
 
 [Return to Table of Contents](#table-of-contents)
 
-<div style="page-break-after: always;"></div>
-
 ### Add a new task to a project: `addT`
 
 Adds a new task to the specified project in TaskHub and assigns it to the (optionally) specified employee.
@@ -861,6 +859,8 @@ Format: `addT n/TASK_NAME pr/PROJECT_INDEX [em/EMPLOYEE_INDEX] d/DEADLINE`
 * The indexes **must be positive integers** 1, 2, 3,...
 * The deadline must be in the format `dd-MM-yyyy HHmm`.
 * It is possible for the deadline of the task to be after the deadline of the project.
+
+<div style="page-break-after: always;"></div>
 
 Examples:
 * `listP` followed by `addT pr/1 n/Website d/11-10-2023 2359` adds a task named `Website` with deadline `11-10-2023 2359` to the 1st project.
