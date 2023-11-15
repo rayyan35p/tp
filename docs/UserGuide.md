@@ -179,13 +179,15 @@ Copy or move the downloaded `taskhub.jar` file to the folder you want to use as 
 
    After executing this command, a graphical user interface (GUI) similar to the one below should appear shortly: 
 
-   <img src="images/Ui.png" width="700">
+   <img src="images/Ui.png" width="600">
 
    Note: The application comes with some sample data for your reference.
 
 [Return to Table of Contents](#table-of-contents)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## Understanding the components of TaskHub
 
@@ -401,7 +403,7 @@ If you've followed the steps correctly, TaskHub should look something like this 
 
 Scroll down in the `Employees` pane to notice Anton, the newest addition to your team.
 
-<img src="images/QuickStartEnd.png" width="700">
+<img src="images/QuickStartEnd.png" width="600">
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -580,12 +582,13 @@ Examples:
 
 Shows a list of all employees in TaskHub.
 
-![list example](images/listE.png)
+<img src="images/listE.png" width="600">
 
 Format: `listE`
 
 [Return to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
 
 ### Locate employees by name: `findE`
 
@@ -604,13 +607,13 @@ Format: `findE KEYWORD [MORE_KEYWORDS]…​`
 Examples:
 * `findE John` returns `john` and `John Doe`
 * `findE alex david` returns `Alex Yeoh`, `David Li`
-* `findE david` returns `David Li` <br> 
+* `findE david` returns `David Li` <br>
 
-  ![result for 'findE David'](images/findE.png)
+<img src="images/findE.png" width="600">
 
 [Return to Table of Contents](#table-of-contents)
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ## Project Commands
 
