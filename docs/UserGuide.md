@@ -685,8 +685,6 @@ Examples:
 
 [Return to Table of Contents](#table-of-contents)
 
-<div style="page-break-after: always;"></div>
-
 ### Delete a project: `deleteP`
 
 Deletes the specified project from TaskHub.
