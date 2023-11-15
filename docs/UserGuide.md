@@ -1007,6 +1007,8 @@ Format: `unassignP pr/PROJECT_INDEX em/EMPLOYEE_INDEX [MORE_EMPLOYEE_INDEXES] ..
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `list` followed by `unassignP pr/2 em/1 3` will un-assign the 1st and 3rd employees from the 2nd project.
 * `findP Capstone` followed by `unassignP pr/1 em/1` un-assigns the 1st employee from the 1st project from the results of the `findP` command.
@@ -1041,6 +1043,7 @@ Examples:
 
 [Return to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
 
 ### Un-assign an employee from a task: `unassignT`
 
