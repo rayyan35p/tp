@@ -1062,7 +1062,7 @@ Examples:
 
 [Return to Table of Contents](#table-of-contents)
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ## Data Storage
 
@@ -1085,6 +1085,8 @@ More details are provided under the [FAQ Section](#faq). <br>
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 # FAQ
 
