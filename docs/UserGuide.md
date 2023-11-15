@@ -172,6 +172,8 @@ Copy or move the downloaded `taskhub.jar` file to the folder you want to use as 
     taskhub.jar
     ```
 
+<div style="page-break-after: always;"></div>
+
 4. Once your terminal's working directory is the folder that contains `taskhub.jar`, run the following command to launch TaskHub:
 
     ```bash 
@@ -188,11 +190,8 @@ Copy or move the downloaded `taskhub.jar` file to the folder you want to use as 
 
 ---
 
-<div style="page-break-after: always;"></div>
-
 ## Understanding the components of TaskHub
 
----
 ### Employees
 
 
