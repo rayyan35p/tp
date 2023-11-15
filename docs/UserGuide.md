@@ -179,7 +179,7 @@ Copy or move the downloaded `taskhub.jar` file to the folder you want to use as 
 
    After executing this command, a graphical user interface (GUI) similar to the one below should appear shortly: 
 
-   <img src="images/Ui.png" width="600">
+   <img src="images/Ui.png" width="600" class="center">
 
    Note: The application comes with some sample data for your reference.
 
@@ -268,11 +268,11 @@ Upon clicking help on the menu bar as shown below or by using the shortcut `F1`,
 
 a help window pops up with a list of all the possible commands:
 
-<img src="images/HelpWindow.png" height="450"/>
+<img src="images/HelpWindow.png" height="450" class="center">
 
 and at the bottom of the window, is a link to our user guide.
 
-<img src="images/HelpWindowUgLink.png" height="450"/>
+<img src="images/HelpWindowUgLink.png" height="450" class="center">
 
 <div style="page-break-after: always;"></div>
 
@@ -403,7 +403,7 @@ If you've followed the steps correctly, TaskHub should look something like this 
 
 Scroll down in the `Employees` pane to notice Anton, the newest addition to your team.
 
-<img src="images/QuickStartEnd.png" width="600">
+<img src="images/QuickStartEnd.png" width="600" class="center">
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -578,7 +578,7 @@ Examples:
 
 Shows a list of all employees in TaskHub.
 
-<img src="images/listE.png" width="500">
+<img src="images/listE.png" width="500" class="center">
 
 Format: `listE`
 
@@ -605,7 +605,7 @@ Examples:
 * `findE alex david` returns `Alex Yeoh`, `David Li`
 * `findE david` returns `David Li` <br>
 
-<img src="images/findE.png" width="450">
+<img src="images/findE.png" width="450" class="center">
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -792,7 +792,7 @@ Examples:
 
 Shows a list of all projects in TaskHub.
 
-<img src="images/listP.png" width="500">
+<img src="images/listP.png" width="500" class="center">
 
 Format: `listP`
 
@@ -818,7 +818,7 @@ Examples:
 * `findP website model` returns `Create Website`, `Build Model`
 * `findP market` returns `Market Expansion` <br>
 
-<img src="images/findP.png" width="450">
+<img src="images/findP.png" width="450" class="center">
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -835,6 +835,8 @@ Examples:
 | `TASK_NAME`      | The task's name.<br/><br/> It should only contain alphanumeric characters and spaces.<br/><br/> It should not be blank and should not exceed 80 characters.                                                                                            | - `Create Wireframes`<br/> - `Responsive Web Design` |
 | `PROJECT_INDEX`  | The index number of the project as shown in the project panel.<br/><br/> It should be a positive integer, and should not be more than the number of projects currently shown in the displayed project panel. It should be less than 1000.              | - `1`                                                |
 | `EMPLOYEE_INDEX` | The index number of the employee as shown in the specified project on the project panel.<br/><br/> It should be a positive integer, and should not be more than the number of employees present in the specified project. It should be less than 1000. | - `2`                                                |
+
+<div style="page-break-after: always;"></div>
 
 | Parameter        | Description​                                                                                                                                                                                                                                           | Examples​                                            |
 |------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
