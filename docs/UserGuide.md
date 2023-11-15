@@ -262,13 +262,17 @@ Upon clicking help on the menu bar as shown below or by using the shortcut `F1`,
 
 ![circled_help_gui](images/circledHelpGui.png)
 
+<div style="page-break-after: always;"></div>
+
 a help window pops up with a list of all the possible commands:
 
-<img src="images/HelpWindow.png" height="400"/>
+<img src="images/HelpWindow.png" height="450"/>
 
 and at the bottom of the window, is a link to our user guide.
 
-<img src="images/HelpWindowUgLink.png" height="400"/>
+<img src="images/HelpWindowUgLink.png" height="450"/>
+
+<div style="page-break-after: always;"></div>
 
 ### Command Panel
 * The command panel is the main panel that you will be interacting with to key in commands and also get back the results of those commands.
@@ -285,6 +289,8 @@ and at the bottom of the window, is a link to our user guide.
 * Projects, as well as their members, tasks to complete in the project, and other important details for managing your project are stored here!
 
 [Return to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 <div markdown="span" class="alert alert-warning">
