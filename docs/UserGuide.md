@@ -226,8 +226,6 @@ A `Project` in TaskHub is a managerial unit that includes information about [`Em
 | CompletionStatus | Indicates whether the project is completed or in progress. | -                                            | [`markP`](#mark-projects-as-completed-markp), [`unmarkP`](#mark-projects-as-incomplete-unmarkp) |
 | Tasks            | Tasks associated with the project.                         | -                                            | [`addT`](#add-a-new-task-to-a-project-addt)                                                     |
 
----
-
 ### Tasks
 
 <img src="images/Tasks.png" width="400">
@@ -245,6 +243,8 @@ A `Task` in TaskHub represents a specific job within a `Project` that can be ass
 
 [Return to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ## Understanding the User Interface (UI)
 
 ![Ui Parts](images/UiParts.png)
@@ -254,6 +254,8 @@ TaskHub's UI consists of 4 main parts that you will be using for your project ma
 ### Menu Bar
 * The menu bar is where you can exit TaskHub or even open the help window with a simple click of your mouse!
 * While commands to exit TaskHub or open the help window can be entered as a command, this is a beginner-friendly alternative for newer users who might not be so familiar with the commands.
+
+<div style="page-break-after: always;"></div>
 
 #### Help:
 Upon clicking help on the menu bar as shown below or by using the shortcut `F1`,
