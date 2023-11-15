@@ -21,7 +21,28 @@ public class DeadlineProjectCommandParserTest {
     private DeadlineProjectCommandParser parser = new DeadlineProjectCommandParser();
     private final String validDeadline = "21-02-2023";
 
+    /*
+    Test case design used: Equivalence Partition
 
+    EPs for userInput:
+    1. Strings following the format: "INDEX d/DEADLINE"
+    where INDEX is a positive integer and DEADLINE is a valid date
+        e.g. "1 d/21-02-2023"
+
+    2. Strings following the format: "INDEX d/DEADLINE"
+    where INDEX is a positive integer and DEADLINE is missing (indicating no deadline)
+        e.g. "1 d/"
+
+    3. Strings following the format: "INDEX d/DEADLINE"
+    where INDEX is a positive integer and DEADLINE is an invalid date (february 29th does not exist)
+        e.g. "1 d/29-02-2023"
+
+    4. Strings following the format: "INDEX d/DEADLINE"
+    where INDEX is a negative integer and DEADLINE is valid date
+        e.g. "1 d/21/02/2023"
+    */
+
+    // EP used: EP 1
     @Test
     public void parse_validArgs_success() {
         Index targetIndex = INDEX_FIRST_PROJECT;
@@ -31,6 +52,7 @@ public class DeadlineProjectCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
+    // EP used: EP 2
     @Test
     public void parse_missingDeadlineDate_success() {
         String userInput = INDEX_FIRST_PROJECT.getOneBased() + " " + PREFIX_DEADLINE + "";
@@ -51,15 +73,16 @@ public class DeadlineProjectCommandParserTest {
         String userInput = INDEX_FIRST_PROJECT.getOneBased() + " " + PREFIX_DEADLINE + "21/02/2023";
         assertParseFailure(parser, userInput, Deadline.MESSAGE_CONSTRAINTS);
 
-        // Invalid date value
-        userInput = INDEX_FIRST_PROJECT.getOneBased() + " " + PREFIX_DEADLINE + "32-02-2023";
+        // Invalid date value, EP used: EP 3
+        userInput = INDEX_FIRST_PROJECT.getOneBased() + " " + PREFIX_DEADLINE + "29-02-2023";
         assertParseFailure(parser, userInput, Deadline.MESSAGE_CONSTRAINTS);
     }
 
+    // EP used: EP 4
     @Test
     public void parse_invalidIndex_failure() {
         // Invalid index
-        String userInput = "-1" + " " + PREFIX_DEADLINE + "28-02-2023";
+        String userInput = "-1" + " " + PREFIX_DEADLINE + validDeadline;
         assertParseFailure(parser, userInput, String.format(ParserUtil.MESSAGE_INVALID_INDEX, "-1"));
     }
 }

@@ -413,7 +413,7 @@ For a more comprehensive overview of what you can achieve with TaskHub, you may 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* All commands that can take in multiple index should have its indexes separated by **single** spaces.<br>
+* All commands that can take in multiple index**es** should have its indexes separated by **single** spaces.<br>
 e.g. if the command specifies `INDEX [MORE_INDEXES]`, it should be entered as `1 2 3` instead of `1  2  3`.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `listE`, `listP`, `exit` and `clear`) will be ignored.<br>
@@ -576,7 +576,7 @@ Format: `listE`
 Finds employees whose names contain any of the given keywords.
 Additionally, it shows only the projects that these employees are under.
 
-Format: `findE KEYWORD [MORE_KEYWORDS]`
+Format: `findE KEYWORD [MORE_KEYWORDS]…​`
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -784,7 +784,7 @@ Format: `listP`
 Find projects whose names contain any of the given keywords.
 Additionally, it shows only the employees that are under these projects.
 
-Format: `findP KEYWORD [MORE_KEYWORDS]`
+Format: `findP KEYWORD [MORE_KEYWORDS]…​`
 
 * The search is case-insensitive. e.g. `website` will match `Website`
 * The order of the keywords does not matter. e.g. `Create Website` will match `Website Create`

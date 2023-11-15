@@ -41,6 +41,7 @@ public class ParserUtil {
     /**
      * Parses {@code String oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will
      * be trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -58,7 +59,7 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> oneBasedIndexes} into a {@code List<Index>} and returns it.
-     * @param oneBasedIndexes
+     *
      * @throws ParseException if any of the specified indexes is invalid (not non-zero unsigned integer).
      */
     public static List<Index> parseIndexes(String oneBasedIndexes) throws ParseException {

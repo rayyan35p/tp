@@ -19,6 +19,7 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditProjectCommand
      * and returns an EditProjectCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditProjectCommand parse(String args) throws ParseException {

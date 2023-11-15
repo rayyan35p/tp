@@ -33,6 +33,7 @@ public class DeadlineProjectCommandTest {
 
     private Model model = new ModelManager(getTypicalTaskHub(), new UserPrefs());
 
+    // Invalid input: none (successful test)
     @Test
     public void execute_addDeadlineUnfilteredList_success() {
         Project firstProject = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
@@ -51,6 +52,7 @@ public class DeadlineProjectCommandTest {
         assertCommandSuccess(deadlineProjectCommand, model, expectedMessage, expectedModel);
     }
 
+    // Invalid input: none (successful test)
     @Test
     public void execute_addDeadlineMultipleProjects_success() {
         Project firstProject = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
@@ -73,6 +75,7 @@ public class DeadlineProjectCommandTest {
         assertCommandSuccess(deadlineProjectCommand, model, expectedMessage, expectedModel);
     }
 
+    // Invalid input: none (successful test)
     @Test
     public void execute_deleteDeadlineUnfilteredList_success() {
         Project firstProject = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
@@ -89,6 +92,7 @@ public class DeadlineProjectCommandTest {
         assertCommandSuccess(deadlineProjectCommand, model, expectedMessage, expectedModel);
     }
 
+    // Invalid input: none (successful test)
     @Test
     public void execute_filteredList_success() {
         showProjectAtIndex(model, INDEX_FIRST_PROJECT);
@@ -109,6 +113,7 @@ public class DeadlineProjectCommandTest {
         assertCommandSuccess(deadlineProjectCommand, model, expectedMessage, expectedModel);
     }
 
+    // Invalid input: project index
     @Test
     public void execute_invalidProjectIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredProjectList().size() + 1);
