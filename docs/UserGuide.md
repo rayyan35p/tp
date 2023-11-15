@@ -485,11 +485,7 @@ Format: `exit`
 
 [Return to Table of Contents](#table-of-contents)
 
-<br>
-
 ## Employee Commands
-
-<br>
 
 <a name="command-parameters"></a>
 <!-- The table below is inspired by https://ay2324s1-cs2103t-w08-1.github.io/tp/UserGuide.html#command-parameters-1 -->
