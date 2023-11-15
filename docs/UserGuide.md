@@ -264,11 +264,11 @@ Upon clicking help on the menu bar as shown below or by using the shortcut `F1`,
 
 a help window pops up with a list of all the possible commands:
 
-<img src="images/HelpWindow.png" height="200" />
+<img src="images/HelpWindow.png" height="400"/>
 
 and at the bottom of the window, is a link to our user guide.
 
-![ug_link](images/HelpWindowUgLink.png)
+<img src="images/HelpWindowUgLink.png" height="400"/>
 
 ### Command Panel
 * The command panel is the main panel that you will be interacting with to key in commands and also get back the results of those commands.
