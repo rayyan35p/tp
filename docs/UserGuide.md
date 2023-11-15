@@ -582,7 +582,7 @@ Examples:
 
 Shows a list of all employees in TaskHub.
 
-<img src="images/listE.png" width="400">
+<img src="images/listE.png" width="500">
 
 Format: `listE`
 
@@ -609,7 +609,7 @@ Examples:
 * `findE alex david` returns `Alex Yeoh`, `David Li`
 * `findE david` returns `David Li` <br>
 
-<img src="images/findE.png" width="400">
+<img src="images/findE.png" width="500">
 
 [Return to Table of Contents](#table-of-contents)
 
