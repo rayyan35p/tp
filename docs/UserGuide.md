@@ -346,6 +346,8 @@ addE n/Anton Tan p/98765432 e/anton@mail.com
  a/Anton Street, block 123, #01-01 t/TeamPlayer t/Hardworking
 ```
 
+<div style="page-break-after: always;"></div>
+
 You should get the following response:
 ```
 New employee added: Anton Tan;
@@ -397,7 +399,7 @@ If you've followed the steps correctly, TaskHub should look something like this 
 
 Scroll down in the `Employees` pane to notice Anton, the newest addition to your team.
 
-<img src="images/QuickStartEnd.png" width="700">
+<img src="images/QuickStartEnd.png" width="600">
 
 [Return to Table of Contents](#table-of-contents)
 
