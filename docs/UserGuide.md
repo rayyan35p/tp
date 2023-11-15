@@ -384,6 +384,8 @@ Deadline: 30 Nov 2023, 11:59PM;
 Assignee: Anton Tan
 ```
 
+<div style="page-break-after: always;"></div>
+
 ### Step 5: Marking a Task as Complete:
 It's the next morning. You receive an eager email from Anton reporting that he's already completed the Market Segmentation `Task`. After reviewing his report, you are thoroughly impressed and wish to mark his work as done in `TaskHub`. Let's run this command:
 ```
@@ -439,7 +441,7 @@ e.g. if the command specifies `INDEX [MORE_INDEXES]`, it should be entered as `1
 
 [Return to Table of Contents](#table-of-contents)
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ## General Commands
 
