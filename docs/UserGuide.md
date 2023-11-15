@@ -784,17 +784,19 @@ Examples:
 
 [Return to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
 
 ### List all projects: `listP`
 
 Shows a list of all projects in TaskHub.
 
-![list example](images/listP.png)
+<img src="images/listP.png" width="500">
 
 Format: `listP`
 
 [Return to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
 
 ### Locate projects by name: `findP`
 
@@ -813,11 +815,12 @@ Format: `findP KEYWORD [MORE_KEYWORDS]…​`
 Examples:
 * `findP website model` returns `Create Website`, `Build Model`
 * `findP market` returns `Market Expansion` <br>
-  ![result for 'findP market'](images/findP.png)
+
+<img src="images/findP.png" width="500">
 
 [Return to Table of Contents](#table-of-contents)
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ## Task Commands
 
