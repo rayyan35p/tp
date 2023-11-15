@@ -137,6 +137,7 @@ Links:
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # Getting Started
 
@@ -186,6 +187,8 @@ Copy or move the downloaded `taskhub.jar` file to the folder you want to use as 
 [Return to Table of Contents](#table-of-contents)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## Understanding the components of TaskHub
 
