@@ -208,6 +208,8 @@ An `Employee` is someone that you are managing. TaskHub allows you to store thei
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### Projects
 <img src="images/Project.png" width="400">
 
